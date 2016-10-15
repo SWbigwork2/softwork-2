@@ -3,7 +3,7 @@ package OrderStub;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class OrderBlService_Stub implements OrderBlService{
+public class OrderBlService_Stub implements OrdersBlService{
 	int orderId;
 	int userId;
 	String userNameString;
@@ -45,7 +45,7 @@ public class OrderBlService_Stub implements OrderBlService{
 		orderVOs.add(new OrderVO(userNameString, hotelNameString, roomType, UserId, UserId, orderType, inDate, outDate, completeDate, revokeDate, deadLine));
 		return orderVOs;
 	}
-	public ResultMessage add(int userId,String hotelName, String roomType,int roomNum, int peopleNum, Date beginDate, Date endDate, Date deadline){
+	public ResultMessage add(int userId,String hotelName, RoomType roomType,int roomNum, int peopleNum, Date beginDate, Date endDate, Date deadline){
 		if(userId == 0001){
 			return ResultMessage.notEnough;
 		}
@@ -81,4 +81,3 @@ public class OrderBlService_Stub implements OrderBlService{
 	}
 	
 }
-1

@@ -3,8 +3,8 @@ package OrderStub;
 import java.util.Date;
 
 public class OrderBlService_Driver {
-	public void drive(OrderBlService_Stub orderBlService_Stub){
-		ResultMessage result = orderBlService_Stub.add(0001, "qitian", "normal", 1, 1, new Date(), new Date(), new Date());
+	public void drive(OrdersBlService orderBlService){
+		ResultMessage result = orderBlService.add(0001, "qitian", RoomType.big, 1, 1, new Date(), new Date(), new Date());
 		switch (result) {
 		case userNotExist:
 			System.out.println("User doesn't exist");
@@ -24,19 +24,19 @@ public class OrderBlService_Driver {
 		default:
 			break;
 		}
-		if(orderBlService_Stub.find(0001).equals(null)){
+		if(orderBlService.find(0001).equals(null)){
 			System.out.println("Didn't find the order");
 		}
 		else{
 			System.out.println("Have found a order");
 		}
-		if(orderBlService_Stub.getOrderList(0001, OrderType.done).isEmpty()){
+		if(orderBlService.getOrderList(0001, OrderType.done).isEmpty()){
 			System.out.println("No list found");
 		}
 		else{
 			System.out.println("Have found a list");
 		}
-		ResultMessage revokeMessage = orderBlService_Stub.revoke(0001);
+		ResultMessage revokeMessage = orderBlService.revoke(0001);
 		switch (revokeMessage) {
 		
 		
@@ -51,10 +51,10 @@ public class OrderBlService_Driver {
 			System.out.println("error");
 			break;
 		}
-		orderBlService_Stub.confirm();
-		orderBlService_Stub.cancel();
-		orderBlService_Stub.recover(0001);
-		orderBlService_Stub.changeError(0001);
+		orderBlService.confirm();
+		orderBlService.cancel();
+		orderBlService.recover(0001);
+		orderBlService.changeError(0001);
 	}
 
 }
