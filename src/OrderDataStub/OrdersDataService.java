@@ -2,9 +2,10 @@ package OrderDataStub;
 
 import java.util.ArrayList;
 
+import DateFactoryStub.DatabaseService;
 import OrderStub.OrderType;
 
-public interface OrdersDataService {
+public interface OrdersDataService extends DatabaseService{
 	public void insert(OrderPO orderPO);
 	public void delet(OrderPO orderPO);
 	public void update(OrderPO orderPO);
