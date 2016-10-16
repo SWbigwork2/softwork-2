@@ -1,4 +1,8 @@
+package RoomStub;
+
 import java.util.Date;
+
+import OrderStub.RoomType;
 
 public class RoomBLService_Driver {
 

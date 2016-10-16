@@ -1,3 +1,5 @@
+package RoomStub;
+
 import java.util.*;
 public class CheckoutVO {
 	

@@ -1,3 +1,6 @@
+package RoomStub;
+
+import OrderStub.RoomType;
 
 public class RoomVO {
 	public String roomId;

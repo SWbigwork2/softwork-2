@@ -1,3 +1,5 @@
+package HotelStub;
+
 public class HotelBLService_Driver {
 
 	// 为了创建一个HotelVO而引入的属性，包括酒店的基本信息

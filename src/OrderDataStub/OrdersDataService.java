@@ -2,7 +2,7 @@ package OrderDataStub;
 
 import java.util.ArrayList;
 
-import DateFactoryStub.DataService;
+import DataFactoryStub.DataService;
 import OrderStub.OrderType;
 
 public interface OrdersDataService extends DataService{

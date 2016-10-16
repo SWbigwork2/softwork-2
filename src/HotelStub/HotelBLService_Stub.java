@@ -1,6 +1,8 @@
+package HotelStub;
+
 import java.util.ArrayList;
 
-public class HotelBLService_Stub {
+public class HotelBLService_Stub implements HotelBLService {
 	
 	//与酒店有关的属性，待补充OrderVO 相关的属性
 	String name;

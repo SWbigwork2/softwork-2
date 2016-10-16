@@ -1,5 +1,8 @@
+package RoomStub;
 
-public class RoomBLService_Stub {
+import OrderStub.RoomType;
+
+public class RoomBLService_Stub implements RoomBLService{
 	public String roomName;
 	public String hotelBelongTo;
 	public RoomType roomtype;

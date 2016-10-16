@@ -1,3 +1,5 @@
+package HotelStub;
+
 import java.util.*;
 
 public interface HotelBLService {

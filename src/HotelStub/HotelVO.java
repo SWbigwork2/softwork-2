@@ -1,3 +1,5 @@
+package HotelStub;
+
 public class HotelVO {
 	String name;
 	String address;
