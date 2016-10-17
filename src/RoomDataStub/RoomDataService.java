@@ -2,8 +2,8 @@ package RoomDataStub;
 
 import java.util.ArrayList;
 
-import DataFactoryStub4.DataService;
-import RoomStub.RoomType;
+import DataFactoryStub.DataService;
+
 
 
 public interface RoomDataService extends DataService{
