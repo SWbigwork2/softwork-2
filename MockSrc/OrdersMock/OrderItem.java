@@ -13,7 +13,7 @@ public class OrderItem {
 	int orderId;
 	MembersInfo membersInfo;
 	HotelsInfo hotelsInfo;
-	
+	int peopleNum;
 	RoomsInfo roomsInfo;
 	int roomNum;
 	OrderType orderType;
@@ -34,7 +34,7 @@ public class OrderItem {
 	}
 	public OrderItem(Promotions promotions, int orderId, MembersInfo membersInfo, HotelsInfo hotelsInfo,
 			RoomsInfo roomsInfo, int roomNum, OrderType orderType, Date inDate, Date outDate, Date completeDate,
-			Date revokeDate, Date deadLine) {
+			Date revokeDate, Date deadLine,int peopleNum) {
 		this.promotions = promotions;
 		this.orderId = orderId;
 		this.membersInfo = membersInfo;

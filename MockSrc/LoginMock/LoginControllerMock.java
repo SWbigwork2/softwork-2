@@ -4,10 +4,14 @@ import UsersMock.UserType;
 import UsersMock.Users;
 
 public class LoginControllerMock {
-	int []loginType = new int [4];
-	String []loginM = new String[4];
-	LoginMock login;
+	public  int []loginType = new int [4];
+	private String []loginM = new String[4];
+	private LoginMock login;
 	Users users;
+	public LoginControllerMock() {
+		users = new Users();
+		// TODO Auto-generated constructor stub
+	}
 	public void logout(UserType type){
 		loginType[type.ordinal()]=0;
 	}

@@ -69,12 +69,12 @@ public class OrdersMock extends Orders{
 		return size+1;
 	}
 
-	public ResultMessage add(int userId,HotelsInfo hotelsInfo,RoomsInfo roomsInfo, int peopleNum, Date beginDate, Date endDate, Date deadline){
+	public ResultMessage add( int peopleNum,int roomNum, Date beginDate, Date endDate, Date deadline){
 		if(membersInfo.credit<200){
 			return ResultMessage.notEnough;
 		}
 		int orderId = makeId();
-		tempItem = new OrderItem(promotions, orderId,  membersInfo, hotelsInfo, roomsInfo, roomNum, orderType, beginDate, deadline, beginDate, endDate, deadline);
+		tempItem = new OrderItem(promotions, orderId,  membersInfo, hotelsInfo, roomsInfo, roomNum, OrderType.normal, beginDate, deadline, beginDate, endDate, deadline,peopleNum);
 		
 		
 			return ResultMessage.success;
@@ -104,6 +104,9 @@ public class OrdersMock extends Orders{
 		ordersListMock.add(tempItem);
 		
 	}
+	public OrdersListMock getList(){
+		return ordersListMock;
+	}
 	public ResultMessage cancel(int orderId){
 		OrderItem temp=null;
 		temp = ordersListMock.findOrder(orderId);
@@ -126,6 +129,7 @@ public class OrdersMock extends Orders{
 			return ResultMessage.success;
 		}
 	}
+	
 	public ResultMessage changeError(int orderId){
 		OrderItem temp=null;
 		temp = ordersListMock.findOrder(orderId);

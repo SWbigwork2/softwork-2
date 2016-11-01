@@ -6,11 +6,11 @@ import RoomsMock.RoomType;
 
 public class OrderVO {
 	
-	String userNameString;
-	String hotelNameString;
+	public String userNameString;
+	public String hotelNameString;
 	RoomType roomType;
 	int roomNum;
-	double price;
+	public double price;
 	OrderType orderType;
 	Date inDate;
 	Date outDate;
