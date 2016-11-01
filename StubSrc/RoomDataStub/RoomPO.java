@@ -1,7 +1,8 @@
 package RoomDataStub;
 import java.io.Serializable;
-import RoomStub.RoomType;
- 
+
+import OrderStub.RoomType;
+
 
 public class RoomPO implements Serializable{
 	private String roomName;
