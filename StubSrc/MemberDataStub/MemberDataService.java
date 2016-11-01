@@ -2,9 +2,7 @@ package MemberDataStub;
 
 import java.util.ArrayList;
 
-import DataFactoryStub.DataService;
-
-public interface MemberDataService extends DataService{
+public interface MemberDataService {
 	public void insert(MemberPO memberPO);
 	public void delete(MemberPO memberPO);
 	public void update(MemberPO memberPO);

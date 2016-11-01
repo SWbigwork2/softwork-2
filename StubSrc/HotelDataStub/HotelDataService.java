@@ -2,9 +2,7 @@ package HotelDataStub;
 
 import java.util.ArrayList;
 
-import DataFactoryStub.DataService;
-
-
+import DataFactoryStub4.DataService;
 
 public interface HotelDataService extends DataService{
 	public void insert(HotelPO h);

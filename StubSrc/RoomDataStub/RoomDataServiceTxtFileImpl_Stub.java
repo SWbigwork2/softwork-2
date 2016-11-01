@@ -1,7 +1,7 @@
 package RoomDataStub;
 
 import java.util.ArrayList;
-
+import RoomStub.RoomType;
 
 public class RoomDataServiceTxtFileImpl_Stub implements RoomDataService {
 	int[]list={1,2};

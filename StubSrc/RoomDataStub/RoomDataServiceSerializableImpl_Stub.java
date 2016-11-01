@@ -1,7 +1,7 @@
 package RoomDataStub;
 
 import java.util.ArrayList;
-
+import RoomStub.RoomType;
 
 
 public class RoomDataServiceSerializableImpl_Stub implements RoomDataService{
