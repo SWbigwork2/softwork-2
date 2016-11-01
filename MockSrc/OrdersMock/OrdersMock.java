@@ -23,12 +23,13 @@ public class OrdersMock extends Orders{
 	Date completeDate;
 	Date revokeDate;
 	Date deadLine;
-	ArrayList<OrderItem> orderList = new ArrayList<OrderItem>();
+	OrdersListMock ordersListMock;
 	public void setUp(Promotions p,HotelsInfo h,RoomsInfo r,MembersInfo m){
 		promotions = p;
 		hotelsInfo = h;
 		membersInfo = m;
 		roomsInfo =r;
+		ordersListMock = new OrdersListMock();
 	}
 	/*public OrderBlService_Stub(int orderId, int userId, String userNameString, String hotelsInfo.getName(),
 			roomsInfo.getType() roomsInfo.getType(), int roomNum, double price, OrderType orderType, Date inDate, Date outDate,
@@ -58,13 +59,13 @@ public class OrdersMock extends Orders{
 		
 	}
 	//÷¥––∂©µ•≤Ω÷Ë
-	public ArrayList<OrderItem> getOrderList(int UserId,OrderType orderType){
+	public ArrayList<OrderItem> getOrderList(OrderType orderType){
 		
+		return ordersListMock.getList(orderType);
 		
-		return orderList;
 	}
 	private int makeId() {
-		int size = orderList.size();
+		int size = ordersListMock.orderList.size();
 		return size+1;
 	}
 
@@ -81,25 +82,15 @@ public class OrdersMock extends Orders{
 		
 		
 	}
-	public OrderItem findOrder(int orderId) throws Exception{
-		for(OrderItem item:orderList){
-			if(item.orderId==orderId){
-				return item;
-			
-		}
-		}
-			
-				return null;
+	public OrderItem findOrder(int orderId) {
+		
+		return ordersListMock.findOrder(orderId);	
+		
 			
 	}
 	public ResultMessage revoke(int orderId){
 		OrderItem temp=null;
-		for(OrderItem item:orderList){
-			if(item.orderId==orderId){
-				temp = item;
-				break;
-			}
-		}
+		temp = findOrder(orderId);
 		if(temp==null){
 			return ResultMessage.orderNotExist;
 		}
@@ -110,17 +101,12 @@ public class OrdersMock extends Orders{
 
 	}
 	public void confirm(){
-		orderList.add(tempItem);
+		ordersListMock.add(tempItem);
 		
 	}
 	public ResultMessage cancel(int orderId){
 		OrderItem temp=null;
-		for(OrderItem item:orderList){
-			if(item.orderId==orderId){
-				temp = item;
-				break;
-			}
-		}
+		temp = ordersListMock.findOrder(orderId);
 		if(temp==null){
 			return ResultMessage.orderNotExist;
 		}
@@ -131,12 +117,7 @@ public class OrdersMock extends Orders{
 	}
 	public ResultMessage recover(int orderId){
 		OrderItem temp=null;
-		for(OrderItem item:orderList){
-			if(item.orderId==orderId){
-				temp = item;
-				break;
-			}
-		}
+		temp = ordersListMock.findOrder(orderId);
 		if(temp==null){
 			return ResultMessage.orderNotExist;
 		}
@@ -147,12 +128,7 @@ public class OrdersMock extends Orders{
 	}
 	public ResultMessage changeError(int orderId){
 		OrderItem temp=null;
-		for(OrderItem item:orderList){
-			if(item.orderId==orderId){
-				temp = item;
-				break;
-			}
-		}
+		temp = ordersListMock.findOrder(orderId);
 		if(temp==null){
 			return ResultMessage.orderNotExist;
 		}
