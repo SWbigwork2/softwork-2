@@ -5,12 +5,17 @@ package OrdersMock;
 import java.util.ArrayList;
 import java.util.Date;
 
+import HotelsMock.HotelsInfo;
+import MembersMock.MembersInfo;
+import PromotionsMock.PromotionGetPrice;
 import PromotionsMock.Promotions;
+import RoomsMock.RoomsInfo;
 
 public class OrdersMock extends Orders{
+	String memberId;
 	int orderId;
 	OrderItem tempItem;
-	Promotions promotions;
+	PromotionGetPrice promotions;
 	MembersInfo membersInfo;
 	//String hotelsInfo.getName();
 	HotelsInfo hotelsInfo;
@@ -70,7 +75,7 @@ public class OrdersMock extends Orders{
 	}
 
 	public ResultMessage add( int peopleNum,int roomNum, Date beginDate, Date endDate, Date deadline){
-		if(membersInfo.credit<200){
+		if(membersInfo.getCredit()<200){
 			return ResultMessage.notEnough;
 		}
 		int orderId = makeId();

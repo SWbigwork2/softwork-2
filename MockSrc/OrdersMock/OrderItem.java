@@ -2,14 +2,19 @@ package OrdersMock;
 
 import java.util.Date;
 
+import HotelsMock.HotelsInfo;
+import MembersMock.MembersInfo;
+import PromotionsMock.PromotionGetPrice;
 import PromotionsMock.Promotions;
 import RoomsMock.RoomType;
+import RoomsMock.RoomsInfo;
 
 
 
 
 public class OrderItem {
-	Promotions promotions;
+	String memberId;
+	PromotionGetPrice promotions;
 	int orderId;
 	MembersInfo membersInfo;
 	HotelsInfo hotelsInfo;
@@ -21,18 +26,18 @@ public class OrderItem {
 	Date outDate;
 	Date completeDate;
 	public String getName(){
-		return membersInfo.name;
+		return membersInfo.getName();
 	}
-	public int getId(){
-		return membersInfo.memberId;
+	public String getMemberId(){
+		return membersInfo.getID();
 	}
 	public String getHotel(){
 		return hotelsInfo.getName();
 	}
 	public RoomType getType(){
-		return roomsInfo.getType();
+		return roomsInfo.getRoomType();
 	}
-	public OrderItem(Promotions promotions, int orderId, MembersInfo membersInfo, HotelsInfo hotelsInfo,
+	public OrderItem(PromotionGetPrice promotions, int orderId, MembersInfo membersInfo, HotelsInfo hotelsInfo,
 			RoomsInfo roomsInfo, int roomNum, OrderType orderType, Date inDate, Date outDate, Date completeDate,
 			Date revokeDate, Date deadLine,int peopleNum) {
 		this.promotions = promotions;

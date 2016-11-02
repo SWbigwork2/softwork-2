@@ -1,10 +1,10 @@
 package PromotionsMock;
 
-import OrdersMock.RoomsInfo;
+import RoomsMock.RoomsInfo;
 
-public class Promotions {
+public class Promotions implements PromotionGetPrice{
 	public double getPrice(RoomsInfo info,int num){
-		return info.price*num;
+		return info.getPrice()*num;
 	}
 
 }

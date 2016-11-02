@@ -7,25 +7,31 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import HotelsMock.HotelPO;
 import HotelsMock.HotelRanking;
 import HotelsMock.HotelTradeArea;
-import OrdersMock.HotelsInfo;
-import OrdersMock.MembersInfo;
+import HotelsMock.HotelsInfo;
+import MembersMock.MemberPO;
+import MembersMock.MembersInfo;
+
+
 import OrdersMock.OrderItem;
 import OrdersMock.OrderType;
 import OrdersMock.OrderVO;
 import OrdersMock.OrdersListMock;
 import OrdersMock.OrdersMock;
-import OrdersMock.RoomsInfo;
+
 import PromotionsMock.Promotions;
+import RoomsMock.RoomPO;
 import RoomsMock.RoomType;
+import RoomsMock.RoomsInfo;
 
 public class OrderTest {
 	Date date = new Date(2016, 11,1);
 	
-	RoomsInfo rI = new RoomsInfo("0001", "ª ≥Ø", RoomType.big, "", 100, new int[3]);
-	MembersInfo mI = new MembersInfo(0001, "admin", 300);
-	HotelsInfo hI = new HotelsInfo("ª ≥Ø", "œ…¡÷¥Ûµ¿103",HotelTradeArea.∆‹œº«¯, "", "", HotelRanking.oneStar);
+	RoomsInfo rI = new RoomPO("0001", "ª ≥Ø", RoomType.big, "", 100, new int[3]);
+	MembersInfo mI = new MemberPO("0001", "admin","admin","10086", 300);
+	HotelsInfo hI = new HotelPO("ª ≥Ø", "œ…¡÷¥Ûµ¿103",HotelTradeArea.∆‹œº«¯, "", "", HotelRanking.oneStar);
 	Promotions po = new Promotions();
 	@Test
 	public void Addtest() {

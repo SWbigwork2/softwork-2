@@ -2,7 +2,7 @@ package HotelsMock;
 
 import java.io.Serializable;
 
-public class HotelPO implements Serializable{
+public class HotelPO implements Serializable,HotelsInfo{
 	private String name;
 	private String address;
 	private HotelTradeArea tradeArea;
