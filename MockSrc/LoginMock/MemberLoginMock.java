@@ -1,23 +1,25 @@
 package LoginMock;
 
+import UsersMock.UserInfo;
 import UsersMock.UserPO;
 import UsersMock.UserType;
 import UsersMock.Users;
 
 public class MemberLoginMock extends LoginMock{
-	Users use;
-	public MemberLoginMock(Users u) {
+	UserInfo use;
+	public MemberLoginMock(UserInfo u) {
 		use = u;
 		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public ResultMessage login(String id, String password) {
-		UserPO po = use.findUser(id,UserType.member);
-		if(po==null){
+		String rightId = use.getId();
+		String rightPass = use.getPassword();
+		if(rightId!=id||!use.getRole().equals(UserType.member)){
 			return ResultMessage.userNotExit;
 		}
-		if(po.getPassword().equals(password)){
+		if(password.equals(rightPass)){
 			return ResultMessage.success;
 		}
 		else{

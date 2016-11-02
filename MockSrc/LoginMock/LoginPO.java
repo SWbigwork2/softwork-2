@@ -1,5 +1,6 @@
 package LoginMock;
 
+import UsersMock.UserInfo;
 import UsersMock.UserType;
 
 public class LoginPO {

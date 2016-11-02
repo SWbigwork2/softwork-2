@@ -1,5 +1,6 @@
 package LoginMock;
 
+import UsersMock.UserInfo;
 import UsersMock.UserType;
 import UsersMock.Users;
 
@@ -7,9 +8,9 @@ public class LoginControllerMock {
 	public  int []loginType = new int [4];
 	private String []loginM = new String[4];
 	private LoginMock login;
-	Users users;
-	public LoginControllerMock() {
-		users = new Users();
+	UserInfo users;
+	public LoginControllerMock(UserInfo info) {
+		users = info;
 		// TODO Auto-generated constructor stub
 	}
 	public void logout(UserType type){
@@ -28,10 +29,13 @@ public class LoginControllerMock {
 		else if(type==UserType.staff){
 			login=new StaffLoginMock(users);
 		}
+		ResultMessage message =login.login(Id, password);
+		if(message==ResultMessage.success){
 		int i=type.ordinal();
 		loginM[i]=Id;
 		loginType[i]=1;
-		return login.login(Id, password);
+		}
+		return message; 
 	}
 	public String getMessage(UserType type){
 		return loginM[type.ordinal()];

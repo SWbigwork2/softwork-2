@@ -4,13 +4,17 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import LoginMock.LoginControllerMock;
+import LoginMock.ResultMessage;
+import UsersMock.UserPO;
 import UsersMock.UserType;
 
 public class MemberLoginTester {
-	LoginControllerMock lcm = new LoginControllerMock();
+	LoginControllerMock lcm = new LoginControllerMock(new UserPO("admin", "admin", "admin", UserType.member, ""));
 	@Test
 	public void memeberLoginTest() {
 		assertEquals(lcm.loginType[3], 0);
+		assertEquals(lcm.login("admin1", "admin", UserType.member), ResultMessage.userNotExit);
+		assertEquals(lcm.login("admin", "admin1", UserType.member), ResultMessage.passwordError);
 		lcm.login("admin", "admin", UserType.member);
 		assertEquals(lcm.getMessage(UserType.member), "admin");
 		assertEquals(lcm.loginType[3], 1);

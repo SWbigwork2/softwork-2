@@ -2,14 +2,14 @@ package UsersMock;
 
 
 
-public class UserPO {
-	int id;
+public class UserPO implements UserInfo{
+	String id;
 	String name;
     String password;
     String hotel;
     UserType role;
     
-    public UserPO(int i,String n,String p ,UserType r,String hotel){
+    public UserPO(String i,String n,String p ,UserType r,String hotel){
     	this.id=i;
     	this.name=n;
     	this.password=p;
@@ -17,7 +17,7 @@ public class UserPO {
     	this.hotel=hotel;
     }
     
-    public int getId() {
+    public String getId() {
 		return id;
 	}
     public String getName() {
