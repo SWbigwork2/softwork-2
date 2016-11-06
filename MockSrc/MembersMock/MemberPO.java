@@ -1,7 +1,5 @@
 package MembersMock;
 
-
-
 import java.io.Serializable;
 
 public class MemberPO implements Serializable,MembersInfo{
