@@ -29,6 +29,10 @@ public class OrdersMock extends Orders{
 	Date revokeDate;
 	Date deadLine;
 	OrdersListMock ordersListMock;
+	private void setId(String memberId){
+		this.memberId = memberId;
+		ordersListMock = new OrdersListMock();
+	}
 	public void setUp(Promotions p,HotelsInfo h,RoomsInfo r,MembersInfo m){
 		promotions = p;
 		hotelsInfo = h;
@@ -134,7 +138,17 @@ public class OrdersMock extends Orders{
 			return ResultMessage.success;
 		}
 	}
-	
+	public ArrayList<String> getHistoyHotel(String memberId){
+		setId(memberId);
+		ArrayList<String> resultList = new ArrayList<String>();
+		ArrayList<OrderItem> tempList=getOrderList(OrderType.all);
+		for(OrderItem i:tempList){
+			if(!tempList.contains(i.getHotel())){
+				resultList.add(i.getHotel());
+			}
+		}
+		return resultList;
+	}
 	public ResultMessage changeError(int orderId){
 		OrderItem temp=null;
 		temp = ordersListMock.findOrder(orderId);
@@ -145,6 +159,21 @@ public class OrdersMock extends Orders{
 			temp.orderType = OrderType.done;
 			return ResultMessage.success;
 		}
+	}
+	public ArrayList<OrderVO> getOrderHistory(String memberId,String HotelName) {
+		setId(memberId);
+		ArrayList<OrderVO> resultList = new ArrayList<OrderVO>();
+		ArrayList<OrderItem> tempList=getOrderList(OrderType.all);
+		for(OrderItem i:tempList){
+			if(i.getHotel()==HotelName){
+				OrderVO vo =new OrderVO(i);
+				resultList.add(vo);
+			}
+		}
+		
+		
+		// TODO Auto-generated method stub
+		return resultList;
 	}
 	
 }

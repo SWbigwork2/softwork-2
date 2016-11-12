@@ -10,7 +10,7 @@ import RoomsMock.RoomType;
 
 public class OrderPO implements Serializable{
 	int orderId;
-	int userId;
+	String userId;
 	String userNameString;
 	String hotelNameString;
 	RoomType roomType;
@@ -22,7 +22,7 @@ public class OrderPO implements Serializable{
 	Date completeDate;
 	Date revokeDate;
 	Date deadLine;
-	public OrderPO(int orderId, int userId, String userNameString,
+	public OrderPO(int orderId, String userId, String userNameString,
 			String hotelNameString, RoomType roomType, int roomNum,
 			double price, OrderType orderType, Date inDate, Date outDate,
 			Date completeDate, Date revokeDate, Date deadLine) {
@@ -44,7 +44,7 @@ public class OrderPO implements Serializable{
 	public int getOrderId() {
 		return orderId;
 	}
-	public int userId(){
+	public String userId(){
 		return userId;
 	}
 	public String getUserNameString(){

@@ -1,6 +1,6 @@
 package OrdersMock;
 
 public enum OrderType {
-	normal,revoke,done,error
+	normal,revoke,done,error,all
 
 }

@@ -25,7 +25,8 @@ public class OrdersListMock {
 			return findDone();
 		case revoke:
 			return findRevoke();
-			
+		case all:
+			return orderList;
 		default:
 			return null;
 		}
