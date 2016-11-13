@@ -6,15 +6,17 @@ import HotelsMock.HotelPO;
 import OrdersMock.OrderItem;
 import OrdersMock.OrderVO;
 import OrdersMock.OrdersListMock;
+import OrdersMock.OrdersMock;
 
 public class MemberControllerMock extends Member{
 	String memberdata[][]=new String[10000][4];
 	int m=0;
 	ResultMessage result=ResultMessage.Success;
+	OrdersMock ordersmock;
 	public  ResultMessage addmember(String memberid,String memberPassword,String memberName,String memberTelephone){
 		for(int i=0;i<memberdata.length;i++){
 			if(memberid.equals(memberdata[i][0])){
-				result=ResultMessage.Memberhasexist;
+				result=ResultMessage.Failure;
 			}
 			else{}
 		}
@@ -26,14 +28,14 @@ public class MemberControllerMock extends Member{
 		return result;
 		
 	}
-    public  ArrayList<OrderItem> getOrder(String id){
-    	ArrayList<OrderItem> orderlist=new ArrayList<OrderItem>();
-    	
-		return null;
+    public  ArrayList<OrderVO> getOrder(String id){
+    	  	
+		return ordersmock.getOrderHistory(id,null);
     	
     }
-    public  ArrayList<HotelPO> getHotel(String id){
-		return null;
+    public  ArrayList<String> getHotel(String id){
+    	return ordersmock.getHistoyHotel(id);
+		
     	
     }
 }
