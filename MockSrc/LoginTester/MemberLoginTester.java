@@ -9,7 +9,7 @@ import UsersMock.UserPO;
 import UsersMock.UserType;
 
 public class MemberLoginTester {
-	LoginControllerMock lcm = new LoginControllerMock(new UserPO("admin", "admin", "admin", UserType.member, ""£¬new Date(1997,05,02)));
+	LoginControllerMock lcm = new LoginControllerMock(new UserPO("admin", "admin", "admin", UserType.member, "",new Date(1997,05,02)));
 	@Test
 	public void memeberLoginTest() {
 		assertEquals(lcm.loginType[3], 0);
