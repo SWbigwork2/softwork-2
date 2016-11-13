@@ -2,6 +2,7 @@ package HotelsMock;
 
 import java.util.ArrayList;
 
+import EvaluateMock.EvaluatePO;
 import RoomsMock.RoomPO;
 import RoomsMock.RoomType;
 
