@@ -30,10 +30,5 @@ public class EvaluatePO {
 	public String getS() {
 		return s;
 	}
-	public ArrayList<EvaluateItem> getComments(String hotelName){
-		return new EvaluateItemListMock().getEvaluateList(hotelName);
-		
-	}
-    
     
 }

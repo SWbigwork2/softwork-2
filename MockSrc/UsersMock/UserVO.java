@@ -7,5 +7,4 @@ public  abstract class UserVO {
     String password;
     String name;
     UserType type;
-    Date birthday;
 }

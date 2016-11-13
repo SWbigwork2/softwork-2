@@ -1,7 +1,7 @@
 package LoginMock;
 
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 import UsersMock.UserPO;
 import UsersMock.UserType;
 

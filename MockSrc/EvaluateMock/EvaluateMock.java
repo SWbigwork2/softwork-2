@@ -1,4 +1,7 @@
 package EvaluateMock;
+
+import HotelsMock.HotelMock;
+
 public class EvaluateMock {
     HotelInfo hotel;
     MemberInfo member;
@@ -13,15 +16,15 @@ public class EvaluateMock {
     }
     
     public ResultMessage evaluate(String hotelName,String memberId,int orderId,int score,String s){
-    	if(hotel.getName().equals(hotelName)&&member.getID().equals(memberId)&&order.getOrderId()==orderId&&(score<5&&score>0)){
-    		return ResultMessage.success;
+    	if(hotel.getName().equals(hotelName)&&member.getID().equals(memberId)&&order.getOrderId()==orderId&&(score<5&&score>0)
+    		){
+    		HotelMock hotelMock=new HotelMock();
+    		return hotelMock.addHotelEvaluate(new EvaluatePO(hotelName, memberId, orderId, score, s));
     	}else{
     	    return ResultMessage.fail; 
     	}
     }
     
-    public HotelsMock.ResultMessage setAverageScore(int score){
-    	return hotel.setAverageScore(score);
-    }
+    
     
 }

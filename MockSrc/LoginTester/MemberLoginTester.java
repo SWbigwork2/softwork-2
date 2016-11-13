@@ -2,7 +2,7 @@ package LoginTester;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import java.sql.Date;
+import java.util.Date;
 import LoginMock.LoginControllerMock;
 import LoginMock.ResultMessage;
 import UsersMock.UserPO;

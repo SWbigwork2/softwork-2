@@ -29,8 +29,4 @@ public class EvaluateTester {
 		assertEquals(em.evaluate("»Ê³¯", "0001", 1234, 6,"good"),ResultMessage.fail);
 	}
 	
-	@Test
-	public void setAverageScore(){
-	    assertEquals(hotel.setAverageScore(3),HotelsMock.ResultMessage.success);
-	}
 }

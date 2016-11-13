@@ -1,6 +1,9 @@
 package UsersMock;
 
+import java.util.Date;
+
 public class MemberVO extends UserVO{
+	 Date birthday;
 	 public MemberVO(String id,String password,String name){
 	    	this.userId=id;
 	    	this.password=password;
