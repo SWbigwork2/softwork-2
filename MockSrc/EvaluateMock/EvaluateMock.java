@@ -19,7 +19,12 @@ public class EvaluateMock {
     	if(hotel.getName().equals(hotelName)&&member.getID().equals(memberId)&&order.getOrderId()==orderId&&(score<5&&score>0)
     		){
     		HotelMock hotelMock=new HotelMock();
-    		return hotelMock.addHotelEvaluate(new EvaluatePO(hotelName, memberId, orderId, score, s));
+    		if(hotelMock.addHotelEvaluation(new EvaluatePO(hotelName, memberId, orderId, score, s))
+    				.equals(HotelsMock.ResultMessage.success)){
+    			return ResultMessage.success;
+    		}else{
+    			return ResultMessage.fail;
+    		}
     	}else{
     	    return ResultMessage.fail; 
     	}
