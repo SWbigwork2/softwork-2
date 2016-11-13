@@ -3,13 +3,13 @@ package UsersMock;
 public class MemberMock extends UserMock {
 
 	@Override
-	public UserVO find(int id, UserType type) {
-		return new MemberVO(1111,"1234567","xiaoming");
+	public UserVO find(String id, UserType type) {
+		return new MemberVO("1111","1234567","xiaoming");
 	}
 
 	@Override
-	public ResultMessage revoke(int id, UserVO user, UserType type) {
-		if(user.userId==id){
+	public ResultMessage revoke(String id, UserVO user, UserType type) {
+		if(user.userId.equals(id)){
 			return ResultMessage.success;
 		}else{
 			return ResultMessage.fail;
@@ -18,7 +18,7 @@ public class MemberMock extends UserMock {
 	}
 	
 	public ResultMessage register(MemberVO member){
-		UserPO newMember=new UserPO(Integer.toString(member.userId),member.password,null,UserType.member,member.name);
+		UserPO newMember=new UserPO(member.userId,member.password,null,UserType.member,member.name,member.birthday);
 		return ResultMessage.success;	
 	}
 	

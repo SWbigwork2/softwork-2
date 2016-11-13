@@ -1,9 +1,11 @@
 package UsersMock;
 
+import java.sql.Date;
+
 public  abstract class UserVO {
-    int userId;
+    String userId;
     String password;
     String name;
     UserType type;
-    
+    Date birthday;
 }

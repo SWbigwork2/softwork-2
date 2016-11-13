@@ -1,11 +1,13 @@
 package EvaluateMock;
 
+import java.util.ArrayList;
+
 public class EvaluatePO {
-    String hotelName;
-    String memberId;
-    int orderid;
-    int score;
-    String s;
+    private String hotelName;
+	private String memberId;
+    private int orderid;
+    private int score;
+    private String s;
     public EvaluatePO(String hotelName,String memberId,int orderId,int score,String s){
     	this.hotelName=hotelName;
     	this.memberId=memberId;
@@ -13,7 +15,25 @@ public class EvaluatePO {
     	this.score=score;
     	this.s=s;
     }
-   
+    public String getHotelName() {
+		return hotelName;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public int getOrderid() {
+		return orderid;
+	}
+	public int getScore() {
+		return score;
+	}
+	public String getS() {
+		return s;
+	}
+	public ArrayList<EvaluateItem> getComments(String hotelName){
+		return new EvaluateItemListMock().getEvaluateList(hotelName);
+		
+	}
     
     
 }

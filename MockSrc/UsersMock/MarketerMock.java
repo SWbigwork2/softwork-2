@@ -3,19 +3,20 @@ package UsersMock;
 public class MarketerMock extends UserMock{
 
 	@Override
-	public UserVO find(int id, UserType type) {
+	public UserVO find(String id, UserType type) {
 		
-		return new MarketerVO(1113,"123456","xiaolan");
+		return new MarketerVO("1113","123456","xiaolan");
 	}
 
 	@Override
-	public ResultMessage revoke(int id, UserVO user, UserType type) {
+	public ResultMessage revoke(String id, UserVO user, UserType type) {
 		if(user.userId!=id||!type.equals(UserType.marketer)){
 			return ResultMessage.fail;
 		}else{
 			return ResultMessage.success;
 		}
 	}
-    
+
+	
 	
 }

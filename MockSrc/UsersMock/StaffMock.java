@@ -4,15 +4,15 @@ package UsersMock;
 public class StaffMock extends UserMock {
 
 	@Override
-	public UserVO find(int id, UserType type) {
+	public UserVO find(String id, UserType type) {
 		
-		return new StaffVO(1112,"1234567","xiaohong","如家");
+		return new StaffVO("1112","1234567","xiaohong","如家");
 	}
 
 	@Override
-	public ResultMessage revoke(int id, UserVO user, UserType type) {
+	public ResultMessage revoke(String id, UserVO user, UserType type) {
 		// TODO Auto-generated method stub
-		if(user.userId!=id||!type.equals(UserType.staff)){
+		if(!user.userId.equals(id)||!type.equals(UserType.staff)){
 			return ResultMessage.fail;
 		}else{
 			return ResultMessage.success;

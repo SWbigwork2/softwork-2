@@ -8,7 +8,7 @@ import RoomsMock.RoomType;
 
 public class OrdersInfo extends OrderPO{
 
-	public OrdersInfo(int orderId, int userId, String userNameString, String hotelNameString, RoomType roomType,
+	public OrdersInfo(int orderId, String userId, String userNameString, String hotelNameString, RoomType roomType,
 			int roomNum, double price, OrderType orderType, Date inDate, Date outDate, Date completeDate,
 			Date revokeDate, Date deadLine) {
 		super(orderId, userId, userNameString, hotelNameString, roomType, roomNum, price, orderType, inDate, outDate,

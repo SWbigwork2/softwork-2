@@ -11,14 +11,14 @@ import UsersMock.UserType;
 public class MemberTseter {
     UserControllerMock usm=new UserControllerMock();
     
-    @Tese 
+    @Test
     public void findTest(){
-    	MemberVO member=(MemberVO)usm.find(1111, UserType.member);
+    	MemberVO member=(MemberVO)usm.find("1111", UserType.member);
     	assertNotNull(member);
-    	assertEquals(member.getId(),1111);
+    	assertEquals(member.getId(),"1111");
     }
     
     public void addmemberTest(){
-    	assertEquals(usm.addMember(1111, "1234", UserType.member, "xiapming"),ResultMessage.success);
+    	assertEquals(usm.addMember("1111", "1234", UserType.member, "xiapming"),ResultMessage.success);
     }
 }

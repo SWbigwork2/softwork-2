@@ -2,14 +2,14 @@ package LoginTester;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+import java.sql.Date;
 import LoginMock.LoginControllerMock;
 import LoginMock.ResultMessage;
 import UsersMock.UserPO;
 import UsersMock.UserType;
 
 public class MemberLoginTester {
-	LoginControllerMock lcm = new LoginControllerMock(new UserPO("admin", "admin", "admin", UserType.member, ""));
+	LoginControllerMock lcm = new LoginControllerMock(new UserPO("admin", "admin", "admin", UserType.member, ""£¬new Date(1997,05,02)));
 	@Test
 	public void memeberLoginTest() {
 		assertEquals(lcm.loginType[3], 0);
