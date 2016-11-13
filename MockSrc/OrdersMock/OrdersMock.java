@@ -141,7 +141,9 @@ public class OrdersMock extends Orders{
 	public ArrayList<String> getHistoyHotel(String memberId){
 		setId(memberId);
 		ArrayList<String> resultList = new ArrayList<String>();
+	
 		ArrayList<OrderItem> tempList=getOrderList(OrderType.all);
+		
 		for(OrderItem i:tempList){
 			if(!tempList.contains(i.getHotel())){
 				resultList.add(i.getHotel());
@@ -162,8 +164,17 @@ public class OrdersMock extends Orders{
 	}
 	public ArrayList<OrderVO> getOrderHistory(String memberId,String HotelName) {
 		setId(memberId);
+		
 		ArrayList<OrderVO> resultList = new ArrayList<OrderVO>();
 		ArrayList<OrderItem> tempList=getOrderList(OrderType.all);
+		if(HotelName==null){
+			for(OrderItem i:tempList){
+				
+					OrderVO vo =new OrderVO(i);
+					resultList.add(vo);
+				return resultList;
+			}
+		}
 		for(OrderItem i:tempList){
 			if(i.getHotel()==HotelName){
 				OrderVO vo =new OrderVO(i);
@@ -175,5 +186,7 @@ public class OrdersMock extends Orders{
 		// TODO Auto-generated method stub
 		return resultList;
 	}
+
+
 	
 }

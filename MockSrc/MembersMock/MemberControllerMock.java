@@ -9,6 +9,10 @@ import OrdersMock.OrdersListMock;
 import OrdersMock.OrdersMock;
 
 public class MemberControllerMock extends Member{
+	public MemberControllerMock(OrdersMock order) {
+		ordersmock = order;
+		// TODO Auto-generated constructor stub
+	}
 	String memberdata[][]=new String[10000][4];
 	int m=0;
 	ResultMessage result=ResultMessage.Success;

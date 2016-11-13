@@ -40,7 +40,7 @@ public class PromotionsTest {
 		Promotions promotion=new Promotions();
 		RoomsInfo rI = new RoomPO("0001", "»Ê³¯", RoomType.big, "", 100, new int[3]);
 		int num=3;
-		assertEquals(promotion.getPrice(rI,num),210 );
+		assertEquals(promotion.getPrice(rI,num),210 ,0.0001);
 		
 	}
 }
