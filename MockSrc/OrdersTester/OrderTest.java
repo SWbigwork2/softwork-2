@@ -64,7 +64,7 @@ public class OrderTest {
 		ordersMock.setUp(po, hI, rI, mI);
 		ordersMock.add(1,2, date, date, date);
 		OrderVO vo=ordersMock.view();
-		assertEquals(vo.price, 200.0,0.000001);
+		assertEquals(vo.price, 140.0,0.000001);
 	}
 
 }
