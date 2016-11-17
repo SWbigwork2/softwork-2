@@ -21,24 +21,24 @@ public class PromotionsTest {
 		Date date=new Date(2016,11,3);
 		Promotions promotion=new Promotions();		
 		assertEquals(promotion.addStrategiesI(null, null, null, 1),ResultMessage.Failure);
-		assertEquals(promotion.addStrategiesI("ÄÏ¾©·¹µê", date, "ÉúÈÕÌØ»İ´òÆßÕÛ", 0.7),ResultMessage.Success);
+		assertEquals(promotion.addStrategiesI("å—äº¬é¥­åº—", date, "ç”Ÿæ—¥ç‰¹æƒ æ‰“ä¸ƒæŠ˜", 0.7),ResultMessage.Success);
 		
 	}
 	@Test
 	public void deleteStrategiesTest(){
 		Date date=new Date(2016,11,3);
 		Promotions promotion=new Promotions();
-		Strategies temp = new StrategiesI("ÄÏ¾©·¹µê", date, "ÉúÈÕÌØ»İ´òÆßÕÛ", 0.7);
+		Strategies temp = new StrategiesI("å—äº¬é¥­åº—", date, "ç”Ÿæ—¥ç‰¹æƒ æ‰“ä¸ƒæŠ˜", 0.7);
 		ArrayList<Strategies> strategieslist=new ArrayList<Strategies>();
 		strategieslist.add(temp);	
 		assertEquals(promotion.deleteStrategies(null),ResultMessage.Failure);
-		assertEquals(promotion.deleteStrategies("ÄÏ¾©·¹µê"),ResultMessage.Failure);
+		assertEquals(promotion.deleteStrategies("å—äº¬é¥­åº—"),ResultMessage.Failure);
 		
 	}
 	@Test
 	public void getPrice(){
 		Promotions promotion=new Promotions();
-		RoomsInfo rI = new RoomPO("0001", "»Ê³¯", RoomType.big, "", 100, new int[3]);
+		RoomsInfo rI = new RoomPO("0001", "çš‡æœ", RoomType.big, "", 100, new int[3]);
 		int num=3;
 		assertEquals(promotion.getPrice(rI,num),210 ,0.0001);
 		

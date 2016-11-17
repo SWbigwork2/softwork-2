@@ -7,16 +7,16 @@ import RoomsMock.RoomPO;
 import RoomsMock.RoomType;
 
 public class HotelMock extends Hotel {
-	// HotelMockÐèÒªÌá¹©·½·¨¹©OredersÀà¡¢UserÀà¡¢EvaluateÀàÊ¹ÓÃ
+	// HotelMockï¿½ï¿½Òªï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oredersï¿½à¡¢Userï¿½à¡¢Evaluateï¿½ï¿½Ê¹ï¿½ï¿½
 
 	/*
-	 * OredersÀà£º HotelinfoService.findHotel(String hotelName)
-	 * ¸ù¾ÝhotelNameµÃµ½HotelPO¶ÔÏó RoominfoService.findRoom(String hotelName)
-	 * ¸ù¾ÝhotelNameµÃµ½RoomPO¶ÔÏó
+	 * Oredersï¿½à£º HotelinfoService.findHotel(String hotelName)
+	 * ï¿½ï¿½ï¿½ï¿½hotelNameï¿½Ãµï¿½HotelPOï¿½ï¿½ï¿½ï¿½ RoominfoService.findRoom(String hotelName)
+	 * ï¿½ï¿½ï¿½ï¿½hotelNameï¿½Ãµï¿½RoomPOï¿½ï¿½ï¿½ï¿½
 	 */
 
 	public HotelPO findHotel(String hotelName) {
-		HotelPO hotelPO = new HotelPO(hotelName, "ÏÉÁÖ´óµÀ103", HotelTradeArea.ÆÜÏ¼Çø, "", "", HotelRanking.oneStar);
+		HotelPO hotelPO = new HotelPO(hotelName, "ï¿½ï¿½ï¿½Ö´ï¿½ï¿½103", HotelTradeArea.æ –éœžåŒº, "", "", HotelRanking.oneStar);
 		return hotelPO;
 	}
 
@@ -28,10 +28,10 @@ public class HotelMock extends Hotel {
 	}
 
 	/*
-	 * UserÀà£º HotelinfoService.addHotel(HotelPO) Ìí¼Ó¾Æµê
+	 * Userï¿½à£º HotelinfoService.addHotel(HotelPO) ï¿½ï¿½Ó¾Æµï¿½
 	 */
 
-	// ÐèÒªUserÀàµÄResultMessage
+	// ï¿½ï¿½ÒªUserï¿½ï¿½ï¿½ResultMessage
 	public ResultMessage addHotel(HotelPO hotelPO) {
 		if (hotelPO == null) {
 			return ResultMessage.failure;
@@ -41,8 +41,8 @@ public class HotelMock extends Hotel {
 	}
 
 	/*
-	 * EvaluateÀà HotelinfoService.addHotelEvaluation£¨EvaluatePO evaluatePO£©
-	 * ÏëÄ³Ò»¾ÆµêÌí¼ÓÆÀ¼ÛÐÅÏ¢
+	 * Evaluateï¿½ï¿½ HotelinfoService.addHotelEvaluationï¿½ï¿½EvaluatePO evaluatePOï¿½ï¿½
+	 * ï¿½ï¿½Ä³Ò»ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 
 	public ResultMessage addHotelEvaluation(EvaluatePO evaluatePO) {

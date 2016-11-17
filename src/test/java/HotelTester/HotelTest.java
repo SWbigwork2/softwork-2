@@ -17,15 +17,15 @@ public class HotelTest {
 	@Test
 	public void findHoteltTest(){
 		HotelMock hotelMock = new HotelMock();
-		HotelsMock.HotelPO po = hotelMock.findHotel("½ğÁê·¹µê");
-		assertEquals(po.getName(), "½ğÁê·¹µê");	
+		HotelsMock.HotelPO po = hotelMock.findHotel("é‡‘é™µé¥­åº—");
+		assertEquals(po.getName(), "é‡‘é™µé¥­åº—");	
 	}
 	
 	@Test
 	public void findHoteltTest2(){
 		HotelMock hotelMock2 = new HotelMock();
-		HotelsMock.HotelPO po2 = hotelMock2.findHotel("ËÕÄş»·Çò");
-		assertEquals(po2.getName(), "ËÕÄş»·Çò");
+		HotelsMock.HotelPO po2 = hotelMock2.findHotel("è‹å®ç¯çƒ");
+		assertEquals(po2.getName(), "è‹å®ç¯çƒ");
 	}
 	@Test
 	public void addHotelTest1(){
@@ -36,7 +36,7 @@ public class HotelTest {
 	@Test
 	public void addHotelTest2(){
 		HotelMock hotelMock4 = new HotelMock();
-		HotelPO p = new HotelPO("ÄÏ¾©·¹µê", null, null, null, null, null);
+		HotelPO p = new HotelPO("å—äº¬é¥­åº—", null, null, null, null, null);
 		ResultMessage  r = hotelMock4.addHotel(p);
 		assertEquals(r,ResultMessage.success);
 	}
@@ -49,7 +49,7 @@ public class HotelTest {
 	@Test
 	public void addEvaluationTest2(){
 		HotelMock hotelMock6 = new HotelMock();
-		EvaluatePO evaluatePO = new EvaluatePO("ÄÏ¾©·¹µê", null, 0, 0, null);
+		EvaluatePO evaluatePO = new EvaluatePO("å—äº¬é¥­åº—", null, 0, 0, null);
 		ResultMessage  r = hotelMock6.addHotelEvaluation(evaluatePO);
 		assertEquals(r,ResultMessage.success);
 	}

@@ -1,5 +1,5 @@
 package HotelsMock;
 
 public enum HotelTradeArea {
-	ÆÜÏ¼Çø,½­ÄşÇø,¹ÄÂ¥Çø
+	æ –éœåŒº,æ±Ÿå®åŒº,é¼“æ¥¼åŒº
 }

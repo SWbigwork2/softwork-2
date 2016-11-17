@@ -22,13 +22,13 @@ import RoomsMock.RoomsInfo;
 public class MembersTest {
 Date date = new Date(2016, 11,1);
 	
-	RoomsInfo rI = new RoomPO("0001", "»Ê³¯", RoomType.big, "", 100, new int[3]);
+	RoomsInfo rI = new RoomPO("0001", "çš‡æœ", RoomType.big, "", 100, new int[3]);
 	MembersInfo mI = new MemberPO("0001", "admin","admin","10086", 300);
-	HotelsInfo hI = new HotelPO("»Ê³¯", "ÏÉÁÖ´óµÀ103",HotelTradeArea.ÆÜÏ¼Çø, "", "", HotelRanking.oneStar);
+	HotelsInfo hI = new HotelPO("çš‡æœ", "ä»™æ—å¤§é“103",HotelTradeArea.æ –éœåŒº, "", "", HotelRanking.oneStar);
 	Promotions po = new Promotions();
 	String memberId="admin";
     String memberPassword="123456";
-    String memberName="Ğ¡Ã÷";
+    String memberName="å°æ˜";
     String memberTelephone="8888";
     double credit=100;
     @Test
