@@ -6,19 +6,19 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import HotelsMock.HotelPO;
 import HotelsMock.HotelRanking;
 import HotelsMock.HotelTradeArea;
 import HotelsMock.HotelsInfo;
 import MembersMock.MemberControllerMock;
-import MembersMock.MemberPO;
 import MembersMock.MembersInfo;
 import MembersMock.ResultMessage;
 import OrdersMock.OrdersMock;
 import PromotionsMock.Promotions;
-import RoomsMock.RoomPO;
 import RoomsMock.RoomType;
 import RoomsMock.RoomsInfo;
+import po.HotelPO;
+import po.MemberPO;
+import po.RoomPO;
 public class MembersTest {
 Date date = new Date(2016, 11,1);
 	

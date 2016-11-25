@@ -1,6 +1,6 @@
 package EvaluateMock;
 
-import MembersMock.MemberPO;
+import po.MemberPO;
 
 public class MemberInfo extends MemberPO{
 

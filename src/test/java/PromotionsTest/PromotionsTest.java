@@ -11,9 +11,9 @@ import PromotionsMock.Promotions;
 import PromotionsMock.ResultMessage;
 import PromotionsMock.Strategies;
 import PromotionsMock.StrategiesI;
-import RoomsMock.RoomPO;
 import RoomsMock.RoomType;
 import RoomsMock.RoomsInfo;
+import po.RoomPO;
 
 public class PromotionsTest {
 	@Test

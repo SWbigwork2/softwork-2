@@ -2,10 +2,12 @@ package MembersMock;
 
 import java.util.ArrayList;
 
+import po.MemberPO;
+
 
 
 public class MemberMock {   
-        //»áÔ±½çÃæµÃµ½»áÔ±ÐÅÏ¢
+        //ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ï¢
 	String memberId;
     String memberPassword;
     String memberName;
@@ -16,7 +18,7 @@ public class MemberMock {
        	 return new MemberPO(memberId,memberPassword,memberName,memberTelephone,credit);
         }
        
-        //Ö´ÐÐ×¢²á»áÔ±²½Öè
+        //Ö´ï¿½ï¿½×¢ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
         public ResultMessage addMember(String id){
         	
 			return membercontroller.addmember(memberId, memberPassword, memberName, memberTelephone);

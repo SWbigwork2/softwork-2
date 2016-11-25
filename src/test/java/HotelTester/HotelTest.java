@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import EvaluateMock.EvaluatePO;
-import HotelsMock.HotelPO;
 import HotelsMock.HotelMock;
 import HotelsMock.ResultMessage;
+import po.EvaluatePO;
+import po.HotelPO;
 
 
 public class HotelTest {
@@ -17,14 +17,14 @@ public class HotelTest {
 	@Test
 	public void findHoteltTest(){
 		HotelMock hotelMock = new HotelMock();
-		HotelsMock.HotelPO po = hotelMock.findHotel("金陵饭店");
+		po.HotelPO po = hotelMock.findHotel("金陵饭店");
 		assertEquals(po.getName(), "金陵饭店");	
 	}
 	
 	@Test
 	public void findHoteltTest2(){
 		HotelMock hotelMock2 = new HotelMock();
-		HotelsMock.HotelPO po2 = hotelMock2.findHotel("苏宁环球");
+		po.HotelPO po2 = hotelMock2.findHotel("苏宁环球");
 		assertEquals(po2.getName(), "苏宁环球");
 	}
 	@Test

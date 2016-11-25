@@ -1,8 +1,8 @@
 package UsersMock;
 
-import HotelsMock.HotelPO;
 import HotelsMock.HotelRanking;
 import HotelsMock.HotelTradeArea;
+import po.HotelPO;
 
 public class HotelInfo extends HotelPO{
 

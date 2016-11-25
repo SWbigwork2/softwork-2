@@ -5,8 +5,8 @@ import org.junit.Test;
 import java.util.Date;
 import LoginMock.LoginControllerMock;
 import LoginMock.ResultMessage;
-import UsersMock.UserPO;
 import UsersMock.UserType;
+import po.UserPO;
 
 public class MemberLoginTester {
 	LoginControllerMock lcm = new LoginControllerMock(new UserPO("admin", "admin", "admin", UserType.member, "",new Date(1997,05,02)));

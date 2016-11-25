@@ -2,8 +2,9 @@ package LoginMock;
 
 import java.util.ArrayList;
 import java.util.Date;
-import UsersMock.UserPO;
+
 import UsersMock.UserType;
+import po.UserPO;
 
 public class UserInfo extends UserPO{
 

@@ -1,8 +1,8 @@
 package OrdersMock;
 
-import HotelsMock.HotelPO;
 import HotelsMock.HotelRanking;
 import HotelsMock.HotelTradeArea;
+import po.HotelPO;
 
 public class HotelsInfo extends HotelPO{
 

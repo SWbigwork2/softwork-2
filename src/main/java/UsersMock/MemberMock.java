@@ -1,5 +1,7 @@
 package UsersMock;
 
+import po.UserPO;
+
 public class MemberMock extends UserMock {
 
 	@Override

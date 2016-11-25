@@ -2,9 +2,10 @@ package HotelsMock;
 
 import java.util.ArrayList;
 
-import EvaluateMock.EvaluatePO;
-import RoomsMock.RoomPO;
 import RoomsMock.RoomType;
+import po.EvaluatePO;
+import po.HotelPO;
+import po.RoomPO;
 
 public class HotelMock extends Hotel {
 	// HotelMock��Ҫ�ṩ������Oreders�ࡢUser�ࡢEvaluate��ʹ��

@@ -2,11 +2,11 @@ package MembersMock;
 
 import java.util.ArrayList;
 
-import HotelsMock.HotelPO;
 import OrdersMock.OrderItem;
 import OrdersMock.OrderVO;
 import OrdersMock.OrdersListMock;
 import OrdersMock.OrdersMock;
+import po.HotelPO;
 
 public class MemberControllerMock extends Member{
 	public MemberControllerMock(OrdersMock order) {

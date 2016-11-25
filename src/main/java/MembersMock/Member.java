@@ -2,9 +2,9 @@ package MembersMock;
 
 import java.util.ArrayList;
 
-import HotelsMock.HotelPO;
 import OrdersMock.OrderItem;
 import OrdersMock.OrderVO;
+import po.HotelPO;
 
 public abstract class Member {
      public abstract ResultMessage addmember(String memberIid,String memberPassword,String memberName,String memberTelephone);

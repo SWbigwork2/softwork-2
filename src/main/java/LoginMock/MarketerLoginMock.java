@@ -1,9 +1,10 @@
 package LoginMock;
 
 import UsersMock.UserInfo;
-import UsersMock.UserPO;
 import UsersMock.UserType;
 import UsersMock.Users;
+import po.LoginPO;
+import po.UserPO;
 
 public class MarketerLoginMock extends LoginMock{
 	UserInfo use;

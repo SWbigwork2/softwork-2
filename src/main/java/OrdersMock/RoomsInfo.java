@@ -1,7 +1,7 @@
 package OrdersMock;
 
-import RoomsMock.RoomPO;
 import RoomsMock.RoomType;
+import po.RoomPO;
 
 public class RoomsInfo extends RoomPO{
 

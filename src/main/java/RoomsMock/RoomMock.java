@@ -2,6 +2,8 @@ package RoomsMock;
 
 import java.util.ArrayList;
 
+import po.RoomPO;
+
 public class RoomMock {
 
 	private int[] PeriodList = { 1, 2, 3, 4 };

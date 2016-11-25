@@ -2,17 +2,17 @@ package EvaluateMock;
 
 import java.util.Date;
 
-import OrdersMock.OrderPO;
 import OrdersMock.OrderType;
 import RoomsMock.RoomType;
+import po.OrderPO;
 
 public class OrdersInfo extends OrderPO{
 
 	public OrdersInfo(int orderId, String userId, String userNameString, String hotelNameString, RoomType roomType,
 			int roomNum, double price, OrderType orderType, Date inDate, Date outDate, Date completeDate,
-			Date revokeDate, Date deadLine) {
-		super(orderId, userId, userNameString, hotelNameString, roomType, roomNum, price, orderType, inDate, outDate,
-				completeDate, revokeDate, deadLine);
+			Date revokeDate, Date deadLine,int peopleNum, Date beginDate) {
+		super(orderId, userId, hotelNameString, roomType, roomNum, price, orderType, inDate, outDate,
+				completeDate, revokeDate, deadLine,peopleNum,beginDate);
 		// TODO Auto-generated constructor stub
 	}
 

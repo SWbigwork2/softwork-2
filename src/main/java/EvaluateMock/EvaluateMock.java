@@ -1,6 +1,7 @@
 package EvaluateMock;
 
 import HotelsMock.HotelMock;
+import po.EvaluatePO;
 
 public class EvaluateMock {
     HotelInfo hotel;
