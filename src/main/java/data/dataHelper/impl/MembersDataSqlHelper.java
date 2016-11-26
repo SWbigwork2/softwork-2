@@ -1,10 +1,12 @@
 package data.dataHelper.impl;
 
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import data.dataHelper.MembersDataHelper;
 import po.MemberPO;
@@ -12,15 +14,6 @@ import po.MemberPO;
 public class MembersDataSqlHelper implements MembersDataHelper {
 
 	
-//	public static void main(String[] args) {
-//		MembersDataSqlHelper mdsr=new MembersDataSqlHelper();
-//		try {
-//			//mdsr.getMemberList();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
     Connection connection=null;
 	
 	PreparedStatement statement = null;
@@ -33,14 +26,57 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 		connection = SqlConnectHelper.getConnection(url, user, password);
 		// TODO Auto-generated constructor stub
 	}
-	public MemberPO getMember(String id) {
+	private void freeConnect(){       //释放连接
+		try {
+			SqlConnectHelper.close(connection, statement, resultSet);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public MemberPO getMember(String id) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		try{
+			
+			getConnect();
+			String sql="select * from members where id = "+id+"";
+			statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			if(resultSet!=null){
+				String name =resultSet.getString(1);
+				String password=resultSet.getString(2);
+				Date birthday=new Date(resultSet.getLong(3));
+				double credit=resultSet.getDouble(4);
+				String telephone=resultSet.getString(5);
+			    return new MemberPO(id,password,name,telephone,credit,birthday);
+			}else{
+				return null;
+			}
+			
+			
+			}
+			finally { 
+				freeConnect();
+			}
 	}
 
 
-	public boolean updateCredit(String id) {
-		// TODO Auto-generated method stub
+	public boolean updateMemberCredit(String id,double changecredit) {
+		// TODO Auto-generated method stub	
+		try {
+			getConnect();
+			String sql="select * from members where id = "+id+"";
+			if(sql!=null){
+				sql="update members set credit=credit+"+changecredit+" where id="+id+"";
+				statement = connection.prepareStatement(sql);
+				resultSet = statement.executeQuery();
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 

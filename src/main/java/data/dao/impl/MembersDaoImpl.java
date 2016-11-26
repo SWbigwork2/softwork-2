@@ -1,5 +1,6 @@
 package data.dao.impl;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import MembersMock.ResultMessage;
@@ -21,7 +22,7 @@ public class MembersDaoImpl implements MembersDao{
 		// TODO Auto-generated constructor stub
 	}
 	public static void main(String[] args) {
-	
+		MembersDaoImpl membersdao = new MembersDaoImpl();
 	}
 	public static MembersDaoImpl getInstance(){
 		if(membersDaoImpl ==null){
@@ -32,17 +33,17 @@ public class MembersDaoImpl implements MembersDao{
 			return membersDaoImpl;
 		}
 	}
-	public MemberPO getMember(String id) {//根据id查找用户信息
+	public MemberPO getMember(String id) throws SQLException {//根据id查找用户信息
 		// TODO Auto-generated method stub
 		
-		return null;
+		return  membersDataHelper.getMember(id);
 	}
 
 
 
-	public ResultMessage updateCredit(String id, double changecredit) {
+	public boolean updateCredit(String id, double changecredit) {
 		// TODO Auto-generated method stub
-		return null;
+		return membersDataHelper.updateMemberCredit(id, changecredit);
 	}
 
 }
