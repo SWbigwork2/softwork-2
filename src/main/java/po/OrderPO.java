@@ -22,12 +22,12 @@ public class OrderPO implements Serializable{
 	Date inDate;   //入住时间
 	Date outDate;  //离店时间
 	Date completeDate; //订单完成时间
-	Date revokeDate;   //撤回时间
+	
 	Date deadLine;    //最晚执行时间
 	public OrderPO(int orderId, String userId, 
 			String hotelNameString, RoomType roomType, int roomNum,
 			double price, OrderType orderType, Date inDate, Date outDate,
-			Date completeDate, Date revokeDate, Date deadLine,int peopleNum,Date beginDate) {
+			Date completeDate, Date deadLine,int peopleNum,Date beginDate) {
 		super();
 		this.orderId = orderId;
 		this.userId = userId;
@@ -40,7 +40,7 @@ public class OrderPO implements Serializable{
 		this.inDate = inDate;
 		this.outDate = outDate;
 		this.completeDate = completeDate;
-		this.revokeDate = revokeDate;
+		
 		this.deadLine = deadLine;
 		this.peopleNum = peopleNum;
 		this.beginDate = beginDate;
@@ -54,7 +54,7 @@ public class OrderPO implements Serializable{
 	public int getOrderId() {
 		return orderId;
 	}
-	public String userId(){
+	public String getUserId(){
 		return userId;
 	}
 	
@@ -82,9 +82,7 @@ public class OrderPO implements Serializable{
 	public Date getCompleteDate(){
 		return completeDate;
 	}
-	public Date getRevokeDate(){
-		return revokeDate;
-	}
+	
 	public Date getDeadLine(){
 		return deadLine;
 	}

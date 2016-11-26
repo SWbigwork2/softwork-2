@@ -7,12 +7,15 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import data.dataHelper.OrdersDataHelper;
+import javafx.print.PageOrientation;
+import po.OrderPO;
 
 public class OrdersDataSqlHelper implements OrdersDataHelper{
 	public static void main(String[] args) {
@@ -29,7 +32,7 @@ public class OrdersDataSqlHelper implements OrdersDataHelper{
 	PreparedStatement statement = null;
 	
 	ResultSet resultSet = null;
-	private static ArrayList resultSetToList(ResultSet rs) throws java.sql.SQLException {   //resultset转list
+	private static ArrayList resultSetToList(ResultSet rs) throws java.sql.SQLException {   //resultset转list，每个订单的数据存在一个map中
         if (rs == null)   
             return null;  
         ResultSetMetaData md = rs.getMetaData(); //得到结果集(rs)的结构信息，比如字段数、字段名等   
@@ -82,9 +85,61 @@ public class OrdersDataSqlHelper implements OrdersDataHelper{
 		return tempList;
 	}
 
-	public boolean insertOrder() {
+	public boolean insertOrder(OrderPO po) {
+		
+		getConnect();	
+		
+		String orderid =+ po.getOrderId()+"";
+		String roomnumber = po.getRoomNum()+"";
+		String userid = po.getUserId();
+		String peoplenumber = po.getPeopleNum()+"";
+		String hotel = po.getHotelNameString();
+		String roomtype = po.getRoomType().toString();
+		String type = po.getOrderType().toString();
+		String price = po.getPrice()+"";
+		
+		String preCommand = "INSERT INTO orders ";
+		
+		String dataField = "(orderid,userid,hotel,type,price,roomnumber,roomtype,peoplenumber,begindate,completedate,deadline,indate,outdate) " ;
+		
+		String values = "VALUES "+"("+orderid+","+"'"+userid+"'"+","+"'"+hotel+"'"+","+"'"+type+"'"+","+price+","+roomnumber+","
+		+"'"+roomtype+"'"+","+peoplenumber+",?,?,?,?,?"+")"+";";
+		String SQL = preCommand+dataField+values;
+		System.out.println(SQL);
+		try {
+			statement = connection.prepareStatement(SQL);
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			freeConnect();
+			return false;// TODO: handle exception
+		}
+	
+		
+		
+		Timestamp beginTs = new Timestamp(po.getBeginDate().getTime());
+		Timestamp completeTs = new Timestamp(po.getCompleteDate().getTime());
+		Timestamp inTs =new Timestamp(po.getInDate().getTime());
+		Timestamp outTs = new Timestamp(po.getOutDate().getTime());
+		Timestamp deadline = new Timestamp(po.getDeadLine().getTime());
+		try {
+			statement.setTimestamp(1, beginTs);
+			statement.setTimestamp(2, completeTs);
+			statement.setTimestamp(3, deadline);
+			statement.setTimestamp(4, inTs);
+			statement.setTimestamp(5, outTs);
+			statement.executeUpdate();
+			freeConnect();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			freeConnect();
+			return false;// TODO: handle exception
+		}
+		
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	public boolean updataOrder() {
