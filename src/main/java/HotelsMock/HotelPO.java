@@ -10,13 +10,13 @@ public class HotelPO implements Serializable,HotelsInfo{
 	private String serviceAndFacility;
 	private HotelRanking ranking;
 	
-	public HotelPO(String name, String address, HotelTradeArea hotelTradeArea,String introduction,String serviceAndFacility, HotelRanking ranking ){
-		this.name = name;
-		this.address = address;
-		this.tradeArea = hotelTradeArea;
-		this.introduction = introduction;
-		this.serviceAndFacility = serviceAndFacility;
-		this.ranking = ranking;
+	public HotelPO(String n, String a, HotelTradeArea t,String i,String s, HotelRanking r ){
+		name = n;
+		address = a;
+		tradeArea = t;
+		introduction = i;
+		serviceAndFacility = s;
+		ranking = r;
 	}
 	public String getName(){
 		return name;
