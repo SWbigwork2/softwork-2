@@ -9,8 +9,8 @@ import RoomsMock.RoomsInfo;
 
 public class Promotions implements PromotionGetPrice{
 	ArrayList<Strategies> strategieslist=new ArrayList<Strategies>();				
-	String promotions[][]=new String[1000][3];
-	int pronums=0;
+//	String promotions[][]=new String[1000][3];
+//	int pronums=0;
 	public  String getHotelPromotion(String hotel){
 		if(hotel==null){
 			return null;
@@ -30,43 +30,51 @@ public class Promotions implements PromotionGetPrice{
 		
 	}
 	public double getPrice(RoomsInfo info,int num){
-		double discount = 0.7;		
+		double discount=1;
+		String hotelname=info.getHotelBelongTo();
+		for(Strategies item:strategieslist){
+			if(item.getHotel().equals(hotelname)){
+				discount=item.getDiscount();
+			}
+		}
+				
 		return info.getPrice()*num*discount;
 	}
 	public ResultMessage addStrategiesI(String hotel,Date birthday,String introduction,double discount){
-//		Date date = new Date();
-//    	DateFormat df1 = DateFormat.getDateInstance();//日期格式，精确到日   
-//    	if(birthday.equals(df1.format(date))){
-//    		Strategies temp = new StrategiesI(hotel,birthday,introduction,discount);
-//    		strategieslist.add(temp);
-//    		return ResultMessage.Success;
-//    	}
-//		
-//		return ResultMessage.Failure;
-		if(hotel==null){
+		Date date = new Date();
+    	DateFormat df1 = DateFormat.getDateInstance();//日期格式，精确到日  
+    	if(hotel==null){
 			return ResultMessage.Failure;
-		}else{
-			Strategies temp = new StrategiesI(hotel,birthday,introduction,discount);
+		}//当时间等于生日时把这个策略添加到酒店。这个方法不知道该怎么实现。他好像是一直在后台监控。while会不会跑死
+    	else if(birthday.equals(df1.format(date))){
+    		Strategies temp = new StrategiesI(hotel,birthday,introduction,discount);
     		strategieslist.add(temp);
     		return ResultMessage.Success;
-		}
-		
+    	}
+    	return ResultMessage.Failure;
 	}
 	public ResultMessage addStrategiesII(String hotel,Date startdate,Date enddate,String introduction,double discount ){
-		if(hotel==null){
+		Date date = new Date();
+    	DateFormat df = DateFormat.getDateInstance();
+    	if(hotel==null){
 			return ResultMessage.Failure;
-		}else{
-			Strategies temp = new StrategiesII(hotel,startdate,enddate,introduction,discount);
-    		strategieslist.add(temp);
-    		return ResultMessage.Success;
-		}				
+		}
+		if(df.format(date).compareTo(df.format(startdate))<-1&&df.format(date).compareTo(df.format(enddate))>1){
+			return ResultMessage.Failure;	
+		}
+		else{
+			Strategies tempII=new StrategiesII(hotel,startdate,enddate,introduction,discount);
+			strategieslist.add(tempII);
+			return ResultMessage.Success;
+		}
+		
 	}
 	public ResultMessage addStrategiesIII(String hotel,int num,String introduction,double discount){
 		if(hotel==null){
 			return ResultMessage.Failure;
 		}else{
-			Strategies temp = new StrategiesIII(hotel,num,introduction,discount);
-    		strategieslist.add(temp);
+			Strategies tempIII = new StrategiesIII(hotel,num,introduction,discount);
+    		strategieslist.add(tempIII);
     		return ResultMessage.Success;
 		}				
 	}	
