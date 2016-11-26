@@ -1,4 +1,4 @@
-package MembersImpl;
+package MembersMock;
 
 public interface MembersInfo {
 	public double getCredit();

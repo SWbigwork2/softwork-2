@@ -3,7 +3,7 @@ package po;
 import java.io.Serializable;
 import java.util.Date;
 
-import MembersImpl.MembersInfo;
+import MembersMock.MembersInfo;
 
 public class MemberPO implements Serializable,MembersInfo{
     String id;

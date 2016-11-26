@@ -19,7 +19,9 @@ E:\workspace java\software-bigwork\src\main\java\UsersMock\UserType.java
 E:\workspace java\software-bigwork\src\main\java\data\dataHelper\impl\DataFactoryImpl.java
 E:\workspace java\software-bigwork\src\main\java\LoginMock\MemberLoginMock.java
 E:\workspace java\software-bigwork\src\main\java\OrdersMock\OrdersMock.java
+E:\workspace java\software-bigwork\src\main\java\data\dataHelper\MembersDataHelper.java
 E:\workspace java\software-bigwork\src\main\java\EvaluateMock\EvaluateItem.java
+E:\workspace java\software-bigwork\src\main\java\OrdersMock\HotelInfo.java
 E:\workspace java\software-bigwork\src\main\java\LoginMock\MarketerLoginMock.java
 E:\workspace java\software-bigwork\src\main\java\MembersMock\MembersInfo.java
 E:\workspace java\software-bigwork\src\main\java\EvaluateMock\ResultMessage.java
@@ -67,10 +69,13 @@ E:\workspace java\software-bigwork\src\main\java\po\RoomPO.java
 E:\workspace java\software-bigwork\src\main\java\UsersMock\MarketerMock.java
 E:\workspace java\software-bigwork\src\main\java\LoginMock\UserInfo.java
 E:\workspace java\software-bigwork\src\main\java\PromotionsMock\StrategiesII.java
+E:\workspace java\software-bigwork\src\main\java\data\dao\MembersDao.java
 E:\workspace java\software-bigwork\src\main\java\UsersMock\MarketerVO.java
 E:\workspace java\software-bigwork\src\main\java\PromotionsMock\ResultMessage.java
+E:\workspace java\software-bigwork\src\main\java\data\dao\impl\MembersDaoImpl.java
 E:\workspace java\software-bigwork\src\main\java\data\dao\OrdersDao.java
 E:\workspace java\software-bigwork\src\main\java\EvaluateMock\EvaluateMock.java
+E:\workspace java\software-bigwork\src\main\java\data\dataHelper\impl\MembersDataSqlHelper.java
 E:\workspace java\software-bigwork\src\main\java\po\LoginPO.java
 E:\workspace java\software-bigwork\src\main\java\OrdersMock\MembersInfo.java
 E:\workspace java\software-bigwork\src\main\java\PromotionsMock\StrategiesV.java
@@ -79,6 +84,7 @@ E:\workspace java\software-bigwork\src\main\java\LoginMock\ResultMessage.java
 E:\workspace java\software-bigwork\src\main\java\po\MemberPO.java
 E:\workspace java\software-bigwork\src\main\java\OrdersMock\OrderType.java
 E:\workspace java\software-bigwork\src\main\java\po\HotelPO.java
+E:\workspace java\software-bigwork\src\main\java\OrdersMock\RoomInfo.java
 E:\workspace java\software-bigwork\src\main\java\data\dataHelper\impl\SqlConnectHelper.java
 E:\workspace java\software-bigwork\src\main\java\MembersMock\MemberControllerMock.java
 E:\workspace java\software-bigwork\src\main\java\data\dataHelper\impl\OrdersDataSqlHelper.java

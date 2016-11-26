@@ -1,3 +1,4 @@
+
 package MembersTest;
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +12,6 @@ import HotelsMock.HotelTradeArea;
 import HotelsMock.HotelsInfo;
 import MembersMock.MemberControllerMock;
 import MembersMock.MembersInfo;
-import MembersMock.ResultMessage;
 import OrdersMock.OrdersMock;
 import PromotionsMock.Promotions;
 import RoomsMock.RoomType;
@@ -23,23 +23,15 @@ public class MembersTest {
 Date date = new Date(2016, 11,1);
 	
 	RoomsInfo rI = new RoomPO("0001", "皇朝", RoomType.big, "", 100, new int[3]);
-	MembersInfo mI = new MemberPO("0001", "admin","admin","10086", 300);
+	MembersInfo mI = new MemberPO("0001", "admin","admin","10086", 300,new Date(2000, 5, 5));
 	HotelsInfo hI = new HotelPO("皇朝", "仙林大道103",HotelTradeArea.栖霞区, "", "", HotelRanking.oneStar);
 	Promotions po = new Promotions();
 	String memberId="admin";
     String memberPassword="123456";
     String memberName="小明";
     String memberTelephone="8888";
+    Date  birthday=new Date(2000, 5, 5);
     double credit=100;
-    @Test
-	public void Addmembertest() {
-    	MemberControllerMock membercontrollerMock =new MemberControllerMock(new OrdersMock());
-    	
-    	assertEquals(membercontrollerMock.addmember(memberId, memberPassword,memberName, memberTelephone),ResultMessage.Success);
-    	assertEquals(membercontrollerMock.addmember(memberId, memberPassword,memberName, memberTelephone),ResultMessage.Failure);
-		
-		
-	}
     @Test
     public void getHotelTest(){
     	String id="admin";

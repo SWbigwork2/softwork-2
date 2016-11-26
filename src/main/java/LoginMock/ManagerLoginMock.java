@@ -4,7 +4,6 @@ import UsersMock.UserInfo;
 import UsersMock.UserType;
 import UsersMock.Users;
 import po.LoginPO;
-import po.UserPO;
 
 public class ManagerLoginMock extends LoginMock{
 	UserInfo use;

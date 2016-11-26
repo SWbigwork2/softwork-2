@@ -1,10 +1,10 @@
 package LoginMock;
 
 import UsersMock.UserInfo;
+
 import UsersMock.UserType;
 import UsersMock.Users;
 import po.LoginPO;
-import po.UserPO;
 
 public class StaffLoginMock extends LoginMock{
 	UserInfo use;

@@ -15,7 +15,7 @@ import EvaluateMock.MemberInfo;
 import EvaluateMock.OrdersInfo;
 public class EvaluateTester {
 	HotelInfo hotel=new HotelInfo("皇朝", "仙林大道103",HotelTradeArea.栖霞区, "", "", HotelRanking.oneStar);
-	MemberInfo member=new MemberInfo("0001", "admin","admin","10086", 300);
+	MemberInfo member=new MemberInfo("0001", "admin","admin","10086", 300,new Date(2000, 5, 1));
 	OrdersInfo order= new OrdersInfo(1234,"0001","admin","皇朝",RoomType.big,1,100,OrderType.done,new Date(2016,10,4),new Date(2016,10,5)
 			                  ,new Date(2016,10,5),null,1,null);
 	EvaluateMock em=new EvaluateMock(hotel,member, order);

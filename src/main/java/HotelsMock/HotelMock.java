@@ -1,23 +1,22 @@
 package HotelsMock;
 
 import java.util.ArrayList;
-
 import RoomsMock.RoomType;
 import po.EvaluatePO;
 import po.HotelPO;
 import po.RoomPO;
 
 public class HotelMock extends Hotel {
-	// HotelMock��Ҫ�ṩ������Oreders�ࡢUser�ࡢEvaluate��ʹ��
+	// HotelMock需要提供方法供Oreders类、User类、Evaluate类使用
 
 	/*
-	 * Oreders�ࣺ HotelinfoService.findHotel(String hotelName)
-	 * ����hotelName�õ�HotelPO���� RoominfoService.findRoom(String hotelName)
-	 * ����hotelName�õ�RoomPO����
+	 * Oreders类： HotelinfoService.findHotel(String hotelName)
+	 * 根据hotelName得到HotelPO对象 RoominfoService.findRoom(String hotelName)
+	 * 根据hotelName得到RoomPO对象
 	 */
 
 	public HotelPO findHotel(String hotelName) {
-		HotelPO hotelPO = new HotelPO(hotelName, "���ִ��103", HotelTradeArea.栖霞区, "", "", HotelRanking.oneStar);
+		HotelPO hotelPO = new HotelPO(hotelName, "仙林大道103", HotelTradeArea.栖霞区, "", "", HotelRanking.oneStar);
 		return hotelPO;
 	}
 
@@ -29,10 +28,10 @@ public class HotelMock extends Hotel {
 	}
 
 	/*
-	 * User�ࣺ HotelinfoService.addHotel(HotelPO) ��ӾƵ�
+	 * User类： HotelinfoService.addHotel(HotelPO) 添加酒店
 	 */
 
-	// ��ҪUser���ResultMessage
+	// 需要User类的ResultMessage
 	public ResultMessage addHotel(HotelPO hotelPO) {
 		if (hotelPO == null) {
 			return ResultMessage.failure;
@@ -42,8 +41,8 @@ public class HotelMock extends Hotel {
 	}
 
 	/*
-	 * Evaluate�� HotelinfoService.addHotelEvaluation��EvaluatePO evaluatePO��
-	 * ��ĳһ�Ƶ����������Ϣ
+	 * Evaluate类 HotelinfoService.addHotelEvaluation（EvaluatePO evaluatePO）
+	 * 想某一酒店添加评价信息
 	 */
 
 	public ResultMessage addHotelEvaluation(EvaluatePO evaluatePO) {
