@@ -11,8 +11,8 @@ public interface OrdersDataHelper {
 	
 	public boolean insertOrder(OrderPO po); //插入订单信息
 	
-	public boolean updataOrder(); //更新订单信息
+	public boolean updataOrder(OrderPO po); //更新订单信息
 	
-	public boolean deleteOrder(); //删除订单信息
+	public boolean deleteOrder(int orderId); //删除订单信息
 
 }

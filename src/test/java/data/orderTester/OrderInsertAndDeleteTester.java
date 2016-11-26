@@ -14,9 +14,9 @@ import data.dao.OrdersDao;
 import data.dao.impl.OrdersDaoImpl;
 import po.OrderPO;
 
-public class OrderTester {   
+public class OrderInsertAndDeleteTester {
 	OrderPO testPo = new OrderPO(0005, "1111", "皇朝", RoomType.big, 1, 200.0, OrderType.normal, new Date(2013, 12, 16), new Date(2013, 12, 18), new Date(2013, 12, 18,20,15),  new Date(2013, 12, 18,19,00), 1,new Date());
-	/*@Test
+	@Test
 	public void insert_GetTest() {     //插入和得到列表的测试
 		OrdersDao dao = OrdersDaoImpl.getInstance();
 		assertTrue(dao.insert(testPo));
@@ -29,32 +29,17 @@ public class OrderTester {
 			}
 		}
 		assert(isRight);
-	}*/
-	
-	@Test
-	public void getOrderTest(){   //根据id查找order的测试
-		OrdersDao dao = OrdersDaoImpl.getInstance();
-		OrderPO po = dao.getOrder(0005);
-		assertTrue(isEqual(po, testPo));
-	}
-	
-	@Test
-	public void getHotelOrderListTest(){		//根据酒店名查找order列表的测试
-		OrdersDao dao = OrdersDaoImpl.getInstance();
-		ArrayList<OrderPO> test1 = dao.getHotelOrderList("皇朝");
-		ArrayList<OrderPO> test2 = dao.getHotelOrderList("");
-		assertEquals(1,test1.size());
-		assertEquals(0, test2.size());
 	}
 	@Test
-	public void updateTest(){     //更新订单的测试
+	public void deleteTest(){ //删除的测	试
+		
 		OrdersDao dao = OrdersDaoImpl.getInstance();
-		OrderPO po2 =new OrderPO(0005, "1111", "如家", RoomType.big, 1, 200.0, OrderType.normal, new Date(2013, 12, 16), new Date(2013, 12, 18), new Date(2013, 12, 18,20,15),  new Date(2013, 12, 18,19,00), 1,new Date());
-		assertTrue(dao.updata(po2));
-		OrderPO po3 = new OrderPO(0004, "1111", "皇朝", RoomType.big, 1, 200.0, OrderType.normal, new Date(2013, 12, 16), new Date(2013, 12, 18), new Date(2013, 12, 18,20,15),  new Date(2013, 12, 18,19,00), 1,new Date());
-		assertFalse(dao.updata(po3));
-		OrderPO resultPo = dao.getOrder(0005);
-		assertEquals(resultPo.getHotelNameString(), "如家");
+		int preNum = dao.getOrderList("1111").size();
+		assertTrue(dao.delete(0005));
+		assertEquals(false, dao.delete(0000));
+		int afterNum = dao.getOrderList("1111").size();
+		assertEquals(1, preNum-afterNum);
+		
 	}
 	private boolean isEqual(Object obj1,Object obj2){       //比较两个类是否相同
 		Field[] f1 = obj1.getClass().getDeclaredFields();
@@ -66,6 +51,5 @@ public class OrderTester {
 		}
 		return true;
 	}
-	
 
 }

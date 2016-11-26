@@ -15,7 +15,7 @@ public interface OrdersDao {
 	
 	public boolean insert(OrderPO po); //在指定的用户下插入订单信息
 	
-	public boolean updata(int orderId);  //更新指定订单信息
+	public boolean updata(OrderPO po);  //更新指定订单信息
 	
 	public boolean delete(int orderId);  //删除指定订单信息
 	

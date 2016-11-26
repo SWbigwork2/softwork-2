@@ -142,14 +142,42 @@ public class OrdersDataSqlHelper implements OrdersDataHelper{
 		
 	}
 
-	public boolean updataOrder() {
+	public boolean updataOrder(OrderPO po) {   //更新订单信息
+		int deleteId = po.getOrderId();
+		
+		if(!deleteOrder(deleteId)){
+			return false;
+		}
+		if(!insertOrder(po)){
+			return false;
+		}
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
-	public boolean deleteOrder() {
+	public boolean deleteOrder(int orderId) {     //根据id删除订单
+		try {
+			getConnect();
+			String preCommand = "delete from orders";
+			String mainCommand = " where orderid = "+orderId+";";
+		
+			statement = connection.prepareStatement(preCommand+mainCommand);
+			int i=statement.executeUpdate();
+			if(i<1){
+				return false;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+			
+			// TODO: handle exception
+		} 
+		finally {
+			freeConnect();
+		
+		}
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

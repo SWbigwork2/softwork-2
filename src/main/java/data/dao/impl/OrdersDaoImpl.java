@@ -101,14 +101,15 @@ public class OrdersDaoImpl implements OrdersDao{
 		
 	}
 
-	public boolean updata(int orderId) {
+	public boolean updata(OrderPO po) {
 		// TODO Auto-generated method stub
-		return false;
+		return ordersDataHelper.updataOrder(po);
 	}
 
-	public boolean delete(int orderId) {
+	public boolean delete(int orderId) {    //删除指定的订单
+		
 		// TODO Auto-generated method stub
-		return false;
+		return ordersDataHelper.deleteOrder(orderId);
 	}
 	private ArrayList<OrderPO> getAllOrderList(){ //私有方法，得到所有的Order信息
 		ArrayList<OrderPO> resultPos = new ArrayList<OrderPO>();  //存储结果po列表
