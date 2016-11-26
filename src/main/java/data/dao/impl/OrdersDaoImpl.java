@@ -1,6 +1,7 @@
 package data.dao.impl;
 
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,17 +41,31 @@ public class OrdersDaoImpl implements OrdersDao{
 			return ordersDaoImpl;
 		}
 	}
-	public OrderPO getOrder(int orderId) {
-		// TODO Auto-generated method stub
+	public OrderPO getOrder(int orderId) {   //根据id查找单个订单的实现
+		ArrayList<OrderPO> resultList = getAllOrderList();
+		for(OrderPO po:resultList){
+			if(po.getOrderId()==orderId){
+				return po;
+			}
+		}
+		
 		return null;
 	}
 
-	public ArrayList<OrderPO> getHotelOrderList(String hotelName) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<OrderPO> getHotelOrderList(String hotelName) {  //根据酒店名查找所有订单的实现
+		ArrayList<OrderPO> resultList = getAllOrderList();
+		ArrayList<OrderPO> hotelList = new ArrayList<OrderPO>();
+		for(OrderPO po:resultList){
+			if(po.getHotelNameString().equals(hotelName)){
+				hotelList.add(po);
+			}
+		}
+		
+		
+		return hotelList;
 	}
 
-	public ArrayList<OrderPO> getOrderList(String userId) {
+	public ArrayList<OrderPO> getOrderList(String userId) {    //得到指定用户的所有订单的方法实现
 		ArrayList<OrderPO> resultPos = new ArrayList<OrderPO>();  //存储结果po列表
 		try {
 			ArrayList resultList = ordersDataHelper.getOrdersList();
@@ -95,6 +110,27 @@ public class OrdersDaoImpl implements OrdersDao{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	private ArrayList<OrderPO> getAllOrderList(){ //私有方法，得到所有的Order信息
+		ArrayList<OrderPO> resultPos = new ArrayList<OrderPO>();  //存储结果po列表
+		try {
+			ArrayList resultList = ordersDataHelper.getOrdersList();
+			Iterator iterator = resultList.iterator();
+			while(iterator.hasNext()){
+				
+				Map hm = (Map)iterator.next();
+				String userIdtemp= (String) hm.get("userid");    //判断用户名是否一致
+				
+				OrderPO po = Map2Po(hm);            //将map转换成po
+				resultPos.add(po);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+		return resultPos;
+	}
 	private OrderPO Map2Po(Map map) {    //将map里的数据转换成po
 		Map hm = map;
 		String userIdtemp= (String) hm.get("userid");
@@ -108,12 +144,12 @@ public class OrdersDaoImpl implements OrdersDao{
 		int roomNum = (Integer) hm.get("roomnumber");
 		int peopleNum = (Integer)hm.get("peoplenumber");
 		double price = Double.valueOf((Float)hm.get("price"));
-		Date beginDate = (Date) hm.get("begindate");
 		
-		Date completeDate = (Date) hm.get("completedate");
-		Date inDate = (Date)hm.get("indate");
-		Date outDate = (Date)hm.get("outdate");
-		Date deadLine = (Date)hm.get("deadline");
+		Date beginDate =  new Date(((Timestamp)(hm.get("begindate"))).getTime());
+		Date completeDate = new Date(((Timestamp)(hm.get("completedate"))).getTime());
+		Date inDate =new Date(((Timestamp)(hm.get("indate"))).getTime());
+		Date outDate = new Date(((Timestamp)(hm.get("outdate"))).getTime());
+		Date deadLine = new Date(((Timestamp)(hm.get("deadline"))).getTime());
 	
 		OrderPO po =new OrderPO(orderId, userIdtemp, hotel, roomType, roomNum, price, type, inDate, outDate, completeDate, deadLine, peopleNum, beginDate);
 		return po;
