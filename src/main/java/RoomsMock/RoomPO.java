@@ -1,8 +1,7 @@
 package RoomsMock;
 import java.io.Serializable;
-
-
-
+import java.sql.Date;
+import java.util.ArrayList;
 
 public class RoomPO implements Serializable,RoomsInfo{
 	private String roomName;
@@ -10,17 +9,16 @@ public class RoomPO implements Serializable,RoomsInfo{
 	private RoomType roomtype;
 	private String introdution;
 	private double price;
-	//status需要存储不可用的时间段，不应采用int数组，具体实现待讨论
-	private int[] unavailablePeriod;
+	ArrayList <Date> unavailablePeriod;
 	
 	
-	public RoomPO(String r, String h, RoomType t,String i,double p, int[] s){
-		this.roomName= r;
-		this.hotelBelongTo =h;
-		this.roomtype =t;
-		this.introdution=i;
-		this.price =p;
-		this.unavailablePeriod =s;
+	public RoomPO(String roomName, String hotelBelongTo, RoomType roomType,String introduction,double price, ArrayList <Date> unavailablePeriod){
+		this.roomName= roomName;
+		this.hotelBelongTo =hotelBelongTo;
+		this.roomtype =roomType;
+		this.introdution=introduction;
+		this.price =price;
+		this.unavailablePeriod =unavailablePeriod;
 	}
 	public String getRoomName(){
 		return roomName;	
@@ -37,7 +35,7 @@ public class RoomPO implements Serializable,RoomsInfo{
 	public double getPrice(){
 		return price;
 	}
-	public int[] getRoomStatus(){
+	public ArrayList <Date> getRoomStatus(){
 		return unavailablePeriod;
 	}
 	
