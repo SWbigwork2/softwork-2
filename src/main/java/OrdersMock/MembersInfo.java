@@ -1,6 +1,6 @@
 package OrdersMock;
 
-public class MembersInfo  {
+public class MembersInfo {
 	int memberId;
 	String name;
 	double credit;

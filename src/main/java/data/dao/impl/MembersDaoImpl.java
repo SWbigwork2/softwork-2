@@ -9,6 +9,7 @@ import data.dao.MembersDao;
 import data.dataHelper.DataFactory;
 import data.dataHelper.MembersDataHelper;
 import data.dataHelper.impl.DataFactoryImpl;
+import po.MemberInformationPO;
 import po.MemberPO;
 
 public class MembersDaoImpl implements MembersDao{
@@ -33,7 +34,7 @@ public class MembersDaoImpl implements MembersDao{
 			return membersDaoImpl;
 		}
 	}
-	public MemberPO getMember(String id) throws SQLException {//根据id查找用户信息
+	public MemberInformationPO getMember(String id) throws SQLException {//根据id查找用户信息
 		// TODO Auto-generated method stub
 		
 		return  membersDataHelper.getMember(id);

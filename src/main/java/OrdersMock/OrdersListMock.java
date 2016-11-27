@@ -1,6 +1,7 @@
 package OrdersMock;
 
 import java.util.ArrayList;
+import OrdersMock.OrderType;
 
 public class OrdersListMock {
 	ArrayList<OrderItem> orderList = new ArrayList<OrderItem>();

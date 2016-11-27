@@ -20,7 +20,7 @@ public class EvaluateMock {
     	if(hotel.getName().equals(hotelName)&&member.getID().equals(memberId)&&order.getOrderId()==orderId&&(score<5&&score>0)
     		){
     		HotelMock hotelMock=new HotelMock();
-    		if(hotelMock.addHotelEvaluation(new EvaluatePO(hotelName, memberId, orderId, score, s))
+    		if(hotelMock.addHotelEvaluation(new EvaluatePO(hotelName, memberId, orderId, s))
     				.equals(HotelsMock.ResultMessage.success)){
     			return ResultMessage.success;
     		}else{

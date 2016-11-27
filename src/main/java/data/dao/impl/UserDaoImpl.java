@@ -15,6 +15,7 @@ import po.OrderPO;
 import po.StaffPO;
 import po.UserPO;
 import UsersMock.UserType;
+import UsersMock.VipType;
 import data.dao.UserDao;
 import data.dataHelper.DataFactory;
 import data.dataHelper.UserDataHelper;
@@ -97,7 +98,7 @@ public class UserDaoImpl implements UserDao{
 		Date birthday=  new Date(((Timestamp)(hm.get("birthday"))).getTime());
 		double credit=(Double)hm.get("credit");
 	
-		MemberInformationPO po =new MemberInformationPO(memberId, name, password, ContactInformation,credit,birthday);
+		MemberInformationPO po =new MemberInformationPO(memberId, name, password, ContactInformation,credit,VipType.CompanyVip,null,1);
 		return po;
 	}
 	

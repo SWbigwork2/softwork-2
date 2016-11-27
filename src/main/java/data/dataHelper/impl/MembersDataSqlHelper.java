@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import UsersMock.VipType;
 import data.dataHelper.MembersDataHelper;
+import po.MemberInformationPO;
 import po.MemberPO;
 
 public class MembersDataSqlHelper implements MembersDataHelper {
@@ -34,7 +36,7 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 			e.printStackTrace();
 		}
 	}
-	public MemberPO getMember(String id) throws SQLException {
+	public MemberInformationPO getMember(String id) throws SQLException {
 		// TODO Auto-generated method stub
 		try{
 			
@@ -50,7 +52,7 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 				String telephone=resultSet.getString(6);
 				int type=resultSet.getInt(7);
 				int level=resultSet.getInt(8);
-			    return new MemberPO(id,password,name,telephone,credit,special,type,level);
+			    return new MemberInformationPO(id,password,name,telephone,credit,VipType.CompanyVip,special,level);
 			}else{
 				return null;
 			}

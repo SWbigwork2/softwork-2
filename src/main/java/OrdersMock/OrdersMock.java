@@ -57,7 +57,7 @@ public class OrdersMock extends Orders{
 		this.revokeDate = revokeDate;
 		this.deadLine = deadLine;
 	}*/
-	//订单界面得到订单信息
+	
 	public OrderVO view(){
 		
 				OrderVO vo = new OrderVO(tempItem);
@@ -67,7 +67,7 @@ public class OrdersMock extends Orders{
 		
 		
 	}
-	//执行订单步骤
+	
 	public ArrayList<OrderItem> getOrderList(OrderType orderType){
 		
 		return ordersListMock.getList(orderType);
