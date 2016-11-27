@@ -1,25 +1,20 @@
 package po;
 
-
 public class PromotionsPO {
-	   String  hotel;
-	   String type;
-	   String role;
-	 
-	  public   PromotionsPO(String role,String hotel,String type ){
-	  	    this.hotel=hotel;
-	  	    this.type=type;
-	  	    this.role=role;
-	    }
-	  public String getHotel(){
-	  	   return hotel;
-	     }
-		 public  String getType(){
-			 return type;
-		 }
-		  
-		  public String getRole(){
-			  return role;
-		  }
-		 
+int type;
+String hotel;
+double discount;
+String introduction;
+public int getType(){
+	return type;
+}
+public String getHotel(){
+	return hotel;
+}
+public double getDiscount(){
+	return discount;
+}
+public String getIntroduction(){
+	return introduction;
+}
 }
