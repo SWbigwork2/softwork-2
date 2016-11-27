@@ -43,12 +43,14 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			if(resultSet!=null){
-				String name =resultSet.getString(1);
-				String password=resultSet.getString(2);
-				Date birthday=new Date(resultSet.getLong(3));
-				double credit=resultSet.getDouble(4);
-				String telephone=resultSet.getString(5);
-			    return new MemberPO(id,password,name,telephone,credit,birthday);
+				String name =resultSet.getString(2);
+				String password=resultSet.getString(3);
+				String special=resultSet.getString(4);
+				double credit=resultSet.getDouble(5);
+				String telephone=resultSet.getString(6);
+				int type=resultSet.getInt(7);
+				int level=resultSet.getInt(8);
+			    return new MemberPO(id,password,name,telephone,credit,special,type,level);
 			}else{
 				return null;
 			}

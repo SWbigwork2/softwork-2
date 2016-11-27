@@ -24,5 +24,15 @@ public class DataFactoryImpl implements DataFactory{
 		EvaluateDataHelper evaluateDataHelper=new EvaluateDataSqlHelper();
 		return evaluateDataHelper;
 	}
+        public MembersDataHelper getMembersDataHelper() {
+		// TODO Auto-generated method stub
+		MembersDataHelper member=new MembersDataSqlHelper();
+		return member;
+	}
+        public PromotionsDataHelper getPromtionsDataHelper() {
+		// TODO Auto-generated method stub
+		PromotionsDataHelper promotion =new PromotionsDataSqlHelper();
+		return promotion;
+	}
 
 }
