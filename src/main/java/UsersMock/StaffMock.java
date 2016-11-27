@@ -6,7 +6,7 @@ public class StaffMock extends UserMock {
 	@Override
 	public UserVO find(String id, UserType type) {
 		
-		return new StaffVO("1112","1234567","xiaohong","ИзјТ");
+		return new StaffVO("1112","1234567","xiaohong","");
 	}
 
 	@Override
