@@ -1,8 +1,9 @@
 package data.dataHelper.impl;
 
 import data.dataHelper.DataFactory;
-import data.dataHelper.MembersDataHelper;
+import data.dataHelper.EvaluateDataHelper;
 import data.dataHelper.OrdersDataHelper;
+import data.dataHelper.UserDataHelper;
 
 public class DataFactoryImpl implements DataFactory{
 
@@ -11,10 +12,17 @@ public class DataFactoryImpl implements DataFactory{
 		// TODO Auto-generated method stub
 		return order;
 	}
+	
+	public UserDataHelper getUserDataHelper(){
+        UserDataHelper userDataHelper= new UserDataSqlHelper();
+        // TODO Auto-generated method stub
+        return userDataHelper;
+	}
 
-	public MembersDataHelper getMembersDataHelper() {
+	public EvaluateDataHelper getEvaluateDataHelper() {
 		// TODO Auto-generated method stub
-		return null;
+		EvaluateDataHelper evaluateDataHelper=new EvaluateDataSqlHelper();
+		return evaluateDataHelper;
 	}
 
 }

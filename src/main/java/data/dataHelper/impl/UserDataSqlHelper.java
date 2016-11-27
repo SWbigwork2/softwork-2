@@ -20,6 +20,7 @@ import RoomsMock.RoomType;
 import UsersMock.ResultMessage;
 import po.UserPO;
 import UsersMock.UserType;
+import UsersMock.VipType;
 import data.dataHelper.UserDataHelper;
 import po.ManagerPO;
 import po.MemberInformationPO;
@@ -147,14 +148,21 @@ public class UserDataSqlHelper implements UserDataHelper{
         case member:
         	MemberInformationPO member=(MemberInformationPO)userPO;
         	//把date转换
-        	Timestamp birthday = new Timestamp(member.getBirthday().getTime());
-        	
+            int type=0;
+            if(member.getVipType().equals(VipType.CompanyVip)){
+            	type++;
+            }
         	//添加新的用户
         	try {
         		this.getConnect();
-				String insertMemberSql="insert into members values("+member.getId()+member.getName()+member.getPassword()
-				                             +birthday+member.getCredit()+member.getContactInformation()+")";
+				String insertMemberSql="insert into members values("+member.getId()+","+"'"+member.getName()+"'"+
+        		                              ","+"'"+member.getPassword()+"'"+","
+				                             +"'"+member.getSpecial()+"'"+","+"'"+member.getCredit()+"'"+","+
+        		                              "'"+member.getContactInformation()+"'"+","+"'"+type+"'"+","+
+				                             "'"+member.getLevel()+"'"+
+				                             ")";
 				statement = connection.prepareStatement(insertMemberSql);
+				statement.executeUpdate();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

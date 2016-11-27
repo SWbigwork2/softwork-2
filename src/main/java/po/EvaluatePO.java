@@ -5,13 +5,12 @@ import java.util.ArrayList;
 public class EvaluatePO {
     private String hotelName;
 	private String memberId;
-    private int orderid;
-    private int score;
+    private double score;
     private String s;
-    public EvaluatePO(String hotelName,String memberId,int orderId,int score,String s){
+    
+    public EvaluatePO(String hotelName,String memberId,double score,String s){
     	this.hotelName=hotelName;
     	this.memberId=memberId;
-    	this.orderid=orderId;
     	this.score=score;
     	this.s=s;
     }
@@ -21,10 +20,8 @@ public class EvaluatePO {
 	public String getMemberId() {
 		return memberId;
 	}
-	public int getOrderid() {
-		return orderid;
-	}
-	public int getScore() {
+	
+	public double getScore() {
 		return score;
 	}
 	public String getS() {
