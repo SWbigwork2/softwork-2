@@ -1,8 +1,6 @@
 package po;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import MembersMock.MembersInfo;
 
 public class MemberPO implements Serializable,MembersInfo{
@@ -10,15 +8,19 @@ public class MemberPO implements Serializable,MembersInfo{
     String password;
     String name;
     String telephone;
-    Date birthday;
+    String special;
     double credit;
-     public MemberPO(String id,String name,String password,String telephone,double credit,Date birthday){
+    int type;
+    int level;
+     public MemberPO(String id,String name,String password,String telephone,double credit,String special,int type,int level){
   	   this.id=id;
   	   this.name=name;
   	   this.password=password;
   	   this.telephone=telephone;
   	   this.credit =credit;
-  	   this.birthday=birthday;
+  	   this.special=special;
+  	   this.type=type;
+  	   this.level=level;
      }
      public double getCredit(){
     	 return credit;
@@ -35,7 +37,13 @@ public class MemberPO implements Serializable,MembersInfo{
 	  public String getTelephone(){
 		  return telephone;
 	  }
-	  public Date getBirthday(){
-		  return birthday;
+	  public String getSpecial(){
+		  return special;
+	  }
+	  public int getType(){
+		  return type;
+	  }
+	  public int getLevel(){
+		  return level;
 	  }
 }
