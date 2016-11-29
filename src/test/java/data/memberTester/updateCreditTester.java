@@ -3,6 +3,8 @@ package data.memberTester;
 import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
+import java.sql.SQLException;
+
 import org.junit.Test;
 
 import data.dao.MembersDao;
@@ -12,10 +14,10 @@ import po.MemberPO;
 public class updateCreditTester {
 	MemberPO testpo=new MemberPO("1000", "王华","wanghua" , null, 100,"1997-05-02",0,2);
 	@Test
-	public void updateCredittest() {
+	public void updateCredittest() throws SQLException {
 		MembersDao dao=new MembersDaoImpl().getInstance();
 		assertTrue(dao.updateCredit("1000", 100));
-		assertEquals(100, testpo.getCredit());
+		assertTrue(isEqual(dao.getMember("1000"), testpo));
 	}
 	private boolean isEqual(Object obj1,Object obj2){       //比较两个类是否相同
 		Field[] f1 = obj1.getClass().getDeclaredFields();

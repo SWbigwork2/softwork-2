@@ -29,7 +29,7 @@ public class PromotionsDataSqlHelper implements PromotionsDataHelper{
 		String user = "root";
 		String password = "zl1314like@70";
 		connection = SqlConnectHelper.getConnection(url, user, password);
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubc
 	}
 	private void freeConnect(){       //释放连接
 		try {

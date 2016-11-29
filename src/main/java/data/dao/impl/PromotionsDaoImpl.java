@@ -36,40 +36,40 @@ public class PromotionsDaoImpl implements PromotionsDao{
 			return promotionsDaoImpl;
 		}
 	}
-	public boolean deletePromotions(PromotionsPO promotionsPO) {
+	public boolean deletePromotions(int type,String hotel,String introduction) {
 		// TODO Auto-generated method stub
 		
-		return promotionsDaoImpl.deletePromotions(promotionsPO);
+		return promotionsDataHelper.deletePromotions(type,hotel,introduction);
 	}
 
 	public boolean addPromotionsI(PromotionsIPO promotionsIPO) {
 		// TODO Auto-generated method stub
-		return promotionsDaoImpl.addPromotionsI(promotionsIPO);
+		return promotionsDataHelper.addPromotionsI(promotionsIPO);
 	}
 
 	public boolean addPromotionsII(PromotionsIIPO promotionsIIPO) {
 		// TODO Auto-generated method stub
-		return promotionsDaoImpl.addPromotionsII(promotionsIIPO);
+		return promotionsDataHelper.addPromotionsII(promotionsIIPO);
 	}
 
 	public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO) {
 		// TODO Auto-generated method stub
-		return promotionsDaoImpl.addPromotionsIII(promotionsIIIPO);
+		return promotionsDataHelper.addPromotionsIII(promotionsIIIPO);
 	}
 
 	public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO) {
 		// TODO Auto-generated method stub
-		return promotionsDaoImpl.addPromotionsIV(promotionsIVPO);
+		return promotionsDataHelper.addPromotionsIV(promotionsIVPO);
 	}
 
 	public boolean addPromotionsV(PromotionsVPO promotionsVPO) {
 		// TODO Auto-generated method stub
-		return promotionsDaoImpl.addPromotionsV(promotionsVPO);
+		return promotionsDataHelper.addPromotionsV(promotionsVPO);
 	}
 
 	public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO) {
 		// TODO Auto-generated method stub
-		return promotionsDaoImpl.addPromotionsVI(promotionsVIPO);
+		return promotionsDataHelper.addPromotionsVI(promotionsVIPO);
 	}
 
 }

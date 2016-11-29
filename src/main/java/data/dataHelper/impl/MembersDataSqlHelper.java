@@ -40,6 +40,7 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 			
 			getConnect();
 			String sql="select * from members where id = "+id+"";
+			
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
 			if(resultSet!=null){
@@ -69,9 +70,9 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 			getConnect();
 			String sql="select * from members where id = "+id+"";
 			if(sql!=null){
-				sql="update members set credit=credit+"+changecredit+" where id="+id+"";
+				sql="update members set credit="+changecredit+" where id="+id+"";
 				statement = connection.prepareStatement(sql);
-				resultSet = statement.executeQuery();
+			  statement.executeUpdate();
 				return true;
 			}
 			
