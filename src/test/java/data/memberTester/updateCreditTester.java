@@ -3,8 +3,6 @@ package data.memberTester;
 import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
-import java.util.Date;
-
 import org.junit.Test;
 
 import data.dao.MembersDao;
@@ -12,7 +10,7 @@ import data.dao.impl.MembersDaoImpl;
 import po.MemberPO;
 
 public class updateCreditTester {
-	MemberPO testpo=new MemberPO("1000", "王华","wanghua" , null, 100,new Date(1997,05,02));
+	MemberPO testpo=new MemberPO("1000", "王华","wanghua" , null, 100,"1997-05-02",0,2);
 	@Test
 	public void updateCredittest() {
 		MembersDao dao=new MembersDaoImpl().getInstance();
