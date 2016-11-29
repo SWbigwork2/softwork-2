@@ -1,4 +1,4 @@
-package data.usersTster;
+package dao.usersTster;
 
 import static org.junit.Assert.*;
 

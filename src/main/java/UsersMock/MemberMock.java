@@ -20,7 +20,7 @@ public class MemberMock extends UserMock {
 	}
 	
 	public ResultMessage register(MemberVO member){
-		UserPO newMember=new UserPO(member.userId,member.password,null,UserType.member);
+		UserPO newMember=new UserPO(member.userId,member.password,null,UserType.member,member.name,member.birthday);
 		return ResultMessage.success;	
 	}
 	

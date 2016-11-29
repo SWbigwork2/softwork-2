@@ -49,7 +49,7 @@ public class HotelTest {
 	@Test
 	public void addEvaluationTest2(){
 		HotelMock hotelMock6 = new HotelMock();
-		EvaluatePO evaluatePO = new EvaluatePO("南京饭店", null, 0, null);
+		EvaluatePO evaluatePO = new EvaluatePO("南京饭店", null, 0, 0, null);
 		ResultMessage  r = hotelMock6.addHotelEvaluation(evaluatePO);
 		assertEquals(r,ResultMessage.success);
 	}

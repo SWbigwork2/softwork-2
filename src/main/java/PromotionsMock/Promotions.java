@@ -42,10 +42,10 @@ public class Promotions implements PromotionGetPrice{
 	}
 	public ResultMessage addStrategiesI(String hotel,Date birthday,String introduction,double discount){
 		Date date = new Date();
-    	DateFormat df1 = DateFormat.getDateInstance();
+    	DateFormat df1 = DateFormat.getDateInstance();//日期格式，精确到日  
     	if(hotel==null){
 			return ResultMessage.Failure;
-		}
+		}//当时间等于生日时把这个策略添加到酒店。这个方法不知道该怎么实现。他好像是一直在后台监控。while会不会跑死
     	else if(birthday.equals(df1.format(date))){
     		Strategies temp = new StrategiesI(hotel,birthday,introduction,discount);
     		strategieslist.add(temp);

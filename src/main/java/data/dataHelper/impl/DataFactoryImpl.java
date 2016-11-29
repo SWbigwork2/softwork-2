@@ -2,9 +2,7 @@ package data.dataHelper.impl;
 
 import data.dataHelper.DataFactory;
 import data.dataHelper.EvaluateDataHelper;
-import data.dataHelper.MembersDataHelper;
 import data.dataHelper.OrdersDataHelper;
-import data.dataHelper.PromotionsDataHelper;
 import data.dataHelper.UserDataHelper;
 
 public class DataFactoryImpl implements DataFactory{

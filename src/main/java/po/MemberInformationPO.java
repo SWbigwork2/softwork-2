@@ -3,7 +3,7 @@ package po;
 
 import UsersMock.UserType;
 import UsersMock.VipType;
-
+import UsersMock.vip;
 
 public class MemberInformationPO extends UserPO{
 	String contactInformation;
