@@ -14,10 +14,12 @@ public class MemberMock {
     String memberName;
     String memberTelephone;
     double credit;
-    Date birthday;
+    String special;
+    int type;
+    int level;
     MemberControllerMock membercontroller;
         public MemberPO getMember(){
-       	 return new MemberPO(memberId,memberPassword,memberName,memberTelephone,credit,birthday);
+       	 return new MemberPO(memberId,memberName,memberPassword,memberTelephone,credit,special, type, level);
         }
        
         
