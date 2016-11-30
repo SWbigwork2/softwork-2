@@ -3,6 +3,7 @@ package data.dataHelper.impl;
 import data.dataHelper.DataFactory;
 import data.dataHelper.EvaluateDataHelper;
 import data.dataHelper.OrdersDataHelper;
+import data.dataHelper.PromotionsDataHelper;
 import data.dataHelper.UserDataHelper;
 
 public class DataFactoryImpl implements DataFactory{
@@ -24,15 +25,16 @@ public class DataFactoryImpl implements DataFactory{
 		EvaluateDataHelper evaluateDataHelper=new EvaluateDataSqlHelper();
 		return evaluateDataHelper;
 	}
-        public MembersDataHelper getMembersDataHelper() {
-		// TODO Auto-generated method stub
-		MembersDataHelper member=new MembersDataSqlHelper();
-		return member;
+
+	public PromotionsDataHelper getPromotionsDataHelper() {
+		PromotionsDataHelper promotions=new PromotionsDataSqlHelper();
+		return promotions;
 	}
-        public PromotionsDataHelper getPromtionsDataHelper() {
-		// TODO Auto-generated method stub
-		PromotionsDataHelper promotion =new PromotionsDataSqlHelper();
-		return promotion;
+	
+	public MembersDataSqlHelper getMembersDataHelper(){
+		MembersDataSqlHelper membersDataSqlHelper=new MembersDataSqlHelper();
+		return membersDataSqlHelper;
 	}
+	
 
 }
