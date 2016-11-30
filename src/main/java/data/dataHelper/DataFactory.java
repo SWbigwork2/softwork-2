@@ -1,5 +1,7 @@
 package data.dataHelper;
 
+import data.dataHelper.impl.MembersDataSqlHelper;
+
 public interface DataFactory {
 	
 	public OrdersDataHelper getOrdersDataHelper();
@@ -7,8 +9,6 @@ public interface DataFactory {
 	public UserDataHelper getUserDataHelper();
 	
 	public EvaluateDataHelper getEvaluateDataHelper();
-
-        public MembersDataHelper getMembersDataHelper();
 	
 	public PromotionsDataHelper getPromtionsDataHelper();
 	

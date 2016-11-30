@@ -1,5 +1,6 @@
 package EvaluateMock;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import HotelsMock.HotelMock;
@@ -8,16 +9,16 @@ import data.dao.impl.EvaluateDaoImpl;
 import po.EvaluatePO;
 
 public class EvaluateMock {
-    HotelInfo hotel;
-    MemberInfo member;
-    OrdersInfo order;
+    String hotelName;
+    String memberId;
+    int orderId;
     String s;
     int score;
     
-    public EvaluateMock(HotelInfo hotel,MemberInfo member,OrdersInfo order){
-    	this.hotel= hotel;
-    	this.member=member;
-    	this.order=order;
+    public EvaluateMock(String  hotelName,String memberId,int orderId){
+    this.hotelName=hotelName;
+    this.orderId=orderId;
+    this.memberId=memberId;
     }
     
     public ResultMessage evaluate(String hotelName,String memberId,int orderId,double score,String s){
