@@ -1,20 +1,16 @@
 package data.dao.impl;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Map;
-
-import com.mysql.fabric.xmlrpc.base.Member;
 
 import UsersMock.ResultMessage;
 import po.MarketerPO;
 import po.MemberInformationPO;
-import po.OrderPO;
 import po.StaffPO;
 import po.UserPO;
 import UsersMock.UserType;
+import UsersMock.VipType;
 import data.dao.UserDao;
 import data.dataHelper.DataFactory;
 import data.dataHelper.UserDataHelper;
@@ -94,10 +90,21 @@ public class UserDaoImpl implements UserDao{
 		String memberId=(String ) hm.get("id");
 		String password = (String) hm.get("password");
 		String  ContactInformation=(String) hm.get("Contact information");
-		Date birthday=  new Date(((Timestamp)(hm.get("birthday"))).getTime());
+		String special=  (String )hm.get("special");
 		double credit=(Double)hm.get("credit");
-	
-		MemberInformationPO po =new MemberInformationPO(memberId, name, password, ContactInformation,credit,birthday);
+//		System.out.println(hm.get("type"));
+        int type=Integer.parseInt(String.valueOf(hm.get("type")));  
+        			
+        		
+        int level=Integer.parseInt(String.valueOf(hm.get("level")));  
+        VipType vipType=null;
+        if(type==0){
+        	vipType=VipType.ConmmentVip;
+        }else{
+        	vipType=VipType.CompanyVip;
+        }
+        
+		MemberInformationPO po =new MemberInformationPO(memberId, name, password, ContactInformation,credit,vipType,special,level);
 		return po;
 	}
 	
