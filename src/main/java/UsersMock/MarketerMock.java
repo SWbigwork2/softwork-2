@@ -9,12 +9,9 @@ public class MarketerMock extends UserMock{
 	}
 
 	@Override
-	public ResultMessage revoke(String id, UserVO user, UserType type) {
-		if(user.userId!=id||!type.equals(UserType.marketer)){
-			return ResultMessage.fail;
-		}else{
-			return ResultMessage.success;
-		}
+	public ResultMessage revoke(UserVO user) {
+		ResultMessage resultMessage=null;
+		return resultMessage;
 	}
 
 	

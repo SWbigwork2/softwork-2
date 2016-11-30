@@ -1,6 +1,10 @@
 package EvaluateMock;
 
+import java.util.ArrayList;
+
 import HotelsMock.HotelMock;
+import data.dao.EvaluateDao;
+import data.dao.impl.EvaluateDaoImpl;
 import po.EvaluatePO;
 
 public class EvaluateMock {
@@ -16,19 +20,19 @@ public class EvaluateMock {
     	this.order=order;
     }
     
-    public ResultMessage evaluate(String hotelName,String memberId,int orderId,int score,String s){
-    	if(hotel.getName().equals(hotelName)&&member.getID().equals(memberId)&&order.getOrderId()==orderId&&(score<5&&score>0)
-    		){
-    		HotelMock hotelMock=new HotelMock();
-    		if(hotelMock.addHotelEvaluation(new EvaluatePO(hotelName, memberId, orderId, score, s))
-    				.equals(HotelsMock.ResultMessage.success)){
-    			return ResultMessage.success;
-    		}else{
-    			return ResultMessage.fail;
-    		}
-    	}else{
-    	    return ResultMessage.fail; 
-    	}
+    public ResultMessage evaluate(String hotelName,String memberId,int orderId,double score,String s){
+        EvaluatePO evaluatePO=new EvaluatePO(hotelName, memberId, score, s);
+        EvaluateDao evaluateDao=new EvaluateDaoImpl();
+//        HotelMock hotelMock=new HotelMock().
+        return evaluateDao.addEvaluate(evaluatePO);
+    }
+    
+    @SuppressWarnings("unchecked")
+	public ArrayList<String> getComments(String hotelName){
+    	ArrayList<String> commentList=new ArrayList<String>();
+    	EvaluateDao evaluateDao=new EvaluateDaoImpl();
+    	commentList=evaluateDao.getEvaluatetion(hotelName);
+    	return commentList;
     }
     
     

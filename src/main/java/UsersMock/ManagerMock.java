@@ -9,7 +9,7 @@ public class ManagerMock extends UserMock{
 	}
 
 	@Override
-	public ResultMessage revoke(String  id, UserVO user, UserType type) {
+	public ResultMessage revoke(UserVO user) {
 		return null;
 	}
 	
