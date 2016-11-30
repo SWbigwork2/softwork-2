@@ -39,17 +39,16 @@ public class PromotionsDataSqlHelper implements PromotionsDataHelper{
 			e.printStackTrace();
 		}
 	}
-	public boolean addPromotionsI(PromotionsIPO promotionsIPO){
-		
-
+public boolean addPromotionsI(PromotionsIPO promotionsIPO){
+        
 		boolean result=false;
 		try {
-			getConnect();
 			if(!isExist(promotionsIPO) ){
-			String sql="insert into strategiesi values("+promotionsIPO.getType()+","+"'"+promotionsIPO.getHotel()+"'"
+				getConnect();
+			    String sql="insert into strategiesi values("+promotionsIPO.getType()+","+"'"+promotionsIPO.getHotel()+"'"
 					+","+"'"+promotionsIPO.getIntroduction()+"'"+","+promotionsIPO.getDiscount()+")";
-			 statement=connection.prepareStatement(sql);
-			 System.out.println(sql);
+			    statement=connection.prepareStatement(sql);
+			 
 				int row=statement.executeUpdate();
 				if(row==1)
 				result=true;
@@ -67,8 +66,9 @@ public class PromotionsDataSqlHelper implements PromotionsDataHelper{
 	public  boolean addPromotionsII(PromotionsIIPO promotionsIIPO){
 		boolean result=false;
 		try {
-			getConnect();
+			
 			if(!isExist(promotionsIIPO) ){
+				getConnect();
 			String sql="insert into strategiesi values("+promotionsIIPO.getType()+","+"'"+promotionsIIPO.getHotel()+"'"
 					+","+"'"+promotionsIIPO.getIntroduction()+"'"+","
 					+"'"+promotionsIIPO.getStartdate()+"'"+","
@@ -92,8 +92,9 @@ public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO){
 
 		boolean result=false;
 		try {
-			getConnect();
+		
 			if(!isExist(promotionsIIIPO) ){
+				getConnect();
 			String sql="insert into strategiesi values("+promotionsIIIPO.getType()+","+"'"+promotionsIIIPO.getHotel()+"'"
 					+","+"'"+promotionsIIIPO.getIntroduction()+"'"+","
 					+promotionsIIIPO.getNum()+","+promotionsIIIPO.getDiscount()+")";
@@ -117,8 +118,9 @@ public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO){
 
 	boolean result=false;
 	try {
-		getConnect();
+		
 		if(!isExist(promotionsIVPO) ){
+			getConnect();
 		String sql="insert into strategiesi values("+promotionsIVPO.getType()+","+"'"+promotionsIVPO.getHotel()+"'"
 				+","+"'"+promotionsIVPO.getIntroduction()+"'"+","+promotionsIVPO.getDiscount()+")";
 		 statement=connection.prepareStatement(sql);
@@ -141,8 +143,9 @@ public boolean addPromotionsV(PromotionsVPO promotionsVPO){
 
 	boolean result=false;
 	try {
-		getConnect();
+		
 		if(!isExist(promotionsVPO) ){
+			getConnect();
 		String sql="insert into strategiesi values("+promotionsVPO.getType()+","+"'"+promotionsVPO.getHotel()+"'"
 				+","+"'"+promotionsVPO.getIntroduction()+"'"+","
 				+promotionsVPO.getViplevel()+","+"'"+promotionsVPO.getArea()+"'"+","+promotionsVPO.getDiscount()+")";
@@ -166,8 +169,9 @@ public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO){
 
 	boolean result=false;
 	try {
-		getConnect();
+		
 		if(!isExist(promotionsVIPO) ){
+			getConnect();
 		String sql="insert into strategiesi values("+promotionsVIPO.getType()+","+"'"+promotionsVIPO.getHotel()+"'"
 				+","+"'"+promotionsVIPO.getIntroduction()+"'"+","
 				+promotionsVIPO.getViplevel()+","+promotionsVIPO.getDiscount()+")";
@@ -186,60 +190,61 @@ public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO){
 	
 	
 }
-	public boolean deletePromotions(PromotionsPO promotionsPO){
-		boolean result=false;
-		int table[]={1,2,3,4,5,6};
-		int type=promotionsPO.getType();
-		String hotel=promotionsPO.getHotel();
-		String introduction=promotionsPO.getIntroduction();
-		String promotions[]={"strategiesi","strategiesii","strategiesiii","strategiesiv","strategiesv"
-				,"strategiesvi"}; 
-		try {
-			this.getConnect();
-			for(int i=0;i<table.length;i++){
-				if(type==table[i]){
-					String deleteSql="delete from "+promotions[i]+" where type="+type+",and hotel="+"'"+hotel+"'"+
-							",and introduction="+"'"+introduction+"'";
-			        statement=connection.prepareStatement(deleteSql);
-					statement.executeUpdate();
-					result=true;
+public boolean deletePromotions(PromotionsPO promotionsPO){
+	boolean result=false;
+	int table[]={1,2,3,4,5,6};
+	int type=promotionsPO.getType();
+	String hotel=promotionsPO.getHotel();
+	String introduction=promotionsPO.getIntroduction();
+	String promotions[]={"strategiesi","strategiesii","strategiesiii","strategiesiv","strategiesv"
+			,"strategiesvi"}; 
+	try {
+		for(int i=0;i<table.length;i++){
+			if(type==table[i]){
+				this.getConnect();
+				String deleteSql="delete from "+promotions[i]+" where type="+type+" and hotel="+"'"+hotel+"'"+
+						" and introduction="+"'"+introduction+"'";
+		        statement=connection.prepareStatement(deleteSql);
+				int row=statement.executeUpdate();
+				if(row==1){
+				    result=true;
 				}
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			this.freeConnect();
 		}
-		return result;
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		this.freeConnect();
 	}
-	
-	private boolean isExist(PromotionsPO promotionsPO){
-		boolean result=false;
-		int table[]={1,2,3,4,5,6};
-		String promotions[]={"strategiesi","strategiesii","strategiesiii","strategiesiv","strategiesv"
-				,"strategiesvi"}; 
-		try {
-			this.getConnect();
-			for(int i=0;i<table.length;i++){
-				if(promotionsPO.getType()==table[i]){
-					String findSql="select * from "+promotions[i]+" where type="+promotionsPO.getType()+",and hotel="+"'"+promotionsPO.getHotel()+"'"+
-							",and introduction="+"'"+promotionsPO.getIntroduction()+"'";
-					statement=connection.prepareStatement(findSql);
-					int row=statement.executeUpdate();
-					if(row==0){
-						result=false;
-					}else{
-						result=true;
-					}
-				}
+	return result;
+}
+
+private boolean isExist(PromotionsPO promotionsPO){
+	boolean result=false;
+	int table[]={1,2,3,4,5,6};
+	String promotions[]={"strategiesi","strategiesii","strategiesiii","strategiesiv","strategiesv"
+			,"strategiesvi"}; 
+	try {
+		this.getConnect();
+		for(int i=0;i<table.length;i++){
+			if(promotionsPO.getType()==table[i]){
+				String findSql="select * from "+promotions[i]+" where type="+promotionsPO.getType()+" and hotel="+"'"+promotionsPO.getHotel()+"'"+
+						" and introduction="+"'"+promotionsPO.getIntroduction()+"'";
+				statement=connection.prepareStatement(findSql);
+				resultSet=statement.executeQuery();
+				
+			    if(resultSet.next()){
+			    	result=true;
+			    }
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			this.freeConnect();
 		}
-		return result;
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		this.freeConnect();
 	}
+	return result;
+}
 }
