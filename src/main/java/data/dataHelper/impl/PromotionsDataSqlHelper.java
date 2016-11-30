@@ -49,12 +49,16 @@ public class PromotionsDataSqlHelper implements PromotionsDataHelper{
 			String sql="insert into strategiesi values("+promotionsIPO.getType()+","+"'"+promotionsIPO.getHotel()+"'"
 					+","+"'"+promotionsIPO.getIntroduction()+"'"+","+promotionsIPO.getDiscount()+")";
 			 statement=connection.prepareStatement(sql);
+			 System.out.println(sql);
 				int row=statement.executeUpdate();
 				if(row==1)
 				result=true;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();			
+		}finally {
+			freeConnect();
 		}
 		return result;
 		
@@ -76,6 +80,9 @@ public class PromotionsDataSqlHelper implements PromotionsDataHelper{
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			freeConnect();
 		}
 		return result;
 		
@@ -96,7 +103,10 @@ public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO){
 				result=true;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			// TODO: handle exception
+		}finally {
+			freeConnect();
 		}
 		return result;
 		
@@ -118,6 +128,9 @@ public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO){
 		}
 	} catch (Exception e) {
 		// TODO: handle exception
+		e.printStackTrace();
+	}finally {
+		freeConnect();
 	}
 	return result;
 	
@@ -140,6 +153,9 @@ public boolean addPromotionsV(PromotionsVPO promotionsVPO){
 		}
 	} catch (Exception e) {
 		// TODO: handle exception
+		e.printStackTrace();
+	}finally {
+		freeConnect();
 	}
 	return result;
 	
@@ -162,6 +178,9 @@ public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO){
 		}
 	} catch (Exception e) {
 		// TODO: handle exception
+		e.printStackTrace();
+	}finally {
+		freeConnect();
 	}
 	return result;
 	
@@ -204,7 +223,7 @@ public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO){
 			this.getConnect();
 			for(int i=0;i<table.length;i++){
 				if(promotionsPO.getType()==table[i]){
-					String findSql="select * from "+promotions[i]+" where hotel"+"'"+promotionsPO.getHotel()+"'"+
+					String findSql="select * from "+promotions[i]+" where type="+promotionsPO.getType()+",and hotel="+"'"+promotionsPO.getHotel()+"'"+
 							",and introduction="+"'"+promotionsPO.getIntroduction()+"'";
 					statement=connection.prepareStatement(findSql);
 					int row=statement.executeUpdate();
