@@ -36,10 +36,10 @@ public class PromotionsDaoImpl implements PromotionsDao{
 			return promotionsDaoImpl;
 		}
 	}
-	public boolean deletePromotions(int type,String hotel,String introduction) {
+	public boolean deletePromotions(PromotionsPO promotionsPO) {
 		// TODO Auto-generated method stub
 		
-		return promotionsDataHelper.deletePromotions(type,hotel,introduction);
+		return promotionsDataHelper.deletePromotions(promotionsPO);
 	}
 
 	public boolean addPromotionsI(PromotionsIPO promotionsIPO) {

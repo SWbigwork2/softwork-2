@@ -167,16 +167,19 @@ public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO){
 	
 	
 }
-	public boolean deletePromotions(int type,String hotel,String introduction){
+	public boolean deletePromotions(PromotionsPO promotionsPO){
 		boolean result=false;
 		int table[]={1,2,3,4,5,6};
+		int type=promotionsPO.getType();
+		String hotel=promotionsPO.getHotel();
+		String introduction=promotionsPO.getIntroduction();
 		String promotions[]={"strategiesi","strategiesii","strategiesiii","strategiesiv","strategiesv"
 				,"strategiesvi"}; 
 		try {
 			this.getConnect();
 			for(int i=0;i<table.length;i++){
 				if(type==table[i]){
-					String deleteSql="delete from "+promotions[i]+" where hotel="+"'"+hotel+"'"+
+					String deleteSql="delete from "+promotions[i]+" where type="+type+",and hotel="+"'"+hotel+"'"+
 							",and introduction="+"'"+introduction+"'";
 			        statement=connection.prepareStatement(deleteSql);
 					statement.executeUpdate();
