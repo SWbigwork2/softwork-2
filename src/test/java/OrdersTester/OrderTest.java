@@ -29,7 +29,7 @@ import po.RoomPO;
 public class OrderTest {
 	Date date = new Date(2016, 11,1);
 	
-	RoomsInfo rI = new RoomPO("0001", "皇朝", RoomType.big, "", 100, new int[3]);
+	RoomsInfo rI = new RoomPO("0001", "皇朝", RoomType.big, "", 100, null);
 	MembersInfo mI = new MemberPO("0001", "admin","admin","10086", 300,new Date(2000, 5, 5));
 	HotelsInfo hI = new HotelPO("皇朝", "仙林大道103",HotelTradeArea.栖霞区, "", "", HotelRanking.oneStar);
 	Promotions po = new Promotions();

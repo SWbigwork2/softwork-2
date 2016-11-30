@@ -21,7 +21,7 @@ public class HotelMock extends Hotel {
 	}
 
 	public ArrayList<RoomPO> findRoom(String hotelName) {
-		RoomPO roomPO = new RoomPO("0001", hotelName, RoomType.big, "", 100, new int[3]);
+		RoomPO roomPO = new RoomPO("0001", hotelName, RoomType.big, "", 100, null);
 		ArrayList<RoomPO> list = new ArrayList<RoomPO>();
 		list.add(roomPO);
 		return list;

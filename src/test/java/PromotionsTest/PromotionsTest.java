@@ -39,7 +39,7 @@ public class PromotionsTest {
 	@Test
 	public void getPrice(){
 		Promotions promotion=new Promotions();
-		RoomsInfo rI = new RoomPO("0001", "皇朝", RoomType.big, "", 100, new int[3]);
+		RoomsInfo rI = new RoomPO("0001", "皇朝", RoomType.big, "", 100, null);
 		int num=3;
 		assertEquals(promotion.getPrice(rI,num),300 ,0.0001);
 		
