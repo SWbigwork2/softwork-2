@@ -1,13 +1,8 @@
 package po;
 
 public class PromotionsIIIPO extends PromotionsPO{
-
-    String hotel;
-    int type;
-    String introduction;
+  
     int num;
-    double discount;
-
     public int getNum(){
     	return num;
     }

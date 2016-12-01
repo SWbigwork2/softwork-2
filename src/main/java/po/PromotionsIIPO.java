@@ -2,12 +2,8 @@ package po;
 
 import java.util.Date;
 
-public class PromotionsIIPO extends PromotionsPO{
-	    int  type;
-	    String hotel;
+public class PromotionsIIPO extends PromotionsPO{	   
 	    Date startdate,enddate;
-	    String introduction;
-	    double discount;
 	    public Date getStartdate(){
 	    	return startdate;
 	    }
