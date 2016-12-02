@@ -1,4 +1,4 @@
-package OrdersMock;
+package ordersblimpl;
 
 
 
@@ -10,8 +10,14 @@ import MembersMock.MembersInfo;
 import PromotionsMock.PromotionGetPrice;
 import PromotionsMock.Promotions;
 import RoomsMock.RoomsInfo;
+import blservice.OrderService;
+import data.dao.OrdersDao;
+import data.dao.impl.OrdersDaoImpl;
+import po.OrderPO;
+import view.member.OrderVo;
 
-public class OrdersMock extends Orders{
+public class OrderServiceImpl implements OrderService{
+	OrdersDao dao;
 	String memberId;
 	int orderId;
 	OrderItem tempItem;
@@ -28,17 +34,21 @@ public class OrdersMock extends Orders{
 	Date completeDate;
 	Date revokeDate;
 	Date deadLine;
-	OrdersListMock ordersListMock;
+	OrdersList ordersListMock;
+	public OrderServiceImpl() {
+		dao = OrdersDaoImpl.getInstance();
+		// TODO Auto-generated constructor stub
+	}
 	private void setId(String memberId){
 		this.memberId = memberId;
-		ordersListMock = new OrdersListMock();
+		ordersListMock = new OrdersList();
 	}
 	public void setUp(Promotions p,HotelsInfo h,RoomsInfo r,MembersInfo m){
 		promotions = p;
 		hotelsInfo = h;
 		membersInfo = m;
 		roomsInfo =r;
-		ordersListMock = new OrdersListMock();
+		ordersListMock = new OrdersList();
 	}
 	/*public OrderBlService_Stub(int orderId, int userId, String userNameString, String hotelsInfo.getName(),
 			roomsInfo.getType() roomsInfo.getType(), int roomNum, double price, OrderType orderType, Date inDate, Date outDate,
@@ -57,20 +67,26 @@ public class OrdersMock extends Orders{
 		this.revokeDate = revokeDate;
 		this.deadLine = deadLine;
 	}*/
-	//∂©µ•ΩÁ√Êµ√µΩ∂©µ•–≈œ¢
-	public OrderVO view(){
+	//‰º†Âà∞ÁïåÈù¢Â±ÇÁöÑvo
+	public OrderVo view(){
 		
-				OrderVO vo = new OrderVO(tempItem);
-				return vo;
+				return null;
 		
 		
 		
 		
 	}
-	//÷¥––∂©µ•≤Ω÷Ë
-	public ArrayList<OrderItem> getOrderList(OrderType orderType){
-		
-		return ordersListMock.getList(orderType);
+	//÷¥Ê†πÊçÆtypeÂæóÂà∞orderItemÁöÑlist
+	public ArrayList<OrderVo> getOrderList(String memberId,OrderType orderType){
+		OrderPoVoTran tran = new OrderPoVoTran();
+		ArrayList<OrderPO> poList =  dao.getOrderList(memberId);
+		ArrayList<OrderVo> resultList = new ArrayList<OrderVo>();
+		for(OrderPO po:poList){
+			if(po.getOrderType().equals(orderType) || orderType==OrderType.all){
+				resultList.add(tran.vo2po(po));
+			}
+		}
+		return resultList;
 		
 	}
 	private int makeId() {
@@ -113,7 +129,7 @@ public class OrdersMock extends Orders{
 		ordersListMock.add(tempItem);
 		
 	}
-	public OrdersListMock getList(){
+	public OrdersList getList(){
 		return ordersListMock;
 	}
 	public ResultMessage cancel(int orderId){
@@ -138,15 +154,21 @@ public class OrdersMock extends Orders{
 			return ResultMessage.success;
 		}
 	}
+	/**
+	 * @param memberId
+	 * @return ÂæóÂà∞‰ΩèËøáÁöÑÊâÄÊúâÈÖíÂ∫ó
+	 */
 	public ArrayList<String> getHistoyHotel(String memberId){
 		setId(memberId);
 		ArrayList<String> resultList = new ArrayList<String>();
 	
-		ArrayList<OrderItem> tempList=getOrderList(OrderType.all);
+		ArrayList<OrderPO> tempList=dao.getOrderList(memberId);
 		
-		for(OrderItem i:tempList){
-			if(!tempList.contains(i.getHotel())){
-				resultList.add(i.getHotel());
+		
+	
+		for(OrderPO po:tempList){
+			if(!resultList.contains(po.getHotelNameString())){
+				resultList.add(po.getHotelNameString());
 			}
 		}
 		return resultList;
@@ -162,29 +184,46 @@ public class OrdersMock extends Orders{
 			return ResultMessage.success;
 		}
 	}
-	public ArrayList<OrderVO> getOrderHistory(String memberId,String HotelName) {
+	public ArrayList<OrderVo> getOrderHistory(String memberId,String HotelName) {
 		setId(memberId);
 		
-		ArrayList<OrderVO> resultList = new ArrayList<OrderVO>();
-		ArrayList<OrderItem> tempList=getOrderList(OrderType.all);
-		if(HotelName==null){
-			for(OrderItem i:tempList){
-				
-					OrderVO vo =new OrderVO(i);
-					resultList.add(vo);
-				return resultList;
-			}
-		}
-		for(OrderItem i:tempList){
-			if(i.getHotel()==HotelName){
-				OrderVO vo =new OrderVO(i);
+		ArrayList<OrderVo> allList =getOrderList(memberId,OrderType.all);
+		
+		ArrayList<OrderVo> resultList = new ArrayList<OrderVo>();
+		for(OrderVo vo:allList){
+			if(vo.getHotel().equals(HotelName)){
 				resultList.add(vo);
 			}
 		}
 		
 		
+		
 		// TODO Auto-generated method stub
 		return resultList;
+	}
+	public OrderVo getOrder(int orderId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ResultMessage update(OrderVo info) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public double addPre(OrderVo info) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public ResultMessage confirmAdd(OrderVo info) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ResultMessage delete(OrderVo info) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ResultMessage recover(int orderId, double recoverPer) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

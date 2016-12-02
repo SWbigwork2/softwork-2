@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import OrdersMock.OrderType;
 import RoomsMock.RoomType;
 import data.dao.OrdersDao;
 import data.dataHelper.DataFactory;
 import data.dataHelper.OrdersDataHelper;
 import data.dataHelper.impl.DataFactoryImpl;
 import data.dataHelper.impl.OrdersDataSqlHelper;
+import ordersblimpl.OrderType;
 import po.OrderPO;
 
 public class OrdersDaoImpl implements OrdersDao{
@@ -151,8 +151,13 @@ public class OrdersDaoImpl implements OrdersDao{
 		Date inDate =new Date(((Timestamp)(hm.get("indate"))).getTime());
 		Date outDate = new Date(((Timestamp)(hm.get("outdate"))).getTime());
 		Date deadLine = new Date(((Timestamp)(hm.get("deadline"))).getTime());
-	
-		OrderPO po =new OrderPO(orderId, userIdtemp, hotel, roomType, roomNum, price, type, inDate, outDate, completeDate, deadLine, peopleNum, beginDate);
+		int temp =(Integer)hm.get("hasChild");
+		boolean hasChild = true;
+		if(temp==0){
+			hasChild = false;
+		}
+		String name = (String)hm.get("name");
+		OrderPO po =new OrderPO(orderId, userIdtemp,name, hotel, roomType, roomNum, price, type, inDate, outDate, completeDate, deadLine, peopleNum, beginDate, hasChild);
 		return po;
 		
 	}

@@ -1,4 +1,4 @@
-package OrdersMock;
+package ordersblimpl;
 
 import HotelsMock.HotelRanking;
 import HotelsMock.HotelTradeArea;
