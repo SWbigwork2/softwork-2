@@ -107,7 +107,7 @@ public class OrdersDaoImpl implements OrdersDao{
 	}
 
 	public boolean delete(int orderId) {    //删除指定的订单
-		
+		System.out.println("delete");
 		// TODO Auto-generated method stub
 		return ordersDataHelper.deleteOrder(orderId);
 	}

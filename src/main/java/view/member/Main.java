@@ -14,9 +14,12 @@ import ordersblimpl.OrderServiceImpl;
 import ordersblimpl.OrderType;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -26,10 +29,12 @@ public class Main extends Application {
 	OrderService blService;
 	OrderVo testOrder = new OrderVo("lv3", 0001, "admin", "admin", "皇朝", new Date(), new Date(), new Date(), new Date(), new Date(), 100.0, "正在进行","normal",1,1,false);
 	private ObservableList<OrderVo> orderVolist = FXCollections.observableArrayList();
-	private Parent root;
-	private Stage primaryStage ;
+	private static Pane root;
+	private static Stage primaryStage ;
+	private static FXMLLoader loader;
 	public Main() {
 		blService = new OrderServiceImpl();
+		loader = new FXMLLoader();
 		orderVolist.add(testOrder);
 		// TODO Auto-generated constructor stub
 	}
@@ -60,29 +65,68 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			this.primaryStage = primaryStage;
-			this.primaryStage.setTitle("�����б�");
+			this.primaryStage.setTitle("Winter Studio");
 			initStage();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * 跳转查看详细信息
+	 */
+	public void viewDetails(OrderVo vo){
+		
+		try {
+			SplitPane splitPane=(SplitPane)root.getChildren().get(0);
+			
+			
+			Pane detailRoot =loadPane("orderInfo.fxml");
+			OrderInfoController controller = loader.getController();
+			controller.setOrderVo(vo);
+			splitPane.getItems().set(1, detailRoot);
+			/*
+			Scene detailScene = new Scene(root,1200,800);
+			detailScene.getStylesheets().add(getClass().getResource("orderinfo.css").toExternalForm());
+			primaryStage.setScene(detailScene);
+			primaryStage.show();*/
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	/**
+	 * @param FXML
+	 * @return 加载XML文件
+	 */
+	private Pane loadPane(String FXML){
+		loader.setLocation(Main.class.getResource(FXML));
+		try {
+			return (Pane)loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public void initStage(){
 		orderVolist.add(testOrder);
 		
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("orderList_V1.0.fxml"));
+			root=loadPane("orderList_V1.0.fxml");
 			OrderListController controller = loader.getController();
 			
-			root= (Parent)loader.load();
+			
 			
 			Scene scene = new Scene(root,1200,800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
-			this.primaryStage.setScene(scene);
-			this.primaryStage.show();
-		} catch (IOException e) {
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

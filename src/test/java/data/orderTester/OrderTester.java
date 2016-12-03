@@ -8,14 +8,14 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import OrdersMock.OrderType;
 import RoomsMock.RoomType;
 import data.dao.OrdersDao;
 import data.dao.impl.OrdersDaoImpl;
+import ordersblimpl.OrderType;
 import po.OrderPO;
 
 public class OrderTester {   
-	OrderPO testPo = new OrderPO(0005, "1111", "皇朝", RoomType.big, 1, 200.0, OrderType.normal, new Date(2013, 12, 16), new Date(2013, 12, 18), new Date(2013, 12, 18,20,15),  new Date(2013, 12, 18,19,00), 1,new Date());
+	OrderPO testPo = new OrderPO(0001, "admin", "admin", "皇朝", RoomType.big, 1, 200.0, OrderType.normal, new Date(), new Date(), new Date(), new Date(),1, new Date(), false);
 	/*@Test
 	public void insert_GetTest() {     //插入和得到列表的测试
 		OrdersDao dao = OrdersDaoImpl.getInstance();
@@ -34,7 +34,7 @@ public class OrderTester {
 	@Test
 	public void getOrderTest(){   //根据id查找order的测试
 		OrdersDao dao = OrdersDaoImpl.getInstance();
-		OrderPO po = dao.getOrder(0005);
+		OrderPO po = dao.getOrder(0001);
 		assertTrue(isEqual(po, testPo));
 	}
 	
@@ -49,12 +49,13 @@ public class OrderTester {
 	@Test
 	public void updateTest(){     //更新订单的测试
 		OrdersDao dao = OrdersDaoImpl.getInstance();
-		OrderPO po2 =new OrderPO(0005, "1111", "如家", RoomType.big, 1, 200.0, OrderType.normal, new Date(2013, 12, 16), new Date(2013, 12, 18), new Date(2013, 12, 18,20,15),  new Date(2013, 12, 18,19,00), 1,new Date());
+		OrderPO po2 =new OrderPO(0001, "admin", "admin", "如家", RoomType.big, 1, 200.0, OrderType.normal, new Date(), new Date(), new Date(), new Date(),1, new Date(), false);
 		assertTrue(dao.updata(po2));
-		OrderPO po3 = new OrderPO(0004, "1111", "皇朝", RoomType.big, 1, 200.0, OrderType.normal, new Date(2013, 12, 16), new Date(2013, 12, 18), new Date(2013, 12, 18,20,15),  new Date(2013, 12, 18,19,00), 1,new Date());
+		OrderPO po3 =new OrderPO(0004, "admin", "admin", "汉庭", RoomType.big, 1, 200.0, OrderType.normal, new Date(), new Date(), new Date(), new Date(),1, new Date(), false);
 		assertFalse(dao.updata(po3));
-		OrderPO resultPo = dao.getOrder(0005);
+		OrderPO resultPo = dao.getOrder(0001);
 		assertEquals(resultPo.getHotelNameString(), "如家");
+		dao.updata(testPo);
 	}
 	private boolean isEqual(Object obj1,Object obj2){       //比较两个类是否相同
 		Field[] f1 = obj1.getClass().getDeclaredFields();

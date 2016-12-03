@@ -1,6 +1,6 @@
 package view.member;
 
-import java.awt.event.ActionEvent;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,7 +9,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.input.MouseEvent;
 
 public class OrderListController {
 	private ArrayList<OrderVo> infoList;
@@ -34,7 +36,8 @@ public class OrderListController {
 	private Label price;
 	@FXML
 	private Label type;
-	
+	@FXML
+	private SplitPane splitPane;
 	private Main main ;
 	private OrderVo orderVoInfo;
 	public OrderListController() {
@@ -51,6 +54,7 @@ public class OrderListController {
 		hotel = new Label();
 		price = new Label();
 		type = new Label();
+		splitPane = new SplitPane();
 		orderListView = new ListView<String>();
 		
 		// TODO Auto-generated constructor stub
@@ -132,27 +136,17 @@ public class OrderListController {
 		ID.setText("");
 	}
 	/**
-	 * 选中订单显示预览的方法
+	 * 订单列表鼠标点击的响应
 	 */
 	@FXML
-	public void showSelection(){   
-		String selectedStr =orderListView.getSelectionModel().getSelectedItem();
-		System.out.println(selectedStr);
-		int orderId = Integer.valueOf(selectedStr.split(" ")[0]);
-		OrderVo resultInfo =null;
-		for(OrderVo voInfo:infoList){
-			if(voInfo.getOrderId()==orderId){
-				resultInfo = voInfo;
-				break;
-			}
+	public void MouseClink(MouseEvent event){
+		if(event.getClickCount()<2){
+			showSelection();
 		}
-		this.orderId.setText(resultInfo.getOrderId()+"");
-		beginDate.setText(resultInfo.getBeginDate().toLocaleString());
-		endDate.setText(resultInfo.getCompleteDate().toLocaleString());
-		hotel.setText(resultInfo.getHotel());
-		price.setText(resultInfo.getPrice()+"");
-		type.setText(resultInfo.getType());
-		ID.setText("test");
+		else{
+			showDetails();
+			System.out.println("clinkTwice");
+		}
 		
 	}
 	/**
@@ -176,6 +170,46 @@ public class OrderListController {
 		result = date.toLocaleString();
 		result = result.split(" ")[0];
 		return result;
+	}
+	/**
+	 * 展示简略信息
+	 */
+	public void showSelection(){
+		String selectedStr =orderListView.getSelectionModel().getSelectedItem();
+		System.out.println(selectedStr);
+		int orderId = Integer.valueOf(selectedStr.split(" ")[0]);
+		OrderVo resultInfo =null;
+		for(OrderVo voInfo:infoList){
+			if(voInfo.getOrderId()==orderId){
+				resultInfo = voInfo;
+				break;
+			}
+		}
+		this.orderId.setText(resultInfo.getOrderId()+"");
+		beginDate.setText(resultInfo.getBeginDate().toLocaleString());
+		endDate.setText(resultInfo.getCompleteDate().toLocaleString());
+		hotel.setText(resultInfo.getHotel());
+		price.setText(resultInfo.getPrice()+"");
+		type.setText(resultInfo.getType());
+		ID.setText("test");
+		
+	}
+
+	/**
+	 * 跳转到详细信息页面
+	 */
+	public void showDetails(){
+		String selectedStr =orderListView.getSelectionModel().getSelectedItem();
+		
+		int orderId = Integer.valueOf(selectedStr.split(" ")[0]);
+		OrderVo resultInfo =null;
+		for(OrderVo voInfo:infoList){
+			if(voInfo.getOrderId()==orderId){
+				resultInfo = voInfo;
+				break;
+			}
+		}
+		main.viewDetails(resultInfo);
 	}
 	public void setMain(Main main){
 		this.main = main;

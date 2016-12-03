@@ -41,17 +41,16 @@ public interface OrderService {
 	public ResultMessage confirmAdd(OrderVo info);
 	
 	/**
-	 * @param info
+	 * @param orderId
 	 * @return 删除订单信息
 	 */
-	public ResultMessage delete(OrderVo info);
+	public void delete(int orderId);
 	
 	/**
 	 * @param orderId
 	 * @return 撤销订单
 	 */
 	public ResultMessage revoke(int orderId);
-
 	/**
 	 * @param orderId
 	 * @param recoverPer 恢复的比率

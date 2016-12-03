@@ -160,7 +160,7 @@ public class OrdersDataSqlHelper implements OrdersDataHelper{
 			getConnect();
 			String preCommand = "delete from orders";
 			String mainCommand = " where orderid = "+orderId+";";
-		
+			System.out.println(mainCommand);
 			statement = connection.prepareStatement(preCommand+mainCommand);
 			int i=statement.executeUpdate();
 			if(i<1){

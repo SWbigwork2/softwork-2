@@ -11,7 +11,7 @@
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.member.OrderListController">
   <children>
-    <SplitPane dividerPositions="0.2506, 0.68" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane fx:id="splitPane" dividerPositions="0.2506, 0.68" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane>
           <children>
@@ -44,7 +44,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ListView fx:id="orderListView" focusTraversable="false" onMouseClicked="#showSelection" prefHeight="429.0" prefWidth="293.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                  <ListView fx:id="orderListView" focusTraversable="false" onMouseClicked="#MouseClink" prefHeight="429.0" prefWidth="293.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2" />
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Label prefHeight="70.0" prefWidth="133.0" text="订单信息" textAlignment="CENTER" textFill="#b9b8b8">

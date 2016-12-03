@@ -8,19 +8,19 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import OrdersMock.OrderType;
 import RoomsMock.RoomType;
 import data.dao.OrdersDao;
 import data.dao.impl.OrdersDaoImpl;
+import ordersblimpl.OrderType;
 import po.OrderPO;
 
 public class OrderInsertAndDeleteTester {
-	OrderPO testPo = new OrderPO(0005, "1111", "皇朝", RoomType.big, 1, 200.0, OrderType.normal, new Date(2013, 12, 16), new Date(2013, 12, 18), new Date(2013, 12, 18,20,15),  new Date(2013, 12, 18,19,00), 1,new Date());
+	OrderPO testPo = new OrderPO(0001, "admin", "admin", "皇朝", RoomType.big, 1, 200.0, OrderType.normal, new Date(), new Date(), new Date(), new Date(),1, new Date(), false);
 	@Test
 	public void insert_GetTest() {     //插入和得到列表的测试
 		OrdersDao dao = OrdersDaoImpl.getInstance();
 		assertTrue(dao.insert(testPo));
-		ArrayList<OrderPO> pOList = dao.getOrderList("1111");
+		ArrayList<OrderPO> pOList = dao.getOrderList("admin");
 		OrderPO tempPo = null;
 		boolean isRight = false;
 		for(OrderPO po:pOList){
@@ -34,10 +34,10 @@ public class OrderInsertAndDeleteTester {
 	public void deleteTest(){ //删除的测	试
 		
 		OrdersDao dao = OrdersDaoImpl.getInstance();
-		int preNum = dao.getOrderList("1111").size();
-		assertTrue(dao.delete(0005));
+		int preNum = dao.getOrderList("admin").size();
+		assertTrue(dao.delete(0001));
 		assertEquals(false, dao.delete(0000));
-		int afterNum = dao.getOrderList("1111").size();
+		int afterNum = dao.getOrderList("admin").size();
 		assertEquals(1, preNum-afterNum);
 		
 	}

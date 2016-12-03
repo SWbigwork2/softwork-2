@@ -3,8 +3,8 @@ package po;
 import java.io.Serializable;
 import java.util.Date;
 
-import OrdersMock.OrderType;
 import RoomsMock.RoomType;
+import ordersblimpl.OrderType;
 
 
 
@@ -12,6 +12,7 @@ import RoomsMock.RoomType;
 public class OrderPO implements Serializable{
 	int orderId;
 	String userId;
+	String name;
 	int peopleNum;
 	String hotelNameString;
 	RoomType roomType;
@@ -24,14 +25,16 @@ public class OrderPO implements Serializable{
 	Date completeDate; //订单完成时间
 	
 	Date deadLine;    //最晚执行时间
-	public OrderPO(int orderId, String userId, 
+	boolean hasChild;
+	
+	public OrderPO(int orderId, String userId, String name,
 			String hotelNameString, RoomType roomType, int roomNum,
 			double price, OrderType orderType, Date inDate, Date outDate,
-			Date completeDate, Date deadLine,int peopleNum,Date beginDate) {
+			Date completeDate, Date deadLine,int peopleNum,Date beginDate,boolean hasChild) {
 		super();
 		this.orderId = orderId;
 		this.userId = userId;
-		
+		this.name = name;
 		this.hotelNameString = hotelNameString;
 		this.roomType = roomType;
 		this.roomNum = roomNum;
@@ -44,6 +47,14 @@ public class OrderPO implements Serializable{
 		this.deadLine = deadLine;
 		this.peopleNum = peopleNum;
 		this.beginDate = beginDate;
+	}
+	
+	public void setOrderType(OrderType orderType) {
+		this.orderType = orderType;
+	}
+
+	public String getName(){
+		return name;
 	}
 	public Date getBeginDate(){
 		return beginDate;
@@ -85,6 +96,9 @@ public class OrderPO implements Serializable{
 	
 	public Date getDeadLine(){
 		return deadLine;
+	}
+	public boolean isHasChild(){
+		return hasChild;
 	}
 
 }

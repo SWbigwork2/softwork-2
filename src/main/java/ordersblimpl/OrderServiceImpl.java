@@ -114,15 +114,15 @@ public class OrderServiceImpl implements OrderService{
 			
 	}
 	public ResultMessage revoke(int orderId){
-		OrderItem temp=null;
-		temp = findOrder(orderId);
-		if(temp==null){
-			return ResultMessage.orderNotExist;
-		}
-		else{
-			temp.orderType = OrderType.normal;
+		OrderPO findPo = dao.getOrder(orderId);
+		findPo.setOrderType(OrderType.revoke);
+		if(dao.updata(findPo)){
 			return ResultMessage.success;
 		}
+		else{
+			return ResultMessage.fail;
+		}
+		
 
 	}
 	public void confirm(){
@@ -205,10 +205,7 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public ResultMessage update(OrderVo info) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	public double addPre(OrderVo info) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -217,11 +214,14 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public ResultMessage delete(OrderVo info) {
+	public void delete(int orderId){
+		dao.delete(orderId);
+	}
+	public ResultMessage recover(int orderId, double recoverPer) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public ResultMessage recover(int orderId, double recoverPer) {
+	public ResultMessage update(OrderVo info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
