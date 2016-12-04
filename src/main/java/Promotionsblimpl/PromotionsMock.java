@@ -1,4 +1,4 @@
-package PromotionsMock;
+package Promotionsblimpl;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -83,11 +83,19 @@ public class PromotionsMock extends Promotions{
 		}				
 	}
 	//添加策略四
-	public ResultMessage addPromotionsIV(int type,String hotel,String introduction,double discount){
+	/**
+	 * @param type
+	 * @param hotel
+	 * @param introduction
+	 * @param companyname
+	 * @param discount
+	 * @return
+	 */
+	public ResultMessage addPromotionsIV(int type,String hotel,String introduction,String companyname,double discount){
 		if(hotel==null){
 			return ResultMessage.Failure;
 		}else{
-			PromotionsPO temp = new PromotionsIVPO(type,hotel,introduction,discount);
+			PromotionsPO temp = new PromotionsIVPO(type,hotel,introduction,companyname,discount);
     		strategieslist.add(temp);
     		return ResultMessage.Success;
 		}		

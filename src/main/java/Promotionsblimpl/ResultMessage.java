@@ -1,4 +1,4 @@
-package PromotionsMock;
+package Promotionsblimpl;
 
 public enum ResultMessage {
 	   Success,Failure,hasexistpromotion

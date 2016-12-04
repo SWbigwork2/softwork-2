@@ -1,4 +1,4 @@
-package PromotionsMock;
+package Promotionsblimpl;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class Promotions implements PromotionGetPrice{
 				
 		return info.getPrice()*num*discount;
 	}
-//	//添加策略一
+	//添加策略一
 //	public ResultMessage addPromotionsI(int type,String hotel,String introduction,double discount){
 ////		Date date = new Date();
 ////    	DateFormat df1 = DateFormat.getDateInstance();//���ڸ�ʽ����ȷ����  
@@ -139,6 +139,10 @@ public class Promotions implements PromotionGetPrice{
 //		
 //		
 //	}
+	public PriceInfo getPrice(String hotel, double price, int roomNum, String userId,int days) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 

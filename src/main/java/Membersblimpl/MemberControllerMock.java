@@ -1,4 +1,4 @@
-package MembersMock;
+package Membersblimpl;
 
 import java.util.ArrayList;
 
@@ -17,11 +17,12 @@ public class MemberControllerMock extends Member{
 	ResultMessage result=ResultMessage.Success;
 	OrdersMock ordersmock;
     public  ArrayList<OrderVO> getOrder(String id){
-    	  	
+    	
 		return ordersmock.getOrderHistory(id,null);
     	
     }
     public  ArrayList<String> getHotel(String id){
+    	
     	return ordersmock.getHistoyHotel(id);
 		
     	
