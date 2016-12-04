@@ -2,14 +2,19 @@ package view.member;
 	
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
-import blservice.OrderService;
+import HotelsMock.HotelRanking;
+import HotelsMock.HotelTradeArea;
+import blservice.OrdersService;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import ordersblimpl.OrderServiceImpl;
 import ordersblimpl.OrderType;
 import javafx.scene.Parent;
@@ -26,7 +31,7 @@ import javafx.scene.web.WebView;
 
 public class Main extends Application {
 	private static Main main;
-	OrderService blService;
+	OrdersService blService;
 	OrderVo testOrder = new OrderVo("lv3", 0001, "admin", "admin", "皇朝", new Date(), new Date(), new Date(), new Date(), new Date(), 100.0, "正在进行","normal",1,1,false);
 	private ObservableList<OrderVo> orderVolist = FXCollections.observableArrayList();
 	private static Pane root;
@@ -66,7 +71,26 @@ public class Main extends Application {
 		try {
 			this.primaryStage = primaryStage;
 			this.primaryStage.setTitle("Winter Studio");
+			Pane loginPane = loadPane("MemberLogin.fxml");
+			Scene scene = new Scene(loginPane,800,600);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		/*
 			initStage();
+			Stage testStage = new Stage();
+			testStage.setTitle("test");
+			testStage.initModality(Modality.APPLICATION_MODAL);
+			Pane testRoot = loadPane("orderBuild.fxml");
+			ArrayList<String> tempList = new ArrayList<String>();
+			tempList.add("小");
+			tempList.add("中");
+			HotelVo hotelVo = new HotelVo("皇朝", "仙林大道163号", tempList,  HotelTradeArea.栖霞区, "这是介绍", "这是设施", HotelRanking.FiveStar);
+			OrderBuilderController Ocontroller=loader.getController();
+			Ocontroller.setHotelVo(hotelVo);
+			Scene scene = new Scene(testRoot,600,400);
+			testStage.setScene(scene);
+			testStage.showAndWait();
+			*/
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -84,7 +108,8 @@ public class Main extends Application {
 			Pane detailRoot =loadPane("orderInfo.fxml");
 			OrderInfoController controller = loader.getController();
 			controller.setOrderVo(vo);
-			splitPane.getItems().set(1, detailRoot);
+			splitPane.getItems().remove(1);
+			splitPane.getItems().add(1, detailRoot);
 			/*
 			Scene detailScene = new Scene(root,1200,800);
 			detailScene.getStylesheets().add(getClass().getResource("orderinfo.css").toExternalForm());
@@ -102,7 +127,8 @@ public class Main extends Application {
 	 * @param FXML
 	 * @return 加载XML文件
 	 */
-	private Pane loadPane(String FXML){
+	private  Pane loadPane(String FXML){
+		loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource(FXML));
 		try {
 			return (Pane)loader.load();
@@ -123,7 +149,7 @@ public class Main extends Application {
 			
 			Scene scene = new Scene(root,1200,800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			
+			primaryStage.initStyle(StageStyle.UNIFIED);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {

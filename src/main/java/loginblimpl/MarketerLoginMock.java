@@ -1,11 +1,13 @@
-package LoginMock;
+package loginblimpl;
 
 import UsersMock.UserInfo;
 import UsersMock.UserType;
+import UsersMock.UserVO;
 import UsersMock.Users;
 import po.LoginPO;
 
 public class MarketerLoginMock extends LoginMock{
+	UserVO vo;
 	UserInfo use;
 	public MarketerLoginMock(UserInfo u) {
 		use = u;
@@ -13,17 +15,17 @@ public class MarketerLoginMock extends LoginMock{
 	}
 	
 	@Override
-	public ResultMessage login(String id, String password) {
-		String rightId = use.getId();
-		String rightPass = use.getPassword();
-		if(rightId==null||!use.getRole().equals(UserType.marketer)){
-			return ResultMessage.userNotExit;
-		}
-		if(password.equals(rightPass)){
-			return ResultMessage.success;
+	public LoginVo login(String id, String password) {
+		vo = use.find(id, UserType.marketer);
+		String rightId = vo.getUserId();
+		String rightPass =vo.getPassword();
+		if(id.equals(rightId)&&password.equals(rightPass)){
+			String level = vo.getLevel();
+			String name = vo.getName();
+			return new LoginVo(UserType.marketer, id, name, level);
 		}
 		else{
-			return ResultMessage.passwordError;
+			return null;
 		}
 		// TODO Auto-generated method stub
 	

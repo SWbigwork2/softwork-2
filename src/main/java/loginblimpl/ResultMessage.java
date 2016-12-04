@@ -1,4 +1,4 @@
-package LoginMock;
+package loginblimpl;
 
 public enum ResultMessage {
 	success,userNotExit,passwordError

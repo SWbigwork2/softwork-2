@@ -8,7 +8,7 @@ import ordersblimpl.OrderType;
 import ordersblimpl.ResultMessage;
 import view.member.OrderVo;
 
-public interface OrderService {
+public interface OrdersService {
 	
 	/**
 	 * @param type

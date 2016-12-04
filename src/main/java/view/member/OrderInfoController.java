@@ -1,6 +1,6 @@
 package view.member;
 
-import blservice.OrderService;
+import blservice.OrdersService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,7 +36,7 @@ public class OrderInfoController {
 	@FXML
 	private Label roomType;
 	
-	private OrderService service;
+	private OrdersService service;
 	private OrderVo vo;
 	public OrderInfoController() {
 		service = new OrderServiceImpl();

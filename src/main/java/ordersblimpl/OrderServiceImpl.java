@@ -7,16 +7,16 @@ import java.util.Date;
 
 import HotelsMock.HotelsInfo;
 import MembersMock.MembersInfo;
-import PromotionsMock.PromotionGetPrice;
-import PromotionsMock.Promotions;
 import RoomsMock.RoomsInfo;
-import blservice.OrderService;
+import blservice.OrdersService;
 import data.dao.OrdersDao;
 import data.dao.impl.OrdersDaoImpl;
 import po.OrderPO;
+import promotionsblimpl.PromotionGetPrice;
+import promotionsblimpl.Promotions;
 import view.member.OrderVo;
 
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrdersService{
 	OrdersDao dao;
 	String memberId;
 	int orderId;

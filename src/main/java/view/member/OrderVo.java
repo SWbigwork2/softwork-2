@@ -155,7 +155,9 @@ public class OrderVo {
 	public String getUserLevel(){
 		return userLevel;
 	}
-
+	public OrderVo() {
+		// TODO Auto-generated constructor stub
+	}
 	public OrderVo(String userLevel, int orderId, String userId, String name, String hotel, Date beginDate,
 			Date completeDate, Date inDate, Date outDate, Date deadLine, double price, String type, String roomType,
 			int roomNum, int peopleNum, boolean hasChild) {

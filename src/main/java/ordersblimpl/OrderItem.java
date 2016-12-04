@@ -4,10 +4,10 @@ import java.util.Date;
 
 import HotelsMock.HotelsInfo;
 import MembersMock.MembersInfo;
-import PromotionsMock.PromotionGetPrice;
-import PromotionsMock.Promotions;
 import RoomsMock.RoomType;
 import RoomsMock.RoomsInfo;
+import promotionsblimpl.PromotionGetPrice;
+import promotionsblimpl.Promotions;
 
 
 
