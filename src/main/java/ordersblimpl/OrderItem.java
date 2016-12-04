@@ -2,12 +2,14 @@ package ordersblimpl;
 
 import java.util.Date;
 
-import HotelsMock.HotelsInfo;
-import MembersMock.MembersInfo;
-import RoomsMock.RoomType;
-import RoomsMock.RoomsInfo;
-import promotionsblimpl.PromotionGetPrice;
-import promotionsblimpl.Promotions;
+import Hotelblimpl.HotelsInfo;
+import Membersblimpl.MembersInfo;
+import Promotionsblimpl.PriceInfo;
+import Promotionsblimpl.PromotionGetPrice;
+import Promotionsblimpl.Promotions;
+import Roomblimpl.RoomType;
+import Roomblimpl.RoomsInfo;
+
 
 
 
@@ -57,7 +59,7 @@ public class OrderItem {
 	Date deadLine;
 	public double calPrice(){
 		promotions = new Promotions();
-		return promotions.getPrice(roomsInfo, roomNum);
-		
+		PriceInfo info=promotions.getPrice(hotelsInfo.getName(), roomsInfo.getPrice(), roomNum, memberId,1);
+		return info.getPrice();
 	}
 }

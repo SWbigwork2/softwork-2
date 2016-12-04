@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import RoomsMock.RoomsInfo;
+import 	Roomblimpl.RoomsInfo;
 import po.PromotionsIIIPO;
 import po.PromotionsIIPO;
 import po.PromotionsIPO;

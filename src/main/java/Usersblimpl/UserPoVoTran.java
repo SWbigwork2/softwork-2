@@ -70,7 +70,7 @@ public class UserPoVoTran {
 	private static MemberInformationVO memberPoToVo(MemberInformationPO member){
 		MemberInformationVO memberInformationVO=new MemberInformationVO(member.getId()
 				, member.getPassword(), member.getName(), member.getVipType().name(), member.getCredit()
-				, member.getContactInformation(), member.getLevel(), member.getSpecial());
+				, member.getContactInformation(), member.getLevel()+"", member.getSpecial(), null);
 		
 		return memberInformationVO;
 	}
@@ -79,7 +79,7 @@ public class UserPoVoTran {
 		
 		MemberInformationPO memberPO=new MemberInformationPO(member.getUserId(), member.getName(),
 				member.getPassword(), member.getContactInformation(), 
-				member.getCredit(), VipType.valueOf(member.getViptype()), member.getSpecial(), member.getLevel());
+				member.getCredit(), VipType.valueOf(member.getVipType()), member.getSpecial(), Integer.valueOf(member.getLevel()));
 		return memberPO;
 	}
 	

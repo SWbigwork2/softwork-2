@@ -1,6 +1,6 @@
 package loginblimpl;
 
-import UsersMock.UserType;
+import Usersblimpl.UserType;
 
 public class LoginVo {
 	private UserType type;

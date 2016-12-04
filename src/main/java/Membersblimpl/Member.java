@@ -2,10 +2,11 @@ package Membersblimpl;
 
 import java.util.ArrayList;
 
-import OrdersMock.OrderItem;
-import OrdersMock.OrderVO;
+import ordersblimpl.OrderItem;
+import view.member.OrderVo;
+
 
 public abstract class Member {
-     public abstract ArrayList<OrderVO>  getOrder(String id);
+     public abstract ArrayList<OrderVo>  getOrder(String id);
      public abstract ArrayList<String> getHotel(String id);
 }

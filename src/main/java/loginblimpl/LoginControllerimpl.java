@@ -1,9 +1,9 @@
 package loginblimpl;
 
-import UsersMock.UserControllerMock;
-import UsersMock.UserInfo;
-import UsersMock.UserType;
-import UsersMock.Users;
+import Usersblimpl.UserControllerblimpl;
+import Usersblimpl.UserInfo;
+import Usersblimpl.UserType;
+import Usersblimpl.Users;
 import blservice.LoginService;
 
 public class LoginControllerimpl implements LoginService{
@@ -12,7 +12,7 @@ public class LoginControllerimpl implements LoginService{
 	private LoginMock login;
 	UserInfo users;
 	public LoginControllerimpl(){
-		users = new UserControllerMock();
+		users = new UserControllerblimpl();
 		// TODO Auto-generated constructor stub
 	}
 	public void logout(UserType type){

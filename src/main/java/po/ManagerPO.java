@@ -1,6 +1,6 @@
 package po;
 
-import UsersMock.UserType;
+import Usersblimpl.UserType;
 
 public class ManagerPO extends UserPO{
 

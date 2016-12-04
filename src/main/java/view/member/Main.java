@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import HotelsMock.HotelRanking;
-import HotelsMock.HotelTradeArea;
+import Hotelblimpl.HotelRanking;
+import Hotelblimpl.HotelTradeArea;
 import blservice.OrdersService;
 import javafx.application.Application;
 import javafx.collections.FXCollections;

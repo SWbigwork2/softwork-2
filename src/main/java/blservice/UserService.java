@@ -1,7 +1,7 @@
 package blservice;
 
-import HotelsMock.HotelRanking;
-import HotelsMock.HotelTradeArea;
+import Hotelblimpl.HotelRanking;
+import Hotelblimpl.HotelTradeArea;
 import Usersblimpl.MarketerVO;
 import Usersblimpl.MemberInformationVO;
 import Usersblimpl.ResultMessage;

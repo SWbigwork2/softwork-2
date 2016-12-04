@@ -2,8 +2,8 @@ package data.dao;
 
 import java.util.ArrayList;
 
+import Evaluateblimpl.ResultMessage;
 import po.EvaluatePO;
-import EvaluateMock.ResultMessage;
 
 public interface EvaluateDao {
     public ResultMessage addEvaluate(EvaluatePO evaluatePO);

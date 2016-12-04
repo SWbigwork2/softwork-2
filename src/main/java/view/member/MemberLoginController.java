@@ -1,6 +1,6 @@
 package view.member;
 
-import UsersMock.UserType;
+import Usersblimpl.UserType;
 import blservice.LoginService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

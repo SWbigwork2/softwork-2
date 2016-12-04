@@ -1,17 +1,17 @@
 package Usersblimpl;
 
-import HotelsMock.HotelRanking;
-import HotelsMock.HotelTradeArea;
+import Hotelblimpl.HotelRanking;
+import Hotelblimpl.HotelTradeArea;
 import blservice.UserService;
 
-public class UserControllerblimpl implements UserService {
+public class UserControllerblimpl implements UserService,UserInfo {
     private Userblimpl user;
     
     public UserVO find(String  id,UserType type){
     	
     	if(type.equals(UserType.staff)){
     		
-    		user=new StaffMock();
+    		user=new Staffblimpl();
     		return user.find(id, UserType.staff);
     
     	}else if(type.equals(UserType.marketer)){
@@ -36,7 +36,7 @@ public class UserControllerblimpl implements UserService {
     	
     	if(type.equals(UserType.staff)){
     	
-    		this.user=new StaffMock();
+    		this.user=new Staffblimpl();
     		return this.user.revoke(user);
     	
     	}else if(type.equals(UserType.marketer)){
@@ -65,7 +65,7 @@ public class UserControllerblimpl implements UserService {
     	
     	StaffVO staff=new StaffVO(id,password,name,hotelName);
     	
-    	StaffMock staffMock=new StaffMock();
+    	Staffblimpl staffMock=new Staffblimpl();
     	
     	return staffMock.add(hotel, staff);
     }

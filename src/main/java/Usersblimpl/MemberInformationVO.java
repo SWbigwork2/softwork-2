@@ -6,74 +6,52 @@ public class MemberInformationVO extends UserVO{
 
 	private double credit;
 	private String ContactInformation;
-	private int level;
+	private String level;
 	private String  special;
-	 
-	 
-	public MemberInformationVO(String id,String password,String name,String  viptype
-			 ,double credit,String Contactinformation,int level,String special){
-		super(id, name, password, UserType.member.name());
-        this.ContactInformation=Contactinformation;
-        this.level=level;
-        this.special=special;
-        this.credit=credit;
-        this.viptype=viptype;
+	private String vipType;
+	
+	
+	public MemberInformationVO(String userId, String name, String password, String type, double credit,
+			String contactInformation, String level, String special, String vipType) {
+		super(userId, name, password, type);
+		this.credit = credit;
+		ContactInformation = contactInformation;
+		this.level = level;
+		this.special = special;
+		this.vipType = vipType;
+	}
+	public String getVipType() {
+		return vipType;
+	}
+	public void setVipType(String vipType) {
+		this.vipType = vipType;
+	}
+	public double getCredit() {
+		return credit;
+	}
+	public void setCredit(double credit) {
+		this.credit = credit;
+	}
+	public String getContactInformation() {
+		return ContactInformation;
+	}
+	public void setContactInformation(String contactInformation) {
+		ContactInformation = contactInformation;
+	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	public String getSpecial() {
+		return special;
+	}
+	public void setSpecial(String special) {
+		this.special = special;
 	}
 	 
 	 
-		public String  getVipType() {
-			return viptype;
-		}
-
-
-		public double getCredit() {
-			return credit;
-		}
-
-
-		public String getContactInformation() {
-			return ContactInformation;
-		}
-
-
-		public int getLevel() {
-			return level;
-		}
-
-
-		public String getSpecial() {
-			return special;
-		}
-		private String viptype;
-		public String getViptype() {
-			return viptype;
-		}
-
-
-		public void setViptype(String viptype) {
-			this.viptype = viptype;
-		}
-
-
-		public void setCredit(double credit) {
-			this.credit = credit;
-		}
-
-
-		public void setContactInformation(String contactInformation) {
-			ContactInformation = contactInformation;
-		}
-
-
-		public void setLevel(int level) {
-			this.level = level;
-		}
-
-
-		public void setSpecial(String special) {
-			this.special = special;
-		}
-
- 
+	
 	 	 
 }

@@ -6,10 +6,10 @@ import data.dataHelper.HotelsDataHelper;
 import data.dataHelper.MembersDataHelper;
 import data.dataHelper.OrdersDataHelper;
 import data.dataHelper.PromotionsDataHelper;
-<<<<<<< HEAD
+
 import data.dataHelper.RoomsDataHelper;
-=======
->>>>>>> origin/master
+
+
 import data.dataHelper.UserDataHelper;
 
 public class DataFactoryImpl implements DataFactory{
@@ -35,6 +35,7 @@ public class DataFactoryImpl implements DataFactory{
         public PromotionsDataHelper getPromtionsDataHelper() {
 		PromotionsDataHelper promotion =new PromotionsDataSqlHelper();
 		return promotion;
+        }
 
 
 		public HotelsDataHelper getHotelsDataHelper(){

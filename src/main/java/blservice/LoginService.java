@@ -1,6 +1,6 @@
 package blservice;
 
-import UsersMock.UserType;
+import Usersblimpl.UserType;
 import loginblimpl.LoginVo;
 import loginblimpl.ResultMessage;
 

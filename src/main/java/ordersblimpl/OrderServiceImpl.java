@@ -5,15 +5,16 @@ package ordersblimpl;
 import java.util.ArrayList;
 import java.util.Date;
 
-import HotelsMock.HotelsInfo;
-import MembersMock.MembersInfo;
-import RoomsMock.RoomsInfo;
+import Hotelblimpl.HotelsInfo;
+import Membersblimpl.MembersInfo;
+import Promotionsblimpl.PromotionGetPrice;
+import Promotionsblimpl.Promotions;
+import Roomblimpl.RoomsInfo;
 import blservice.OrdersService;
 import data.dao.OrdersDao;
 import data.dao.impl.OrdersDaoImpl;
 import po.OrderPO;
-import promotionsblimpl.PromotionGetPrice;
-import promotionsblimpl.Promotions;
+
 import view.member.OrderVo;
 
 public class OrderServiceImpl implements OrdersService{
@@ -99,7 +100,7 @@ public class OrderServiceImpl implements OrdersService{
 			return ResultMessage.notEnough;
 		}
 		int orderId = makeId();
-		tempItem = new OrderItem(promotions, orderId,  membersInfo, hotelsInfo, roomsInfo, roomNum, OrderType.normal, beginDate, deadline, beginDate, endDate, deadline,peopleNum);
+		//tempItem = new OrderItem(promotions, orderId,  membersInfo, hotelsInfo, roomsInfo, roomNum, OrderType.normal, beginDate, deadline, beginDate, endDate, deadline,peopleNum);
 		
 		
 			return ResultMessage.success;

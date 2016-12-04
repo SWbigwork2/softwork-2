@@ -3,7 +3,7 @@ package po;
 import java.io.Serializable;
 import java.util.Date;
 
-import RoomsMock.RoomType;
+import Roomblimpl.RoomType;
 import ordersblimpl.OrderType;
 
 

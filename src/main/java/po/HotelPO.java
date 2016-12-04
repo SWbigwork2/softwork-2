@@ -2,9 +2,9 @@ package po;
 
 import java.io.Serializable;
 
-import HotelsMock.HotelRanking;
-import HotelsMock.HotelTradeArea;
-import HotelsMock.HotelsInfo;
+import Hotelblimpl.HotelRanking;
+import Hotelblimpl.HotelTradeArea;
+import Hotelblimpl.HotelsInfo;
 
 public class HotelPO implements Serializable,HotelsInfo{
 	private String name;

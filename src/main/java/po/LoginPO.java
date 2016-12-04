@@ -1,7 +1,7 @@
 package po;
 
-import UsersMock.UserInfo;
-import UsersMock.UserType;
+import Usersblimpl.UserInfo;
+import Usersblimpl.UserType;
 
 public class LoginPO {
 	private String ID;

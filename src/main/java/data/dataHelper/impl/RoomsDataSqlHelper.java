@@ -9,7 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import RoomsMock.RoomType;
+import Roomblimpl.RoomType;
 import data.dataHelper.RoomsDataHelper;
 import po.RoomPO;
 
@@ -47,7 +47,7 @@ public class RoomsDataSqlHelper implements RoomsDataHelper {
 
 			while (resultSet.next()) {
 				String RoomID = String.valueOf(resultSet.getInt("RoomID"));
-				RoomType RoomType = RoomsMock.RoomType.valueOf(resultSet.getString("RoomType"));
+				RoomType RoomType = Roomblimpl.RoomType.valueOf(resultSet.getString("RoomType"));
 				String RoomIntroduction = resultSet.getString("RoomIntroduction");
 				double RoomPrice = resultSet.getDouble("RoomPrice");
 

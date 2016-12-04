@@ -3,8 +3,8 @@ package data.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import MembersMock.ResultMessage;
-import OrdersMock.OrderVO;
+import Membersblimpl.ResultMessage;
+
 import po.MemberPO;
 
 public interface MembersDao {

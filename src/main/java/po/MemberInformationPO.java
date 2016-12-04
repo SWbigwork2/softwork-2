@@ -1,8 +1,8 @@
 package po;
 
 
-import UsersMock.UserType;
-import UsersMock.VipType;
+import Usersblimpl.UserType;
+import Usersblimpl.VipType;
 
 public class MemberInformationPO extends UserPO{
 	String contactInformation;

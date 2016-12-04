@@ -1,7 +1,8 @@
 package po;
 
 import java.io.Serializable;
-import MembersMock.MembersInfo;
+
+import Membersblimpl.MembersInfo;
 
 public class MemberPO implements Serializable,MembersInfo{
     String id;

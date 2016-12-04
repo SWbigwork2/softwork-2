@@ -30,7 +30,7 @@ public class MemberInformationController {
         }else {
         	memberType=new Label("个人会员");
         }
-        memberLevel=new Label(Integer.toString(member.getLevel()));
+        memberLevel=new Label(member.getLevel());
         contactInformation=new TextField(member.getContactInformation());
         credit=new Label(Double.toString(member.getCredit()));
         special=new Label(member.getSpecial());

@@ -3,7 +3,7 @@ package Promotionsblimpl;
 import java.text.DateFormat;
 import java.util.Date;
 
-import RoomsMock.RoomsInfo;
+import Roomblimpl.RoomsInfo;
 import po.PromotionsIIIPO;
 import po.PromotionsIIPO;
 import po.PromotionsIPO;

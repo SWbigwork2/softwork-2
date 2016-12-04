@@ -61,7 +61,7 @@ public class memberRegisterController {
 			}
 			MemberInformationVO member=new MemberInformationVO(memberIdField.getText()
 					, passwordField.getText(), memberNameField.getText(), tempType.name()
-					, 100, contactField.getText(), 1, memberSpecialField.getText());
+					, 100.0, contactField.getText(), 1+"", memberSpecialField.getText(),null);
             ResultMessage resultMessage=userControllerMock.addMember(member);
             
             //对resultMessgae进行判断

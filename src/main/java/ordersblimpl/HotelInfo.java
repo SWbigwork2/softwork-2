@@ -1,7 +1,7 @@
 package ordersblimpl;
 
-import HotelsMock.HotelRanking;
-import HotelsMock.HotelTradeArea;
+import Hotelblimpl.HotelRanking;
+import Hotelblimpl.HotelTradeArea;
 import po.HotelPO;
 
 public class HotelInfo extends HotelPO{

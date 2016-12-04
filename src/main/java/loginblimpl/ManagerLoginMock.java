@@ -1,9 +1,9 @@
 package loginblimpl;
 
-import UsersMock.UserInfo;
-import UsersMock.UserType;
-import UsersMock.UserVO;
-import UsersMock.Users;
+import Usersblimpl.UserInfo;
+import Usersblimpl.UserType;
+import Usersblimpl.UserVO;
+import Usersblimpl.Users;
 import po.LoginPO;
 
 public class ManagerLoginMock extends LoginMock{

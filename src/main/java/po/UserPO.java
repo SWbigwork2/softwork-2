@@ -3,10 +3,10 @@ package po;
 
 import java.util.Date;
 
-import UsersMock.UserInfo;
-import UsersMock.UserType;
+import Usersblimpl.UserInfo;
+import Usersblimpl.UserType;
 
-public class UserPO implements UserInfo{
+public class UserPO {
 	String id;
 	String name;
     String password;

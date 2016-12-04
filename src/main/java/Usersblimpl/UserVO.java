@@ -6,7 +6,7 @@ public  class UserVO {
     String password;
     String name;
     String  type;
-    
+    String level;
     public UserVO(String userId,String name,String password,String  type){
     	this.userId=userId;
     	this.name=name;
@@ -45,6 +45,16 @@ public  class UserVO {
 	public void setType(String  type) {
 		this.type = type;
 	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	
 
     
 }

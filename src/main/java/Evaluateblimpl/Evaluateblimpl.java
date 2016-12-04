@@ -2,7 +2,7 @@ package Evaluateblimpl;
 
 import java.util.ArrayList;
 
-import HotelsMock.HotelMock;
+import Hotelblimpl.HotelMock;
 import blservice.EvaluateService;
 import data.dao.EvaluateDao;
 import data.dao.impl.EvaluateDaoImpl;

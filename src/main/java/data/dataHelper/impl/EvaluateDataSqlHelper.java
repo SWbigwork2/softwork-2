@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import EvaluateMock.ResultMessage;
+import Evaluateblimpl.ResultMessage;
 import data.dataHelper.EvaluateDataHelper;
 
 public class EvaluateDataSqlHelper implements EvaluateDataHelper{

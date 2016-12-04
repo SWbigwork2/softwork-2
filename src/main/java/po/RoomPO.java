@@ -3,8 +3,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import RoomsMock.RoomType;
-import RoomsMock.RoomsInfo;
+import Roomblimpl.RoomType;
+import Roomblimpl.RoomsInfo;
 
 
 

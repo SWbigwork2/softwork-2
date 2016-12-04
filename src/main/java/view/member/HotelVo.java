@@ -2,8 +2,8 @@ package view.member;
 
 import java.util.ArrayList;
 
-import HotelsMock.HotelRanking;
-import HotelsMock.HotelTradeArea;
+import Hotelblimpl.HotelRanking;
+import Hotelblimpl.HotelTradeArea;
 
 public class HotelVo {
 	private ArrayList<String> roomType = new ArrayList<String>();

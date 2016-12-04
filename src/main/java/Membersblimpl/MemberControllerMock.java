@@ -2,21 +2,20 @@ package Membersblimpl;
 
 import java.util.ArrayList;
 
-import OrdersMock.OrderItem;
-import OrdersMock.OrderVO;
-import OrdersMock.OrdersListMock;
-import OrdersMock.OrdersMock;
+import ordersblimpl.OrderServiceImpl;
+import view.member.OrderVo;
+
 
 public class MemberControllerMock extends Member{
-	public MemberControllerMock(OrdersMock order) {
+	public MemberControllerMock(OrderServiceImpl order) {
 		ordersmock = order;
 		// TODO Auto-generated constructor stub
 	}
 	String memberdata[][]=new String[10000][4];
 	int m=0;
 	ResultMessage result=ResultMessage.Success;
-	OrdersMock ordersmock;
-    public  ArrayList<OrderVO> getOrder(String id){
+	OrderServiceImpl ordersmock;
+    public  ArrayList<OrderVo> getOrder(String id){
     	
 		return ordersmock.getOrderHistory(id,null);
     	

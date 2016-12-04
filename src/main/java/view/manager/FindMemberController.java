@@ -69,7 +69,7 @@ public class FindMemberController {
             }
 			
             String credit=Double.toString(memberVO.getCredit());
-            String level=Integer.toString(memberVO.getLevel());
+            String level=memberVO.getLevel();
 			return memberId+" "+memberName+" "+vipType+" "+level+" "+credit;
 		}
 		
