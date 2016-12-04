@@ -1,4 +1,4 @@
-package RoomsMock;
+package Roomblimpl;
 
 public enum RoomResultMessage {
 	success,failue;

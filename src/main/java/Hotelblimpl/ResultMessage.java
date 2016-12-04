@@ -1,4 +1,4 @@
-package HotelsMock;
+package Hotelblimpl;
 
 public enum ResultMessage {
 	success,failure;

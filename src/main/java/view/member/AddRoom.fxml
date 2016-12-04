@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-radius: 3px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.member.AddRoomController">
+   <top>
+      <ToolBar fx:id="ToorBar" disable="true" prefHeight="35.0" prefWidth="598.0" style="-fx-background-color: #3366FF;" stylesheets="@../Desktop/frame.css" BorderPane.alignment="CENTER">
+         <items>
+            <Label fx:id="GroupNameLabel" prefHeight="25.0" prefWidth="153.0" style="-fx-font-family: Chalkduster; -fx-text-fill: white;" text="Winter Studio">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </items>
+      </ToolBar>
+   </top>
+   <left>
+      <AnchorPane prefHeight="613.0" prefWidth="171.0" style="-fx-background-color: #F8F8F8;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="4.0" layoutY="1.0" prefHeight="26.0" prefWidth="73.0" text="酒店处理" />
+            <Button layoutY="29.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: white;" text="维护信息" />
+            <Label layoutX="4.0" layoutY="64.0" prefHeight="26.0" prefWidth="73.0" text="订单处理" />
+            <Button fx:id="testButton" layoutY="89.0" mnemonicParsing="false" onAction="#showTest" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: white;" text="撤销订单" />
+            <Label layoutX="4.0" layoutY="127.0" prefHeight="26.0" prefWidth="73.0" text="房间处理" />
+            <Button layoutY="152.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: white;" text="录入新房间" />
+            <Button layoutY="184.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: white;" text="录入入住" />
+            <Button layoutY="216.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: white;" text="录入退房" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="22.0" layoutY="77.0" prefHeight="357.0" prefWidth="788.0" style="-fx-border-color: #F0F0F0; -fx-border-radius: 3;">
+               <children>
+                  <Label layoutX="18.0" layoutY="22.0" prefHeight="23.0" prefWidth="85.0" text="房间数量">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="RoomNumBar" layoutX="108.0" layoutY="17.0" prefHeight="32.0" prefWidth="143.0" />
+                  <Label layoutX="20.0" layoutY="158.0" prefHeight="23.0" prefWidth="85.0" text="房间ID">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="RoomIDBar" layoutX="108.0" layoutY="154.0" prefHeight="32.0" prefWidth="643.0" />
+                  <Label layoutX="19.0" layoutY="67.0" prefHeight="23.0" prefWidth="85.0" text="房间类型">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="ConfirmButton" layoutX="109.0" layoutY="298.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="643.0" text="确认" />
+                  <ChoiceBox fx:id="RoomTypeBar" layoutX="108.0" layoutY="63.0" prefHeight="30.0" prefWidth="142.0" />
+                  <Label layoutX="19.0" layoutY="113.0" prefHeight="23.0" prefWidth="85.0" text="房间价格">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="RoomPriceBar" layoutX="108.0" layoutY="106.0" prefHeight="32.0" prefWidth="143.0" />
+                  <Label layoutX="20.0" layoutY="200.0" prefHeight="23.0" prefWidth="85.0" text="房间介绍">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="RoomIntroductionBar" layoutX="108.0" layoutY="197.0" prefHeight="86.0" prefWidth="643.0" wrapText="true" />
+                  <Label layoutX="255.0" layoutY="111.0" prefHeight="23.0" prefWidth="25.0" text="元">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label fx:id="HotelNameLabel" layoutX="26.0" layoutY="28.0" prefHeight="29.0" prefWidth="138.0" style="-fx-text-fill: #0000CD;" text="金陵饭店">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

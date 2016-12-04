@@ -1,7 +1,8 @@
-package HotelsMock;
+package Hotelblimpl;
 
 import java.util.ArrayList;
-import RoomsMock.RoomType;
+
+import Roomblimpl.RoomType;
 import po.EvaluatePO;
 import po.HotelPO;
 import po.RoomPO;
@@ -16,12 +17,12 @@ public class HotelMock extends Hotel {
 	 */
 
 	public HotelPO findHotel(String hotelName) {
-		HotelPO hotelPO = new HotelPO(hotelName, "仙林大道103", HotelTradeArea.栖霞区, "", "", HotelRanking.oneStar);
+		HotelPO hotelPO = new HotelPO(hotelName, "仙林大道103", HotelTradeArea.仙林商圈, "", "", HotelRanking.oneStar);
 		return hotelPO;
 	}
 
 	public ArrayList<RoomPO> findRoom(String hotelName) {
-		RoomPO roomPO = new RoomPO("0001", hotelName, RoomType.big, "", 100, null);
+		RoomPO roomPO = new RoomPO("0001", hotelName, RoomType.单人间, "", 100, null);
 		ArrayList<RoomPO> list = new ArrayList<RoomPO>();
 		list.add(roomPO);
 		return list;
