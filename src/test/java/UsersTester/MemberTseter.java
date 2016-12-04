@@ -3,15 +3,15 @@ package UsersTester;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import UsersMock.MemberInformationVO;
-import UsersMock.ResultMessage;
-import UsersMock.UserControllerMock;
-import UsersMock.UserType;
-import UsersMock.VipType;
+import Usersblimpl.MemberInformationVO;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserControllerblimpl;
+import Usersblimpl.UserType;
+import Usersblimpl.VipType;
 
 public class MemberTseter {
-    UserControllerMock usm=new UserControllerMock();
-    MemberInformationVO memberInformationVO= new MemberInformationVO("152625", "songjang", "宋江", VipType.ConmmentVip, 100, "1511515151", 1, "1997-02-02");
+    UserControllerblimpl usm=new UserControllerblimpl();
+    MemberInformationVO memberInformationVO= new MemberInformationVO("152625", "songjang", "宋江", VipType.ConmmentVip.name(), 100, "1511515151", 1, "1997-02-02");
 
     @Test
     public void findTest(){
@@ -24,7 +24,8 @@ public class MemberTseter {
     @Test
     public void addmemberTest(){
         ResultMessage resultMessage=null;
-    	resultMessage=usm.addMember("152625", "songjiang", "宋江", VipType.ConmmentVip, 100, "1511515151", 1, "1997-02-02");
+        MemberInformationVO memberInformationVO=new MemberInformationVO("152625", "songjiang", "宋江", VipType.ConmmentVip.name(), 100, "1511515151", 1, "1997-02-02");
+    	resultMessage=usm.addMember(memberInformationVO);
         assertEquals(ResultMessage.success, resultMessage);
     }
     

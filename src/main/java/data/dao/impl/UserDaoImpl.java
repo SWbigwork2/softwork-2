@@ -4,13 +4,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import UsersMock.ResultMessage;
+import Usersblimpl.ManagerVO;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserType;
+import Usersblimpl.VipType;
+import po.ManagerPO;
 import po.MarketerPO;
 import po.MemberInformationPO;
 import po.StaffPO;
 import po.UserPO;
-import UsersMock.UserType;
-import UsersMock.VipType;
 import data.dao.UserDao;
 import data.dataHelper.DataFactory;
 import data.dataHelper.UserDataHelper;
@@ -51,6 +53,7 @@ public class UserDaoImpl implements UserDao{
 		case member: userPO=this.Map2MemberPo(hm);return userPO;
 		case staff:userPO=this.Map2StaffPo(hm);return userPO;
 		case marketer:userPO=this.Map2MarketerPo(hm);return userPO;
+		case manager:userPO=this.Map2ManagerPo(hm);return userPO;
 		}
 		return null;
 	}
@@ -68,6 +71,10 @@ public class UserDaoImpl implements UserDao{
 		return userDataHelper.addUser(userPO);
 	}
     
+	public ArrayList<UserPO> getAllUsers(UserType type) {
+        
+		return userDataHelper.getAllUsers(type);
+	}
 	private StaffPO Map2StaffPo(Map map) {    //将map里的数据转换成Staffpo
 		Map hm = map;
 		
@@ -82,7 +89,7 @@ public class UserDaoImpl implements UserDao{
 		return po;
 	}
 	
-
+    
 	private MemberInformationPO Map2MemberPo(Map map) {    //将map里的数据转换成Staffpo
 		Map hm = map;
 		
@@ -92,10 +99,7 @@ public class UserDaoImpl implements UserDao{
 		String  ContactInformation=(String) hm.get("Contact information");
 		String special=  (String )hm.get("special");
 		double credit=(Double)hm.get("credit");
-//		System.out.println(hm.get("type"));
         int type=Integer.parseInt(String.valueOf(hm.get("type")));  
-        			
-        		
         int level=Integer.parseInt(String.valueOf(hm.get("level")));  
         VipType vipType=null;
         if(type==0){
@@ -113,10 +117,22 @@ public class UserDaoImpl implements UserDao{
 		
 		String name= (String) hm.get("name");
 		int userIdtemp = (Integer) hm.get("id");
-		String staffId=Integer.toString(userIdtemp);		
+		String marketerId=Integer.toString(userIdtemp);		
 	    String password =(String )hm.get("password");
-		MarketerPO po =new MarketerPO(staffId, name, password);
+		MarketerPO po =new MarketerPO(marketerId, name, password);
 		return po;
 	}
+	
+	private ManagerPO Map2ManagerPo(Map map){
+        Map hm = map;
+		
+		String name= (String) hm.get("name");
+		int userIdtemp = (Integer) hm.get("id");
+		String managerId=Integer.toString(userIdtemp);		
+	    String password =(String )hm.get("password");
+		ManagerPO po =new ManagerPO(managerId, name, password);
+		return po;
+	}
+
 	
 }

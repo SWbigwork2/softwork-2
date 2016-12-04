@@ -3,9 +3,9 @@ package data.dataHelper;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import UsersMock.ResultMessage;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserType;
 import po.UserPO;
-import UsersMock.UserType;
 
 public interface UserDataHelper {
 	/*
@@ -22,4 +22,10 @@ public interface UserDataHelper {
      * 添加用户
      */
     public ResultMessage addUser(UserPO userPO) throws SQLException;
+    
+    /**
+     * @param type
+     * @return 
+     */
+    public ArrayList<UserPO> getAllUsers(UserType type);
 }

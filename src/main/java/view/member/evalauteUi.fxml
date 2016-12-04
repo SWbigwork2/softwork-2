@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="evaluatePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.member.EvaluateController">
+   <top>
+      <Label fx:id="evaluateTitle" prefHeight="69.0" prefWidth="160.0" text="酒店评价" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <HBox prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="89.0" prefWidth="143.0" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancel" prefHeight="43.0" prefWidth="113.0" text="取消" />
+            <Label prefHeight="43.0" prefWidth="112.0" />
+            <Button fx:id="commitButton" mnemonicParsing="false" onAction="#confirm" prefHeight="43.0" prefWidth="111.0" text="确认" />
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <SplitPane dividerPositions="0.3811188811188811" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label fx:id="hotelNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="166.0" layoutY="14.0" prefHeight="29.0" prefWidth="80.0" text="酒店名称">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="hotelName" alignment="CENTER" layoutX="313.0" layoutY="19.0" prefHeight="20.0" prefWidth="58.0" text="xx酒店" />
+                  <Label fx:id="inTime" layoutX="174.0" layoutY="45.0" prefHeight="23.0" prefWidth="71.0" text="入住时间">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="actualInTime" layoutX="313.0" layoutY="46.0" prefHeight="23.0" prefWidth="60.0" text="2016-12-1" />
+                  <Label fx:id="roomTypeLabel" layoutX="173.0" layoutY="77.0" prefHeight="22.0" prefWidth="74.0" text="房间类型">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="actualType" alignment="CENTER" layoutX="316.0" layoutY="76.0" prefHeight="20.0" prefWidth="49.0" text="大">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="199.0" prefWidth="598.0">
+               <children>
+                  <Label fx:id="evaluateLabel" alignment="CENTER" layoutX="172.0" layoutY="14.0" prefHeight="30.0" prefWidth="75.0" text="评分">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="scoreText" layoutX="282.0" layoutY="18.0" prefHeight="23.0" prefWidth="73.0" />
+                  <Label fx:id="commentlabel" alignment="CENTER" layoutX="174.0" layoutY="55.0" prefHeight="25.0" prefWidth="66.0" text="评价">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="commentTextField" layoutX="282.0" layoutY="52.0" prefHeight="93.0" prefWidth="254.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>

@@ -5,26 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
-import org.w3c.dom.ls.LSInput;
-
-import LoginMock.StaffLoginMock;
-import OrdersMock.OrderType;
-import RoomsMock.RoomType;
-import UsersMock.ResultMessage;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserType;
+import Usersblimpl.VipType;
 import po.UserPO;
-import UsersMock.UserType;
-import UsersMock.VipType;
 import data.dataHelper.UserDataHelper;
 import po.ManagerPO;
+import po.MarketerPO;
 import po.MemberInformationPO;
-import po.OrderPO;
 import po.StaffPO;
 
 public class UserDataSqlHelper implements UserDataHelper{
@@ -107,11 +99,11 @@ public class UserDataSqlHelper implements UserDataHelper{
 		}
 		
 		//通过列表的方法删除，同时插入
-		String usersTable[]={"members","staffs","marketers"};
-		UserType userType[]={UserType.member,UserType.staff,UserType.marketer};
+		String usersTable[]={"members","staffs","marketers","managers"};
+		UserType userType[]={UserType.member,UserType.staff,UserType.marketer,UserType.manager};
 		
 		//删除原来的user
-		for(int i=0;i<3;i++){
+		for(int i=0;i<usersTable.length;i++){
 			 if(userPO.getRole().equals(userType[i])){
 				 String deleteSql="delete from "+usersTable[i]+" where id="+userPO.getId();
 				 try {
@@ -133,6 +125,7 @@ public class UserDataSqlHelper implements UserDataHelper{
 		return resultMessage;
 	}
 
+	
 	/*
 	 * 添加用户，传入一个Po，成功返回success，失败返回fail
 	 */
@@ -155,7 +148,7 @@ public class UserDataSqlHelper implements UserDataHelper{
         	//添加新的用户
         	try {
         		this.getConnect();
-				String insertMemberSql="insert into members values("+member.getId()+","+"'"+member.getName()+"'"+
+				String insertMemberSql="insert into members values("+"'"+member.getId()+"'"+","+"'"+member.getName()+"'"+
         		                              ","+"'"+member.getPassword()+"'"+","
 				                             +"'"+member.getSpecial()+"'"+","+"'"+member.getCredit()+"'"+","+
         		                              "'"+member.getContactInformation()+"'"+","+"'"+type+"'"+","+
@@ -187,8 +180,74 @@ public class UserDataSqlHelper implements UserDataHelper{
 				this.freeConnect();
 			}
             return ResultMessage.success; 
+            
+        case marketer:
+        	MarketerPO marketer=(MarketerPO)userPO;
+        	try {
+				this.getConnect();
+				String insertStaffSql="insert into staffs values("+marketer.getId()+","+"'"+marketer.getName()+"'"+","+"'"+marketer.getPassword()+"'"+")";                        
+				statement = connection.prepareStatement(insertStaffSql);
+				statement.executeUpdate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				this.freeConnect();
+			}
+            return ResultMessage.success; 
+            
+        case manager:
+        	ManagerPO managerPO=(ManagerPO)userPO;
+        	try {
+				this.getConnect();
+				String insertStaffSql="insert into staffs values("+managerPO.getId()+","+"'"+managerPO.getName()+"'"+","+"'"+managerPO.getPassword()+"'"+")";                        
+				statement = connection.prepareStatement(insertStaffSql);
+				statement.executeUpdate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				this.freeConnect();
+			}
+            return ResultMessage.success; 
         }
 		return resultMessage;
+	}
+	
+	public ArrayList<UserPO> getAllUsers(UserType type) {
+        
+//		ArrayList<UserPO> userList=new ArrayList<UserPO>();
+       
+		String usersTable[]={"members","staffs","marketers"};
+		UserType userType[]={UserType.member,UserType.staff,UserType.marketer};
+		
+		//删除原来的user
+		for(int i=0;i<3;i++){
+			 if(type.equals(userType[i])){
+				 String findSql="select * from "+usersTable[i];
+				 try {
+					 
+			        this.getConnect();
+					statement = connection.prepareStatement(findSql);
+				    resultSet=statement.executeQuery();
+				    
+				    
+				 }catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+				 }finally {
+					this.freeConnect();
+				 }
+			 }
+		}
+        
+		switch (type){
+		case member: return this.getMemberList(resultSet);
+		case staff:return this.getStaffList(resultSet);
+		case marketer:return this.getMarketerList(resultSet);
+		}
+		
+        return null;		
 	}
 	
 	//把resultSet转成arraylist
@@ -219,4 +278,71 @@ public class UserDataSqlHelper implements UserDataHelper{
 		}
 	}
 
+	private ArrayList<UserPO> getStaffList(ResultSet resultSet){
+		
+		ArrayList<UserPO> staffList=new ArrayList<UserPO>();
+		try {
+			while(resultSet.next()){
+				String staffID=resultSet.getString(1);
+				String staffName=resultSet.getString(2);
+				String staffPassword=resultSet.getString(3);
+				String hotelName=resultSet.getString(4);
+				StaffPO staffPO=new StaffPO(staffID, staffName, staffPassword, hotelName);
+				staffList.add(staffPO);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return staffList;
+	}
+	
+    private ArrayList<UserPO> getMarketerList(ResultSet resultSet){
+		
+		ArrayList<UserPO> managerList=new ArrayList<UserPO>();
+		try {
+			while(resultSet.next()){
+				String marketerID=resultSet.getString(1);
+				String marketerName=resultSet.getString(2);
+				String marketerPassword=resultSet.getString(3);
+				MarketerPO marketerPO=new MarketerPO(marketerID,marketerName,marketerPassword);
+				managerList.add(marketerPO);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return managerList;
+	}
+    
+    private ArrayList<UserPO> getMemberList(ResultSet resultSet){
+    	ArrayList<UserPO> memberList=new ArrayList<UserPO>();
+    	
+    	try {
+			while(resultSet.next()){
+				String memberId=resultSet.getString(1);
+				String memberName=resultSet.getString(2);
+				String memberPassword=resultSet.getString(3);
+				String memberSpecial=resultSet.getString(4);
+				double credit=resultSet.getDouble(5);
+				String memberContact=resultSet.getString(6);
+				int type=resultSet.getInt(7);
+				int level=resultSet.getInt(8);
+				VipType vipType=VipType.CompanyVip;
+				if(type==0){
+					vipType=VipType.ConmmentVip;
+				}
+				MemberInformationPO member=new MemberInformationPO(memberId, memberName, memberPassword, memberContact, credit, vipType, memberSpecial, level);			
+				memberList.add(member);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+    	
+    	return memberList;
+    }
+    
+	
 }
