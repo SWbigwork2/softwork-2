@@ -45,6 +45,6 @@ public interface RoomsDao {
 	 * @param StartTime
 	 * @return 退房删除一个房间不可用时段
 	 */
-	public boolean recordCheckOut(String roomID);
+	public boolean recordCheckOut(String roomID, Date StartTime);
 
 }
