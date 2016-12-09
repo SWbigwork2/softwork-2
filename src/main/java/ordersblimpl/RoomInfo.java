@@ -1,13 +1,15 @@
 package ordersblimpl;
 
 import java.sql.Timestamp;
-import Roomblimpl.*;
+import java.util.ArrayList;
+
+import RoomsMock.RoomType;
 import po.RoomPO;
 
 public class RoomInfo extends RoomPO{
 
-	public RoomInfo(String roomName, String hotelBelongTo, RoomType roomType,String introduction,double price,Timestamp startTime,Timestamp endTime) {
-		super(roomName,hotelBelongTo,roomType,introduction,price,startTime,endTime);
+	public RoomInfo(String r, String h, RoomType t, String i, double p, ArrayList<Timestamp> list) {
+		super(r, h, t, i, p, list);
 		// TODO Auto-generated constructor stub
 	}
 	

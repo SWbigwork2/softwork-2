@@ -1,6 +1,8 @@
 package po;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+
 import Roomblimpl.RoomType;
 import Roomblimpl.RoomsInfo;
 
@@ -13,18 +15,16 @@ public class RoomPO implements Serializable,RoomsInfo{
 	private RoomType roomtype;
 	private String introdution;
 	private double price;
-	private Timestamp startTime;
-	private Timestamp endTime;
+	private ArrayList<Timestamp>  unavailablePeriod;
 	
 	
-	public RoomPO(String roomName, String hotelBelongTo, RoomType roomType,String introduction,double price,Timestamp startTime,Timestamp endTime){
-		this.roomName= roomName;
-		this.hotelBelongTo =hotelBelongTo;
-		this.roomtype =roomType;
-		this.introdution=introduction;
-		this.price =price;
-		this.startTime = startTime;
-		this.endTime = endTime;
+	public RoomPO(String r, String h, RoomType t,String i,double p, ArrayList<Timestamp> dateList){
+		this.roomName= r;
+		this.hotelBelongTo =h;
+		this.roomtype =t;
+		this.introdution=i;
+		this.price =p;
+		this.unavailablePeriod =dateList;
 	}
 	
 	public String getRoomName(){
@@ -42,10 +42,12 @@ public class RoomPO implements Serializable,RoomsInfo{
 	public double getPrice(){
 		return price;
 	}
-	public Timestamp getStartTime(){
-		return startTime;
+	public ArrayList <Timestamp> getRoomStatus(){
+		return unavailablePeriod;
 	}
-	public Timestamp getEndTime(){
-		return endTime;
+
+	public void setPeriod(ArrayList<Timestamp> newTimeList) {
+		unavailablePeriod = newTimeList;
 	}
+	
 }
