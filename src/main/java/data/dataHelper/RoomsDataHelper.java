@@ -44,9 +44,8 @@ public interface RoomsDataHelper {
 	/**
 	 * 
 	 * @param roomID
-	 * @param StartTime
-	 * @return 删除房间预定时间
+	 * @return 将房间置为可预定状态
 	 */
-	boolean recordCheckOut(String roomID, Date StartTime);
+	boolean recordCheckOut(String roomID);
 
 }
