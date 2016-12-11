@@ -1,5 +1,5 @@
 package Hotelblimpl;
 
 public enum HotelRanking {
-	oneStar,twoStar,threeStar,fourStar,FiveStar;
+	三星级,四星级,五星级;
 }

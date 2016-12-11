@@ -6,5 +6,6 @@ public interface RoomInfo {
 	public RoomType getRoomType();
 	public String getIntroduction();
 	public double getPrice();
-	public int[] getRoomStatus();
+	public double getStartTime();
+	public double getEndTime();
 }

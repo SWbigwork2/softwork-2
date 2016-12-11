@@ -1,9 +1,8 @@
 package blservice;
 
 import java.util.ArrayList;
-
-import javax.naming.spi.DirStateFactory.Result;
-
+import java.util.Date;
+import Promotionsblimpl.PriceInfo;
 import ordersblimpl.OrderType;
 import ordersblimpl.ResultMessage;
 import view.member.OrderVo;
@@ -11,17 +10,55 @@ import view.member.OrderVo;
 public interface OrdersService {
 	
 	/**
+	 * @param hotel
+	 * @param price
+	 * @param roomNum
+	 * @param userId
+	 * @param days
+	 * @return 订单总价格
+	 */
+	public PriceInfo getPrice(String hotel,double price,int roomNum,String userId,int days);
+		
+	
+	
+	/**
 	 * @param type
 	 * @return 根据type返回的订单列表
 	 */
 	public ArrayList<OrderVo> getOrderList(String memberId,OrderType type);
 	
+	
+	/**
+	 * @param memberId
+	 * @return 得到用户住过的酒店
+	 */
+	public ArrayList<String> getHotelList(String memberId);
 	/**
 	 * @param orderId
 	 * @return 根据id查找的order
 	 */
 	public OrderVo getOrder(int orderId);
+	/**
+	 * @param orderId
+	 * @param inDate
+	 * 记录入住时间
+	 */
+	public void recordIn(int orderId,Date inDate);
 	
+	/**
+	 * @param orderId
+	 * @param outDate
+	 * 记录退房时间
+	 */
+	public void recordOut(int orderId,Date outDate);
+		
+	
+	/**
+	 * @param orderId
+	 * @param type 
+	 * 设置orderType
+	 */
+	public void setType(int orderId,OrderType type);
 	/**
 	 * @param info
 	 * @return	更新订单信息

@@ -2,6 +2,8 @@ package data.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
+
 import data.dao.RoomsDao;
 import data.dataHelper.DataFactory;
 import data.dataHelper.RoomsDataHelper;
@@ -43,53 +45,6 @@ public class RoomsDaoImpl implements RoomsDao {
 	public ArrayList<RoomPO> getRoomList(String hotelName) {
 		ArrayList<RoomPO> roomsList = roomsDataHelper.getRoomList(hotelName);
 		System.out.println(roomsList.size());
-		
-		
-		
-		for (RoomPO cell : roomsList) {
-			
-			java.sql.Timestamp time1 = null;
-			java.sql.Timestamp time2 = null;
-			java.sql.Timestamp time3 = null;
-			java.sql.Timestamp time4 = null;
-			
-			ArrayList<java.sql.Timestamp> timestampList = cell.getRoomStatus();
-			if(timestampList.size()==2){
-			time1 = timestampList.get(0);
-			}else if(timestampList.size()==4){
-			time1 = timestampList.get(0);
-			time2 = timestampList.get(2);
-			}else if(timestampList.size()==6){
-			time1 = timestampList.get(0);
-			time2 = timestampList.get(2);
-			time3 = timestampList.get(4);
-			}else if(timestampList.size()==8){
-			time1 = timestampList.get(0);
-			time2 = timestampList.get(2);
-			time3 = timestampList.get(4);
-			time4 = timestampList.get(6);
-			}
-
-			ArrayList<java.sql.Timestamp> newTimeList = new ArrayList<java.sql.Timestamp>();
-
-			if (time1 != null) {
-				newTimeList.add(time1);
-				newTimeList.add(timestampList.get(1));
-			}
-			if (time2 != null) {
-				newTimeList.add(time2);
-				newTimeList.add(timestampList.get(3));
-			}
-			if (time3 != null) {
-				newTimeList.add(time3);
-				newTimeList.add(timestampList.get(5));
-			}
-			if (time4 != null) {
-				newTimeList.add(time4);
-				newTimeList.add(timestampList.get(7));
-			}
-			cell.setPeriod(newTimeList);
-		}
 		return roomsList;
 	}
 

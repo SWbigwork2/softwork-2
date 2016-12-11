@@ -7,7 +7,7 @@ import po.EvaluatePO;
 import po.HotelPO;
 import po.RoomPO;
 
-public class HotelMock extends Hotel {
+public class HotelMock extends HotelServiceImpl {
 	// HotelMock需要提供方法供Oreders类、User类、Evaluate类使用
 
 	/*
@@ -17,7 +17,7 @@ public class HotelMock extends Hotel {
 	 */
 
 	public HotelPO findHotel(String hotelName) {
-		HotelPO hotelPO = new HotelPO(hotelName, "仙林大道103", HotelTradeArea.仙林商圈, "", "", HotelRanking.oneStar);
+		HotelPO hotelPO = new HotelPO(hotelName, "仙林大道103", HotelTradeArea.仙林商圈, "", "", HotelRanking.三星级);
 		return hotelPO;
 	}
 

@@ -7,6 +7,7 @@ import java.util.Date;
 
 import Hotelblimpl.HotelsInfo;
 import Membersblimpl.MembersInfo;
+import Promotionsblimpl.PriceInfo;
 import Promotionsblimpl.PromotionGetPrice;
 import Promotionsblimpl.Promotions;
 import Roomblimpl.RoomsInfo;
@@ -225,6 +226,31 @@ public class OrderServiceImpl implements OrdersService{
 	public ResultMessage update(OrderVo info) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public PriceInfo getPrice(String hotel, double price, int roomNum, String userId, int days) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ArrayList<String> getHotelList(String memberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void recordIn(int orderId, Date inDate) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void recordOut(int orderId, Date outDate) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setType(int orderId, OrderType type) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

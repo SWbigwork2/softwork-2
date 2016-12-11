@@ -70,7 +70,7 @@ public class HotelsDataSqlHelper implements HotelsDataHelper {
 	}
 	
 	/**
-	 * 模糊搜索酒店的方法，传入一个酒店PO，其中一定包括确切的酒店商圈以及模糊的酒店地址，也可能包括就点名
+	 * 模糊搜索酒店的方法，传入一个酒店PO，其中一定包括确切的酒店商圈以及模糊的酒店地址，也可能包括酒店名
 	 * 返回一个ArrayList<HotelPO>
 	 */
 	public ArrayList<HotelPO> getHotelList(HotelPO hotelPO) {

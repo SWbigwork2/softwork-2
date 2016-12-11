@@ -1,7 +1,7 @@
 package Roomblimpl;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.sql.Date;
+import java.util.Map;
 
 public interface RoomsInfo {
 	public String getRoomName();
@@ -9,5 +9,5 @@ public interface RoomsInfo {
 	public RoomType getRoomType();
 	public String getIntroduction();
 	public double getPrice();
-	public ArrayList<Timestamp> getRoomStatus();
+	public Map<Date,Date> getUnavailablePeriod();
 }
