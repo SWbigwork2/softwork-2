@@ -8,10 +8,7 @@ public class PromotionsIVPO extends PromotionsPO{
 		   return companyname;
 	   }
 	    public PromotionsIVPO(int type,String hotel,String introduction,String companyname,double discount){
-	    	this.type=type;
-	    	this.hotel=hotel;
-	    	this.introduction=introduction;
-	    	this.discount=discount;
+	    	super(type, hotel, introduction, discount);
 	    	this.companyname=companyname;
 	    }
 	  

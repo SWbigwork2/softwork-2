@@ -12,9 +12,7 @@ public class PromotionsVPO extends PromotionsPO{
     	return viplevel;
     }
     public PromotionsVPO(int type,String hotel,String introduction,int viplevel,String area,double discount){
-    	this.type=type;
-    	this.introduction=introduction;
-    	this.discount=discount;
+        super(type, hotel, introduction, discount);
     	this.area=area;
     	this.viplevel=viplevel;
     	this.hotel=hotel;

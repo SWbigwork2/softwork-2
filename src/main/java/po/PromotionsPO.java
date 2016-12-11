@@ -17,4 +17,7 @@ public double getDiscount(){
 public String getIntroduction(){
 	return introduction;
 }
+public PromotionsPO(int type,String hotel,String introduction,double discount){
+	super();
+}
 }
