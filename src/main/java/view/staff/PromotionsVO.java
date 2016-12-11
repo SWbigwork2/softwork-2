@@ -2,10 +2,10 @@ package view.staff;
 
 public class PromotionsVO {
 
-	 int type;
-	 String hotel;
-	 double discount;
-	 String introduction;
+	public int type;
+	 public String hotel;
+	 public double discount;
+	 public String introduction;
 	public int getType(){
 		return type;
 	}
@@ -30,7 +30,5 @@ public class PromotionsVO {
 	public void setIntroduction(String introduction){
 		this.introduction=introduction;
 	}
-	public PromotionsVO(int type,String hotel,String introduction,double discount){
-		super();
-	}
+	
 }

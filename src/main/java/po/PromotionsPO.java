@@ -1,10 +1,10 @@
 package po;
 
 public class PromotionsPO {
-int type;
-String hotel;
-double discount;
-String introduction;
+ public int type;
+ public String hotel;
+ public double discount;
+ public String introduction;
 public int getType(){
 	return type;
 }
@@ -17,7 +17,17 @@ public double getDiscount(){
 public String getIntroduction(){
 	return introduction;
 }
-public PromotionsPO(int type,String hotel,String introduction,double discount){
-	super();
+public void setType(int type) {
+	this.type = type;
 }
+public void setHotel(String hotel) {
+	this.hotel = hotel;
+}
+public void setDiscount(double discount) {
+	this.discount = discount;
+}
+public void setIntroduction(String introduction) {
+	this.introduction = introduction;
+}
+
 }

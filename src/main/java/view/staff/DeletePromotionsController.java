@@ -44,7 +44,11 @@ public class DeletePromotionsController {
      		
      	}else{
      		int type=Integer.parseInt(typestr);
-     		PromotionsVO promotionsVO=new PromotionsVO(type, hotel, introduction, 1);
+     		PromotionsVO promotionsVO=new PromotionsVO();
+     		promotionsVO.setHotel(hotel);
+     		promotionsVO.setDiscount(1);
+     		promotionsVO.setIntroduction(introduction);
+     		promotionsVO.setType(type);
      		boolean result=promotionsService.deletePromotions(promotionsVO);
      		if(result){
      			Alert alert=new Alert(AlertType.INFORMATION);

@@ -68,7 +68,7 @@ public boolean addPromotionsI(PromotionsIPO promotionsIPO){
 			
 			if(!isExist(promotionsIIPO) ){
 				getConnect();
-			String sql="insert into strategiesi values("+promotionsIIPO.getType()+","+"'"+promotionsIIPO.getHotel()+"'"
+			String sql="insert into strategiesii values("+promotionsIIPO.getType()+","+"'"+promotionsIIPO.getHotel()+"'"
 					+","+"'"+promotionsIIPO.getIntroduction()+"'"+","
 					+"'"+promotionsIIPO.getStartdate()+"'"+","
 					+"'"+promotionsIIPO.getEnddate()+"'"+","+promotionsIIPO.getDiscount()+")";
@@ -94,7 +94,7 @@ public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO){
 		
 			if(!isExist(promotionsIIIPO) ){
 				getConnect();
-			String sql="insert into strategiesi values("+promotionsIIIPO.getType()+","+"'"+promotionsIIIPO.getHotel()+"'"
+			String sql="insert into strategiesiii values("+promotionsIIIPO.getType()+","+"'"+promotionsIIIPO.getHotel()+"'"
 					+","+"'"+promotionsIIIPO.getIntroduction()+"'"+","
 					+promotionsIIIPO.getNum()+","+promotionsIIIPO.getDiscount()+")";
 			    statement=connection.prepareStatement(sql);
@@ -120,7 +120,7 @@ public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO){
 		
 		if(!isExist(promotionsIVPO) ){
 			getConnect();
-		String sql="insert into strategiesi values("+promotionsIVPO.getType()+","+"'"+promotionsIVPO.getHotel()+"'"
+		String sql="insert into strategiesiv values("+promotionsIVPO.getType()+","+"'"+promotionsIVPO.getHotel()+"'"
 				+","+"'"+promotionsIVPO.getIntroduction()+"'"+","+promotionsIVPO.getDiscount()+")";
 		 statement=connection.prepareStatement(sql);
 			int row=statement.executeUpdate();
@@ -145,7 +145,7 @@ public boolean addPromotionsV(PromotionsVPO promotionsVPO){
 		
 		if(!isExist(promotionsVPO) ){
 			getConnect();
-		String sql="insert into strategiesi values("+promotionsVPO.getType()+","+"'"+promotionsVPO.getHotel()+"'"
+		String sql="insert into strategiesv values("+promotionsVPO.getType()+","+"'"+promotionsVPO.getHotel()+"'"
 				+","+"'"+promotionsVPO.getIntroduction()+"'"+","
 				+promotionsVPO.getViplevel()+","+"'"+promotionsVPO.getArea()+"'"+","+promotionsVPO.getDiscount()+")";
 		 statement=connection.prepareStatement(sql);
@@ -171,7 +171,7 @@ public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO){
 		
 		if(!isExist(promotionsVIPO) ){
 			getConnect();
-		String sql="insert into strategiesi values("+promotionsVIPO.getType()+","+"'"+promotionsVIPO.getHotel()+"'"
+		String sql="insert into strategiesvi values("+promotionsVIPO.getType()+","+"'"+promotionsVIPO.getHotel()+"'"
 				+","+"'"+promotionsVIPO.getIntroduction()+"'"+","
 				+promotionsVIPO.getViplevel()+","+promotionsVIPO.getDiscount()+")";
 		 statement=connection.prepareStatement(sql);

@@ -11,7 +11,10 @@ public class PromotionsIVVO extends PromotionsVO{
 		this.companyname = companyname;
 	}
 	 public PromotionsIVVO(int type,String hotel,String introduction,String companyname,double discount){
-	    	super(type, hotel, introduction, discount);
+	    	this.type=type;
+	    	this.hotel=hotel;
+	    	this.introduction=introduction;
+	    	this.discount=discount;
 	    	this.companyname=companyname;
 	    }
 }

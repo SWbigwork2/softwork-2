@@ -29,9 +29,12 @@ public class PromotionsII2VO extends PromotionsVO{
 
 
 		public PromotionsII2VO(int type,String hotel,String introduction,String startdate,String enddate,double discount){
-		    	super(type, hotel, introduction, discount);	   
-		    	this.startdate=startdate;
-		    	this.enddate=enddate;
+			this.type=type;
+	    	this.hotel=hotel;
+	    	this.introduction=introduction;
+	    	this.discount=discount;
+		    this.startdate=startdate;
+		    this.enddate=enddate;
 		    	
 		    }
 }

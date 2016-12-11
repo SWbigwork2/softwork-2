@@ -7,7 +7,10 @@ public class PromotionsIIIPO extends PromotionsPO{
     	return num;
     }
     public PromotionsIIIPO(int type,String hotel,String introduction,int num,double discount){
-    	super(type, hotel, introduction, discount);
+    	this.type=type;
+    	this.hotel=hotel;
+    	this.introduction=introduction;
+    	this.discount=discount;
     	this.num=num;
     }
     

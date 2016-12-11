@@ -11,7 +11,10 @@ public class PromotionsIIIVO extends PromotionsVO{
 		this.num = num;
 	}
 	 public PromotionsIIIVO(int type,String hotel,String introduction,int num,double discount){
-	       super(type, hotel, introduction, discount);
+		     this.type=type;
+	    	this.hotel=hotel;
+	    	this.introduction=introduction;
+	    	this.discount=discount;
 	    	this.num=num;
 	    }
 }

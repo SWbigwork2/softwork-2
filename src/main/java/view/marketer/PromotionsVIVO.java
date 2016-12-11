@@ -13,7 +13,10 @@ public class PromotionsVIVO extends PromotionsVO{
 		this.viplevel = viplevel;
 	}
 	public PromotionsVIVO(int type,String hotel,String introduction,int viplevel,double discount){
-    	super(type, hotel, introduction, discount);
+		this.type=type;
+    	this.hotel=hotel;
+    	this.introduction=introduction;
+    	this.discount=discount;
     	this.viplevel=viplevel;
     }
 }

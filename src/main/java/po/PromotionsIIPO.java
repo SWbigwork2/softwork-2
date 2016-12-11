@@ -9,7 +9,10 @@ public class PromotionsIIPO extends PromotionsPO{
 	    	return enddate;
 	    }
 	    public PromotionsIIPO(int type,String hotel,String introduction,String startdate,String enddate,double discount){
-	    	super(type, hotel, introduction, discount);
+	    	this.type=type;
+	    	this.hotel=hotel;
+	    	this.introduction=introduction;
+	    	this.discount=discount;
 	    	
 	    	this.startdate=startdate;
 	    	this.enddate=enddate;
