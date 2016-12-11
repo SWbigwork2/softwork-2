@@ -1,10 +1,12 @@
 package view.staff;
 
+import Usersblimpl.StaffVO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -16,10 +18,12 @@ public class Main extends Application {
 	private static FXMLLoader loader;
 	private static Stage primaryStage ;
 	private static SplitPane mainPane;
+	private static BorderPane staffBorderPane;
+	private static StaffVO staff;
 	public  Main() {
 		
 		loader = new FXMLLoader();
-	
+	    staff =new StaffVO("111","2222", "3333", "333");
 	}
 	public static Main getMain(){
 		if(main==null){
@@ -33,7 +37,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage=primaryStage;
-		this.primaryStage.setTitle("÷∆∂®æ∆µÍ¥Ÿœ˙≤ﬂ¬‘ΩÁ√Ê");
+		this.primaryStage.setTitle("ÈÖíÂ∫óÂ∑•‰Ωú‰∫∫ÂëòÁïåÈù¢");
 		initmainPane();
 		
 		
@@ -41,18 +45,18 @@ public class Main extends Application {
 	}
 	/**
 	 * @param
-	 * @return º”‘ÿ÷∆∂®≤ﬂ¬‘µƒ≥ı ºΩÁ√Ê
+	 * @return Âä†ËΩΩÂà∂ÂÆöÁ≠ñÁï•ÁöÑÂàùÂßãÁïåÈù¢
 	 */
 	public  void initmainPane() {
 		// TODO Auto-generated method stub
 		     loader=new FXMLLoader();
 		try {
-			//º”‘ÿmainPane			
-			loader.setLocation(Main.class.getResource("StaffMainframe.fxml"));
-			mainPane=(SplitPane)loader.load();
-			StaffMainframeController controller=loader.getController();
-			//’πœ÷
-			Scene scene=new Scene(mainPane);
+			//Âä†ËΩΩmainPane			
+			loader.setLocation(Main.class.getResource("frame.fxml"));
+			staffBorderPane=(BorderPane)loader.load();
+			
+			//Â±ïÁé∞
+			Scene scene=new Scene(staffBorderPane);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -120,7 +124,54 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
     }
-
+    public void movetoAddPromotions(){
+    	try {
+    		 loader=new FXMLLoader();
+			 loader.setLocation(Main.class.getResource("StaffPromotionsframe.fxml"));
+			 mainPane=(SplitPane)loader.load();		
+			 staffBorderPane.setCenter(mainPane);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+    }
+    public void movetoDeletePromotions(){
+    	 try {
+ 			AnchorPane DeletePromotionsPane=new AnchorPane();
+ 			DeletePromotionsPane=(AnchorPane)loadPane("DeletePromotions.fxml");
+ 			staffBorderPane.setCenter(DeletePromotionsPane);
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 			// TODO: handle exception
+ 		}
+    }
+   public void showInformation(){
+	   try {
+		Pane page=new BorderPane();
+		page=(BorderPane)loadPane("StaffInformation.fxml");
+		
+		staffBorderPane.setCenter(page);
+		
+		StaffInformationController controller=loader.getController();
+		controller.setStaffVO(staff);
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+   }
+   
+   public void revampPassword(){
+	   try {
+		Pane page=new BorderPane();
+		page=(BorderPane)loadPane("revampPasswordUi.fxml");
+		
+		staffBorderPane.setCenter(page);
+		
+		StaffInformationController controller=loader.getController();
+		controller.setStaffVO(staff);
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+   }
 	
 	
   public Stage getPrimaryStage(){

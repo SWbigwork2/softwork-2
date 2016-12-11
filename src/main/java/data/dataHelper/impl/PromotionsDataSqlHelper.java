@@ -1,13 +1,10 @@
 package data.dataHelper.impl;
 
-import java.awt.Window.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.swing.text.StyledEditorKit.BoldAction;
-
+import java.util.ArrayList;
 import data.dataHelper.PromotionsDataHelper;
 import po.PromotionsIIIPO;
 import po.PromotionsIIPO;
@@ -63,8 +60,10 @@ public boolean addPromotionsI(PromotionsIPO promotionsIPO){
 		
 		
 	}
-	public  boolean addPromotionsII(PromotionsIIPO promotionsIIPO){
+	public  boolean addPromotionsII(PromotionsIIPO promotionsIIPO){//date时间转换？？？
 		boolean result=false;
+		
+		
 		try {
 			
 			if(!isExist(promotionsIIPO) ){
@@ -73,7 +72,7 @@ public boolean addPromotionsI(PromotionsIPO promotionsIPO){
 					+","+"'"+promotionsIIPO.getIntroduction()+"'"+","
 					+"'"+promotionsIIPO.getStartdate()+"'"+","
 					+"'"+promotionsIIPO.getEnddate()+"'"+","+promotionsIIPO.getDiscount()+")";
-			 statement=connection.prepareStatement(sql);
+			    statement=connection.prepareStatement(sql);
 				int row=statement.executeUpdate();
 				if(row==1)
 				result=true;
@@ -98,7 +97,7 @@ public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO){
 			String sql="insert into strategiesi values("+promotionsIIIPO.getType()+","+"'"+promotionsIIIPO.getHotel()+"'"
 					+","+"'"+promotionsIIIPO.getIntroduction()+"'"+","
 					+promotionsIIIPO.getNum()+","+promotionsIIIPO.getDiscount()+")";
-			 statement=connection.prepareStatement(sql);
+			    statement=connection.prepareStatement(sql);
 				int row=statement.executeUpdate();
 				if(row==1)
 				result=true;
@@ -247,4 +246,143 @@ private boolean isExist(PromotionsPO promotionsPO){
 	}
 	return result;
 }
+@Override
+public ArrayList<PromotionsPO> getHotelPromotions(String hotel) {
+	// TODO Auto-generated method stub
+//	String promotions[]={"strategiesi","strategiesii","strategiesiii","strategiesiv","strategiesv"
+//			,"strategiesvi"}; 
+	 ArrayList<PromotionsPO> list=new ArrayList<PromotionsPO>();
+	
+	try {
+		this.getConnect();
+		   
+			String findhotelpromotionssql1="select * from strategiesi where hotel="+"'"+hotel+"'";
+			PreparedStatement statement1=connection.prepareStatement(findhotelpromotionssql1);
+			ResultSet resultSet1=statement1.executeQuery();
+			if(resultSet1==null){
+				
+			}else{
+//				ResultSetMetaData md1=resultSet1.getMetaData();////得到结果集(rs)的结构信息，比如字段数、字段名等   
+//				int columncount1=md1.getColumnCount();
+				while(resultSet1.next()){
+					int type=resultSet1.getInt(1);
+					String hotelname=resultSet1.getString(2);
+					String introduction=resultSet1.getString(3);
+					double discount=resultSet1.getDouble(4);
+					PromotionsIPO promotionsIPO=new PromotionsIPO(type, hotelname, introduction, discount);
+					list.add(promotionsIPO);
+				}			
+			}
+			String findhotelpromotionssql2="select * from strategiesii where hotel="+"'"+hotel+"'";
+			PreparedStatement statement2=connection.prepareStatement(findhotelpromotionssql2);
+			ResultSet resultSet2=statement2.executeQuery();
+			if(resultSet2==null){
+				
+			}else{
+//				ResultSetMetaData md2=resultSet2.getMetaData();
+				while(resultSet2.next()){
+					int type=resultSet2.getInt(1);
+					String hotelname=resultSet2.getString(2);
+					String introduction=resultSet2.getString(3);
+					String startdate =resultSet2.getString(4);
+					String enddate =resultSet2.getString(5);
+					double discount=resultSet2.getDouble(6);
+					PromotionsIIPO promotionsIIPO=new PromotionsIIPO(type, hotelname, introduction, startdate, enddate, discount);
+					list.add(promotionsIIPO);
+				}
+				String findhotelpromotionssql3="select * from strategiesiii where hotel="+"'"+hotel+"'";
+				PreparedStatement statement3=connection.prepareStatement(findhotelpromotionssql3);
+				ResultSet resultSet3=statement3.executeQuery();
+				if(resultSet3==null){
+					
+				}else{
+					while(resultSet3.next()){
+						int type=resultSet3.getInt(1);
+						String hotelname=resultSet3.getString(2);
+						String introduction =resultSet3.getString(3);
+						int num=resultSet3.getInt(4);
+						double discount=resultSet3.getDouble(5);
+						PromotionsIIIPO promotionsIIIPO=new PromotionsIIIPO(type, hotelname, introduction, num, discount);
+						list.add(promotionsIIIPO);
+						
+					}
+				}
+				String findhotelpromotionssql4="select * from strategiesiv where hotel="+"'"+hotel+"'";
+				PreparedStatement statement4=connection.prepareStatement(findhotelpromotionssql4);
+				ResultSet resultSet4=statement4.executeQuery();
+				if(resultSet4==null){
+					
+				}else{
+					while(resultSet4.next()){
+						int type=resultSet4.getInt(1);
+						String hotelname=resultSet4.getString(2);
+						String introduction =resultSet4.getString(3);
+						String companyname=resultSet4.getString(4);
+						double discount=resultSet4.getDouble(5);
+						PromotionsIVPO promotionsIVPO=new PromotionsIVPO(type, hotelname, introduction, companyname, discount);
+						list.add(promotionsIVPO);
+					}
+				}
+				String findhotelpromotionssql5="select * from strategiesv where hotel="+"'"+hotel+"'";
+				PreparedStatement statement5=connection.prepareStatement(findhotelpromotionssql5);
+				ResultSet resultSet5=statement5.executeQuery();
+				if(resultSet5==null){
+					
+				}else{
+					while(resultSet5.next()){
+						int type=resultSet5.getInt(1);
+						String hotelname=resultSet5.getString(2);
+						String introduction =resultSet5.getString(3);
+						int  viplevel=resultSet5.getInt(4);
+						String area=resultSet5.getString(5);
+						double discount=resultSet5.getDouble(6);
+						PromotionsVPO promotionsVPO=new PromotionsVPO(type, hotelname, introduction, viplevel, area, discount);
+						list.add(promotionsVPO);
+					}
+				}
+				String findhotelpromotionssql6="select * from strategiesvi where hotel="+"'"+hotel+"'";
+				PreparedStatement statement6=connection.prepareStatement(findhotelpromotionssql6);
+				ResultSet resultSet6=statement6.executeQuery();
+				if(resultSet6==null){
+					
+				}else{
+					while(resultSet6.next()){
+						int type=resultSet6.getInt(1);
+						String hotelname=resultSet6.getString(2);
+						String introduction =resultSet6.getString(3);
+						int  viplevel=resultSet5.getInt(4);
+						double discount=resultSet6.getDouble(5);
+						PromotionsVIPO promotionsVIPO=new PromotionsVIPO(type, hotelname, introduction, viplevel, discount);
+						list.add(promotionsVIPO);
+					}
+				}
+				
+			}
+			
+			
+	} catch (Exception e) {
+		// TODO: handle exception
+	}finally {
+		this.freeConnect();
+	}
+	
+	return list;
+}
+//private static ArrayList<PromotionsPO> resultSetToList(ResultSet rs) throws java.sql.SQLException {   //resultset转list，每个订单的数据存在一个map中
+//    if (rs == null)   
+//        return null;  
+//    ResultSetMetaData md = rs.getMetaData(); //得到结果集(rs)的结构信息，比如字段数、字段名等   
+//    int columnCount = md.getColumnCount(); //返回此 ResultSet 对象中的列数   
+//    ArrayList<PromotionsPO> list = new ArrayList<PromotionsPO>();   
+//    Map rowData = new HashMap();   
+//    while (rs.next()) {   
+//     rowData = new HashMap(columnCount);   
+//     for (int i = 1; i <= columnCount; i++) {   
+//             rowData.put(md.getColumnName(i), rs.getObject(i));   
+//     }   
+//     list.add(rowData);   
+//     System.out.println("list:" + list.toString());   
+//    }   
+//    return list;   
+//}  
 }

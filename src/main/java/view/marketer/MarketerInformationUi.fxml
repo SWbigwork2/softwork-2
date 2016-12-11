@@ -50,9 +50,9 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="marketerIdField" prefHeight="25.0" prefWidth="230.0" text="46327846873264" GridPane.columnIndex="1" />
-            <Label fx:id="marketerNameField" prefHeight="25.0" prefWidth="230.0" text="杨凯" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <PasswordField fx:id="marketerPasswordField" editable="false" text="824739874" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="marketerIdField" prefHeight="25.0" prefWidth="230.0" GridPane.columnIndex="1" />
+            <Label fx:id="marketerNameField" prefHeight="25.0" prefWidth="230.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="marketerPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button fx:id="revampPasswordButton" mnemonicParsing="false" onAction="#revampPassword" text="√" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>

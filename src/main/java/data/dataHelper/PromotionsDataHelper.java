@@ -1,5 +1,7 @@
 package data.dataHelper;
 
+import java.util.ArrayList;
+
 import po.PromotionsIIIPO;
 import po.PromotionsIIPO;
 import po.PromotionsIPO;
@@ -9,6 +11,7 @@ import po.PromotionsVIPO;
 import po.PromotionsVPO;
 
 public interface PromotionsDataHelper {
+  public ArrayList<PromotionsPO> getHotelPromotions(String hotel);
   public boolean addPromotionsI(PromotionsIPO promotionsIPO);
   public boolean addPromotionsII(PromotionsIIPO promotionsIIPO);
   public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO);

@@ -22,8 +22,10 @@ public class StaffInformationController {
     @FXML private TextField staffNameField;
     @FXML private PasswordField staffPasswordField;
     @FXML private TextField hotelNameField;
-    StaffVO staffVO= new StaffVO("1111","11111", "1111", "1111");
-	
+    
+    private StaffVO staff;
+    private Main main;
+    	
     public StaffInformationController() {
 		// TODO Auto-generated constructor stub
 	    staffIdField  =  new TextField();
@@ -35,39 +37,36 @@ public class StaffInformationController {
     
     @FXML
     private void initialize(){
-        staffIdField.setText(staffVO.getUserId());
-        staffNameField.setText(staffVO.getName());
-        staffPasswordField.setText(staffVO.getPassword());
-        hotelNameField.setText(staffVO.getHotelName());
         
-        staffIdField.setEditable(false);
-        staffNameField.setEditable(false);
-        staffPasswordField.setEditable(false);
-        hotelNameField.setEditable(false);
+        
+        this.main=Main.getMain();
     }
     
 	@FXML
 	private void revampPassword() throws IOException{
 		
-		 newStage();
 		//弹出修改密码窗口
-        
+        main.revampPassword();
 	}
 	
 	@FXML
-	private void cancel(){
-		
+	private void cancel(){		
 		//跳转到其他界面，如果成功就保存；
+		main.initmainPane();
 	}
 	
-	private  void newStage() throws IOException{  
-        Stage secondaryStage=new Stage();  
-        Pane root1 = FXMLLoader.load(getClass().getResource("revampPasswordUi.fxml"));  
-        
-        Scene secondaryScene=new Scene(root1,500,500);  
-        secondaryStage.setScene(secondaryScene);  
-        secondaryStage.showAndWait();  
-   
-    }  
+	@FXML
+	public void confirm(){
+		main.initmainPane();
+	}
+	
+	public void setStaffVO(StaffVO staffVO){
+		this.staff=staffVO;
+		
+		staffIdField.setText(staffVO.getUserId());
+        staffNameField.setText(staffVO.getName());
+        staffPasswordField.setText(staffVO.getPassword());
+        hotelNameField.setText(staffVO.getHotelName());	
+	}
 	
 }

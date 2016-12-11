@@ -1,8 +1,9 @@
 package data.dao.impl;
 
+import java.util.ArrayList;
+
 import data.dao.PromotionsDao;
 import data.dataHelper.DataFactory;
-import data.dataHelper.MembersDataHelper;
 import data.dataHelper.PromotionsDataHelper;
 import data.dataHelper.impl.DataFactoryImpl;
 import po.PromotionsIIIPO;
@@ -70,6 +71,11 @@ public class PromotionsDaoImpl implements PromotionsDao{
 	public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO) {
 		// TODO Auto-generated method stub
 		return promotionsDataHelper.addPromotionsVI(promotionsVIPO);
+	}
+	@Override
+	public ArrayList<PromotionsPO> getHotelPromotions(String hotel) {
+		// TODO Auto-generated method stub
+		return promotionsDataHelper.getHotelPromotions(hotel);
 	}
 
 }

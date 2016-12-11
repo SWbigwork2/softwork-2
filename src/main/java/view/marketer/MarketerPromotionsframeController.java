@@ -21,18 +21,18 @@ public class MarketerPromotionsframeController  {
 		
 	}
 	/**
-	 * 页面显示制定生日特惠策略
+	 * 椤甸潰鏄剧ず鍒跺畾鐢熸棩鐗规儬绛栫暐
 	 */
 	@FXML
 	public void showPromotionsv(){
 		main.movetoPromotionsv();
-		promotionsv.setDisable(true);//把按钮设置为不可操作，在其他操作后将按钮复原
+		promotionsv.setDisable(true);//鎶婃寜閽缃负涓嶅彲鎿嶄綔锛屽湪鍏朵粬鎿嶄綔鍚庡皢鎸夐挳澶嶅師
 	    promotionsvi.setDisable(false);
 	    promotionsii2.setDisable(false);
 	   
 	}
 	/**
-	 * 页面显示制定节日特惠策略
+	 * 椤甸潰鏄剧ず鍒跺畾鑺傛棩鐗规儬绛栫暐
 	 */
 	@FXML
 	public void showPromotionsvi(){
@@ -44,7 +44,7 @@ public class MarketerPromotionsframeController  {
 		
 	}
 	/**
-	 * 页面显示制定多间特惠策略
+	 * 椤甸潰鏄剧ず鍒跺畾澶氶棿鐗规儬绛栫暐
 	 */
 	@FXML
 	public void showPromotionsii2(){

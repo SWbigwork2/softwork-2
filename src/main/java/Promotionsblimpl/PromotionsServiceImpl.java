@@ -31,8 +31,8 @@ import view.staff.PromotionsVO;
 
 public class PromotionsServiceImpl implements PromotionsService,PromotionGetPrice{
 	PromotionsDao dao;
-	MembersService membersService=new MemberServiceImpl();
-	HotelService  hotelService=new HotelServiceImpl();
+//	MembersService membersService=new MemberServiceImpl();
+//	HotelService  hotelService=new HotelServiceImpl();
 	DateFormat df = DateFormat.getDateInstance();
 	
 	
@@ -76,6 +76,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 			if(po.getType()==1){				
 			Date now=new Date();
 			String nowday=df.format(now);
+			MembersService membersService=new MemberServiceImpl();
 			MemberPO member=membersService.getMember(userId);
 			if(member.getType()==0){
 				String birth=member.getSpecial();
@@ -111,7 +112,8 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 					introduction=poIII.getIntroduction();
 				}
 			}
-		}else if(po.getType()==4){			
+		}else if(po.getType()==4){
+			MembersService membersService=new MemberServiceImpl();
 			MemberPO memberPO=membersService.getMember(userId);	
 			PromotionsIVPO poIV=(PromotionsIVPO)po;
 			if(memberPO.getType()==1){
@@ -124,6 +126,8 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 			}
 			
 		}else if(po.getType()==5){
+			MembersService membersService=new MemberServiceImpl();
+		    HotelService  hotelService=new HotelServiceImpl();
 		   PromotionsVPO poV=(PromotionsVPO)po;
 		   HotelPO hotelPO=hotelService.getHotelInformation(hotel);
 		   MemberPO memberPO=membersService.getMember(userId);
@@ -139,6 +143,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 			
 			
 		}else if(po.getType()==6){
+			MembersService membersService=new MemberServiceImpl();
 			MemberPO memberPO =membersService.getMember(userId);
 			PromotionsVIPO poVI=(PromotionsVIPO)po;
 			if(poVI.getViplevel()==memberPO.getLevel()){

@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 //private FXMLLoader loader;
 
 
-public class StaffMainframeController {
+public class StaffPromotionsframeController {
 
 	@FXML
 	private Button promotionsi;
@@ -23,7 +23,7 @@ public class StaffMainframeController {
 	private Button promotionsiv;
 	@FXML
 	private Main main;
-	public StaffMainframeController(){
+	public StaffPromotionsframeController(){
 		main=Main.getMain();
 		promotionsi=new Button();
 		promotionsii=new Button();
@@ -31,18 +31,18 @@ public class StaffMainframeController {
 		promotionsiv=new Button();
 	}
 	/**
-	 * 页面显示制定生日特惠策略
+	 * 椤甸潰鏄剧ず鍒跺畾鐢熸棩鐗规儬绛栫暐
 	 */
 	@FXML
 	public void showPromotionsi(){
 		main.movetoPromotionsi();
-		promotionsi.setDisable(true);//把按钮设置为不可操作，在其他操作后将按钮复原
+		promotionsi.setDisable(true);//鎶婃寜閽缃负涓嶅彲鎿嶄綔锛屽湪鍏朵粬鎿嶄綔鍚庡皢鎸夐挳澶嶅師
 	    promotionsii.setDisable(false);
 	    promotionsiii.setDisable(false);
 	    promotionsiv.setDisable(false);
 	}
 	/**
-	 * 页面显示制定节日特惠策略
+	 * 椤甸潰鏄剧ず鍒跺畾鑺傛棩鐗规儬绛栫暐
 	 */
 	@FXML
 	public void showPromotionsii(){
@@ -54,7 +54,7 @@ public class StaffMainframeController {
 		
 	}
 	/**
-	 * 页面显示制定多间特惠策略
+	 * 椤甸潰鏄剧ず鍒跺畾澶氶棿鐗规儬绛栫暐
 	 */
 	@FXML
 	public void showPromotionsiii(){
@@ -65,7 +65,7 @@ public class StaffMainframeController {
 		promotionsiv.setDisable(false);
 	}
 	/**
-	 * 页面显示制定企业特惠策略
+	 * 椤甸潰鏄剧ず鍒跺畾浼佷笟鐗规儬绛栫暐
 	 */
 	@FXML
 	public void showPromotionsiv(){

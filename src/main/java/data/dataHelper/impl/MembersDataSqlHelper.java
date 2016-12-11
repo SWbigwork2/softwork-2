@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import data.dataHelper.MembersDataHelper;
+import po.CreditrecordPO;
 import po.MemberPO;
 
 public class MembersDataSqlHelper implements MembersDataHelper {
@@ -34,15 +35,16 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 			e.printStackTrace();
 		}
 	}
-	public MemberPO getMember(String id) throws SQLException {
+	public MemberPO getMember(String id) {
 		// TODO Auto-generated method stub
-		try{
-			
+		MemberPO po=null;
+		try{		
 			getConnect();
 			String sql="select * from members where id = "+id+"";
 			
 			statement = connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();
+			
 			if(resultSet!=null){
 				String name =resultSet.getString(2);
 				String password=resultSet.getString(3);
@@ -51,16 +53,18 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 				String telephone=resultSet.getString(6);
 				int type=resultSet.getInt(7);
 				int level=resultSet.getInt(8);
-			    return new MemberPO(id,password,name,telephone,credit,special,type,level);
+			  po= new MemberPO(id,password,name,telephone,credit,special,type,level);
 			}else{
-				return null;
+				
 			}
-			
-			
+		
+			}catch(SQLException e){
+				e.printStackTrace();
 			}
 			finally { 
 				freeConnect();
 			}
+		return po;
 	}
 
 
@@ -68,19 +72,76 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 		// TODO Auto-generated method stub	
 		try {
 			getConnect();
-			String sql="select * from members where id = "+id+"";
-			if(sql!=null){
-				sql="update members set credit="+changecredit+" where id="+id+"";
+			  int viplevel=1;
+			  if(changecredit<0){
+				  viplevel=0;
+			  }else if(changecredit>=0&&viplevel<500){
+				  viplevel=1;
+			  }else if(changecredit>=500&&changecredit<1000){
+				  viplevel=2;
+			  }else if(changecredit>=1000&&changecredit<2000){
+				  viplevel=3;
+			  }else if(changecredit>=2000&&changecredit<3000){
+				  viplevel=4;
+			  }else if(changecredit>=3000&&changecredit<5000){
+				  viplevel=5;
+			  }else if(changecredit>=5000){
+				  viplevel=6;
+			  }
+				String sql="update members set credit="+changecredit+" where id="+id+";update members set level="+viplevel+" where id ="+id+"";
+				
 				statement = connection.prepareStatement(sql);
 			  statement.executeUpdate();
 				return true;
-			}
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
+	}
+	@Override
+	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
+		// TODO Auto-generated method stub
+		ArrayList<CreditrecordPO> list=new ArrayList<CreditrecordPO>();
+		try {
+			getConnect();
+			String creditrecordsql="select * from creditrecord where memberid ="+memberid+"";
+			statement=connection.prepareStatement(creditrecordsql);
+			ResultSet resultSet=statement.executeQuery();
+			while(resultSet.next()){
+			   String time=resultSet.getString(2);
+			   int orderid=resultSet.getInt(3);
+			   String action=resultSet.getString(4);
+			   double changecredit=resultSet.getDouble(5);
+			   double resultcredit=resultSet.getDouble(6);
+			   CreditrecordPO creditrecordPO=new CreditrecordPO(memberid, time, orderid, action, changecredit, resultcredit);
+			   list.add(creditrecordPO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			freeConnect();
+		}
+		return list;
+	}
+	@Override
+	public void insertCreditRecord(CreditrecordPO po) {
+		// TODO Auto-generated method stub
+		try {
+			getConnect();
+			String sql="insert into creditrecord values( "+"'"+po.getMemberid()+"'"+","+"'"+po.getTime()+"'"+","
+			+po.getRecordid()+","+"'"+po.getAction()+"'"+","+po.getCreditchange()+","+po.getCreditresult()+")";
+			 statement=connection.prepareStatement(sql);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally {
+			freeConnect();
+		}
 	}
 
 }

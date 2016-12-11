@@ -1,8 +1,12 @@
 package view.staff;
 
+import Promotionsblimpl.PromotionsServiceImpl;
+import blservice.PromotionsService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 public class PromotionsiController  {
@@ -10,24 +14,59 @@ public class PromotionsiController  {
 	@FXML
 	private AnchorPane PromotionsiPane;
 	@FXML
-	private TextField hotelnameTextfield;
+	private TextField hotelnameTextField;
 	@FXML
-	private TextField discountTextfield;
+	private TextField discountTextField;
+	@FXML
+	private TextField introductionTextField;
 	@FXML
 	private Button okButton;
 	@FXML
 	private Button cancelButton;
 	@FXML
 	private Main main;
+	PromotionsService promotionsService=new PromotionsServiceImpl();
 	public PromotionsiController(){
 		main=Main.getMain();
-		hotelnameTextfield=new TextField();
-		discountTextfield=new TextField();
+		hotelnameTextField=new TextField();
+		discountTextField=new TextField();
+		introductionTextField=new TextField();
 		okButton=new Button();
 		cancelButton=new Button();
 	}
-	public void designPromotionsi(){
-		String hotelname=hotelnameTextfield.getText();
-		double discount=Double.parseDouble(discountTextfield.getText());
+	public void addPromotionsI(){
+		String hotel=hotelnameTextField.getText();
+		String discountstr=discountTextField.getText();
+		String introduction=introductionTextField.getText();
+		if(hotel==null||discountstr==null||introduction==null){
+			Alert alert=new Alert(AlertType.INFORMATION);
+			alert.setTitle("提示");
+			alert.setHeaderText(null);
+			alert.setContentText("策略信息填写不完整");
+			alert.showAndWait();
+	}else{
+		double discount=Double.parseDouble(discountstr);
+		PromotionsIVO promotionsIVO=new PromotionsIVO(1, hotel, introduction, discount);
+		Boolean result=promotionsService.addPromotionsI(promotionsIVO);
+		if(result){
+			Alert alert=new Alert(AlertType.INFORMATION);
+			alert.setTitle("提示");
+			alert.setHeaderText(null);
+			alert.setContentText("策略添加成功");
+			alert.showAndWait();
+			clearPromotionsI();
+		}else{
+			Alert alert=new Alert(AlertType.INFORMATION);
+			alert.setTitle("提示");
+			alert.setHeaderText(null);
+			alert.setContentText("策略已存在");
+			alert.showAndWait();
+		}
+	}
+}
+	public void clearPromotionsI(){
+		hotelnameTextField.setText("");
+		discountTextField.setText("");
+		introductionTextField.setText("");
 	}
 }

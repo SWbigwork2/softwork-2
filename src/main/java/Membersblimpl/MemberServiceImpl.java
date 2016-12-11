@@ -1,11 +1,16 @@
 package Membersblimpl;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import blservice.MembersService;
 import blservice.OrdersService;
+import data.dao.MembersDao;
+import data.dao.impl.MembersDaoImpl;
 import ordersblimpl.OrderServiceImpl;
 import ordersblimpl.OrderType;
+import po.CreditrecordPO;
 import po.MemberPO;
 import view.member.OrderVo;
 
@@ -15,10 +20,10 @@ public class MemberServiceImpl implements MembersService{
 		
 		// TODO Auto-generated constructor stub
 	}
-
+    MembersDao membersDao=new MembersDaoImpl();
 	ResultMessage result=ResultMessage.Success;
 	OrdersService ordersService=new OrderServiceImpl();
-	MembersService membersService=new MemberServiceImpl();
+	
     public  ArrayList<OrderVo> getOrder(String id){
     	
 		return ordersService.getOrderList(id,OrderType.all);
@@ -33,14 +38,28 @@ public class MemberServiceImpl implements MembersService{
 	@Override
 	public MemberPO getMember(String id) {
 		// TODO Auto-generated method stub
-		return membersService.getMember(id);
+		return membersDao.getMember(id);
 	}
 	@Override
-	public boolean updateMemberCredit(String id, double changecredit) {
+	public boolean updateMemberCredit(String id, double changecredit,int orderid,String action) {
 		// TODO Auto-generated method stub
-		MemberPO memberPO=membersService.getMember(id);
+		MemberPO memberPO=getMember(id);
 		double totalcredit=changecredit+memberPO.getCredit();
-		
-		return membersService.updateMemberCredit(id, totalcredit);
+		 DateFormat df = DateFormat.getDateInstance();
+		 Date date=new Date();
+		String time =df.format(date);
+		CreditrecordPO creditrecordPO=new CreditrecordPO(id, time, orderid, action, changecredit, totalcredit);
+		membersDao.insertCreditRecord(creditrecordPO);
+		return membersDao.updateCredit(id, totalcredit);
+	}
+	@Override
+	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
+		// TODO Auto-generated method stub
+		return membersDao.getMemberCreditRecord(memberid);
+	}
+	@Override
+	public void insertCreditRecord(CreditrecordPO po) {
+		// TODO Auto-generated method stub
+		membersDao.insertCreditRecord(po);
 	}
 }

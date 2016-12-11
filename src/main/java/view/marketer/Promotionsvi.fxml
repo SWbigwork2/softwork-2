@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="PromotionsviPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.marketer.PromotionsviController">
+<AnchorPane fx:id="promotionsviPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.marketer.PromotionsviController">
    <children>
       <Label layoutX="178.0" layoutY="49.0" text="会员特惠策略制定">
          <font>
@@ -27,7 +27,8 @@
       <TextField fx:id="vip4dicountTextfield" layoutX="277.0" layoutY="339.0" />
       <TextField fx:id="vip5discountTextfield" layoutX="278.0" layoutY="398.0" />
       <TextField fx:id="vip6discountTextfield" layoutX="278.0" layoutY="456.0" />
-      <Button fx:id="okButton" layoutX="123.0" layoutY="520.0" mnemonicParsing="false" text="确认" />
-      <Button fx:id="cancelButton" layoutX="333.0" layoutY="520.0" mnemonicParsing="false" text="取消" />
+      <Button fx:id="okButton" layoutX="123.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#addPromotionsVI" text="确认" />
+      <Button fx:id="cancelButton" layoutX="333.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#clearPromotionsVI" text="取消" />
+      <Label layoutX="480.0" layoutY="175.0" text="(0.1~0.99)" />
    </children>
 </AnchorPane>

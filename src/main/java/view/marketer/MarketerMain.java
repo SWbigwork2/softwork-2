@@ -1,10 +1,17 @@
 package view.marketer;
 
+import Usersblimpl.MarketerVO;
+import Usersblimpl.UserControllerblimpl;
+import Usersblimpl.UserType;
+import blservice.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -16,9 +23,12 @@ public class MarketerMain extends Application {
 	private static FXMLLoader loader;
 	private static Stage primaryStage ;
 	private static SplitPane mainPane;
+	private static BorderPane marketerBorderPane;
+	private static MarketerVO marketer;
 	public  MarketerMain() {
 		
 		loader = new FXMLLoader();
+		marketer=new MarketerVO("1111", "2222", "33333");
 	
 	}
 	public static MarketerMain getMain(){
@@ -33,7 +43,7 @@ public class MarketerMain extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage=primaryStage;
-		this.primaryStage.setTitle("÷∆∂®Õ¯’æ¥Ÿœ˙≤ﬂ¬‘ΩÁ√Ê");
+		this.primaryStage.setTitle("Ëê•ÈîÄ‰∫∫Âëò‰∏ªÁïåÈù¢");
 		initmainPane();
 		
 		
@@ -41,17 +51,17 @@ public class MarketerMain extends Application {
 	}
 	/**
 	 * @param
-	 * @return º”‘ÿÕ¯’æ÷∆∂®≤ﬂ¬‘µƒ≥ı ºΩÁ√Ê
+	 * @return Âä†ËΩΩÁΩëÁ´ôÂà∂ÂÆöÁ≠ñÁï•ÁöÑÂàùÂßãÁïåÈù¢
 	 */
 	public  void initmainPane() {
 		// TODO Auto-generated method stub
 		     loader=new FXMLLoader();
 		try {
-			//º”‘ÿmainPane			
-			loader.setLocation(MarketerMain.class.getResource("MarketerPromotionsframe.fxml"));
-			mainPane=(SplitPane)loader.load();
-			//’πœ÷
-			Scene scene=new Scene(mainPane);
+			//Âä†ËΩΩmainPane
+			loader.setLocation(MarketerMain.class.getResource("MainView.fxml"));			
+			marketerBorderPane=(BorderPane)loader.load();		
+			//Â±ïÁé∞
+			Scene scene=new Scene(marketerBorderPane);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -79,6 +89,9 @@ public class MarketerMain extends Application {
 	    		
 	    		AnchorPane promotionsvPane=new AnchorPane();
 				 promotionsvPane=(AnchorPane)loadPane("Promotionsv.fxml");
+				 promotionsvPane.setPrefSize(556, 598);
+//				 promotionsvPane.setMaxSize(556, 598);
+//				 promotionsvPane.setMinSize(556, 598);
 				mainPane.getItems().set(1, promotionsvPane);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -90,7 +103,11 @@ public class MarketerMain extends Application {
 	    		
 	    		AnchorPane promotionsviPane=new AnchorPane();
 				 promotionsviPane=(AnchorPane)loadPane("Promotionsvi.fxml");
+				 promotionsviPane.setPrefSize(556, 598);
+//				 promotionsviPane.setMaxSize(556, 598);
+//				 promotionsviPane.setMinSize(556, 598);
 				mainPane.getItems().set(1, promotionsviPane);
+				
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -101,13 +118,96 @@ public class MarketerMain extends Application {
 	    		
 	    		AnchorPane promotionsii2Pane=new AnchorPane();
 				 promotionsii2Pane=(AnchorPane)loadPane("Promotionsii2.fxml");
-				mainPane.getItems().set(1, promotionsii2Pane);
+				 promotionsii2Pane.setPrefSize(556, 598);
+//				 promotionsii2Pane.setMaxSize(556, 598);
+//				 promotionsii2Pane.setMinSize(556, 598);
+				 mainPane.getItems().set(1, promotionsii2Pane);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
 	    }
-	
+	 public void movetoAddPromotions(){
+		 try {					 
+			 loader=new FXMLLoader();
+			 loader.setLocation(MarketerMain.class.getResource("MarketerPromotionsframe.fxml"));
+			 mainPane=(SplitPane)loader.load();		
+			 marketerBorderPane.setCenter(mainPane);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	 }
+	 public void movetoDeletePromotions(){
+		 try {
+			 System.out.println(2);
+			AnchorPane DeletePromotionsPane=new AnchorPane();
+			DeletePromotionsPane=(AnchorPane)loadPane("DeleteMarketPromotions.fxml");
+			marketerBorderPane.setCenter(DeletePromotionsPane);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+	 }
+	 public void movetoAddCredit(){
+		 try{
+			 loader =new FXMLLoader();
+			 loader.setLocation(MarketerMain.class.getResource("AddCredit.fxml"));
+			 BorderPane page=(BorderPane)loader.load();
+			 marketerBorderPane.setCenter(page);
+			 
+			 
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }
+	 }
+	 public void movetoInformation(){
+		 try{
+			 loader =new FXMLLoader();
+			 loader.setLocation(MarketerMain.class.getResource("MarketerInformationUi.fxml"));
+			 BorderPane page=(BorderPane)loader.load();
+			 marketerBorderPane.setCenter(page);
+			 
+			 MarketerInformationController controller=loader.getController();
+			 controller.setMarketer(marketer);
+		 
+		 }catch (Exception e) {
+			// TODO: handle exception
+		    e.printStackTrace();
+		 }
+	 }
+	 public void setMarketer(String id){
+		 UserService userService=new UserControllerblimpl();
+		 this.marketer=(MarketerVO)userService.find(id, UserType.marketer);
+	 }
+	 public void movetoRevampPassword(){
+		 try{
+			 loader =new FXMLLoader();
+			 loader.setLocation(MarketerMain.class.getResource("revampPasswordUi.fxml"));
+			 BorderPane page=(BorderPane)loader.load();
+			 marketerBorderPane.setCenter(page);
+			 
+			 RevampPasswordController controller =loader.getController();
+			 controller.setManager(marketer);
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }
+	 }
+
+
+	 public void showWaningInformation(AlertType type,
+				String headerText,String contentText){
+			 Alert alert = new Alert(type);
+		     alert.setTitle("Êù•Ëá™Á≥ªÁªüÁöÑÊèêÁ§∫");
+		     alert.setHeaderText(headerText);
+		     alert.setContentText(contentText);
+
+		     alert.showAndWait();
+		 }
+
+
   public Stage getPrimaryStage(){
 	  return primaryStage;
   }

@@ -5,24 +5,30 @@ import java.util.Date;
 import view.staff.PromotionsVO;
 
 public class PromotionsII2VO extends PromotionsVO{
-	  Date startdate,enddate;
+	  String startdate,enddate;
 
-		public Date getStartdate() {
-			return startdate;
-		}
+	
+		 public String getStartdate() {
+		return startdate;
+	}
 
-		public void setStartdate(Date startdate) {
-			this.startdate = startdate;
-		}
 
-		public Date getEnddate() {
-			return enddate;
-		}
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
+	}
 
-		public void setEnddate(Date enddate) {
-			this.enddate = enddate;
-		}
-		 public PromotionsII2VO(int type,String hotel,String introduction,Date startdate,Date enddate,double discount){
+
+	public String getEnddate() {
+		return enddate;
+	}
+
+
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
+	}
+
+
+		public PromotionsII2VO(int type,String hotel,String introduction,String startdate,String enddate,double discount){
 		    	super(type, hotel, introduction, discount);	   
 		    	this.startdate=startdate;
 		    	this.enddate=enddate;

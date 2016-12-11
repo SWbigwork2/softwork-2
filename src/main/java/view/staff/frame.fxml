@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="staffBorderPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-radius: 3px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.frameController">
+   <top>
+      <ToolBar fx:id="ToorBar" disable="true" prefHeight="50.0" prefWidth="1200.0" style="-fx-background-color: #3366FF;" stylesheets="@../Desktop/frame.css" BorderPane.alignment="CENTER">
+         <items>
+            <Label fx:id="GroupNameLabel" prefHeight="25.0" prefWidth="153.0" style="-fx-font-family: Chalkduster;" text="Winter Studio" textFill="#f5f5f5">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </items>
+      </ToolBar>
+   </top>
+   <left>
+      <AnchorPane fx:id="NevigationBar" prefHeight="750.0" prefWidth="150.0" style="-fx-background-color: #F8F8F8;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="HotelLabel" layoutX="2.0" layoutY="4.0" prefHeight="16.0" prefWidth="116.0" text="入住与退房" textAlignment="CENTER">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="FindHotelButton" layoutY="23.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="登记入住">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="登记退房">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Label fx:id="OrderLabel" layoutX="3.0" layoutY="118.0" prefHeight="16.0" prefWidth="116.0" text="维护">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="totalOrderButton" layoutY="136.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="维护酒店">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="NormalOrderButton" layoutY="166.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="录入房间">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="addPromotionsButton" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#addPromotionsView" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="制定策略">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="deletePromotionsButton" layoutY="258.0" mnemonicParsing="false" onMouseClicked="#deletePromotionsView" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="删除策略">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="FindHotelButton1" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="订单处理">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="OrderLabel1" layoutX="3.0" layoutY="201.0" prefHeight="16.0" prefWidth="116.0" text="策略">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="OrderLabel11" layoutX="3.0" layoutY="287.0" prefHeight="16.0" prefWidth="116.0" text="个人信息">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="infoButton" layoutY="303.0" mnemonicParsing="false" onMouseClicked="#showInfomation" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="查看信息">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
