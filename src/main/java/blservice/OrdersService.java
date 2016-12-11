@@ -2,10 +2,14 @@ package blservice;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+
+
 import Promotionsblimpl.PriceInfo;
+
 import ordersblimpl.OrderType;
 import ordersblimpl.ResultMessage;
-import view.member.OrderVo;
+import vo.OrderVo;
 
 public interface OrdersService {
 	
@@ -18,6 +22,13 @@ public interface OrdersService {
 	 * @return 订单总价格
 	 */
 	public PriceInfo getPrice(String hotel,double price,int roomNum,String userId,int days);
+		
+	/**
+	 * @param orderId
+	 * @param outDate
+	 * 完成订单
+	 */
+	public void completeOrder(int orderId,Date outDate);
 		
 	
 	
@@ -75,7 +86,7 @@ public interface OrdersService {
 	 * @param info
 	 * @return 确认添加订单
 	 */
-	public ResultMessage confirmAdd(OrderVo info);
+	public void confirmAdd(OrderVo info);
 	
 	/**
 	 * @param orderId
@@ -88,6 +99,17 @@ public interface OrdersService {
 	 * @return 撤销订单
 	 */
 	public ResultMessage revoke(int orderId);
+	
+	/**
+	 * @param orderId
+	 * 将订单置为异常订单
+	 */
+	public void errorHandle(int orderId);
+	
+	/**
+	 * 检查是否有订单超时
+	 */
+	public void checkOrder();
 	/**
 	 * @param orderId
 	 * @param recoverPer 恢复的比率

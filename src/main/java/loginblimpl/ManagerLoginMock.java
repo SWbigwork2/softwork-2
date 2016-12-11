@@ -19,8 +19,12 @@ public class ManagerLoginMock extends LoginMock{
 		vo = use.find(id, UserType.manager);
 		String rightId = vo.getUserId();
 		String rightPass =vo.getPassword();
+		System.out.println(rightId);
+		System.out.println(rightPass);
+		System.out.println(id);
+		System.out.println(password);
 		if(id.equals(rightId)&&password.equals(rightPass)){
-			String level = vo.getLevel();
+			String level = null;
 			String name = vo.getName();
 			return new LoginVo(UserType.manager, id, name, level);
 		}

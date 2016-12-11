@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.member.CreditNotEnoughController">
+   <children>
+      <Label layoutX="98.0" layoutY="50.0" prefHeight="52.0" prefWidth="222.0" style="-fx-text-fill: #3366FF;" text="信用值不足，请充值！" textAlignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="confirmButtion" layoutX="42.0" layoutY="214.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: #3366FF; -fx-text-fill: white;" text="确认">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Label layoutX="98.0" layoutY="102.0" prefHeight="52.0" prefWidth="141.0" style="-fx-text-fill: #3366FF; -fx-font-size: 18;" text="当前信用值：" textAlignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="98.0" layoutY="146.0" prefHeight="52.0" prefWidth="141.0" style="-fx-text-fill: #3366FF; -fx-font-size: 18;" text="最低信用值：" textAlignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="nowCredit" layoutX="239.0" layoutY="119.0" text="Label" />
+      <Label fx:id="requestCredit" layoutX="239.0" layoutY="163.0" text="Label" />
+   </children>
+</AnchorPane>

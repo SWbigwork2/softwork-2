@@ -63,7 +63,6 @@ public class ManagerLoginController {
 			errorMessage.setVisible(true);
 		}
 		else{
-			
 			main.setManager(resultVo.getId());
 			main.loginFrame();
 			System.out.println("success");

@@ -12,7 +12,8 @@ import ordersblimpl.OrderServiceImpl;
 import ordersblimpl.OrderType;
 import po.CreditrecordPO;
 import po.MemberPO;
-import view.member.OrderVo;
+import vo.OrderVo;
+
 
 
 public class MemberServiceImpl implements MembersService{
@@ -22,14 +23,16 @@ public class MemberServiceImpl implements MembersService{
 	}
     MembersDao membersDao=new MembersDaoImpl();
 	ResultMessage result=ResultMessage.Success;
-	OrdersService ordersService=new OrderServiceImpl();
+	OrdersService ordersService;
 	
     public  ArrayList<OrderVo> getOrder(String id){
+    	ordersService = new OrderServiceImpl();
     	
 		return ordersService.getOrderList(id,OrderType.all);
     	
     }
     public  ArrayList<String> getHotel(String id){
+    	ordersService = new OrderServiceImpl();
     	
     	return ordersService.getHotelList(id);
 		
@@ -37,11 +40,13 @@ public class MemberServiceImpl implements MembersService{
     }
 	@Override
 	public MemberPO getMember(String id) {
+		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
 		return membersDao.getMember(id);
 	}
 	@Override
 	public boolean updateMemberCredit(String id, double changecredit,int orderid,String action) {
+		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
 		MemberPO memberPO=getMember(id);
 		double totalcredit=changecredit+memberPO.getCredit();
@@ -54,11 +59,13 @@ public class MemberServiceImpl implements MembersService{
 	}
 	@Override
 	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
+		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
 		return membersDao.getMemberCreditRecord(memberid);
 	}
 	@Override
 	public void insertCreditRecord(CreditrecordPO po) {
+		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
 		membersDao.insertCreditRecord(po);
 	}

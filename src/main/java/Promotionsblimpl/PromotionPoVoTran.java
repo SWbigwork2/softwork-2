@@ -2,6 +2,7 @@ package Promotionsblimpl;
 
 import org.omg.PortableServer.POA;
 
+import javafx.geometry.VPos;
 import po.PromotionsIIIPO;
 import po.PromotionsIIPO;
 import po.PromotionsIPO;
@@ -25,7 +26,12 @@ public class PromotionPoVoTran {
 	 * @return 策略父类VO转PO
 	 */
 	public PromotionsPO VoToPo(PromotionsVO vo){
-     	 PromotionsPO po=new PromotionsPO(vo.getType(), vo.getHotel(), vo.getIntroduction(), vo.getDiscount());
+     	 PromotionsPO po=new PromotionsPO();
+     	 po.setType(vo.getType());
+     	 po.setHotel(vo.getHotel());
+     	 po.setDiscount(vo.getDiscount());
+     	 po.setIntroduction(vo.getIntroduction());
+//     	 =new PromotionsPO(vo.getType(), vo.getHotel(), vo.getIntroduction(), vo.getDiscount());
      	 return po;
      	
         }
@@ -51,6 +57,7 @@ public class PromotionPoVoTran {
          * @return 策略二VO转PO
          */
         public PromotionsIIPO VoToPoII(PromotionsIIVO vo){
+        	
         	   PromotionsIIPO po=new PromotionsIIPO(vo.getType(), vo.getHotel(), vo.getIntroduction(), vo.getStartdate(), vo.getEnddate(), vo.getDiscount());
         	   return po;
            }

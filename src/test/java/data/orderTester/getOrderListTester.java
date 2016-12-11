@@ -7,14 +7,14 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import RoomsMock.RoomType;
+import Roomblimpl.RoomType;
 import data.dao.OrdersDao;
 import data.dao.impl.OrdersDaoImpl;
 import ordersblimpl.OrderType;
 import po.OrderPO;
 
 public class getOrderListTester {
-	OrderPO testPo = new OrderPO(0001, "admin", "admin", "皇朝", RoomType.big, 1, 200.0, OrderType.normal, new Date(), new Date(), new Date(), new Date(),1, new Date(), false);
+	OrderPO testPo = new OrderPO(0002, "1000", "admin", "皇朝", RoomType.单人间, 1, 200.0, OrderType.done, new Date(), new Date(), new Date(), new Date(),1, new Date(), false);
 	@Test
 	public void test() {
 		OrdersDao dao = OrdersDaoImpl.getInstance();

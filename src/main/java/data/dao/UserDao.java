@@ -28,4 +28,6 @@ public interface UserDao {
      * @return 所有该类用户的一个集合
      */
     public ArrayList<UserPO> getAllUsers(UserType type);
+    
+    public boolean isHotelHasStaff(String hotelName);
 }

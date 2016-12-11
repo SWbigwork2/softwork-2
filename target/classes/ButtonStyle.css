@@ -1,0 +1,10 @@
+/* Ja[vaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.button{
+	-fx-background-color: white;
+	-fx-border-color: lightgray;
+	
+}
+.ComboBox{
+	-fx-background-color: white;
+	
+}

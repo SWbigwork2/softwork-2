@@ -6,17 +6,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Hotelblimpl.HotelsInfo;
+import Membersblimpl.MemberServiceImpl;
 import Membersblimpl.MembersInfo;
 import Promotionsblimpl.PriceInfo;
 import Promotionsblimpl.PromotionGetPrice;
 import Promotionsblimpl.Promotions;
 import Roomblimpl.RoomsInfo;
+import blservice.MembersService;
 import blservice.OrdersService;
 import data.dao.OrdersDao;
 import data.dao.impl.OrdersDaoImpl;
 import po.OrderPO;
-
-import view.member.OrderVo;
+import vo.OrderVo;
 
 public class OrderServiceImpl implements OrdersService{
 	OrdersDao dao;
@@ -37,7 +38,12 @@ public class OrderServiceImpl implements OrdersService{
 	Date revokeDate;
 	Date deadLine;
 	OrdersList ordersListMock;
+	MembersService membersService;
+	OrderPoVoTran tran;
 	public OrderServiceImpl() {
+		tran = new OrderPoVoTran();
+		membersService = new MemberServiceImpl();
+		promotions = new Promotions();
 		dao = OrdersDaoImpl.getInstance();
 		// TODO Auto-generated constructor stub
 	}
@@ -85,7 +91,7 @@ public class OrderServiceImpl implements OrdersService{
 		ArrayList<OrderVo> resultList = new ArrayList<OrderVo>();
 		for(OrderPO po:poList){
 			if(po.getOrderType().equals(orderType) || orderType==OrderType.all){
-				resultList.add(tran.vo2po(po));
+				resultList.add(tran.po2vo(po));
 			}
 		}
 		return resultList;
@@ -109,16 +115,24 @@ public class OrderServiceImpl implements OrdersService{
 		
 		
 	}
-	public OrderItem findOrder(int orderId) {
+	public OrderPO findOrder(int orderId) {
 		
-		return ordersListMock.findOrder(orderId);	
+		return dao.getOrder(orderId);
 		
 			
 	}
 	public ResultMessage revoke(int orderId){
 		OrderPO findPo = dao.getOrder(orderId);
 		findPo.setOrderType(OrderType.revoke);
+		Date revokeDate = new Date();
+		findPo.setCompleteDate(revokeDate);
+		int hours = ((int)(findPo.getDeadLine().getTime()-revokeDate.getTime()))/(3600*1000);
+		
 		if(dao.updata(findPo)){
+			if(hours<6){
+				membersService.updateMemberCredit(findPo.getUserId(), -findPo.getPrice()/2.0,findPo.getOrderId(),"撤销订单");
+			}
+			
 			return ResultMessage.success;
 		}
 		else{
@@ -160,8 +174,8 @@ public class OrderServiceImpl implements OrdersService{
 	 * @param memberId
 	 * @return 得到住过的所有酒店
 	 */
-	public ArrayList<String> getHistoyHotel(String memberId){
-		setId(memberId);
+	public ArrayList<String> getHotelList(String memberId){
+		
 		ArrayList<String> resultList = new ArrayList<String>();
 	
 		ArrayList<OrderPO> tempList=dao.getOrderList(memberId);
@@ -212,14 +226,19 @@ public class OrderServiceImpl implements OrdersService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	public ResultMessage confirmAdd(OrderVo info) {
-		// TODO Auto-generated method stub
-		return null;
+	public void confirmAdd(OrderVo info) {
+		OrderPO po = tran.vo2po(info);
+		dao.insert(po);
 	}
 	public void delete(int orderId){
 		dao.delete(orderId);
 	}
 	public ResultMessage recover(int orderId, double recoverPer) {
+		OrderPO tempPo = dao.getOrder(orderId);
+		tempPo.setOrderType(OrderType.revoke);
+		tempPo.setCompleteDate(new Date());
+		double changeCredit = tempPo.getPrice()*recoverPer;
+		
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -229,28 +248,62 @@ public class OrderServiceImpl implements OrdersService{
 	}
 	@Override
 	public PriceInfo getPrice(String hotel, double price, int roomNum, String userId, int days) {
+	
 		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public ArrayList<String> getHotelList(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		return promotions.getPrice(hotel, price, roomNum, userId, days);
 	}
 	@Override
 	public void recordIn(int orderId, Date inDate) {
-		// TODO Auto-generated method stub
 		
+		// TODO Auto-generated method stub
+		OrderPO tempPo = findOrder(orderId);
+		tempPo.setInDate(inDate);
+		dao.updata(tempPo);
 	}
 	@Override
 	public void recordOut(int orderId, Date outDate) {
+		OrderPO tempPo = findOrder(orderId);
+		tempPo.setOutDate(outDate);
+		dao.updata(tempPo);
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void setType(int orderId, OrderType type) {
+		OrderPO tempPo = findOrder(orderId);
+		tempPo.setOrderType(type);
+		dao.updata(tempPo);
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void completeOrder(int orderId, Date outDate) {
+		// TODO Auto-generated method stub
+		OrderPO tempPo = findOrder(orderId);
+		tempPo.setOutDate(outDate);
+		tempPo.setCompleteDate(new Date());
+		tempPo.setOrderType(OrderType.done);
+		membersService.updateMemberCredit(tempPo.getUserId(), tempPo.getPrice(),tempPo.getOrderId(),"完成订单");
+	}
+	@Override
+	public void errorHandle(int orderId) {
+		// TODO Auto-generated method stub
+		OrderPO tempPo = findOrder(orderId);
+		tempPo.setCompleteDate(new Date());
+		tempPo.setOrderType(orderType.error);
+		membersService.updateMemberCredit(tempPo.getUserId(), -tempPo.getPrice(),tempPo.getOrderId(),"异常订单");
+	}
+	@Override
+	public void checkOrder() {
+		// TODO Auto-generated method stub
+		Date nowDate = new Date();
+		ArrayList<OrderPO> allOrderList = dao.getAllOrderList();
+		for(OrderPO po:allOrderList){
+			Date deadline = po.getDeadLine();
+			if(nowDate.getTime()>deadline.getTime()){
+				errorHandle(po.getOrderId());
+			}
+		}
 	}
 
 

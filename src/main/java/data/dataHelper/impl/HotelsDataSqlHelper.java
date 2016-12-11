@@ -29,7 +29,7 @@ public class HotelsDataSqlHelper implements HotelsDataHelper {
 	private void getConnect() {
 		String url = "jdbc:mysql://localhost:3306/software2?characterEncoding=utf8";
 		String user = "root";
-		String password = "12345";
+		String password = "zhurunzhi654";
 		connection = SqlConnectHelper.getConnection(url, user, password);
 	}
 	
@@ -70,7 +70,7 @@ public class HotelsDataSqlHelper implements HotelsDataHelper {
 	}
 	
 	/**
-	 * 模糊搜索酒店的方法，传入一个酒店PO，其中一定包括确切的酒店商圈以及模糊的酒店地址，也可能包括酒店名
+	 * 模糊搜索酒店的方法，传入一个酒店PO，其中一定包括确切的酒店商圈以及模糊的酒店地址，也可能包括就点名
 	 * 返回一个ArrayList<HotelPO>
 	 */
 	public ArrayList<HotelPO> getHotelList(HotelPO hotelPO) {

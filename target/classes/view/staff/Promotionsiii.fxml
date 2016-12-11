@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="PromotionsiiiPane" prefHeight="598.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.PromotionsiiiController">
+   <children>
+      <Label layoutX="93.0" layoutY="35.0" prefHeight="44.0" prefWidth="371.0" text="            多间特惠策略制定" textAlignment="JUSTIFY">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+      <Label layoutX="70.0" layoutY="111.0" prefHeight="20.0" prefWidth="128.0" text="请输入酒店:" />
+      <TextField fx:id="hotelnameTextField" layoutX="231.0" layoutY="106.0" />
+      <Label layoutX="70.0" layoutY="201.0" prefHeight="20.0" prefWidth="128.0" text="请输入房间数量：" />
+      <TextField fx:id="roomsnumTextField" layoutX="231.0" layoutY="196.0" />
+      <Label layoutX="70.0" layoutY="281.0" prefHeight="20.0" prefWidth="128.0" text="请输入折扣：" />
+      <TextField fx:id="discountTextField" layoutX="227.0" layoutY="276.0" />
+      <Button fx:id="okButton" layoutX="129.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#addPromotionsIII" text="确定" />
+      <Button fx:id="cancelButton" layoutX="326.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#clearPromotionsIII" text="取消" />
+      <Label layoutX="74.0" layoutY="367.0" text="请输入策略描述：" />
+      <TextField fx:id="introductionTextField" layoutX="231.0" layoutY="362.0" />
+      <Label layoutX="433.0" layoutY="281.0" text="(0.1~0.99)" />
+   </children>
+</AnchorPane>

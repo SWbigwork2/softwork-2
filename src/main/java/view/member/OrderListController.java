@@ -4,18 +4,25 @@ package view.member;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Usersblimpl.MemberInformationVO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.MouseEvent;
+import ordersblimpl.OrderType;
+import vo.OrderVo;
 
 public class OrderListController {
 	private ArrayList<OrderVo> infoList;
 	private ObservableList<String> temp ;
+	@FXML
+	private ComboBox<String> orderTypeChoice;
 	@FXML
 	private Label ID;
 	@FXML
@@ -40,11 +47,12 @@ public class OrderListController {
 	private SplitPane splitPane;
 	private Main main ;
 	private OrderVo orderVoInfo;
+	private MemberInformationVO memberInformationVO;
 	public OrderListController() {
 		
 		main = Main.getMain();
-		infoList = main.getOrderList("admin");
-		orderVoInfo = infoList.get(0);
+		
+		//orderVoInfo = infoList.get(0);
 		ID =new Label();
 		name = new Label();
 		level = new Label();
@@ -56,29 +64,32 @@ public class OrderListController {
 		type = new Label();
 		splitPane = new SplitPane();
 		orderListView = new ListView<String>();
+		orderTypeChoice = new ComboBox<String>();
 		
 		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * 初始化的方法
 	 */
-	@FXML
-	 private void initialize(){
+	
+	
+	 public void initialize(MemberInformationVO memberVo){
 		
+		memberInformationVO = memberVo;
+		infoList = main.getOrderList(memberVo.getUserId());
 		
+		orderVoInfo = infoList.get(0);
 		
-		
-		ID.setText(orderVoInfo.getUserId());
-		name.setText(orderVoInfo.getName());
-		level.setText(orderVoInfo.getUserLevel());
+		ID.setText(memberVo.getUserId());
+		name.setText(memberVo.getName());
+		level.setText(memberVo.getLevel());
 		orderId.setText(orderVoInfo.getOrderId()+"");
 		beginDate .setText(orderVoInfo.getBeginDate().toLocaleString());
 		endDate.setText(orderVoInfo.getCompleteDate().toLocaleString());
 		hotel.setText(orderVoInfo.getHotel());
 		price.setText(orderVoInfo.getPrice()+"");
 		type.setText(orderVoInfo.getType());
-		type.setText("test");
-		type.setText("test");
+		
 		
 		//OrderVo testinfo =  new OrderVo("lv3", 0002, "admin", "admin", "新月", new Date(), new Date(), new Date(), new Date(), new Date(), 100.0, "正在进行","normal",1,1,false);
 		//infoList.add(orderVoInfo);
@@ -89,15 +100,31 @@ public class OrderListController {
 		}
 		
 		
-		
+		orderTypeChoice.setItems(FXCollections.observableArrayList("revoke","normal","done","error","all","evaluation"));
 		orderListView.setItems(temp);
 	}
-	
+	/**
+	 * 选择orderTyoe之后的操作
+	 */
+	@FXML
+	public void changeChoice(){
+		String choice = orderTypeChoice.getSelectionModel().getSelectedItem();
+		
+		temp = FXCollections.observableArrayList();
+		temp.clear();
+		for(OrderVo info:infoList){
+			if(info.getType().equals(choice)){
+				temp.add(simpleInfo(info));
+			}
+		}
+		orderListView = new ListView<String>();
+		orderListView.setItems(temp);
+	}
 	/**
 	 * @param vo
 	 * 设置用户信息的显示
 	 */
-	private void setMemberInfo(OrderVo vo){
+	public void setMemberInfo(OrderVo vo){
 		ID.setText(vo.getUserId());
 		name.setText(vo.getName());
 		level.setText(vo.getUserLevel());
@@ -131,10 +158,7 @@ public class OrderListController {
 		}
 	}
 	
-	@FXML
-	public void clink(){
-		ID.setText("");
-	}
+	
 	/**
 	 * 订单列表鼠标点击的响应
 	 */
@@ -176,7 +200,7 @@ public class OrderListController {
 	 */
 	public void showSelection(){
 		String selectedStr =orderListView.getSelectionModel().getSelectedItem();
-		System.out.println(selectedStr);
+		
 		int orderId = Integer.valueOf(selectedStr.split(" ")[0]);
 		OrderVo resultInfo =null;
 		for(OrderVo voInfo:infoList){
@@ -191,7 +215,7 @@ public class OrderListController {
 		hotel.setText(resultInfo.getHotel());
 		price.setText(resultInfo.getPrice()+"");
 		type.setText(resultInfo.getType());
-		ID.setText("test");
+		
 		
 	}
 

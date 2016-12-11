@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.StaffInformationController">
+   <bottom>
+      <Pane prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="cancelButton" layoutX="256.0" layoutY="20.0" mnemonicParsing="false" onAction="#cancel" prefHeight="35.0" prefWidth="88.0" text="返回" />
+         </children>
+      </Pane>
+   </bottom>
+   <top>
+      <Label fx:id="staffInformationTitle" alignment="CENTER" prefHeight="71.0" prefWidth="174.0" text="人员信息" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="268.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="176.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="40.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="117.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="staffIdLabel" alignment="CENTER" prefHeight="64.0" prefWidth="272.0" text="账号">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="staffNameLabel" alignment="CENTER" prefHeight="64.0" prefWidth="274.0" text="姓名" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="staffPasswordLabel" alignment="CENTER" prefHeight="64.0" prefWidth="279.0" text="密码" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="hotelNameLabel" alignment="CENTER" prefHeight="63.0" prefWidth="278.0" text="酒店名称" GridPane.rowIndex="3">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="staffIdField" GridPane.columnIndex="1" />
+            <TextField fx:id="staffNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="hotelNameField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="revampPasswordButton" mnemonicParsing="false" onAction="#revampPassword" text="√" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <PasswordField fx:id="staffPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

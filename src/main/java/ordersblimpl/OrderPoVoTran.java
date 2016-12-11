@@ -3,14 +3,14 @@ import java.util.Date;
 
 import Roomblimpl.RoomType;
 import po.OrderPO;
-import view.member.OrderVo;
+import vo.OrderVo;
 
 public class OrderPoVoTran {
 	/**
 	 * @param po
 	 * @return po转换为vo;
 	 */
-	public OrderVo vo2po(OrderPO po){
+	public OrderVo po2vo(OrderPO po){
 		int orderId = po.getOrderId();
 		String userId = po.getUserId();
 		String name =po.getName();
@@ -34,7 +34,7 @@ public class OrderPoVoTran {
 		return vo;
 	}
 	
-	public OrderPO po2vo(OrderVo vo){
+	public OrderPO vo2po(OrderVo vo){
 		int orderId = vo.getOrderId();
 		String userId = vo.getUserId();
 		String hotelNameString = vo.getHotel();

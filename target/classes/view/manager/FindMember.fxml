@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="FindMemberPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manager.FindMemberController">
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <TableView fx:id="memberList" prefHeight="320.0" prefWidth="595.0">
+               <columns>
+                  <TableColumn fx:id="memberIdColumn" prefWidth="144.0" text="账号" />
+                  <TableColumn fx:id="memberNameColumn" prefWidth="138.0" text="姓名" />
+                  <TableColumn fx:id="memberLevelColumn" prefWidth="151.0" text="会员等级" />
+                  <TableColumn fx:id="memberCreditColumn" prefWidth="149.0" text="信用值" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </center>
+   <top>
+      <Pane prefHeight="76.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="54.0" layoutY="23.0" prefHeight="39.0" prefWidth="152.0" text="查找用户">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="memberIdFindField" layoutX="365.0" layoutY="31.0" />
+            <Button fx:id="findButton" layoutX="526.0" layoutY="31.0" mnemonicParsing="false" onAction="#findMember" prefHeight="23.0" prefWidth="31.0" text="√" />
+         </children>
+      </Pane>
+   </top>
+   <bottom>
+      <Pane prefHeight="51.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="selectMemberButton" layoutX="471.0" layoutY="11.0" mnemonicParsing="false" onAction="#selectMember" prefHeight="23.0" prefWidth="68.0" text="查看">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </bottom>
+</BorderPane>

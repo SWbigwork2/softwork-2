@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane fx:id="marketerBorderPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-radius: 3px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.marketer.MainViewController">
+   <left>
+      <AnchorPane fx:id="NevigationBar" prefHeight="800.0" prefWidth="150.0" style="-fx-background-color: #F8F8F8;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="PromotionLabel" layoutX="2.0" layoutY="4.0" prefHeight="16.0" prefWidth="116.0" text="策略" textAlignment="CENTER">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="addPromotionsButton" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#addPromotionsView" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="制定策略">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="deletePromotionsButton" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#deletePromotionsView" prefHeight="28.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="删除策略">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="OrderLabel" layoutX="3.0" layoutY="85.0" prefHeight="16.0" prefWidth="116.0" text="订单">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="abnormalOrderButton" layoutY="107.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="浏览异常订单">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="InformationCenterLabel" layoutX="3.0" layoutY="136.0" prefHeight="16.0" prefWidth="116.0" text="信用充值">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="creditButton" layoutY="160.0" mnemonicParsing="false" onMouseClicked="#addCredit" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="信用充值">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="3.0" layoutY="189.0" text="个人中心" />
+            <Button fx:id="infoButton" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#showInfo" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="查看信息">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <top>
+      <ToolBar fx:id="ToorBar" disable="true" prefHeight="50.0" prefWidth="1200.0" style="-fx-background-color: #3366FF;" stylesheets="@../../../../../../../腾讯qq/1360610714/Desktop/frame.css" BorderPane.alignment="CENTER">
+         <items>
+            <Label fx:id="GroupNameLabel" prefHeight="25.0" prefWidth="153.0" style="-fx-font-family: Chalkduster;" text="Winter Studio" textFill="#f5f5f5">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </items>
+      </ToolBar>
+   </top>
+</BorderPane>

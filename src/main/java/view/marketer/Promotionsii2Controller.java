@@ -52,6 +52,7 @@ public class Promotionsii2Controller {
 			alert.showAndWait();
 		}else{
 			double discount=Double.parseDouble(discountstr);
+			System.out.println(hotel+discount);
 			PromotionsII2VO promotionsII2VO=new PromotionsII2VO(2, hotel, introduction, startdate, enddate, discount);
 			boolean result=promotionsService.addPromotionsII2(promotionsII2VO);
 			if(result){

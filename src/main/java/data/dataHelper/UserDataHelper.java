@@ -28,4 +28,11 @@ public interface UserDataHelper {
      * @return 
      */
     public ArrayList<UserPO> getAllUsers(UserType type);
+    
+    
+    /**
+     * @param hotelName  酒店名
+     * @return
+     */
+    public boolean isHotelHasStaff(String hotelName);
 }

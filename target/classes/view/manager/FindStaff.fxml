@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manager.FindStaffController">
+   <top>
+      <Pane prefHeight="76.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="54.0" layoutY="23.0" prefHeight="39.0" prefWidth="152.0" text="查找酒店工作人员">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="staffIdFindField" layoutX="365.0" layoutY="31.0" />
+            <Button fx:id="findButton" layoutX="526.0" layoutY="31.0" mnemonicParsing="false" onAction="#findStaff" prefHeight="23.0" prefWidth="31.0" text="√" />
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <TableView fx:id="staffList" prefHeight="320.0" prefWidth="595.0">
+              <columns>
+                <TableColumn fx:id="staffId" prefWidth="204.0" text="账号" />
+                <TableColumn fx:id="staffName" prefWidth="193.0" text="姓名" />
+                  <TableColumn fx:id="hotelName" prefWidth="196.0" text="酒店名称" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </center>
+   <bottom>
+      <Pane prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="checkButton" alignment="CENTER" layoutX="453.0" layoutY="7.0" mnemonicParsing="false" onAction="#selectStaff" prefHeight="23.0" prefWidth="61.0" text="查看">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </bottom>
+</BorderPane>

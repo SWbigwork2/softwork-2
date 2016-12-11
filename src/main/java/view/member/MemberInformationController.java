@@ -7,10 +7,10 @@ import Usersblimpl.UserType;
 import Usersblimpl.VipType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class MemberInformationController {
     
@@ -24,10 +24,10 @@ public class MemberInformationController {
 	@FXML private Label special;
 	
 	private MemberInformationVO member;
-	boolean isRevampedTel;
-	boolean isRevampName;
+	boolean isRevamped;
 	private Main main;
-	
+	private boolean isRevampName;
+	private boolean isRevampedTel;
 	public MemberInformationController() {
 		main=this.main.getMain();
 		
@@ -38,14 +38,13 @@ public class MemberInformationController {
         contactInformation=new TextField();
         credit=new Label();
         special=new Label();
-        isRevampName=false;
-        isRevampedTel=false;
+        isRevamped=false;
 	}
 	
 	@FXML
     private void cancel(){
         //返回到xxx	
-		main.showMain();
+		main.showMemberInfo();
     }
     
 	@FXML
@@ -55,6 +54,7 @@ public class MemberInformationController {
 		if(isRevampName){
 			String Content="名字";
 			member.setName(memberName.getText());
+			
 			if(isRevampedTel){
 				member.setContactInformation(contactInformation.getText());
 				Content=Content+"和联系方式";
@@ -67,17 +67,16 @@ public class MemberInformationController {
 		    alert.showAndWait();
 		    main.showMain();
 		}
-	    
-		//对resultMessage进行判断
-	}
+		}
 	
 	/**
 	 * 修改用户名，直接在界面里修改
 	 */
 	@FXML
 	private void revampName(){
-        memberName.setEditable(true);
-        isRevampName=true;
+        
+		memberName.setEditable(true);
+		isRevamped = true;
 	}
 	
 	/**
@@ -94,7 +93,7 @@ public class MemberInformationController {
 	@FXML
 	private void revampContactInformation(){
 		contactInformation.setEditable(true);
-	    isRevampedTel=true;
+	    isRevamped=true;
 	}
 	
 	public void setMember(MemberInformationVO member){

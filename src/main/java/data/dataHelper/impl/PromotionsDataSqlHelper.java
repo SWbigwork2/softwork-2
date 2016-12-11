@@ -24,7 +24,7 @@ public class PromotionsDataSqlHelper implements PromotionsDataHelper{
 	private void getConnect() {         //连接到数据库
 		String url = "jdbc:mysql://localhost:3306/software2";
 		String user = "root";
-		String password = "zl1314like@70";
+		String password = "zhurunzhi654";
 		connection = SqlConnectHelper.getConnection(url, user, password);
 		// TODO Auto-generated constructor stubc
 	}

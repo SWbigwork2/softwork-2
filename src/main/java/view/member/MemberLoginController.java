@@ -1,5 +1,7 @@
 package view.member;
 
+import java.awt.Desktop.Action;
+
 import Usersblimpl.UserType;
 import blservice.LoginService;
 import javafx.fxml.FXML;
@@ -7,10 +9,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import loginblimpl.LoginControllerimpl;
 import loginblimpl.LoginVo;
 
 public class MemberLoginController {
+	@FXML
+	private Button companySignButton;
 	@FXML
 	private PasswordField password;
 	@FXML
@@ -28,6 +34,7 @@ public class MemberLoginController {
 	private Main main;
 	private LoginService service;
 	public MemberLoginController() {
+		companySignButton = new Button();
 		service = new LoginControllerimpl();
 		main = Main.getMain();
 		password = new PasswordField();
@@ -61,11 +68,38 @@ public class MemberLoginController {
 		if(resultVo==null){
 			errorMessage.setVisible(true);
 		}
-		else{
+		else{	
+			main.setMemberVo(resultVo);
+			main.showMain();
 			System.out.println("success");
 		}
 	}
 	
+	/**
+	 * @param e
+	 * 回车按键的监听
+	 */
+	public void pressEnter(KeyEvent e){
+		if(e.getCode() == KeyCode.ENTER){
+			login();
+		}
+	}
+	
+	/**
+	 * 个人用户注册
+	 */
+	@FXML
+	public void MemberRegister(){
+		main.showRegister("memberRegisterUi.fxml");
+	}
+	
+	/**
+	 * 企业用户注册
+	 */
+	@FXML
+	public void companyRegister(){
+		main.showRegister("companyMemberRegister.fxml");
+	}
 	/**
 	 * 监听是否输入用户名
 	 */

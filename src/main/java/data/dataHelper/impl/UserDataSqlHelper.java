@@ -28,7 +28,7 @@ public class UserDataSqlHelper implements UserDataHelper{
     private void getConnect() {         //连接到数据库
 		String url = "jdbc:mysql://localhost:3306/software2";
 		String user = "root";
-		String password = "yktobeno.1";
+		String password = "zhurunzhi654";
 		connection = SqlConnectHelper.getConnection(url, user, password);
 		// TODO Auto-generated constructor stub
 	}
@@ -47,18 +47,18 @@ public class UserDataSqlHelper implements UserDataHelper{
      */
     private ArrayList getUserList(String userId,UserType type){
     	
-		int id=Integer.parseInt(userId);
+//		String  id=Integer.parseInt(userId);
 		ArrayList list=new ArrayList();//用来保存user的list
 		//列表查找
-        String users[]={"members","staffs","marketers"};
-		UserType userType[]={UserType.member,UserType.staff,UserType.marketer};
+        String users[]={"members","staffs","marketers","managers"};
+		UserType userType[]={UserType.member,UserType.staff,UserType.marketer,UserType.manager};
 		
 		try{
-		    for(int i=0;i<3;i++){
+		    for(int i=0;i<4;i++){
 			    if(type.equals(userType[i])){
 			    	this.getConnect();
 			    	
-				    String selectSql="SELECT * from "+users[i]+" where id="+id;
+				    String selectSql="SELECT * from "+users[i]+" where id="+userId;
 				    
 				    try {
 				    	 
@@ -185,7 +185,7 @@ public class UserDataSqlHelper implements UserDataHelper{
         	MarketerPO marketer=(MarketerPO)userPO;
         	try {
 				this.getConnect();
-				String insertStaffSql="insert into staffs values("+marketer.getId()+","+"'"+marketer.getName()+"'"+","+"'"+marketer.getPassword()+"'"+")";                        
+				String insertStaffSql="insert into marketers values("+marketer.getId()+","+"'"+marketer.getName()+"'"+","+"'"+marketer.getPassword()+"'"+")";                        
 				statement = connection.prepareStatement(insertStaffSql);
 				statement.executeUpdate();
 			} catch (Exception e) {
@@ -200,7 +200,7 @@ public class UserDataSqlHelper implements UserDataHelper{
         	ManagerPO managerPO=(ManagerPO)userPO;
         	try {
 				this.getConnect();
-				String insertStaffSql="insert into staffs values("+managerPO.getId()+","+"'"+managerPO.getName()+"'"+","+"'"+managerPO.getPassword()+"'"+")";                        
+				String insertStaffSql="insert into managers values("+managerPO.getId()+","+"'"+managerPO.getName()+"'"+","+"'"+managerPO.getPassword()+"'"+")";                        
 				statement = connection.prepareStatement(insertStaffSql);
 				statement.executeUpdate();
 			} catch (Exception e) {
@@ -216,7 +216,7 @@ public class UserDataSqlHelper implements UserDataHelper{
 	
 	public ArrayList<UserPO> getAllUsers(UserType type) {
         
-//		ArrayList<UserPO> userList=new ArrayList<UserPO>();
+		ArrayList<UserPO> userList=null;
        
 		String usersTable[]={"members","staffs","marketers"};
 		UserType userType[]={UserType.member,UserType.staff,UserType.marketer};
@@ -230,7 +230,13 @@ public class UserDataSqlHelper implements UserDataHelper{
 			        this.getConnect();
 					statement = connection.prepareStatement(findSql);
 				    resultSet=statement.executeQuery();
-				    
+		            
+
+					switch (type){
+					case member: userList= this.getMemberList(resultSet);break;
+					case staff:userList= this.getStaffList(resultSet);break;
+					case marketer:userList= this.getMarketerList(resultSet);break;
+					}
 				    
 				 }catch (SQLException e) {
 						// TODO Auto-generated catch block
@@ -241,13 +247,8 @@ public class UserDataSqlHelper implements UserDataHelper{
 			 }
 		}
         
-		switch (type){
-		case member: return this.getMemberList(resultSet);
-		case staff:return this.getStaffList(resultSet);
-		case marketer:return this.getMarketerList(resultSet);
-		}
 		
-        return null;		
+        return userList;		
 	}
 	
 	//把resultSet转成arraylist
@@ -344,5 +345,25 @@ public class UserDataSqlHelper implements UserDataHelper{
     	return memberList;
     }
     
-	
+	public boolean isHotelHasStaff(String hotelName){
+		boolean result=false;
+		String findSql="select * from staffs where hotelName= "+"'"+hotelName+"'";
+		try {
+			 
+	        this.getConnect();
+			statement = connection.prepareStatement(findSql);
+		    resultSet=statement.executeQuery();
+            if(resultSet.next()){
+            	result=true;
+            }
+		}catch (SQLException e) {
+			// TODO: handle exception
+        	e.printStackTrace();
+		}finally{
+			this.freeConnect();
+		}
+		
+		return result;
+		
+	}
 }

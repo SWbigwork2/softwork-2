@@ -1,14 +1,26 @@
 package view.member;
 
+import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 
+
+import Hotelblimpl.HotelServiceImpl;
+import Promotionsblimpl.PriceInfo;
+import Roomblimpl.RoomType;
 import Usersblimpl.MemberInformationVO;
+import blservice.HotelService;
+import blservice.OrdersService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -19,7 +31,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+import ordersblimpl.OrderServiceImpl;
+import vo.HotelVo;
+import vo.OrderVo;
 
 public class OrderBuilderController {
 	@FXML
@@ -47,14 +63,29 @@ public class OrderBuilderController {
 	@FXML
 	private ComboBox<String> roomType;
 	
+	private Main main;
 	private HotelVo hotelVo;
-	
+	private HotelService hotelService;
+	private OrderVo orderVo;
+	private OrdersService service;
 	private MemberInformationVO memberInformationVO;
-	public void setHotelVo(HotelVo vo){
+	private ArrayList<RoomVo> roomList;
+	private RoomType type;
+	private LocalDate inDateInfo;
+	private LocalDate outDateInfo;
+	public void setHotelVo(HotelVo vo,RoomType type,LocalDate inDate,LocalDate outDate,MemberInformationVO memberVo){
+		memberInformationVO = memberVo;
+		this.type = type;
 		hotelVo = vo;
-		initialize();
+		inDateInfo = inDate;
+		outDateInfo = outDate;
+		roomList = hotelService.getRoomOfHotel(hotelVo.getName(),new java.sql.Date(localToDate(inDateInfo).getTime()),new java.sql.Date(localToDate(outDateInfo).getTime()));
+		initialized();
 	}
 	public OrderBuilderController() {
+		main=Main.getMain();
+		service = new OrderServiceImpl();
+		hotelService = new HotelServiceImpl();
 		hotelImage = new ImageView();
 		hotel = new Label();
 		introduction = new TextArea();
@@ -68,15 +99,16 @@ public class OrderBuilderController {
 		peopleNum =new ComboBox<String>();
 		roomType = new ComboBox<String>();
 		
+		
 		// TODO Auto-generated constructor stub
 	}
-	
-	private void initialize(){
+	@FXML
+	private void initialized(){
 		hotel.setText(hotelVo.getName());
 		String location = hotelVo.getAddress();
 		introduction.setText(location+"\n"+hotelVo.getIntroduction());
-		beginDate.setValue(LocalDate.now());
-		outDate.setValue(beginDate.getValue().plusDays(1));
+		beginDate.setValue(inDateInfo);
+		outDate.setValue(outDateInfo);
 		String deadLine = beginDate.getValue()+"24:00";
 		deadline.setText(deadLine);
 		final Callback<DatePicker, DateCell> dayCellFactory = 
@@ -102,24 +134,78 @@ public class OrderBuilderController {
 	                };
 	            }
 	        };
+	        RoomVo selectVo = null;
+	        ArrayList<String> showString = new ArrayList<String>();
+	        for(RoomVo vo:roomList){
+	        	if(vo.getRoomType().equals(type)){
+	        		selectVo = vo;
+	        	}
+	        	String str = vo.getRoomType().toString()+" "+vo.getRoomPrice();
+	        	if(!showString.contains(str)){
+	        		showString.add(str);
+	        	}
+	        }
 	        outDate.setDayCellFactory(dayCellFactory);
 	        roomNum.setItems(FXCollections.observableArrayList("1","2","3","4","5"));
-	        roomType.setItems(FXCollections.observableArrayList(hotelVo.getRoomType()));
+	        roomType.setItems(FXCollections.observableArrayList(showString));
 	        roomNum.getSelectionModel().select(0);
-	        roomType.getSelectionModel().select(0);
+	        roomType.setValue(type.toString()+" "+selectVo.getRoomPrice());
 	        peopleNum.setItems(FXCollections.observableArrayList("1","2","3","4","5"));
 	        peopleNum.getSelectionModel().select(0);
 		
 		
 	}
+	
+	public void cancel(){
+		main.backPane();
+	}
+	
+	/**
+	 * 设置房间类型列表
+	 */
+	public void setTypeList(){
+		Date inDateTime = localToDate(beginDate.getValue());
+		Date outDateTime = localToDate(outDate.getValue());
+		roomList = hotelService.getRoomOfHotel(hotelVo.getName(),new java.sql.Date(inDateTime.getTime()),new java.sql.Date(inDateTime.getTime()));
+		ArrayList<String> showString = new ArrayList<String>();
+        for(RoomVo vo:roomList){
+        	
+        	String str = vo.getRoomType().toString()+" "+vo.getRoomPrice();
+        	if(!showString.contains(str)){
+        		showString.add(str);
+        	}
+        }
+       
+       
+        roomType.setItems(FXCollections.observableArrayList(showString));
+       
+       
+    
+	}
+	
+	/**
+	 * @param time
+	 * @return 将localDate转换成date
+	 */
 	private Date localToDate(LocalDate time){
 		Instant instant = Instant.from(time.atStartOfDay(ZoneId.systemDefault()));
 		return Date.from(instant);
 	}
+	/**
+	 * 添加订单的方法
+	 */
 	@FXML
 	public void addOrder(){
+		double credit = memberInformationVO.getCredit();
+		if(credit<0){
+			main.showTips("creditNotEnough.fxml");
+			return;
+		}
 		String hotelString = hotel.getText();
 		String roomTypeString = roomType.getSelectionModel().getSelectedItem();
+		String[] typeInfo = roomTypeString.split(" ");
+		double onePrice = Double.valueOf(typeInfo[1]);
+		roomTypeString = typeInfo[0];
 		int roomNumber = Integer.valueOf(roomNum.getSelectionModel().getSelectedItem());
 		int peopleNumber = Integer.valueOf(peopleNum.getSelectionModel().getSelectedItem());
 		Date inDateTime = localToDate(beginDate.getValue());
@@ -132,7 +218,45 @@ public class OrderBuilderController {
 		if(hasChild.isSelected()){
 			isHasChild = true;
 		}
+		PriceInfo priceInfo = service.getPrice(hotelString, onePrice, roomNumber, memberInformationVO.getUserId(),calDays(inDateTime, outDateTime) );
+		//double price = priceInfo.getPrice();
+		//String promotionIntro = priceInfo.getIntroduction();
+		double price = 100.0;
+		String promotionIntro = "hha";
+		orderVo = new OrderVo();
+		orderVo.setUserId(memberInformationVO.getUserId());
+		orderVo.setName(memberInformationVO.getName());
+		orderVo.setType("normal");
+		orderVo.setOrderId(orderIdCreate());
+		orderVo.setHotel(hotelString);
+		orderVo.setRoomType(roomTypeString);
+		orderVo.setPrice(price);
+		orderVo.setRoomNum(roomNumber);
+		orderVo.setPeopleNum(peopleNumber);
+		orderVo.setInDate(inDateTime);
+		orderVo.setBeginDate(beginDateTime);
+		orderVo.setOutDate(outDateTime);
+		orderVo.setDeadLine(deadLine);
+		main.showOrderInfoConfirm(orderVo, promotionIntro);
 		
+		
+	}
+	
+	private int orderIdCreate(){
+		Date date = new Date();
+		int day = date.getDate()*10000+date.getHours()*100+date.getSeconds();
+		return day;
+	}
+	/**
+	 * @param inDate
+	 * @param outDate
+	 * @return 计算天数的方法
+	 */
+	private int calDays(Date inDate,Date outDate){
+		long time1 = outDate.getTime();
+		long time2 = inDate.getTime();
+		int days =  ((int)(time1-time2)/(1000*60*60*24));
+		return days;
 	}
 
 }

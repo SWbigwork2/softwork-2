@@ -62,7 +62,8 @@ public class StaffLoginController {
 			errorMessage.setVisible(true);
 		}
 		else{
-			System.out.println("success");
+			main.setMemberVo(resultVo);
+			main.showMain();
 		}
 	}
 	

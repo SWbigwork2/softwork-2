@@ -119,7 +119,10 @@ public class OrdersDataSqlHelper implements OrdersDataHelper{
 		
 		
 		Timestamp beginTs = new Timestamp(po.getBeginDate().getTime());
-		Timestamp completeTs = new Timestamp(po.getCompleteDate().getTime());
+		Timestamp completeTs = null;
+		if(po.getCompleteDate()!=null){
+		completeTs = new Timestamp(po.getCompleteDate().getTime());
+		}
 		Timestamp inTs =new Timestamp(po.getInDate().getTime());
 		Timestamp outTs = new Timestamp(po.getOutDate().getTime());
 		Timestamp deadline = new Timestamp(po.getDeadLine().getTime());

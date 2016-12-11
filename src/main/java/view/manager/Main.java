@@ -31,6 +31,7 @@ public class Main extends Application{
 	public  Main() {
 		
 		loader = new FXMLLoader();
+	    managerVO=new ManagerVO("1111", "2222", "3333");
 	}
 	
 	public static Main getMain(){
@@ -232,7 +233,6 @@ public class Main extends Application{
 	public void setManager(String managerId){
 		UserService userService =new UserControllerblimpl();
 		this.managerVO=(ManagerVO)userService.find(managerId, UserType.manager);
-		
 	}
 
 	public void showWaningInformation(AlertType type,

@@ -20,7 +20,7 @@ public class StaffLoginMock extends LoginMock{
 		String rightId = vo.getUserId();
 		String rightPass =vo.getPassword();
 		if(id.equals(rightId)&&password.equals(rightPass)){
-			String level = vo.getLevel();
+			String level =null;
 			String name = vo.getName();
 			return new LoginVo(UserType.staff, id, name, level);
 		}

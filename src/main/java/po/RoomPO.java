@@ -1,6 +1,8 @@
 package po;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Map;
 
 import Roomblimpl.RoomType;
@@ -42,8 +44,12 @@ public class RoomPO implements Serializable,RoomsInfo{
 	public double getPrice(){
 		return price;
 	}
-	@Override
 	public Map<Date, Date> getUnavailablePeriod() {
 		return unavailablePeriod;
+	}
+
+	public ArrayList<Timestamp> getRoomStatus() {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }

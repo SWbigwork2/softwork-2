@@ -16,11 +16,12 @@ public class MarketerLoginMock extends LoginMock{
 	
 	@Override
 	public LoginVo login(String id, String password) {
-		vo = use.find(id, UserType.marketer);
+		vo = use.find("1000", UserType.marketer);
+	
 		String rightId = vo.getUserId();
 		String rightPass =vo.getPassword();
 		if(id.equals(rightId)&&password.equals(rightPass)){
-			String level = vo.getLevel();
+			String level = null;
 			String name = vo.getName();
 			return new LoginVo(UserType.marketer, id, name, level);
 		}

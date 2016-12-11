@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<SplitPane fx:id="mainPane" dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.StaffMainframeController">
+   <items>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+         <children>
+            <Label layoutX="53.0" layoutY="48.0" prefHeight="40.0" prefWidth="129.0" text="制定酒店促销策略" />
+            <Button fx:id="promotionsi" layoutX="44.0" layoutY="116.0" mnemonicParsing="false" onMouseClicked="#showPromotionsi" text="生日特惠策略" />
+            <Button fx:id="promotionsiii" layoutX="44.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#showPromotionsiii" text="多间特惠策略" />
+            <Button fx:id="promotionsiv" layoutX="44.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#showPromotionsiv" text="企业特惠策略" />
+            <Button fx:id="promotionsii" layoutX="44.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#showPromotionsii" text="节日特惠策略" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="viewPane" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="800.0" />
+   </items>
+</SplitPane>

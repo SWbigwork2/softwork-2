@@ -1,14 +1,12 @@
 package blservice;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Map;
-
-import Roomblimpl.RoomType;
+import po.HotelPO;
+import view.member.HotelColumnVo;
 import view.member.HotelSearchVo;
-import view.member.HotelVo;
 import view.member.RoomVo;
+import vo.HotelVo;
 
 public interface HotelService {
 	/**
@@ -41,7 +39,7 @@ public interface HotelService {
 	 * @param hotelSearchVo
 	 * @return 返回一系列符合条件的酒店
 	 */
-	public ArrayList<HotelVo> getHotelListInfo(HotelSearchVo hotelSearchVo);
+	public ArrayList<HotelColumnVo> getHotelListInfo(HotelSearchVo hotelSearchVo);
 	/**
 	 * 
 	 * @param hotelVo
@@ -68,5 +66,11 @@ public interface HotelService {
 	 * @return 界面层用于调用来显示分数
 	 */
 	public double getHotelRemark(String hotelName);
+	/**
+	 * 
+	 * @param hotelName
+	 * @return
+	 */
+	public HotelPO getHotelInformation(String hotelName);
 	
 }

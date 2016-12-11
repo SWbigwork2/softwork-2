@@ -8,14 +8,14 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import RoomsMock.RoomType;
+import Roomblimpl.RoomType;
 import data.dao.OrdersDao;
 import data.dao.impl.OrdersDaoImpl;
 import ordersblimpl.OrderType;
 import po.OrderPO;
 
 public class OrderInsertAndDeleteTester {
-	OrderPO testPo = new OrderPO(0001, "admin", "admin", "皇朝", RoomType.big, 1, 200.0, OrderType.normal, new Date(), new Date(), new Date(), new Date(),1, new Date(), false);
+	OrderPO testPo = new OrderPO(0004, "admin", "admin", "皇朝", RoomType.单人间, 1, 200.0, OrderType.normal, new Date(), new Date(), new Date(), new Date(),1, new Date(), false);
 	@Test
 	public void insert_GetTest() {     //插入和得到列表的测试
 		OrdersDao dao = OrdersDaoImpl.getInstance();
@@ -35,7 +35,7 @@ public class OrderInsertAndDeleteTester {
 		
 		OrdersDao dao = OrdersDaoImpl.getInstance();
 		int preNum = dao.getOrderList("admin").size();
-		assertTrue(dao.delete(0001));
+		assertTrue(dao.delete(0004));
 		assertEquals(false, dao.delete(0000));
 		int afterNum = dao.getOrderList("admin").size();
 		assertEquals(1, preNum-afterNum);

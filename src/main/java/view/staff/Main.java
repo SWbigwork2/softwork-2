@@ -1,6 +1,10 @@
 package view.staff;
 
+import Usersblimpl.MarketerVO;
 import Usersblimpl.StaffVO;
+import Usersblimpl.UserControllerblimpl;
+import Usersblimpl.UserType;
+import blservice.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import loginblimpl.LoginVo;
 
 public class Main extends Application {
   
@@ -20,10 +25,13 @@ public class Main extends Application {
 	private static SplitPane mainPane;
 	private static BorderPane staffBorderPane;
 	private static StaffVO staff;
+	private static Stage loginStage;
+	private UserService userService;
+	
 	public  Main() {
-		
+		userService = new UserControllerblimpl();
 		loader = new FXMLLoader();
-	    staff =new StaffVO("111","2222", "3333", "333");
+	  
 	}
 	public static Main getMain(){
 		if(main==null){
@@ -34,11 +42,26 @@ public class Main extends Application {
 			return main;
 		}
 	}
+	public void setMemberVo(LoginVo vo){
+		userService = new UserControllerblimpl();
+		this.staff =(StaffVO) userService.find(vo.getId(), UserType.staff);
+		
+		
+		
+	}
+	public void showMain(){
+		this.primaryStage.setTitle("酒店工作人员主界面");
+		initmainPane();
+	}
 	@Override
 	public void start(Stage primaryStage) {
+		loginStage = new Stage();
+		Pane loginPane = loadPane("StaffLogin.fxml");
+		Scene loginScene = new Scene(loginPane,600,400);
+		loginStage.setScene(loginScene);
+		loginStage.show();
 		this.primaryStage=primaryStage;
-		this.primaryStage.setTitle("酒店工作人员界面");
-		initmainPane();
+		
 		
 		
 		

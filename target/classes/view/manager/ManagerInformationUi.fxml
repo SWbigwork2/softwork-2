@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="informationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manager.ManagerInformationController">
+   <bottom>
+      <Pane prefHeight="83.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="cancelButton" layoutX="109.0" layoutY="25.0" mnemonicParsing="false" onAction="#cancel" prefHeight="34.0" prefWidth="89.0" text="返回" />
+            <Button fx:id="commitButton" layoutX="322.0" layoutY="25.0" mnemonicParsing="false" onAction="#confirm" prefHeight="34.0" prefWidth="89.0" text="确认" />
+         </children>
+      </Pane>
+   </bottom>
+   <top>
+      <Label fx:id="managerInformationTitle" alignment="CENTER" prefHeight="62.0" prefWidth="171.0" text="人员信息" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <GridPane prefHeight="137.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.0" minWidth="10.0" prefWidth="192.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="205.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="29.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="87.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="49.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="managerIdLabel" alignment="CENTER" prefHeight="90.0" prefWidth="247.0" text="账号">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="managerNameLabel" alignment="CENTER" prefHeight="122.0" prefWidth="247.0" text="姓名" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="managerPasswordLabel" alignment="CENTER" prefHeight="86.0" prefWidth="247.0" text="密码" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="managerIdField" prefHeight="25.0" prefWidth="236.0" GridPane.columnIndex="1" />
+            <Label fx:id="managerNameField" prefHeight="25.0" prefWidth="235.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="managerPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="revampPasswordButton" mnemonicParsing="false" onAction="#revampPassword" text="√" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

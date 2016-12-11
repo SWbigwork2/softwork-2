@@ -31,7 +31,7 @@ public class EvaluateDaoImpl implements EvaluateDao {
 	    
 	public ResultMessage addEvaluate(EvaluatePO evaluatePO) {
 		// TODO Auto-generated method stub
-		return evaluateDataHelper.addEvaluate(evaluatePO.getHotelName(), evaluatePO.getScore(), evaluatePO.getS(),evaluatePO.getMemberId());
+		return evaluateDataHelper.addEvaluate(evaluatePO.getHotelName(), evaluatePO.getScore(), evaluatePO.getS(),evaluatePO.getName());
 	}
 
 	public ArrayList getEvaluatetion(String hotelName) {

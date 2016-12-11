@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import po.CreditrecordPO;
 import po.MemberPO;
-import view.member.OrderVo;
+import vo.OrderVo;
+
 
 public interface MembersService {
 	public  ArrayList<OrderVo>  getOrder(String id);

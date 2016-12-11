@@ -8,8 +8,8 @@ import javax.naming.spi.DirStateFactory.Result;
 
 import org.junit.Test;
 
-import UsersMock.ResultMessage;
-import UsersMock.UserType;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserType;
 import data.dao.UserDao;
 import data.dao.impl.UserDaoImpl;
 import po.StaffPO;

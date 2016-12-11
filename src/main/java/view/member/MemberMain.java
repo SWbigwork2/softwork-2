@@ -22,7 +22,6 @@ public class MemberMain extends Application {
 		}
 	}
 	
-	
 	private Pane loadPane(String FXML){
 		loader = new FXMLLoader();
 		loader.setLocation(MemberMain.class.getResource(FXML));
@@ -38,7 +37,8 @@ public class MemberMain extends Application {
 	public void start(Stage primaryStage) {
 		stage = primaryStage;
 		mainRoot = loadPane("AddRoom.fxml");
-		Scene scene = new Scene(new Pane(),1200,800);
+		
+		Scene scene = new Scene(mainRoot,1200,800);
 		stage.setScene(scene);
 		stage.show();
 	}

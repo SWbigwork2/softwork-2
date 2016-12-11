@@ -3,6 +3,7 @@ package Roomblimpl;
 import po.RoomPO;
 import view.member.RoomVo;
 
+
 public class RoomVoPoTran {
 	
 	public RoomPO VoToPo(RoomVo roomVo){

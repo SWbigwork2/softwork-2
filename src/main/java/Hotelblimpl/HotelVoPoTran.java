@@ -2,7 +2,7 @@ package Hotelblimpl;
 
 
 import po.HotelPO;
-import view.member.HotelVo;
+import vo.HotelVo;
 
 public class HotelVoPoTran {
 	

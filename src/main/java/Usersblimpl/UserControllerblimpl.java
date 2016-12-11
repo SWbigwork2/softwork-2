@@ -8,7 +8,7 @@ import blservice.UserService;
 import data.dao.UserDao;
 import data.dao.impl.UserDaoImpl;
 import po.UserPO;
-import view.member.HotelVo;
+
 
 public class UserControllerblimpl implements UserService,UserInfo {
     private Userblimpl user;

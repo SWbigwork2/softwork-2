@@ -12,9 +12,10 @@ import blservice.RoomService;
 import data.dao.HotelsDao;
 import data.dao.impl.HotelsDaoImpl;
 import po.HotelPO;
+import view.member.HotelColumnVo;
 import view.member.HotelSearchVo;
-import view.member.HotelVo;
 import view.member.RoomVo;
+import vo.HotelVo;
 
 public class HotelServiceImpl implements HotelService {
 
@@ -68,7 +69,7 @@ public class HotelServiceImpl implements HotelService {
 	 * 
 	 */
 	@Override
-	public ArrayList<HotelVo> getHotelListInfo(HotelSearchVo hotelSearchVo) {
+	public ArrayList<HotelColumnVo> getHotelListInfo(HotelSearchVo hotelSearchVo) {
 
 		RoomService roomService = new RoomServiceImpl();
 
@@ -143,9 +144,9 @@ public class HotelServiceImpl implements HotelService {
 			checkList.clear();
 		}
 
-		ArrayList<HotelVo> hotelVoList = new ArrayList<HotelVo>();
+		ArrayList<HotelColumnVo> hotelVoList = new ArrayList<HotelColumnVo>();
 		for (HotelPO cell : hotelList) {
-			hotelVoList.add(hotelVoPoTran.PoToVo(cell));
+			hotelVoList.add(new HotelColumnVo(cell.getName(), roomService.getLowestPrice(cell.getName(), startTimestamp, endTimestamp),cell.getRanking(), getHotelRemark(cell.getName())));
 		}
 		return hotelVoList;
 	}
@@ -186,6 +187,11 @@ public class HotelServiceImpl implements HotelService {
 	public double getHotelRemark(String hotelName) {
 		return 4.7;
 		//return HotelNameAndRemarkList.get(hotelName);
+	}
+	
+	@Override
+	public HotelPO getHotelInformation(String hotelName) {
+		return hotelsDao.getHotelDetails(hotelName);
 	}
 
 }

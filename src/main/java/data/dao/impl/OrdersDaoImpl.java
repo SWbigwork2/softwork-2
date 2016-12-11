@@ -111,7 +111,7 @@ public class OrdersDaoImpl implements OrdersDao{
 		// TODO Auto-generated method stub
 		return ordersDataHelper.deleteOrder(orderId);
 	}
-	private ArrayList<OrderPO> getAllOrderList(){ //私有方法，得到所有的Order信息
+	public ArrayList<OrderPO> getAllOrderList(){ //私有方法，得到所有的Order信息
 		ArrayList<OrderPO> resultPos = new ArrayList<OrderPO>();  //存储结果po列表
 		try {
 			ArrayList resultList = ordersDataHelper.getOrdersList();
@@ -147,7 +147,11 @@ public class OrdersDaoImpl implements OrdersDao{
 		double price = Double.valueOf((Float)hm.get("price"));
 		
 		Date beginDate =  new Date(((Timestamp)(hm.get("begindate"))).getTime());
-		Date completeDate = new Date(((Timestamp)(hm.get("completedate"))).getTime());
+		Date completeDate = null;
+		if(hm.get("completedate")!=null){
+			 completeDate = new Date(((Timestamp)(hm.get("completedate"))).getTime());
+		}
+		
 		Date inDate =new Date(((Timestamp)(hm.get("indate"))).getTime());
 		Date outDate = new Date(((Timestamp)(hm.get("outdate"))).getTime());
 		Date deadLine = new Date(((Timestamp)(hm.get("deadline"))).getTime());

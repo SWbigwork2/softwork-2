@@ -19,6 +19,10 @@ public interface OrdersDao {
 	
 	public boolean delete(int orderId);  //删除指定订单信息
 	
+	/**
+	 * @return 得到所有订单信息
+	 */
+	public ArrayList<OrderPO> getAllOrderList();
 	
 	
 

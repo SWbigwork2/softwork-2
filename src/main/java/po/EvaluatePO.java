@@ -1,31 +1,31 @@
 package po;
 
-import java.util.ArrayList;
-
 public class EvaluatePO {
 	
     private String hotelName;
-	private String memberId;
     private double score;
     private String s;
+    private String memberName;
     
-    public EvaluatePO(String hotelName,String memberId,double score,String s){
+    public EvaluatePO(String hotelName,double score,String s,String memberName){
     	this.hotelName=hotelName;
-    	this.memberId=memberId;
     	this.score=score;
     	this.s=s;
+    	this.memberName=memberName;
     }
     
     public String getHotelName() {
 		return hotelName;
 	}
-	public String getMemberId() {
-		return memberId;
-	}
+    
+    public String getName(){
+    	return memberName;
+    }
 	
 	public double getScore() {
 		return score;
 	}
+	
 	public String getS() {
 		return s;
 	}

@@ -1,5 +1,6 @@
 package loginblimpl;
 
+import Usersblimpl.MemberInformationVO;
 import Usersblimpl.UserInfo;
 import Usersblimpl.UserType;
 import Usersblimpl.UserVO;
@@ -20,7 +21,7 @@ public class MemberLoginMock extends LoginMock{
 		String rightId = vo.getUserId();
 		String rightPass =vo.getPassword();
 		if(id.equals(rightId)&&password.equals(rightPass)){
-			String level = vo.getLevel();
+			String level = ((MemberInformationVO) vo).getLevel();
 			String name = vo.getName();
 			return new LoginVo(UserType.member, id, name, level);
 		}

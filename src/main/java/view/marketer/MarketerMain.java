@@ -1,6 +1,7 @@
 package view.marketer;
 
 import Usersblimpl.MarketerVO;
+import Usersblimpl.MemberInformationVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
 import blservice.UserService;
@@ -14,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import loginblimpl.LoginVo;
 
 public class MarketerMain extends Application {
   
@@ -25,11 +27,26 @@ public class MarketerMain extends Application {
 	private static SplitPane mainPane;
 	private static BorderPane marketerBorderPane;
 	private static MarketerVO marketer;
-	public  MarketerMain() {
-		
-		loader = new FXMLLoader();
-		marketer=new MarketerVO("1111", "2222", "33333");
+	private static Stage loginStage;
+	private UserService userService;
 	
+	public  MarketerMain() {
+		userService = new UserControllerblimpl();
+		loader = new FXMLLoader();
+	
+	
+	}
+	
+	public void setMemberVo(LoginVo vo){
+		userService = new UserControllerblimpl();
+		this.marketer =(MarketerVO) userService.find(vo.getId(), UserType.marketer);
+		
+		
+		
+	}
+	public void showMain(){
+		this.primaryStage.setTitle("营销人员主界面");
+		initmainPane();
 	}
 	public static MarketerMain getMain(){
 		if(main==null){
@@ -42,10 +59,14 @@ public class MarketerMain extends Application {
 	}
 	@Override
 	public void start(Stage primaryStage) {
-		this.primaryStage=primaryStage;
-		this.primaryStage.setTitle("营销人员主界面");
-		initmainPane();
+		loginStage = new Stage();
+		Pane loginPane = loadPane("MarketLogin.fxml");
+		Scene loginScene = new Scene(loginPane,600,400);
+		loginStage.setScene(loginScene);
+		loginStage.show();
 		
+		this.primaryStage=primaryStage;
+	
 		
 		
 	}

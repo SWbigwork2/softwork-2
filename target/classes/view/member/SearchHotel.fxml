@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: #3F51B5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.member.SearchHotelController">
+   <children>
+      <Label layoutX="30.0" layoutY="366.0" prefHeight="26.0" prefWidth="133.0" style="-fx-text-fill: white;" text="精品酒店选择" underline="true" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="366.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="36.0" style="-fx-text-fill: white;" text="发现新酒店" underline="true" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="36.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Pagination fx:id="AdvertisementArea" layoutX="139.0" layoutY="439.0" maxPageIndicatorCount="5" pageCount="6" prefHeight="227.0" prefWidth="524.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="400.0" />
+      <AnchorPane layoutX="30.0" layoutY="200.0" prefHeight="100.0" prefWidth="306.0" style="-fx-border-radius: 3px;" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" prefHeight="17.0" prefWidth="60.0" style="-fx-text-fill: white;" text="房间" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="6.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="TypeBar" layoutX="7.0" layoutY="30.0" prefHeight="29.0" prefWidth="140.0" promptText="类型" style="-fx-background-color: #FFFFFF; -fx-border-radius: 0; -fx-background-radius: 0;" visibleRowCount="6" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="30.0" />
+            <ComboBox fx:id="PriceBar" layoutX="7.0" layoutY="63.0" prefHeight="29.0" prefWidth="334.0" promptText="价格" style="-fx-background-color: #FFFFFF; -fx-border-radius: 3px; -fx-background-radius: 0;" visibleRowCount="5" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
+            <TextField fx:id="roomNumBar" layoutX="181.0" layoutY="31.0" opacity="0.96" prefHeight="30.0" prefWidth="140.0" promptText="房间数目" snapToPixel="false" style="-fx-background-color: white; -fx-border-radius: 0px; -fx-border-color: #E8E8E8;" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="30.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="379.0" layoutY="195.0" prefHeight="100.0" prefWidth="306.0" style="-fx-border-radius: 3px;" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="343.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <Label layoutX="15.0" layoutY="3.0" prefHeight="17.0" prefWidth="60.0" style="-fx-text-fill: white;" text="时间" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="3.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="InTimeBar" layoutX="4.0" layoutY="30.0" prefHeight="29.0" prefWidth="234.0" promptText="入住时间" showWeekNumbers="true" style="-fx-background-color: white; -fx-border-radius: 0px; -fx-background-radius: 0;" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="30.0" />
+            <DatePicker fx:id="LeaveTimeBar" layoutX="4.0" layoutY="63.0" prefHeight="29.0" prefWidth="234.0" promptText="离开时间" style="-fx-background-color: white; -fx-show-week-numbers: true; -fx-border-radius: 0; -fx-background-radius: 0;" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="63.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="33.0" layoutY="70.0" prefHeight="100.0" prefWidth="306.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <Label layoutX="5.0" layoutY="5.0" prefHeight="17.0" prefWidth="60.0" style="-fx-text-fill: white;" text="地点" AnchorPane.leftAnchor="8.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="TradeAreaBar" layoutX="7.0" layoutY="63.0" prefHeight="29.0" prefWidth="220.0" promptText="商圈" style="-fx-background-color: #FFFFFF; -fx-border-radius: 0px; -fx-background-radius: 0;" visibleRowCount="7" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
+            <TextField fx:id="AddressBar" layoutX="7.0" layoutY="30.0" opacity="0.96" prefHeight="29.0" prefWidth="334.0" snapToPixel="false" style="-fx-background-color: white; -fx-border-radius: 0px; -fx-border-color: #E8E8E8;" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
+         </children>
+      </AnchorPane>
+      <Separator layoutX="30.0" layoutY="170.0" prefWidth="200.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="170.0" />
+      <Label layoutX="35.0" layoutY="175.0" style="-fx-text-fill: white;" text="高级搜索" AnchorPane.leftAnchor="38.0">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="historyButton" layoutX="872.0" layoutY="148.0" mnemonicParsing="false" onAction="#startHistorySearch" prefHeight="28.0" prefWidth="116.0" style="-fx-background-color: white; -fx-background-radius: 0; -fx-text-fill: #3F51B5;" text="搜索历史酒店" AnchorPane.leftAnchor="872.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="148.0" />
+      <Button fx:id="Searchbutton" layoutX="872.0" layoutY="188.0" mnemonicParsing="false" onAction="#startSearch" prefHeight="27.0" prefWidth="116.0" style="-fx-background-color: white; -fx-background-radius: 0; -fx-text-fill: #3F51B5;" text="搜索" AnchorPane.leftAnchor="872.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="188.0" />
+      <AnchorPane layoutX="442.0" layoutY="136.0" prefHeight="100.0" prefWidth="400.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="343.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <TextField fx:id="HotelNameBar" layoutX="16.0" layoutY="16.0" prefHeight="29.0" prefWidth="384.0" promptText="酒店名" style="-fx-background-color: white; -fx-border-radius: 0; -fx-background-radius: 0;" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="30.0" />
+            <ComboBox fx:id="rankingBar" layoutX="30.0" layoutY="52.0" prefHeight="29.0" prefWidth="384.0" promptText="星级" style="-fx-background-color: #FFFFFF; -fx-border-radius: 0; -fx-background-radius: 0;" visibleRowCount="5" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="63.0" />
+            <Label layoutX="158.0" layoutY="15.0" prefHeight="17.0" prefWidth="60.0" style="-fx-text-fill: white;" text="酒店" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="3.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

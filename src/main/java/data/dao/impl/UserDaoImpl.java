@@ -75,12 +75,18 @@ public class UserDaoImpl implements UserDao{
         
 		return userDataHelper.getAllUsers(type);
 	}
+	
+	public boolean isHotelHasStaff(String hotelName){
+		
+		return userDataHelper.isHotelHasStaff(hotelName);
+	
+	}
+	
 	private StaffPO Map2StaffPo(Map map) {    //将map里的数据转换成Staffpo
 		Map hm = map;
 		
 		String name= (String) hm.get("name");
-		 int userTempId=(Integer)hm.get("id");
-		 String staffId=Integer.toString(userTempId);
+		String staffId=(String)hm.get("id");
 		String password = (String) hm.get("password");
 		String hotelName =(String) hm.get("hotelName");
 		
@@ -116,8 +122,7 @@ public class UserDaoImpl implements UserDao{
 		Map hm = map;
 		
 		String name= (String) hm.get("name");
-		int userIdtemp = (Integer) hm.get("id");
-		String marketerId=Integer.toString(userIdtemp);		
+		String marketerId=(String )hm.get("id");		
 	    String password =(String )hm.get("password");
 		MarketerPO po =new MarketerPO(marketerId, name, password);
 		return po;

@@ -49,6 +49,62 @@ public class OrderPO implements Serializable{
 		this.beginDate = beginDate;
 	}
 	
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPeopleNum(int peopleNum) {
+		this.peopleNum = peopleNum;
+	}
+
+	public void setHotelNameString(String hotelNameString) {
+		this.hotelNameString = hotelNameString;
+	}
+
+	public void setRoomType(RoomType roomType) {
+		this.roomType = roomType;
+	}
+
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
+	}
+
+	public void setInDate(Date inDate) {
+		this.inDate = inDate;
+	}
+
+	public void setOutDate(Date outDate) {
+		this.outDate = outDate;
+	}
+
+	public void setCompleteDate(Date completeDate) {
+		this.completeDate = completeDate;
+	}
+
+	public void setDeadLine(Date deadLine) {
+		this.deadLine = deadLine;
+	}
+
+	public void setHasChild(boolean hasChild) {
+		this.hasChild = hasChild;
+	}
+
 	public void setOrderType(OrderType orderType) {
 		this.orderType = orderType;
 	}

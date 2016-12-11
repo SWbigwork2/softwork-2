@@ -24,7 +24,7 @@ public class memberRegisterController {
     @FXML private TextField contactField;
     @FXML private DatePicker birthday;
     String type;
-    private Main main;
+    Main main;
     public memberRegisterController() {
         memberIdField=new TextField();
         memberNameField=new TextField();
@@ -33,13 +33,12 @@ public class memberRegisterController {
         confirmPasswordField=new PasswordField();
         birthday=new DatePicker();
         
-        final Callback<DatePicker, DateCell> dayCellFactory
-        = new Callback<DatePicker, DateCell>() {
+        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
 			public DateCell call(final DatePicker datePicker) {
 			return new DateCell() {
 			public void updateItem(LocalDate item, boolean empty) {
 			super.updateItem(item, empty);
-			if (item.isAfter(LocalDate.now().plusDays(1))) {
+			if (item.isAfter(LocalDate.now())) {
 				setDisable(true);setStyle("-fx-background-color: #ffc0cb;");}}};}};
         birthday.setDayCellFactory(dayCellFactory);
         
@@ -64,9 +63,8 @@ public class memberRegisterController {
 				
 				if(userService.find(memberIdField.getText(), UserType.member)==null){
 				     userService.addMember(getMember());	 
-					 this.showWaningInformation(AlertType.INFORMATION, "注册成功", "欢迎你："+memberNameField.getText());
-			         main.showMain();		
-			         main.setMembervo(getMember());
+					
+					
 				}else{
 					//提示账号不可用
 				    this.showWaningInformation(AlertType.ERROR, "提醒", "账号不可用");

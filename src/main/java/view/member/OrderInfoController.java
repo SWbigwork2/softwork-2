@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import ordersblimpl.OrderServiceImpl;
+import vo.OrderVo;
 
 public class OrderInfoController {
 	@FXML
@@ -36,9 +37,11 @@ public class OrderInfoController {
 	@FXML
 	private Label roomType;
 	
+	Main main;
 	private OrdersService service;
 	private OrderVo vo;
 	public OrderInfoController() {
+		main = Main.getMain();
 		service = new OrderServiceImpl();
 		orderId = new Label();
 		beginDate = new Label();
@@ -61,6 +64,7 @@ public class OrderInfoController {
 		this.vo = vo;
 		initialize();
 	}
+	
 	/**
 	 * 点击撤回和取消按钮的响应
 	 */
@@ -68,6 +72,9 @@ public class OrderInfoController {
 	public void cancelAndRevoke(){  
 		if(revokeButton.getText().equals("撤回订单")){
 			revoke();
+		}
+		else if(revokeButton.getText().equals("异常申诉")){
+			appeal();
 		}
 		else{
 			delete();
@@ -85,7 +92,25 @@ public class OrderInfoController {
 	 */
 	private void delete(){
 		service.delete(vo.getOrderId());
+		
 	}
+	
+	/**
+	 * 订单申诉
+	 */
+	private void appeal(){
+		vo.setType("appeal");
+		service.update(vo);
+	}
+	
+	/**
+	 * 评价订单
+	 */
+	public void evaluate(){
+		System.out.println();
+		main.showEvaluate(vo);
+	}
+	
 	 private void initialize(){
 		 
 		 orderId.setText(vo.getOrderId()+"");
@@ -100,6 +125,9 @@ public class OrderInfoController {
 			 revokeButton.setText("删除订单");
 			
 			
+		 }
+		 else if(vo.getType()=="error"){
+			 revokeButton.setText("异常申诉");
 		 }
 		 else{
 			 revokeButton.setText("撤回订单");
