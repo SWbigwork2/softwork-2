@@ -11,30 +11,48 @@ import Usersblimpl.VipType;
 
 public class MemberTseter {
     UserControllerblimpl usm=new UserControllerblimpl();
-    MemberInformationVO memberInformationVO= new MemberInformationVO("152625", "songjang", "宋江", VipType.ConmmentVip.name(), 100, "1511515151", 1, "1997-02-02");
+    MemberInformationVO memberInformationVO= new MemberInformationVO("1123", "song", "song"
+    		, 100, null, "1", "1997-5-2", VipType.ConmmentVip.name());
 
-    @Test
-    public void findTest(){
-    	MemberInformationVO member=(MemberInformationVO)usm.find("1000", UserType.member);
-    	assertNotNull(member);
-    	assertEquals(member.getName(),"王华");
-    }
-    
-    
-    @Test
+//    @Test
     public void addmemberTest(){
         ResultMessage resultMessage=null;
-        MemberInformationVO memberInformationVO=new MemberInformationVO("152625", "songjiang", "宋江", VipType.ConmmentVip.name(), 100, "1511515151", 1, "1997-02-02");
+        MemberInformationVO memberInformationVO=new MemberInformationVO("1123", "sng", "song"
+        		, 100, null, "1", "1997-5-2", VipType.ConmmentVip.name());
     	resultMessage=usm.addMember(memberInformationVO);
+    	
         assertEquals(ResultMessage.success, resultMessage);
     }
     
     
-    @Test
+    
+//    @Test
+    public void findTest(){
+    	MemberInformationVO member=(MemberInformationVO)usm.find("1123", UserType.member);
+    	assertNotNull(member);
+    	assertEquals(member.getName(),"sng");
+    }
+    
+    
+    
+    
+    
+//    @Test
     public void revokeTester(){
     	ResultMessage reustMessage=null;
-    	reustMessage=usm.revoke("152625", memberInformationVO,UserType.member );
+    	reustMessage=usm.revoke("1123", memberInformationVO,UserType.member );
     	assertEquals(ResultMessage.success, reustMessage);
+    }
+    
+//    @Test
+    public void findManagerTest(){
+    	ResultMessage resultMessage=ResultMessage.success;
+    	assertEquals("summerday", usm.find("1000", UserType.manager).getPassword());
+    }
+    @Test
+    public void findMarketerTest(){
+    	ResultMessage resultMessage=ResultMessage.success;
+    	assertEquals("jianghaha", usm.find("1000", UserType.marketer).getPassword());
     }
 }
 

@@ -1,56 +1,73 @@
 package view.manager;
 
+
+import Usersblimpl.ResultMessage;
 import Usersblimpl.StaffVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
+import blservice.UserService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class StaffInformationController {
-    @FXML private TextField staffIdField;
+    @FXML private Label staffIdField;
     @FXML private TextField staffNameField;
-    @FXML private TextField staffPasswordField;
-    @FXML private TextField hotelNameField;
-    String oldName;
-	
-    public StaffInformationController(StaffVO staffVO) {
+    @FXML private PasswordField staffPasswordField;
+    @FXML private Label hotelNameField;
+    private StaffVO staff;
+    private String oldName;
+	private Main main;
+    private boolean isRevamp;
+    
+    public StaffInformationController() {
 		// TODO Auto-generated constructor stub
-	    staffIdField=new TextField(staffVO.getUserId());
-	    staffNameField=new TextField(staffVO.getName());
-	    staffPasswordField=new TextField(staffVO.getPassword());
-	    
-	    oldName=staffPasswordField.getText();
-	    hotelNameField=new TextField(staffVO.getHotelName());
+	    staffIdField=new Label();
+	    staffNameField=new TextField();
+	    staffPasswordField=new PasswordField();	    
+	    hotelNameField=new Label();
+	
+	    isRevamp=false;
+	    main=main.getMain();
     }
     
     
 	@FXML
-	private void revampPassword(){
-		
-		//弹出修改密码窗口
+	private void revampName(){
+		staffNameField.setEditable(true);
+		isRevamp=true;
         
 	}
 	
 	@FXML
 	private void cancel(){
-		
-		//跳转到其他界面，如果成功就保存；
+        staffNameField.setEditable(false);
+        main.moveToFindStaff();
 	}
 	
 	@FXML
 	private void confirm(){
 			//跳出一个确认界面，然后保存
-			
-		    String staffId=staffIdField.getText();
-		    String staffName=staffNameField.getText();
-		    String staffPassword=staffPasswordField.getText();
-		    String hotelName=hotelNameField.getText();
+		ResultMessage resultMessage=ResultMessage.fail;
+		staff.setName(staffNameField.getText());			
+
+		UserService userService=new UserControllerblimpl();
 		
-		    StaffVO staffVO=new StaffVO(staffId, staffPassword, staffName, hotelName);
-		    UserControllerblimpl userControllerMock=new UserControllerblimpl();
-		    userControllerMock.revoke(staffId, staffVO, UserType.staff);
+		resultMessage=userService.revoke(staff.getUserId(), staff, UserType.staff);
 	    
+		System.out.println(resultMessage);
+		
+		main.moveToFindStaff();
+	}
+	
+	public  void setStaff(StaffVO staffVO){
+		this.staff=staffVO;
+		
+		this.staffIdField.setText(staffVO.getUserId());
+		this.staffNameField.setText(staffVO.getName());
+		this.staffPasswordField.setText(staffVO.getPassword());
+		this.hotelNameField.setText(staffVO.getHotelName());
 	}
 	
 }

@@ -5,11 +5,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.StaffInformationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manager.StaffInformationController">
    <bottom>
       <Pane prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="cancelButton" layoutX="113.0" layoutY="20.0" mnemonicParsing="false" onAction="#cancel" prefHeight="35.0" prefWidth="88.0" text="取消" />
+            <Button fx:id="cancelButton" layoutX="113.0" layoutY="20.0" mnemonicParsing="false" onAction="#cancel" prefHeight="35.0" prefWidth="88.0" text="返回" />
             <Button fx:id="commitButton" layoutX="415.0" layoutY="20.0" mnemonicParsing="false" onAction="#confirm" prefHeight="35.0" prefWidth="88.0" text="确认" />
          </children>
       </Pane>
@@ -56,11 +56,11 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="staffIdField" editable="false" GridPane.columnIndex="1" />
             <TextField fx:id="staffNameField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="hotelNameField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="revampPasswordButton" mnemonicParsing="false" onAction="#revampPassword" text="√" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="staffPasswordField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="revampPasswordButton" mnemonicParsing="false" onAction="#revampName" text="√" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <PasswordField fx:id="staffPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="staffIdField" prefHeight="25.0" prefWidth="176.0" GridPane.columnIndex="1" />
+            <Label fx:id="hotelNameField" prefHeight="26.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </center>

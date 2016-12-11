@@ -69,9 +69,9 @@ public class UserPoVoTran {
     
 	private static MemberInformationVO memberPoToVo(MemberInformationPO member){
 		MemberInformationVO memberInformationVO=new MemberInformationVO(member.getId()
-				, member.getPassword(), member.getName(), member.getVipType().name(), member.getCredit()
-				, member.getContactInformation(), member.getLevel()+"", member.getSpecial(), null);
-		
+				,  member.getName(),member.getPassword(), member.getCredit()
+				, member.getContactInformation(), Integer.toString(member.getLevel()),
+				member.getSpecial(), member.getVipType().name());
 		return memberInformationVO;
 	}
 	
@@ -108,11 +108,11 @@ public class UserPoVoTran {
 	
 	
 	private static ManagerVO managerPoToVo(ManagerPO manager){
-		ManagerVO managerVO=new ManagerVO(manager.getId(), manager.getPassword(), manager.getName());
-	    return managerVO;
+		ManagerVO managerVO=new ManagerVO(manager.getId(), manager.getName(), manager.getPassword());
+		return managerVO;
 	}
 	private static ManagerPO managerVoToPo(ManagerVO manager){
 		ManagerPO managerPO=new ManagerPO(manager.getUserId(), manager.getName(), manager.getPassword());
-	    return managerPO;
+		return managerPO;
 	}
 }

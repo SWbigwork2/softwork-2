@@ -10,7 +10,7 @@
       <Pane prefHeight="75.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="marketerCancelButton" layoutX="123.0" layoutY="21.0" mnemonicParsing="false" onAction="#cancel" prefHeight="34.0" prefWidth="87.0" text="取消" />
-            <Button fx:id="marketerCommitButton" layoutX="347.0" layoutY="21.0" mnemonicParsing="false" onAction="#confirm" prefHeight="34.0" prefWidth="90.0" text="确认" />
+            <Button fx:id="marketerCommitButton" layoutX="374.0" layoutY="21.0" mnemonicParsing="false" onAction="#confirm" prefHeight="34.0" prefWidth="90.0" text="确认" />
          </children>
       </Pane>
    </bottom>
@@ -55,10 +55,10 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="marketerIdField" prefHeight="34.0" prefWidth="258.0" GridPane.columnIndex="1" />
-            <TextField fx:id="marketerNameField" prefHeight="34.0" prefWidth="258.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="marketerPasswordField" prefHeight="34.0" prefWidth="258.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="marketerConfirmField" prefHeight="34.0" prefWidth="258.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="marketerIdField" prefHeight="23.0" prefWidth="258.0" GridPane.columnIndex="1" />
+            <TextField fx:id="marketerNameField" prefHeight="23.0" prefWidth="262.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="marketerPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="marketerConfirmField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </center>

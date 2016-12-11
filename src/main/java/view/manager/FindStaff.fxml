@@ -23,7 +23,7 @@
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <TableView fx:id="staffList" onMouseClicked="#showDetails" prefHeight="320.0" prefWidth="595.0">
+            <TableView fx:id="staffList" prefHeight="320.0" prefWidth="595.0">
               <columns>
                 <TableColumn fx:id="staffId" prefWidth="204.0" text="账号" />
                 <TableColumn fx:id="staffName" prefWidth="193.0" text="姓名" />
@@ -33,4 +33,15 @@
          </content>
       </ScrollPane>
    </center>
+   <bottom>
+      <Pane prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="checkButton" alignment="CENTER" layoutX="453.0" layoutY="7.0" mnemonicParsing="false" onAction="#selectStaff" prefHeight="23.0" prefWidth="61.0" text="查看">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </bottom>
 </BorderPane>

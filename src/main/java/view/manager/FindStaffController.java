@@ -5,32 +5,58 @@ import java.util.ArrayList;
 import Usersblimpl.StaffVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
+import Usersblimpl.UserVO;
+import blservice.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class FindStaffController {
 	
-    private ArrayList<StaffVO> staffInfoList;
-    private ObservableList<String> temp ;
+	private Main main;
+    private ObservableList<StaffModel> staffItems=
+    		FXCollections.observableArrayList();
     
 	@FXML private TextField staffIdFindField;
-	@FXML private TableView< String> staffList;
+	@FXML private TableView<StaffModel> staffList;
+	@FXML private TableColumn<StaffModel, String> staffId;
+	@FXML private TableColumn<StaffModel, String> staffName;
+	@FXML private TableColumn<StaffModel, String> hotelName;
 	
 	
 	public FindStaffController() {
         staffIdFindField=new TextField();
-        staffList=new TableView<String>();
-        staffInfoList=new ArrayList<StaffVO>();
-	    
-        temp = FXCollections.observableArrayList();
-		for(StaffVO info:staffInfoList){
-			temp.add(standardFormat(info));
+        staffList=new TableView<StaffModel>();
+        new ArrayList<StaffVO>();
+        staffId=new TableColumn<StaffModel, String>();
+        staffName=new TableColumn<StaffModel, String>();
+        hotelName=new TableColumn<StaffModel, String>();
+	    main =main.getMain(); 
+	}
+	
+	@FXML
+	private void initialize(){
+ 
+        UserService userService=new UserControllerblimpl();
+        ArrayList<UserVO> staffVOs=userService.getAllUsers(UserType.staff);
+		
+		for(UserVO userVO:staffVOs){
+			StaffVO staff=(StaffVO)userVO;
+			StaffModel staffModel=new 
+					StaffModel(staff.getUserId(), staff.getName(),staff.getHotelName());
+			staffItems.add(staffModel);
 		}
-		staffList.setItems(temp);
+		
+		staffList.setItems(staffItems);
+
+		staffId.setCellValueFactory(new PropertyValueFactory("id"));
+		staffName.setCellValueFactory(new PropertyValueFactory("name"));
+		hotelName.setCellValueFactory(new PropertyValueFactory("hotelName"));
 	}
 	
 	/**
@@ -38,46 +64,29 @@ public class FindStaffController {
 	 */
 	@FXML
 	public void findStaff(){
+		
         StaffVO staffVo =null;
 		if(staffIdFindField.getText()!=null){
 			String  staffId=staffIdFindField.getText();
 			UserControllerblimpl userControllerMock=new UserControllerblimpl();
 			staffVo=(StaffVO)userControllerMock.find(staffId, UserType.staff);
-	    }
+	        
+		}
 		
 		if(staffVo!=null){
-			
+			main.showStaffDetails(staffVo);
 		}
 	}
 	
 	@FXML
-	public void showDetails(MouseEvent event){
-	    if(event.getClickCount()>=2){
-	    	showStaff();
+	private void selectStaff(){
+		StaffModel staffModel=staffList.getSelectionModel().getSelectedItem();
+		UserService userService=new UserControllerblimpl();
+		StaffVO staff=(StaffVO)userService.find(staffModel.getId(), UserType.staff);
+	    if(staff!=null){
+	    	main.showStaffDetails(staff);
 	    }
-		
 	}
 	
 	
-	private String standardFormat(StaffVO staffVO){
-		String staffId  = staffVO.getUserId()+"";
-		String staffName= staffVO.getName();
-		String hotelName= staffVO.getHotelName();
-		
-		return staffId+" "+staffName+" "+hotelName;
-	}
-	
-	private void showStaff(){
-        String selectedStr =staffList.getSelectionModel().getSelectedItem();
-		
-		String staffId = selectedStr.split(" ")[0];
-		StaffVO resultInfo =null;
-		for(StaffVO voInfo:staffInfoList){
-			if(voInfo.getUserId().equals(staffId)){
-				resultInfo = voInfo;
-				break;
-			}
-		}
-		//调用main方法
-	}
 }

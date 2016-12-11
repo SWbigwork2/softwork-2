@@ -1,8 +1,14 @@
 package Usersblimpl;
 
+import java.util.ArrayList;
+
 import Hotelblimpl.HotelRanking;
 import Hotelblimpl.HotelTradeArea;
 import blservice.UserService;
+import data.dao.UserDao;
+import data.dao.impl.UserDaoImpl;
+import po.UserPO;
+import view.member.HotelVo;
 
 public class UserControllerblimpl implements UserService,UserInfo {
     private Userblimpl user;
@@ -57,18 +63,16 @@ public class UserControllerblimpl implements UserService,UserInfo {
     	return ResultMessage.fail;
     }
     
-    public ResultMessage addStaff(String id,String password,UserType type,String name
-    		,String hotelName, String address, HotelTradeArea t, String i, String s, HotelRanking r){
+    public ResultMessage addStaff(StaffVO staff){	
     	
-    	
-    	HotelInfo hotel=new HotelInfo(hotelName,address,t,i,s,r);
-    	
-    	StaffVO staff=new StaffVO(id,password,name,hotelName);
+//    	StaffVO staff=new StaffVO(id,password,name,hotelName);
     	
     	Staffblimpl staffMock=new Staffblimpl();
     	
-    	return staffMock.add(hotel, staff);
+    	return staffMock.add( staff);
     }
+    
+    
     
     public ResultMessage addMember(MemberInformationVO member){
 		ResultMessage resultMessage =null;
@@ -89,4 +93,23 @@ public class UserControllerblimpl implements UserService,UserInfo {
     	
     	return resultMessage;
     }
+
+	@Override
+	public ArrayList<UserVO> getAllUsers(UserType type) {
+        ArrayList<UserVO> userList=new ArrayList<UserVO>();
+		ArrayList<UserPO> userPOList=null;
+        UserDao userDao=new UserDaoImpl();
+        userPOList=userDao.getAllUsers(type);
+        for(UserPO user:userPOList){
+        	UserVO userVO=UserPoVoTran.PoToVo(user);
+        	userList.add(userVO);
+        }
+		return userList;
+	}
+    
+	public boolean isStaffExist(String hotelName){
+		Staffblimpl staffblimpl=new Staffblimpl();
+		return staffblimpl.isStaffExist(hotelName);
+	}
+    
 }

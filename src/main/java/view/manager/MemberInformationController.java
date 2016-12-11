@@ -1,8 +1,16 @@
 package view.manager;
 
 import Usersblimpl.MemberInformationVO;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserControllerblimpl;
+import Usersblimpl.UserType;
+import Usersblimpl.Users;
 import Usersblimpl.VipType;
+import blservice.UserService;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -19,32 +27,45 @@ public class MemberInformationController {
 	@FXML private Label special;
 	
 	boolean isRevamped;
+	private MemberInformationVO memeber;
+	private Main main;
 	
-	public MemberInformationController(MemberInformationVO member) {
-        memberId=new Label(member.getUserId());
-        memberName=new TextField(member.getName());
+	public MemberInformationController() {
+        memberId=new Label();
+        memberName=new TextField();
         memberPassword=new PasswordField();
-        memberPassword.setText(member.getPassword());
-        if(member.getVipType().equals(VipType.ConmmentVip)){
-        	memberType=new Label("企业会员");
-        }else {
-        	memberType=new Label("个人会员");
-        }
-        memberLevel=new Label(member.getLevel());
-        contactInformation=new TextField(member.getContactInformation());
-        credit=new Label(Double.toString(member.getCredit()));
-        special=new Label(member.getSpecial());
+
+        memberLevel=new Label();
+        contactInformation=new TextField();
+        credit=new Label();
+        special=new Label();
         isRevamped=false;
+        
+        main=main.getMain();
 	}
 	
 	@FXML
     private void cancel(){
-        //返回到xxx	
+        main.moveToFindMember();
     }
     
 	@FXML
 	private void confirm(){
-		//保存信息
+		if(isRevamped){
+			memeber.setContactInformation(contactInformation.getText());
+			memeber.setName(memberName.getText());
+			UserService userService=new UserControllerblimpl();
+			ResultMessage resultMessage=userService.revoke(memeber.getUserId(), memeber, UserType.member);
+            
+		    if(resultMessage.equals(ResultMessage.success)){
+		    	Alert alert = new Alert(AlertType.INFORMATION);
+		    	alert.setTitle("Information Dialog");
+		    	alert.setHeaderText("成功");
+		    	alert.setContentText("修改成功");
+
+		    	alert.showAndWait();
+		    }
+		}
 	}
 	
 	/**
@@ -56,13 +77,8 @@ public class MemberInformationController {
 		isRevamped=true;
 	}
 	
-	/**
-	 * 修改密码，在另一个界面里修改
-	 */
-	@FXML
-	private void revampPassword(){
-		//跳出窗口
-	}
+	
+	
 	
 	/**
 	 * 修改联系方式，直接在界面里修改
@@ -72,5 +88,35 @@ public class MemberInformationController {
 		contactInformation.setEditable(true);
 	    isRevamped=true;
 	}
+    
 	
+	public void setMember(MemberInformationVO memberInformationVO){
+		this.memeber=memberInformationVO;
+		
+		memberId.setText(memeber.getUserId());
+		memberName.setText(memeber.getName());
+		memberPassword.setText(memeber.getPassword());
+		memberLevel.setText(memeber.getLevel());
+		
+		if(memeber.getVipType().equals("CompanyVip")){
+    		memberType.setText(("企业会员"));
+    	}else{
+    		memberType.setText(("普通会员"));
+    	}
+		
+		if(memeber.getContactInformation()!=null){
+		    contactInformation.setText(memeber.getContactInformation());
+		}else{
+			contactInformation.setText("");
+		}
+		
+		if(memberInformationVO.getSpecial()!=null){
+			System.out.println(memberInformationVO.getSpecial());
+		    special.setText(memberInformationVO.getSpecial());
+		}else{
+			special.setText("");
+		}
+		
+		credit.setText(Double.toString(memberInformationVO.getCredit()));
+	}
 }

@@ -80,17 +80,17 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="memberId" prefHeight="20.0" prefWidth="180.0" text="130283012" GridPane.columnIndex="1" />
-            <Label fx:id="memberType" prefHeight="21.0" prefWidth="178.0" text="企业会员" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="memberLevel" prefHeight="21.0" prefWidth="180.0" text="12" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="credit" prefHeight="20.0" prefWidth="179.0" text="200" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Button fx:id="revampMemberNameButton" mnemonicParsing="false" onAction="#revampName" prefHeight="23.0" prefWidth="28.0" text="√ " GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="revampPasswordButton" mnemonicParsing="false" onAction="#revampPassword" text="√ " GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="revampTel" mnemonicParsing="false" onAction="#revampContactInformation" text="√ " GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <TextField fx:id="memberId" editable="false" text="杨凯" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="contactInformation" editable="false" text="1111111111111" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label fx:id="special" prefHeight="20.0" prefWidth="179.0" text="xxxx" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <PasswordField fx:id="memberPassword" editable="false" onAction="#revampPassword" text="62537438" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="memberId" prefHeight="20.0" prefWidth="180.0" GridPane.columnIndex="1" />
+            <Label fx:id="memberType" prefHeight="21.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="memberLevel" prefHeight="21.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="credit" prefHeight="20.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="revampMemberNameButton" mnemonicParsing="false" onAction="#revampName" prefHeight="23.0" prefWidth="33.0" text="√ " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="revampPasswordButton" mnemonicParsing="false" onAction="#revampPassword" prefHeight="23.0" prefWidth="33.0" text="√ " GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="revampTel" mnemonicParsing="false" onAction="#revampContactInformation" prefHeight="23.0" prefWidth="35.0" text="√ " GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="memberName" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="contactInformation" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="special" prefHeight="20.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <PasswordField fx:id="memberPassword" editable="false" onAction="#revampPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>

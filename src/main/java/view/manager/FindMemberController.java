@@ -3,88 +3,110 @@ package view.manager;
 import java.util.ArrayList;
 
 import Usersblimpl.MemberInformationVO;
-import Usersblimpl.StaffVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
-import Usersblimpl.VipType;
+import Usersblimpl.UserVO;
+import blservice.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class FindMemberController {
-	 private ArrayList<MemberInformationVO> memberInfoList;
-	    private ObservableList<String> temp ;
+	
+	private ObservableList<MemberModel> memberItems
+    = FXCollections.observableArrayList();
+	private Main main;
+	
+	@FXML private TextField memberIdFindField;
+	
+	@FXML private TableView<MemberModel> memberList;
+	@FXML private TableColumn<MemberModel, String> memberIdColumn;
+	@FXML private TableColumn<MemberModel, String> memberNameColumn;
+	@FXML private TableColumn<MemberModel, String> memberLevelColumn;
+	@FXML private TableColumn<MemberModel, Double> memberCreditColumn;
+	
+		
+	public FindMemberController() {
+	    memberIdFindField=new TextField();
+	    memberList=new TableView<MemberModel>();
+	    memberIdColumn=new TableColumn<MemberModel, String>();
+	    memberNameColumn=new TableColumn<MemberModel, String>();
+	    memberLevelColumn=new TableColumn<MemberModel, String>();
+	    memberCreditColumn=new TableColumn<MemberModel, Double>();
 	    
-		@FXML private TextField memberIdFindField;
-		@FXML private TableView< String> memberList;
+//	    new ArrayList<MemberModel>();
+	    main=main.getMain();
+	}
 		
+	    
+	
+	@FXML
+	private void initialize(){
+		UserService userService=new UserControllerblimpl();
+	    ArrayList<UserVO> list=userService.getAllUsers(UserType.member);
+	    for(UserVO user:list){
+	    	MemberInformationVO memberInformationVO=(MemberInformationVO)user;
+	    	MemberModel memberModel=new MemberModel(memberInformationVO.getUserId()
+	    			, memberInformationVO.getName(), memberInformationVO.getVipType()
+	    			, memberInformationVO.getLevel(), memberInformationVO.getCredit()
+	    			);
+	    	memberItems.add(memberModel);
+	    }
+	    
+	    memberIdColumn.setCellValueFactory(new PropertyValueFactory("id"));
+		memberNameColumn.setCellValueFactory(new PropertyValueFactory("name"));
 		
-		public FindMemberController() {
-	        memberIdFindField=new TextField();
-	        memberList=new TableView<String>();
-	        memberInfoList=new ArrayList<MemberInformationVO>();
-		    
-	        temp = FXCollections.observableArrayList();
-			for(MemberInformationVO info:memberInfoList){
-				temp.add(standardFormat(info));
-			}
-			memberList.setItems(temp);
-		}
+		memberLevelColumn.setCellValueFactory(new PropertyValueFactory("memberLevel"));
+		memberCreditColumn.setCellValueFactory(new PropertyValueFactory("memberCredit"));
+		
+		memberList.setItems(memberItems);
+	}
 		
 		/**
 		 * 搜索按钮
 		 */
 		@FXML
-		public void findmember(){
+		public void findMember(){
 	        MemberInformationVO memberVo =null;
-			if(memberIdFindField.getText()!=null){
+			if(memberIdFindField.getText().length()>=1){
+				
 				String  memberId=memberIdFindField.getText();
 				UserControllerblimpl userControllerMock=new UserControllerblimpl();
 				memberVo=(MemberInformationVO)userControllerMock.find(memberId, UserType.member);
-		    }
-			
-			if(memberVo!=null){
+				if(memberVo!=null){
+					main.showMemberDetails(memberVo);
+						
+				}else{
+					main.showWaningInformation(AlertType.WARNING, "提示", "账号不可用");
+				}
 				
 			}
+			
+			
 		}
 		
+		/**
+		 * tableview选择，然后button的监听
+		 */
 		@FXML
-		public void showDetails(MouseEvent event){
-		    if(event.getClickCount()>=2){
-		    	showmember();
-		    }
+		public void selectMember(){
+			MemberModel memberModel=memberList.getSelectionModel().getSelectedItem();
+			if(memberModel!=null){
+			    
+				UserService userService=new UserControllerblimpl();
+			    MemberInformationVO memberInformationVO=(MemberInformationVO)
+					userService.find(memberModel.getId(), UserType.member);
+			    main.showMemberDetails(memberInformationVO);
 			
-		}
-		
-		
-		private String standardFormat(MemberInformationVO memberVO){
-			String memberId  = memberVO.getUserId()+"";
-			String memberName= memberVO.getName();
-            String vipType="个人会员";
-            if(memberVO.getVipType().equals(VipType.CompanyVip)){
-            	vipType="企业会员";
-            }
-			
-            String credit=Double.toString(memberVO.getCredit());
-            String level=memberVO.getLevel();
-			return memberId+" "+memberName+" "+vipType+" "+level+" "+credit;
-		}
-		
-		private void showmember(){
-	        String selectedStr =memberList.getSelectionModel().getSelectedItem();
-			
-			String memberId = selectedStr.split(" ")[0];
-			MemberInformationVO resultInfo =null;
-			for(MemberInformationVO voInfo:memberInfoList){
-				if(voInfo.getUserId().equals(memberId)){
-					resultInfo = voInfo;
-					break;
-				}
 			}
-			//调用main方法
+			
+		
 		}
-	}
+		
+}
 

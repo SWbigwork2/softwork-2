@@ -1,41 +1,70 @@
 package view.manager;
 
 import Usersblimpl.MarketerVO;
+import Usersblimpl.UserControllerblimpl;
+import Usersblimpl.UserType;
+import blservice.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class MarketerInformationController {
-    @FXML private static BorderPane marketerMainPane;
-    @FXML private Label marketerIdField;
-    @FXML private Label marketerNameField;
+//    @FXML private static BorderPane marketerMainPane;
+    @FXML private  Label marketerIdField;
+    @FXML private TextField marketerNameField;
     @FXML private PasswordField marketerPasswordField;
     
-    public MarketerInformationController(MarketerVO marketerVO) {
-        marketerMainPane=new BorderPane();
-        marketerIdField=new Label(marketerVO.getUserId());
-        marketerNameField=new Label(marketerVO.getName());
+    private MarketerVO marketerVO;
+    private Main main;
+    private boolean isRevomp;
+    
+    public MarketerInformationController() {
+//        marketerMainPane=new BorderPane();
+        marketerIdField=new Label();
+        marketerNameField=new TextField();
         marketerPasswordField=new PasswordField();
-        marketerPasswordField.setText(marketerVO.getPassword());
+        main=main.getMain();
+        isRevomp=false;
     }
     
-    @FXML
-    private void revampPassword(){
-        //跳转出修改密码界面    	
-    }
     
     @FXML
     private void confirm(){
-    	//返回上一界面
+    	
+    	if (isRevomp) {
+			marketerVO.setName(marketerNameField.getText());
+			UserService userService=new UserControllerblimpl();
+			userService.revoke(marketerVO.getUserId(), marketerVO, UserType.marketer);	
+		}
+    	main.showWaningInformation(AlertType.INFORMATION, "哦耶", "成功");
+			this.main.moveToFindMarketer();
+		
     }
     
     @FXML
     private void cancel(){
-    	//返回上一界面
+        this.main.moveToFindMarketer();
     }
     
-    public static BorderPane getPane(){
-    	return marketerMainPane;
+    @FXML
+    private void revampName(){
+    	marketerNameField.setEditable(true);
+    	isRevomp=true;
     }
+    
+    public void setMarketer(MarketerVO marketerVO){
+    	this.marketerVO=marketerVO;
+    	
+    	marketerIdField.setText(marketerVO.getUserId());
+    	marketerNameField.setText(marketerVO.getName());
+    	marketerPasswordField.setText(marketerVO.getPassword());
+//    	marketerNameField.setEditable(false);
+    	marketerPasswordField.setEditable(false);
+    }
+    
+//    public static BorderPane getPane(){
+//    	return marketerMainPane;
+//    }
 }

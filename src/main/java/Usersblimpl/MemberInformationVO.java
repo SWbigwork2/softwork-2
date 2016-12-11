@@ -11,9 +11,9 @@ public class MemberInformationVO extends UserVO{
 	private String vipType;
 	
 	
-	public MemberInformationVO(String userId, String name, String password, String type, double credit,
+	public MemberInformationVO(String userId, String name, String password, double credit,
 			String contactInformation, String level, String special, String vipType) {
-		super(userId, name, password, type);
+		super(userId, name, password, UserType.member.name());
 		this.credit = credit;
 		ContactInformation = contactInformation;
 		this.level = level;
@@ -38,6 +38,7 @@ public class MemberInformationVO extends UserVO{
 	public void setContactInformation(String contactInformation) {
 		ContactInformation = contactInformation;
 	}
+	
 	public String getLevel() {
 		return level;
 	}

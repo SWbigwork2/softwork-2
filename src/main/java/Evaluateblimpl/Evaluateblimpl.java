@@ -3,32 +3,32 @@ package Evaluateblimpl;
 import java.util.ArrayList;
 
 import Hotelblimpl.HotelMock;
+import Hotelblimpl.HotelServiceImpl;
 import blservice.EvaluateService;
+import blservice.HotelService;
 import data.dao.EvaluateDao;
 import data.dao.impl.EvaluateDaoImpl;
 import po.EvaluatePO;
 
 public class Evaluateblimpl implements EvaluateService {
-    String hotelName;
-    String memberId;
-    int orderId;
-    String s;
-    int score;
+
     
-    public Evaluateblimpl(String  hotelName,String memberId,int orderId){
-    this.hotelName=hotelName;
-    this.orderId=orderId;
-    this.memberId=memberId;
+    public Evaluateblimpl(){
+//        this.hotelName=hotelName;
+//        this.memberId=memberId;
     }
     
-    public ResultMessage evaluate(String hotelName,String memberId,int orderId,double score,String s){
-        EvaluatePO evaluatePO=new EvaluatePO(hotelName, memberId, score, s);
+    public ResultMessage evaluate(EvaluatePO evaluatePO){
         EvaluateDao evaluateDao=new EvaluateDaoImpl();
-//        HotelMock hotelMock=new HotelMock().
+//      hotel加评分
+        HotelService hotelService=new HotelServiceImpl();
+        hotelService.setHotelRemark(evaluatePO.getHotelName(),(int)evaluatePO.getScore()) ;
+
         return evaluateDao.addEvaluate(evaluatePO);
     }
     
-    @SuppressWarnings("unchecked")
+
+	@SuppressWarnings("unchecked")
 	public ArrayList<String> getComments(String hotelName){
     	ArrayList<String> commentList=new ArrayList<String>();
     	EvaluateDao evaluateDao=new EvaluateDaoImpl();

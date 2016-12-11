@@ -9,13 +9,12 @@
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <TableView fx:id="staffList" onMouseClicked="#showDetails" prefHeight="320.0" prefWidth="595.0">
+            <TableView fx:id="memberList" prefHeight="320.0" prefWidth="595.0">
                <columns>
-                  <TableColumn fx:id="memberId" prefWidth="132.0" text="账号" />
-                  <TableColumn fx:id="memberName" prefWidth="132.0" text="姓名" />
-                  <TableColumn fx:id="memberType" prefWidth="116.0" text="会员类型" />
-                  <TableColumn fx:id="memberLevel" prefWidth="106.0" text="会员等级" />
-                  <TableColumn fx:id="memberCredit" prefWidth="105.0" text="信用值" />
+                  <TableColumn fx:id="memberIdColumn" prefWidth="144.0" text="账号" />
+                  <TableColumn fx:id="memberNameColumn" prefWidth="138.0" text="姓名" />
+                  <TableColumn fx:id="memberLevelColumn" prefWidth="151.0" text="会员等级" />
+                  <TableColumn fx:id="memberCreditColumn" prefWidth="149.0" text="信用值" />
                </columns>
             </TableView>
          </content>
@@ -34,4 +33,15 @@
          </children>
       </Pane>
    </top>
+   <bottom>
+      <Pane prefHeight="51.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="selectMemberButton" layoutX="471.0" layoutY="11.0" mnemonicParsing="false" onAction="#selectMember" prefHeight="23.0" prefWidth="68.0" text="查看">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </bottom>
 </BorderPane>

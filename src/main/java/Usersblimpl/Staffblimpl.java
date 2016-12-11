@@ -37,7 +37,8 @@ public class Staffblimpl extends Userblimpl {
 		ResultMessage resultMessage=null;
 		StaffPO staffPO=(StaffPO)UserPoVoTran.VoToPo(user);
 		UserDao userDao= new UserDaoImpl();
-        try {
+        
+		try {
 			resultMessage=userDao.updateUser(staffPO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -46,21 +47,30 @@ public class Staffblimpl extends Userblimpl {
         return resultMessage;
 	}
     
-	public ResultMessage add(HotelInfo hotel,StaffVO staff){
+	public ResultMessage add(StaffVO staff){
 		ResultMessage resultMessage=ResultMessage.fail;
-		//添加酒店
-		
-		
-		//添加工作人员
-        StaffPO staffPO=(StaffPO)UserPoVoTran.VoToPo(staff);
 		UserDao userDao= new UserDaoImpl();
-        try {
-			resultMessage=userDao.updateUser(staffPO);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			//判断酒店是否存在，不存在就添加酒店
+//			HotelService hotelService=new Hotel();
+			
+			
+			//已存在酒店，添加工作人员
+	        StaffPO staffPO=(StaffPO)UserPoVoTran.VoToPo(staff);
+			
+	        try {
+				resultMessage=userDao.addUser(staffPO);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+	
         return resultMessage;
+	}
+	
+	public boolean isStaffExist(String hotelName){
+		UserDao userDao= new UserDaoImpl();
+		return userDao.isHotelHasStaff(hotelName);
 	}
 
 	

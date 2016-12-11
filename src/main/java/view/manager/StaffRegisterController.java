@@ -1,11 +1,40 @@
 package view.manager;
 
+import Hotelblimpl.HotelServiceImpl;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.StaffVO;
+import Usersblimpl.UserControllerblimpl;
+import Usersblimpl.UserType;
+import blservice.HotelService;
+import blservice.UserService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class StaffRegisterController {
     
+	@FXML private TextField staffIdField;
+	@FXML private TextField staffNameField;
+	@FXML private PasswordField staffPasswordField;
+	@FXML private PasswordField staffConfirmField;
+	@FXML private TextField hotelNameField;
+	
+	private Main main;
+	
+	public StaffRegisterController() {
+        staffIdField=new TextField();
+        staffNameField=new TextField();
+        staffPasswordField=new PasswordField();
+        staffConfirmField=new PasswordField();
+        hotelNameField=new TextField();
+	    
+        main=main.getMain();
+	}
+	
 	/**
-	 * StaffRegister���ذ�ť�ļ���
+	 * StaffRegister
 	 */
 	@FXML
 	public void cancel(){
@@ -13,11 +42,57 @@ public class StaffRegisterController {
 	}
 	
 	/**
-	 * StaffRegisterȷ�ϰ�ť�ļ���
+	 * StaffRegister
 	 */
 	@FXML
 	public void confirm(){
-		
+		if(staffIdField.getText().length()>0&&staffNameField.getText().length()>0
+				&&staffPasswordField.getText().length()>0&&staffConfirmField.getText().length()>0
+				&&hotelNameField.getText().length()>0){
+			if(staffConfirmField.getText().equals(staffPasswordField.getText())){
+			    
+				HotelService hotelService=new HotelServiceImpl();
+			    
+			    if(hotelService.judgeHotelExists(hotelNameField.getText())){
+			    	UserService userService=new UserControllerblimpl();
+			    	
+			    	if(!userService.isStaffExist(hotelNameField.getText())){
+			    		if(userService.find(staffIdField.getText(), UserType.staff)==null){
+			    	        StaffVO staffVO=new StaffVO(staffIdField.getText()
+			    			    , staffPasswordField.getText(), 
+							    staffNameField.getText(), hotelNameField.getText());
+			    	        System.out.println(userService.find(staffIdField.getText(), UserType.staff));
+			    	        System.out.println(userService.addStaff(staffVO).name());
+			    		}else{
+			    			//这个账号不可用
+			    			this.showDialog(AlertType.WARNING, "提醒", "这个账号有人啦");
+			    		}
+			        }else{
+			        	//提示酒店已存在工作人员
+			        	this.showDialog(AlertType.WARNING, "提醒", "酒店已存在工作人员");
+			        }
+			    }else{
+			        //酒店不存在，跳转到添加酒店的界面
+			    	this.showDialog(AlertType.WARNING, "酒店不存在", "现在添加酒店");
+			    	main.moveAddHotel();
+			    }
+			}else{
+				//密码不一致
+				this.showDialog(AlertType.WARNING, "提醒", "密码不一致");
+			}
+		}else{
+			//提示输入不完整
+			this.showDialog(AlertType.ERROR, "提醒", "输入位完成");
+		}
+	}
+	
+	private void showDialog(AlertType type,String Headertext,String Content){
+		Alert alert = new Alert(type);
+	    alert.setTitle("来自爸爸的问候");
+	    alert.setHeaderText(Headertext);
+	    alert.setContentText(Content);
+
+	    alert.showAndWait();
 	}
 	
 }
