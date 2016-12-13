@@ -132,7 +132,7 @@ public class UserDaoImpl implements UserDao{
         Map hm = map;
 		
 		String name= (String) hm.get("name");
-		int userIdtemp = (Integer) hm.get("id");
+		int userIdtemp =Integer.valueOf( (String) hm.get("id"));
 		String managerId=Integer.toString(userIdtemp);		
 	    String password =(String )hm.get("password");
 		ManagerPO po =new ManagerPO(managerId, name, password);

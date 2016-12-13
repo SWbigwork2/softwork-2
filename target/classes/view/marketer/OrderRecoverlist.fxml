@@ -5,11 +5,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.65" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.marketer.OrderRecoverListController">
+<SplitPane dividerPositions="0.65" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.marketer.OrderRecoverListController">
    <items>
       <GridPane>
          <children>
-            <ListView fx:id="orderListView" focusTraversable="false" onMouseClicked="#showSelection" prefHeight="429.0" prefWidth="293.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <ListView fx:id="orderListView" focusTraversable="false" prefHeight="429.0" prefWidth="293.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2" />
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label prefHeight="31.0" prefWidth="98.0" text="订单信息" textAlignment="CENTER" textFill="#b9b8b8">
@@ -19,7 +19,6 @@
                   </Label>
                </children>
             </Pane>
-            <ComboBox fx:id="orderTypeChoice" onAction="#changeChoice" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: lightgray;" GridPane.columnIndex="2" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

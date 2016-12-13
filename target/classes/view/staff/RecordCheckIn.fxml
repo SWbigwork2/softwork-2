@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.RecordCheckInController">
+   <children>
+      <Label layoutX="60.0" layoutY="45.0" text="线上入住" AnchorPane.leftAnchor="60.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="orderIdBar" layoutX="228.0" layoutY="121.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
+      <Label layoutX="60.0" layoutY="124.0" text="订单Id" AnchorPane.leftAnchor="60.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="inTimeBar" layoutX="215.0" layoutY="190.0" prefHeight="27.0" prefWidth="254.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
+      <Label layoutX="60.0" layoutY="191.0" text="实际入住时间" AnchorPane.leftAnchor="60.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="307.0" text="线下入住" AnchorPane.leftAnchor="60.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="roomTypeBar" layoutX="219.0" layoutY="362.0" prefWidth="150.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
+      <Label layoutX="114.0" layoutY="367.0" text="房间类型" AnchorPane.leftAnchor="60.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="60.0" layoutY="417.0" text="入住时间" AnchorPane.leftAnchor="60.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="offlineInTimeBar" layoutX="202.0" layoutY="413.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
+      <Label layoutX="131.0" layoutY="465.0" text="预计离开时间" AnchorPane.leftAnchor="60.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="offlineOutTimeBar" layoutX="197.0" layoutY="460.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
+      <Button fx:id="onlineButton" layoutX="228.0" layoutY="273.0" mnemonicParsing="false" onAction="#onlineCheckIn" prefHeight="27.0" prefWidth="248.0" text="确定" />
+      <Button fx:id="offlineButton" layoutX="228.0" layoutY="521.0" mnemonicParsing="false" onAction="#offlineCheckIn" prefHeight="27.0" prefWidth="248.0" text="确定" />
+   </children>
+</AnchorPane>

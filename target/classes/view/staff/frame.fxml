@@ -26,11 +26,11 @@
                   <Font size="12.0" />
                </font>
             </Label>
-            <Button fx:id="FindHotelButton" layoutY="23.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="登记入住">
+            <Button fx:id="checkInButton" layoutY="23.0" mnemonicParsing="false" onAction="#showCheckIn" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="登记入住">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="登记退房">
+            <Button fx:id="checkOutButton" layoutY="53.0" mnemonicParsing="false" onAction="#showCheckOut" prefHeight="28.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="登记退房">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -39,11 +39,11 @@
                   <Font size="12.0" />
                </font>
             </Label>
-            <Button fx:id="totalOrderButton" layoutY="136.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="维护酒店">
+            <Button fx:id="updateHotelButton" layoutY="136.0" mnemonicParsing="false" onAction="#showUpdateHotel" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="维护酒店">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button fx:id="NormalOrderButton" layoutY="166.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="录入房间">
+            <Button fx:id="addRoomButton" layoutY="166.0" mnemonicParsing="false" onAction="#showAddRoom" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="录入房间">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -55,7 +55,7 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button fx:id="FindHotelButton1" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="订单处理">
+            <Button fx:id="abnormalButton" layoutY="83.0" mnemonicParsing="false" onAction="#showList" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0px; -fx-text-fill: #FFFFFF;" text="订单处理">
                <font>
                   <Font size="14.0" />
                </font>

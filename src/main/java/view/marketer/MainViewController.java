@@ -42,5 +42,8 @@ public class MainViewController {
     public void showInfo(){
     	main.movetoInformation();
     }
+    public void showList(){
+    	main.showList();
+    }
 
 }

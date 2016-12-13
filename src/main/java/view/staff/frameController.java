@@ -1,7 +1,5 @@
 package view.staff;
 
-import javax.print.attribute.standard.MediaName;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -44,5 +42,25 @@ public class frameController {
       @FXML
       private void showInfomation(){
     	  main.showInformation();
+      }
+      @FXML
+      private void showCheckIn(){
+    	  main.showCheckIn();
+      }
+      @FXML
+      private void showCheckOut(){
+    	  main.showCheckOut();
+      }
+      @FXML
+      private void showAddRoom(){
+    	  main.showAddRoom();
+      }
+      @FXML
+      private void showUpdateHotel(){
+    	  main.showUpdateHotel();
+      }
+      
+      public void showList(){
+    	  main.showList();
       }
 }

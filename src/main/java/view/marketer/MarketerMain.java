@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import loginblimpl.LoginVo;
+import view.staff.Main;
 
 public class MarketerMain extends Application {
   
@@ -36,7 +37,21 @@ public class MarketerMain extends Application {
 	
 	
 	}
-	
+	public void showList(){
+		 loader=new FXMLLoader();
+		 SplitPane pane = null;
+			try {
+			
+				loader.setLocation(MarketerMain.class.getResource("OrderRecoverlist.fxml"));
+				pane = loader.load();
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				
+			}
+		marketerBorderPane.setCenter(pane);
+	}
 	public void setMemberVo(LoginVo vo){
 		userService = new UserControllerblimpl();
 		this.marketer =(MarketerVO) userService.find(vo.getId(), UserType.marketer);

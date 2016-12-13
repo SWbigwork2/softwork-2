@@ -1,6 +1,5 @@
 package view.staff;
 
-import Usersblimpl.MarketerVO;
 import Usersblimpl.StaffVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
@@ -66,6 +65,24 @@ public class Main extends Application {
 		
 		
 	}
+	
+	public void showList(){
+		 loader=new FXMLLoader();
+		 SplitPane pane = null;
+			try {
+			
+				loader.setLocation(Main.class.getResource("OrderErrorlist.fxml"));
+				pane = loader.load();
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				
+			}
+		
+		staffBorderPane.setCenter(pane);
+	}
+	
 	/**
 	 * @param
 	 * @return 加载制定策略的初始界面
@@ -202,6 +219,58 @@ public class Main extends Application {
   }
 	public static void main(String[] args) {
 		launch(args);
+	}
+	public void showCheckIn() {
+		try {
+			AnchorPane page=new AnchorPane();
+			page=(AnchorPane)loadPane("RecordCheckIn.fxml");
+			
+			staffBorderPane.setCenter(page);
+			
+			StaffInformationController controller=loader.getController();
+			controller.setStaffVO(staff);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	public void showCheckOut() {
+		try {
+			AnchorPane page=new AnchorPane();
+			page=(AnchorPane)loadPane("RecordCheckOut.fxml");
+			
+			staffBorderPane.setCenter(page);
+			
+			StaffInformationController controller=loader.getController();
+			controller.setStaffVO(staff);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	public void showAddRoom() {
+		try {
+			AnchorPane page=new AnchorPane();
+			page=(AnchorPane)loadPane("AddRoom.fxml");
+			
+			staffBorderPane.setCenter(page);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	public void showUpdateHotel() {
+		try {
+			AnchorPane page=new AnchorPane();
+			page=(AnchorPane)loadPane("updateHotel.fxml");
+			
+			staffBorderPane.setCenter(page);
+	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 	
 	
