@@ -2,8 +2,7 @@ package blservice;
 
 import java.util.ArrayList;
 import java.util.Date;
-
-
+import java.util.Map;
 
 import Promotionsblimpl.PriceInfo;
 
@@ -43,7 +42,7 @@ public interface OrdersService {
 	 * @param memberId
 	 * @return 得到用户住过的酒店
 	 */
-	public ArrayList<String> getHotelList(String memberId);
+	public Map<String, ArrayList<OrderType>> getHotelList(String memberId);
 	/**
 	 * @param orderId
 	 * @return 根据id查找的order

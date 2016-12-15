@@ -4,6 +4,8 @@ package ordersblimpl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import Hotelblimpl.HotelsInfo;
 import Membersblimpl.MemberServiceImpl;
@@ -16,6 +18,7 @@ import blservice.MembersService;
 import blservice.OrdersService;
 import data.dao.OrdersDao;
 import data.dao.impl.OrdersDaoImpl;
+import javafx.geometry.Pos;
 import po.OrderPO;
 import vo.OrderVo;
 
@@ -174,20 +177,26 @@ public class OrderServiceImpl implements OrdersService{
 	 * @param memberId
 	 * @return 得到住过的所有酒店
 	 */
-	public ArrayList<String> getHotelList(String memberId){
+	public Map<String, ArrayList<OrderType>> getHotelList(String memberId){
 		
-		ArrayList<String> resultList = new ArrayList<String>();
-	
+		Map<String, ArrayList<OrderType>> resultMap =new HashMap<String, ArrayList<OrderType>>();
 		ArrayList<OrderPO> tempList=dao.getOrderList(memberId);
-		
-		
-	
 		for(OrderPO po:tempList){
-			if(!resultList.contains(po.getHotelNameString())){
-				resultList.add(po.getHotelNameString());
+			if(!resultMap.containsKey(po.getHotelNameString())){
+				ArrayList<OrderType> types = new ArrayList<OrderType>();
+				types.add(po.getOrderType());
+				resultMap.put(po.getHotelNameString(), types);
 			}
+			else {
+				ArrayList<OrderType> types=resultMap.get(po.getHotelNameString());
+				if(!types.contains(po.getOrderType())){
+					types.add(po.getOrderType());
+					resultMap.put(po.getHotelNameString(), types);
+				}
+			}
+			
 		}
-		return resultList;
+		return resultMap;
 	}
 	public ResultMessage changeError(int orderId){
 		OrderItem temp=null;

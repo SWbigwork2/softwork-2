@@ -3,6 +3,7 @@ package Membersblimpl;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import blservice.MembersService;
 import blservice.OrdersService;
@@ -31,7 +32,7 @@ public class MemberServiceImpl implements MembersService{
 		return ordersService.getOrderList(id,OrderType.all);
     	
     }
-    public  ArrayList<String> getHotel(String id){
+    public Map<String, ArrayList<OrderType>> getHotel(String id){
     	ordersService = new OrderServiceImpl();
     	
     	return ordersService.getHotelList(id);
