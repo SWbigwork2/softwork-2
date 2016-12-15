@@ -28,7 +28,7 @@ public class UserDataSqlHelper implements UserDataHelper{
     private void getConnect() {         //连接到数据库
 		String url = "jdbc:mysql://localhost:3306/software2";
 		String user = "root";
-		String password = "zhurunzhi654";
+		String password = "yktobeno.1";
 		connection = SqlConnectHelper.getConnection(url, user, password);
 		// TODO Auto-generated constructor stub
 	}
@@ -58,7 +58,8 @@ public class UserDataSqlHelper implements UserDataHelper{
 			    if(type.equals(userType[i])){
 			    	this.getConnect();
 			    	
-				    String selectSql="SELECT * from "+users[i]+" where id="+userId;
+				    String selectSql="SELECT * from "+users[i]+" where id="+"'"+userId+"'";
+//				    System.out.println(selectSql);
 				    
 				    try {
 				    	 
@@ -105,7 +106,7 @@ public class UserDataSqlHelper implements UserDataHelper{
 		//删除原来的user
 		for(int i=0;i<usersTable.length;i++){
 			 if(userPO.getRole().equals(userType[i])){
-				 String deleteSql="delete from "+usersTable[i]+" where id="+userPO.getId();
+				 String deleteSql="delete from "+usersTable[i]+" where id="+"'"+userPO.getId()+"'";
 				 try {
 					 
 			        this.getConnect();

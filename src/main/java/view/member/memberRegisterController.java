@@ -55,6 +55,7 @@ public class memberRegisterController {
 	@FXML
 	private void confirm(){
 		UserService userService=new UserControllerblimpl();
+		System.out.println(memberIdField.getText());
 		if(isfull()){//判断是否填写完整
 			
 			if(passwordField.getText().equals(confirmPasswordField.getText())){
@@ -64,8 +65,11 @@ public class memberRegisterController {
 				if(userService.find(memberIdField.getText(), UserType.member)==null){
 				     userService.addMember(getMember());	 
 					
-					
+					 
+				     this.showWaningInformation(AlertType.INFORMATION, "注册成功", "欢迎你："+memberNameField.getText()+"先生");
+				     cancel();
 				}else{
+					System.out.println(userService.find(memberIdField.getText(), UserType.member).getPassword());
 					//提示账号不可用
 				    this.showWaningInformation(AlertType.ERROR, "提醒", "账号不可用");
 				}

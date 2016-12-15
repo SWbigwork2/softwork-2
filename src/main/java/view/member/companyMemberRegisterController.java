@@ -34,7 +34,7 @@ public class companyMemberRegisterController {
     }
 	@FXML
 	private void cancel(){
-	    
+	    main.returnLogin();   
 	}
 	
 	@FXML
@@ -52,8 +52,9 @@ public class companyMemberRegisterController {
 			        		  memberNameField.getText(), passwordField.getText(), 100
 			        		  , contactField.getText(), "1", companyName.getText(), VipType.CompanyVip.name());
 			          userService.addMember(member);
-			          showWaningInformation(AlertType.INFORMATION, "哦耶", "注册成功");
-			
+			          showWaningInformation(AlertType.INFORMATION, "成功", "欢迎你： "+memberNameField.getText()+"先生");
+			          
+			          cancel();
 			     }else{//账号不可用
 			    	 showWaningInformation(AlertType.ERROR, "错误", "账号不可用");
 			     }
