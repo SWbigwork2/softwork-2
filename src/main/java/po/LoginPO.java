@@ -1,9 +1,11 @@
 package po;
 
+import java.io.Serializable;
+
 import Usersblimpl.UserInfo;
 import Usersblimpl.UserType;
 
-public class LoginPO {
+public class LoginPO implements Serializable{
 	private String ID;
 	private String password;
 	private UserType usersType;

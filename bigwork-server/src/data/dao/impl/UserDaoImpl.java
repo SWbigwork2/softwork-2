@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import UserServerAssist.ResultMessage;
-import UserServerAssist.UserType;
-import UserServerAssist.VipType;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserType;
+import Usersblimpl.VipType;
 import po.ManagerPO;
 import po.MarketerPO;
 import po.MemberInformationPO;

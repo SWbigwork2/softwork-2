@@ -1,8 +1,10 @@
 package po;
 
-import UserServerAssist.UserType;
+import java.io.Serializable;
 
-public class ManagerPO extends UserPO{
+import Usersblimpl.UserType;
+
+public class ManagerPO extends UserPO implements Serializable{
 
 	public ManagerPO(String i, String n, String p) {
 		super(i, n, p, UserType.manager);

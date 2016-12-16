@@ -40,11 +40,5 @@ public interface HotelsDataHelper {
 	 * @return 返回酒店所有房间信息
 	 */
 	public ArrayList<RoomPO> getRoomOfHotel(String hotelName);
-	/**
-	 * 
-	 * @param hotelName
-	 * @return 酒店是否存在
-	 */
-	public boolean judgeHotelExists(String hotelName);
 
 }

@@ -1,8 +1,14 @@
 package po;
 
-public class EvaluatePO {
+import java.io.Serializable;
+
+public class EvaluatePO implements Serializable{
 	
-    private String hotelName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8811457577381021855L;
+	private String hotelName;
     private double score;
     private String s;
     private String memberName;

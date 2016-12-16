@@ -1,7 +1,7 @@
 package po;
 
-import UserServerAssist.UserType;
-import UserServerAssist.VipType;
+import Usersblimpl.UserType;
+import Usersblimpl.VipType;
 
 public class MemberInformationPO extends UserPO{
 	String contactInformation;

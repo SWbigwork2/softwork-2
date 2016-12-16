@@ -1,6 +1,6 @@
 package po;
 
-import UserServerAssist.UserType;
+import Usersblimpl.UserType;
 
 public class StaffPO extends UserPO{
 	String  hotelName;

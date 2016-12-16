@@ -1,6 +1,8 @@
 package po;
 
-public class PromotionsPO {
+import java.io.Serializable;
+
+public class PromotionsPO implements Serializable{
  public int type;
  public String hotel;
  public double discount;

@@ -9,7 +9,12 @@ import ordersblimpl.OrderType;
 
 
 
+
 public class OrderPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4144960617559928505L;
 	int orderId;
 	String userId;
 	String name;

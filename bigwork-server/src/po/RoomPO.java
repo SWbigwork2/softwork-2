@@ -13,6 +13,10 @@ import Roomblimpl.RoomType;
 
 
 public class RoomPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -438235272461601501L;
 	private String roomName;
 	private String hotelBelongTo;
 	private RoomType roomtype;

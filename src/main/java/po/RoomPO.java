@@ -11,7 +11,11 @@ import Roomblimpl.RoomsInfo;
 
 
 
-public class RoomPO implements Serializable,RoomsInfo{
+public class RoomPO implements Serializable,RoomsInfo {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -438235272461601501L;
 	private String roomName;
 	private String hotelBelongTo;
 	private RoomType roomtype;

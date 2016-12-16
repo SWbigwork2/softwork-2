@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import po.HotelPO;
 import po.RoomPO;
 
-public interface HotelsDao {
+public interface HotelsDataService {
 	/**
 	 * @param HotelPO
 	 * @return 获取符合条件的酒店列表
@@ -42,11 +42,6 @@ public interface HotelsDao {
 	 * @return 返回该酒店的房间列表
 	 */
 	public ArrayList<RoomPO> getRoomOfHotel(String hotelName);
-	/**
-	 * @param hotelName
-	 * @return 判断酒店是否存在
-	 */
-	public boolean judgeHotelExists(String hotelName);
 
 	
 }

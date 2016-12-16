@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import UserServerAssist.ResultMessage;
-import UserServerAssist.UserType;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserType;
 import data.dao.impl.EvaluateDaoImpl;
 import data.dao.impl.HotelsDaoImpl;
 import data.dao.impl.MembersDaoImpl;
@@ -64,187 +64,183 @@ public class DateRemoteObject extends UnicastRemoteObject implements OrdersDao,E
 	@Override
 	public UserPO findUser(String id, UserType type) throws SQLException, RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.findUser(id, type);
 	}
 
 	@Override
 	public ResultMessage updateUser(UserPO userPO) throws SQLException, RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.updateUser(userPO);
 	}
 
 	@Override
 	public ResultMessage addUser(UserPO userPO) throws SQLException, RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.addUser(userPO);
 	}
 
 	@Override
 	public ArrayList<UserPO> getAllUsers(UserType type) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.getAllUsers(type);
 	}
 
 	@Override
 	public boolean isHotelHasStaff(String hotelName) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return userDao.isHotelHasStaff(hotelName);
 	}
 
 	@Override
 	public ArrayList<RoomPO> getRoomList(String hotelName) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return roomsDao.getRoomList(hotelName);
 	}
 
 	@Override
 	public boolean insertRoom(RoomPO roomPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return roomsDao.insertRoom(roomPO);
 	}
 
 	@Override
 	public boolean deleteRoom(String roomID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return roomsDao.deleteRoom(roomID);
 	}
 
 	@Override
 	public boolean updateRoom(RoomPO roomPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return roomsDao.updateRoom(roomPO);
 	}
 
 	@Override
 	public boolean recordStartTime(String roomID, Date StartTime, Date EndTime) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return roomsDao.recordStartTime(roomID, StartTime, EndTime);
 	}
 
 	@Override
 	public boolean recordCheckOut(String roomID, Date StartTime) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return roomsDao.recordCheckOut(roomID, StartTime);
 	}
 
 	@Override
 	public ArrayList<PromotionsPO> getHotelPromotions(String hotel) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return promotionsDao.getHotelPromotions(hotel);
 	}
 
 	@Override
 	public boolean addPromotionsI(PromotionsIPO promotionsIPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return promotionsDao.addPromotionsI(promotionsIPO);
 	}
 
 	@Override
 	public boolean addPromotionsII(PromotionsIIPO promotionsIIPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return promotionsDao.addPromotionsII(promotionsIIPO);
 	}
 
 	@Override
 	public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return promotionsDao.addPromotionsIII(promotionsIIIPO);
 	}
 
 	@Override
 	public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return promotionsDao.addPromotionsIV(promotionsIVPO);
 	}
 
 	@Override
 	public boolean addPromotionsV(PromotionsVPO promotionsVPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return promotionsDao.addPromotionsV(promotionsVPO);
 	}
 
 	@Override
 	public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return promotionsDao.addPromotionsVI(promotionsVIPO);
 	}
 
 	@Override
 	public boolean deletePromotions(PromotionsPO promotionsPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return promotionsDao.deletePromotions(promotionsPO);
 	}
 
 	@Override
-	public MemberPO getMember(String id) {
+	public MemberPO getMember(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return membersDao.getMember(id);
 	}
 
 	@Override
-	public boolean updateCredit(String id, double changecredit) {
+	public boolean updateCredit(String id, double changecredit) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return membersDao.updateCredit(id, changecredit);
 	}
 
 	@Override
-	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
+	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return membersDao.getMemberCreditRecord(memberid);
 	}
 
 	@Override
-	public void insertCreditRecord(CreditrecordPO po) {
+	public void insertCreditRecord(CreditrecordPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		membersDao.insertCreditRecord(po);
 	}
 
 	@Override
 	public ArrayList<HotelPO> getHotelList(HotelPO hotelPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return hotelsDao.getHotelList(hotelPO);
 	}
 
 	@Override
 	public HotelPO getHotelDetails(String hotelName) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return hotelsDao.getHotelDetails(hotelName);
 	}
 
 	@Override
 	public boolean insertHotel(HotelPO hotelPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return hotelsDao.insertHotel(hotelPO);
 	}
 
 	@Override
 	public boolean deleteHotel(String hotelName) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return hotelsDao.deleteHotel(hotelName);
 	}
 
 	@Override
 	public boolean updateHotel(HotelPO hotelPO) throws RemoteException {
 		// TODO Auto-generated method stub
-		return false;
+		return hotelsDao.updateHotel(hotelPO);
 	}
 
 	@Override
 	public ArrayList<RoomPO> getRoomOfHotel(String hotelName) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return hotelsDao.getRoomOfHotel(hotelName);
 	}
 
-	@Override
-	public EvaluateServerAssist.ResultMessage addEvaluate(EvaluatePO evaluatePO) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public ArrayList getEvaluatetion(String hotelName) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return evaluateDao.getEvaluatetion(hotelName);
 	}
 
 	@Override
@@ -287,6 +283,12 @@ public class DateRemoteObject extends UnicastRemoteObject implements OrdersDao,E
 	public ArrayList<OrderPO> getAllOrderList() throws RemoteException {
 		// TODO Auto-generated method stub
 		return ordersDao.getAllOrderList();
+	}
+
+	@Override
+	public Evaluateblimpl.ResultMessage addEvaluate(EvaluatePO evaluatePO) throws RemoteException {
+		// TODO Auto-generated method stub
+		return evaluateDao.addEvaluate(evaluatePO);
 	}
 
 }

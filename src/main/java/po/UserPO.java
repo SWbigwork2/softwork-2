@@ -1,12 +1,17 @@
 
 package po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import Usersblimpl.UserInfo;
 import Usersblimpl.UserType;
 
-public class UserPO {
+public class UserPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2144004342974484005L;
 	String id;
 	String name;
     String password;

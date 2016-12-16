@@ -3,8 +3,8 @@ package data.dataHelper;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import UserServerAssist.ResultMessage;
-import UserServerAssist.UserType;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserType;
 import po.UserPO;
 
 public interface UserDataHelper {

@@ -10,28 +10,30 @@ import java.util.Iterator;
 import java.util.Map;
 
 import Roomblimpl.RoomType;
-import data.dao.OrdersDao;
+import data.dao.OrdersDataService;
 import data.dataHelper.DataFactory;
 import data.dataHelper.OrdersDataHelper;
 import data.dataHelper.impl.DataFactoryImpl;
 import data.dataHelper.impl.OrdersDataSqlHelper;
+import data.dataservice.OrdersDao;
+import data.rmi.RemoteHelper;
 import ordersblimpl.OrderType;
 import po.OrderPO;
 
-public class OrdersDaoImpl implements OrdersDao{
+public class OrdersDaoImpl implements OrdersDataService{
 	private static OrdersDaoImpl ordersDaoImpl;
 	private OrdersDataHelper ordersDataHelper;
 	private DataFactory dataFactory;
-	
+	private RemoteHelper remoteHelper;
+	private OrdersDao dao;
 	public OrdersDaoImpl() {
+		remoteHelper = RemoteHelper.getInstance();
+		dao = remoteHelper.getOrdersDao();
 		dataFactory = new DataFactoryImpl();
 		ordersDataHelper = dataFactory.getOrdersDataHelper();
 		// TODO Auto-generated constructor stub
 	}
-	public static void main(String[] args) {
-		OrdersDaoImpl ordersDaoImpl = new OrdersDaoImpl();
-		ordersDaoImpl.getOrderList("admin");
-	}
+	
 	public static OrdersDaoImpl getInstance(){
 		if(ordersDaoImpl ==null){
 			ordersDaoImpl = new OrdersDaoImpl();
@@ -42,18 +44,19 @@ public class OrdersDaoImpl implements OrdersDao{
 		}
 	}
 	public OrderPO getOrder(int orderId) {   //根据id查找单个订单的实现
-		ArrayList<OrderPO> resultList = getAllOrderList();
+		/*ArrayList<OrderPO> resultList = getAllOrderList();
 		for(OrderPO po:resultList){
 			if(po.getOrderId()==orderId){
 				return po;
 			}
 		}
 		
-		return null;
+		return null;*/
+		return dao.getOrder(orderId);
 	}
 
 	public ArrayList<OrderPO> getHotelOrderList(String hotelName) {  //根据酒店名查找所有订单的实现
-		ArrayList<OrderPO> resultList = getAllOrderList();
+	/*	ArrayList<OrderPO> resultList = getAllOrderList();
 		ArrayList<OrderPO> hotelList = new ArrayList<OrderPO>();
 		for(OrderPO po:resultList){
 			if(po.getHotelNameString().equals(hotelName)){
@@ -62,11 +65,12 @@ public class OrdersDaoImpl implements OrdersDao{
 		}
 		
 		
-		return hotelList;
+		return hotelList;*/
+		return dao.getHotelOrderList(hotelName);
 	}
 
 	public ArrayList<OrderPO> getOrderList(String userId) {    //得到指定用户的所有订单的方法实现
-		ArrayList<OrderPO> resultPos = new ArrayList<OrderPO>();  //存储结果po列表
+		/*ArrayList<OrderPO> resultPos = new ArrayList<OrderPO>();  //存储结果po列表
 		try {
 			ArrayList resultList = ordersDataHelper.getOrdersList();
 			Iterator iterator = resultList.iterator();
@@ -84,18 +88,19 @@ public class OrdersDaoImpl implements OrdersDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		// TODO Auto-generated method stub
-		return resultPos;
+		return dao.getOrderList(userId);
 	}
 
-	public boolean insert(OrderPO po) {
+	public boolean insert(OrderPO po) {/*
 		if(po==null){
 			return false;
 		}
 		else{
 			return ordersDataHelper.insertOrder(po);
-		}
+		}*/
+		return dao.insert(po);
 		
 		// TODO Auto-generated method stub
 		
@@ -103,16 +108,18 @@ public class OrdersDaoImpl implements OrdersDao{
 
 	public boolean updata(OrderPO po) {
 		// TODO Auto-generated method stub
-		return ordersDataHelper.updataOrder(po);
+		//return ordersDataHelper.updataOrder(po);
+		return dao.updata(po);
 	}
 
 	public boolean delete(int orderId) {    //删除指定的订单
-		System.out.println("delete");
+		/*System.out.println("delete");
 		// TODO Auto-generated method stub
-		return ordersDataHelper.deleteOrder(orderId);
+		return ordersDataHelper.deleteOrder(orderId);*/
+		return dao.delete(orderId);
 	}
 	public ArrayList<OrderPO> getAllOrderList(){ //私有方法，得到所有的Order信息
-		ArrayList<OrderPO> resultPos = new ArrayList<OrderPO>();  //存储结果po列表
+		/*ArrayList<OrderPO> resultPos = new ArrayList<OrderPO>();  //存储结果po列表
 		try {
 			ArrayList resultList = ordersDataHelper.getOrdersList();
 			Iterator iterator = resultList.iterator();
@@ -130,7 +137,8 @@ public class OrdersDaoImpl implements OrdersDao{
 			e.printStackTrace();
 		}
 		// TODO Auto-generated method stub
-		return resultPos;
+		return resultPos;*/
+		return dao.getAllOrderList();
 	}
 	private OrderPO Map2Po(Map map) {    //将map里的数据转换成po
 		Map hm = map;

@@ -1,6 +1,8 @@
 package po;
 
-public class CreditrecordPO {
+import java.io.Serializable;
+
+public class CreditrecordPO implements Serializable{
   String memberid;
   String time;
   int recordid;

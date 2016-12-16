@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import UserServerAssist.ResultMessage;
-import UserServerAssist.UserType;
-import UserServerAssist.VipType;
+import Usersblimpl.ResultMessage;
+import Usersblimpl.UserType;
+import Usersblimpl.VipType;
 import po.UserPO;
 import data.dataHelper.UserDataHelper;
 import po.ManagerPO;

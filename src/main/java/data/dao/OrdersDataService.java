@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import data.dao.impl.OrdersDaoImpl;
 import po.OrderPO;
 
-public interface OrdersDao {
+public interface OrdersDataService {
 
 	public OrderPO getOrder(int orderId); //得到订单信息
 	

@@ -4,26 +4,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Membersblimpl.ResultMessage;
-import data.dao.MembersDao;
+import data.dao.MembersDataService;
 import data.dataHelper.DataFactory;
 import data.dataHelper.MembersDataHelper;
 import data.dataHelper.impl.DataFactoryImpl;
+import data.dataservice.MembersDao;
+import data.rmi.RemoteHelper;
 import po.CreditrecordPO;
 import po.MemberPO;
 
-public class MembersDaoImpl implements MembersDao{
+public class MembersDaoImpl implements MembersDataService{
 	private static MembersDaoImpl membersDaoImpl;
 	private static MembersDataHelper membersDataHelper;
 	private DataFactory dataFactory;
+	private RemoteHelper remoteHelper;
+	private MembersDao membersDao;
 	public MembersDaoImpl() {
+		remoteHelper = RemoteHelper.getInstance();
+		membersDao = remoteHelper.getMembersDao();
 		// TODO Auto-generated constructor stub
 		dataFactory = new DataFactoryImpl();
         membersDataHelper =dataFactory.getMembersDataHelper();
 		// TODO Auto-generated constructor stub
 	}
-	public static void main(String[] args) {
-		MembersDaoImpl membersdao = new MembersDaoImpl();
-	}
+	
 	public static MembersDaoImpl getInstance(){
 		if(membersDaoImpl ==null){
 			membersDaoImpl = new MembersDaoImpl();
@@ -35,25 +39,28 @@ public class MembersDaoImpl implements MembersDao{
 	}
 	public MemberPO getMember(String id)  {//根据id查找用户信息
 		// TODO Auto-generated method stub
-		
-		return  membersDataHelper.getMember(id);
+		return membersDao.getMember(id);
+		//return  membersDataHelper.getMember(id);
 	}
 
 
 
 	public boolean updateCredit(String id, double changecredit) {
 		// TODO Auto-generated method stub
-		return membersDataHelper.updateMemberCredit(id, changecredit);
+		return membersDao.updateCredit(id, changecredit);
+		//return membersDataHelper.updateMemberCredit(id, changecredit);
 	}
 	@Override
 	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
 		// TODO Auto-generated method stub
-		return membersDataHelper.getMemberCreditRecord(memberid);
+		return membersDao.getMemberCreditRecord(memberid);
+		//return membersDataHelper.getMemberCreditRecord(memberid);
 	}
 	@Override
 	public void insertCreditRecord(CreditrecordPO po) {
 		// TODO Auto-generated method stub
-		membersDataHelper.insertCreditRecord(po);
+		membersDao.insertCreditRecord(po);
+		//membersDataHelper.insertCreditRecord(po);
 	}
 
 }

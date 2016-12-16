@@ -13,18 +13,23 @@ import po.MarketerPO;
 import po.MemberInformationPO;
 import po.StaffPO;
 import po.UserPO;
-import data.dao.UserDao;
+import data.dao.UserDataService;
 import data.dataHelper.DataFactory;
 import data.dataHelper.UserDataHelper;
 import data.dataHelper.impl.DataFactoryImpl;
+import data.dataservice.UserDao;
+import data.rmi.RemoteHelper;
 
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDataService{
 	
     private static UserDaoImpl userDaoImpl;
     private UserDataHelper userDataHelper;
     private DataFactory dataFactory;
-    
+    private RemoteHelper remoteHelper;
+    private UserDao userDao;
     public UserDaoImpl(){
+    	remoteHelper = RemoteHelper.getInstance();
+    	userDao = remoteHelper.getUsersDao();
     	dataFactory=new DataFactoryImpl();
 		userDataHelper=dataFactory.getUserDataHelper();
     }
@@ -40,7 +45,7 @@ public class UserDaoImpl implements UserDao{
     
     //找用户
 	public UserPO findUser(String id, UserType type) throws SQLException{
-		// TODO Auto-generated method stub
+		/*// TODO Auto-generated method stub
 		UserPO userPO=null;
 		ArrayList list=userDataHelper.findUser(id, type);
 		if(list.size()==0){
@@ -55,30 +60,32 @@ public class UserDaoImpl implements UserDao{
 		case marketer:userPO=this.Map2MarketerPo(hm);return userPO;
 		case manager:userPO=this.Map2ManagerPo(hm);return userPO;
 		}
-		return null;
+		return null;*/
+		return userDao.findUser(id, type);
 	}
     
 	//更新用户信息
 	public ResultMessage updateUser(UserPO userPO) throws SQLException {
 		// TODO Auto-generated method stub
-		
-		return userDataHelper.updateUser(userPO);
+		return userDao.updateUser(userPO);
+		//return userDataHelper.updateUser(userPO);
 	}
     
 	//添加用户
 	public ResultMessage addUser(UserPO userPO) throws SQLException {
+		return userDao.addUser(userPO);
 		// TODO Auto-generated method stub
-		return userDataHelper.addUser(userPO);
+		//return userDataHelper.addUser(userPO);
 	}
     
 	public ArrayList<UserPO> getAllUsers(UserType type) {
-        
-		return userDataHelper.getAllUsers(type);
+        return userDao.getAllUsers(type);
+		//return userDataHelper.getAllUsers(type);
 	}
 	
 	public boolean isHotelHasStaff(String hotelName){
-		
-		return userDataHelper.isHotelHasStaff(hotelName);
+		return userDao.isHotelHasStaff(hotelName);
+		//return userDataHelper.isHotelHasStaff(hotelName);
 	
 	}
 	

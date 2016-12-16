@@ -2,8 +2,8 @@ package data.dataHelper.impl;
 
 import java.util.ArrayList;
 
-import HotelServerAssist.HotelRanking;
-import HotelServerAssist.HotelTradeArea;
+import Hotelblimpl.HotelRanking;
+import Hotelblimpl.HotelTradeArea;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

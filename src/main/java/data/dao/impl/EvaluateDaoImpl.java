@@ -4,18 +4,23 @@ import java.util.ArrayList;
 
 import Evaluateblimpl.ResultMessage;
 import po.EvaluatePO;
-import data.dao.EvaluateDao;
+import data.dao.EvaluateDataService;
 import data.dataHelper.DataFactory;
 import data.dataHelper.EvaluateDataHelper;
 import data.dataHelper.impl.DataFactoryImpl;
+import data.dataservice.EvaluateDao;
+import data.rmi.RemoteHelper;
 
-public class EvaluateDaoImpl implements EvaluateDao {
+public class EvaluateDaoImpl implements EvaluateDataService {
     
 	 private static EvaluateDaoImpl evaluateDaoImpl;
 	 private EvaluateDataHelper evaluateDataHelper;
 	 private DataFactory dataFactory;
-	    
+	 private  RemoteHelper remoteHelper;
+	 private EvaluateDao evaluateDao;
 	 public EvaluateDaoImpl(){
+		 remoteHelper = RemoteHelper.getInstance();
+		 evaluateDao = remoteHelper.getEvaluateDao();
 	    dataFactory=new DataFactoryImpl();
 		evaluateDataHelper=dataFactory.getEvaluateDataHelper();
 	 }
@@ -31,18 +36,14 @@ public class EvaluateDaoImpl implements EvaluateDao {
 	    
 	public ResultMessage addEvaluate(EvaluatePO evaluatePO) {
 		// TODO Auto-generated method stub
-		return evaluateDataHelper.addEvaluate(evaluatePO.getHotelName(), evaluatePO.getScore(), evaluatePO.getS(),evaluatePO.getName());
+		return evaluateDao.addEvaluate(evaluatePO);
+		//return evaluateDataHelper.addEvaluate(evaluatePO.getHotelName(), evaluatePO.getScore(), evaluatePO.getS(),evaluatePO.getName());
 	}
 
-	public ArrayList<String> getEvaluatetion(String hotelName) {
+	public ArrayList getEvaluatetion(String hotelName) {
 		
-		return evaluateDataHelper.getEvaluate(hotelName);
-	}
-
-	@Override
-	public ArrayList<Double> getScore(String hotelName) {
-		
-		return evaluateDataHelper.getScore(hotelName);
+		//return evaluateDataHelper.getEvaluate(hotelName);
+		return evaluateDao.getEvaluatetion(hotelName);
 	}
 
 	

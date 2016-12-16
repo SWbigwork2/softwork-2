@@ -1,6 +1,6 @@
 package data.dataHelper;
 
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 
 import po.CreditrecordPO;

@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
-
 import Evaluateblimpl.ResultMessage;
 import data.dataHelper.EvaluateDataHelper;
 
@@ -33,15 +31,14 @@ public class EvaluateDataSqlHelper implements EvaluateDataHelper{
 			}
 		}
 	
-	public ResultMessage addEvaluate(String hotelName, double score, String comment,String memberName) {
+	public ResultMessage addEvaluate(String hotelName, double score, String comment,String memberId) {
 		ResultMessage resultMessage=ResultMessage.fail;
         try {
 			this.getConnect();
-			String addSql="insert into evaluation (hotelName,score,comment,memberName) values("+"'"+hotelName+"'"+" , "+score+
-			        " , "+"'"+comment+"'"+","+"'"+memberName+"'"+")";
+			String addSql="insert into evaluation (hotelName,score,comment,memberId) values("+"'"+hotelName+"'"+" , "+score+
+			        " , "+"'"+comment+"'"+","+"'"+memberId+"'"+")";
 			statement = connection.prepareStatement(addSql);
 			statement.executeUpdate();
-			
 			System.out.println(addSql);
 			resultMessage=ResultMessage.success;
 		} catch (SQLException e) {
@@ -54,16 +51,15 @@ public class EvaluateDataSqlHelper implements EvaluateDataHelper{
 		return resultMessage;
 	}
 
-	public ArrayList<String> getEvaluate(String hotelName) {
+	public ArrayList getEvaluate(String hotelName) {
 		ArrayList<String> evaluateList=new ArrayList<String>();
 		try {
 			this.getConnect();
-			String selectSql="select comment,memberName from evaluation where hotelName="+"'"+hotelName+"'";
+			String selectSql="select hotelName,score,comment,memberId from evaluation where hotelName="+"'"+hotelName+"'";
 			statement=connection.prepareStatement(selectSql);
 			resultSet= statement.executeQuery();
 			while(resultSet.next()){
-				String comment=resultSet.getString(2)+":"+resultSet.getString(1);
-				System.out.println(comment);
+				String comment=resultSet.getString(4)+"_"+resultSet.getString(1)+"_"+resultSet.getDouble(2)+"_"+resultSet.getString(3);
 				evaluateList.add(comment);
 			}
 		} catch (SQLException e) {
@@ -74,28 +70,5 @@ public class EvaluateDataSqlHelper implements EvaluateDataHelper{
 		}
 		return evaluateList;
 	}
-	
-	public ArrayList<Double> getScore(String hotelName){
-		ArrayList<Double> hotelScore=new ArrayList<Double>();
-		try {
-			this.getConnect();
-			String selectSql="select score from evaluation where hotelName="+"'"+hotelName+"'";
-			statement=connection.prepareStatement(selectSql);
-			resultSet= statement.executeQuery();
-			while(resultSet.next()){
-				double score=resultSet.getDouble(1);
-				System.out.println(score);
-				hotelScore.add(score);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			this.freeConnect();
-		}
-		return hotelScore;
-	}
-	
-	
 
 }

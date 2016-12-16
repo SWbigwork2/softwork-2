@@ -2,12 +2,17 @@ package po;
 
 import java.io.Serializable;
 
-import HotelServerAssist.HotelRanking;
-import HotelServerAssist.HotelTradeArea;
+import Hotelblimpl.HotelRanking;
+import Hotelblimpl.HotelTradeArea;
+
 
 
 
 public class HotelPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7595262996881300104L;
 	private String name;
 	private String address;
 	private HotelTradeArea tradeArea;
