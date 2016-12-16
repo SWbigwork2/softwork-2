@@ -211,7 +211,12 @@ public class OrderListController {
 		}
 		this.orderId.setText(resultInfo.getOrderId()+"");
 		beginDate.setText(resultInfo.getBeginDate().toLocaleString());
+		try{
 		endDate.setText(resultInfo.getCompleteDate().toLocaleString());
+		}catch (Exception e) {
+			endDate.setText("暂无");
+			// TODO: handle exception
+		}
 		hotel.setText(resultInfo.getHotel());
 		price.setText(resultInfo.getPrice()+"");
 		type.setText(resultInfo.getType());

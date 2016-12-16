@@ -48,10 +48,20 @@ public class Main extends Application {
 		
 		
 	}
+	/**
+	 * 显示主界面
+	 */
 	public void showMain(){
 		this.primaryStage.setTitle("酒店工作人员主界面");
 		initmainPane();
 	}
+	
+	public void logout(){
+		primaryStage.close();
+		loginStage.showAndWait();
+		staff = null;
+	}
+	
 	@Override
 	public void start(Stage primaryStage) {
 		loginStage = new Stage();

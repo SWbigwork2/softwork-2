@@ -37,6 +37,10 @@ public class MemberFrameController {
 		main.showMemberInfo();
 	}
 	
+	public void logout(){
+		main.logout();
+	}
+	
 	/**
 	 * 显示搜索酒店界面
 	 */

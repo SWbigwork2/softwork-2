@@ -52,6 +52,11 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
+            <Button fx:id="logoutButton" layoutY="247.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="登出">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </left>

@@ -44,14 +44,13 @@ public class AddRoomController{
 	private TextArea RoomPriceBar;
 	@FXML
 	private TextArea RoomIntroductionBar;
-	@FXML
-	private MemberMain main;
+	
 	@FXML
 	private AnchorPane baseBar;
 	@FXML
 	private AnchorPane ContentBar;
 	
-	
+	private Main main;
 
 	/**
 	 * 构造方法：初始化
@@ -68,7 +67,7 @@ public class AddRoomController{
 		list.add(RoomType.行政标准间);
 		list.add(RoomType.高级套间);
 		
-		main = MemberMain.getInstance();
+		main = Main.getMain();
 		RoomNumBar = new TextArea();
 		RoomNumBar.setText("text");
 		toolBar = new ToolBar();

@@ -109,7 +109,7 @@ public class OrderBuilderController {
 		introduction.setText(location+"\n"+hotelVo.getIntroduction());
 		beginDate.setValue(inDateInfo);
 		outDate.setValue(outDateInfo);
-		String deadLine = beginDate.getValue()+"24:00";
+		String deadLine = beginDate.getValue()+" 24:00";
 		deadline.setText(deadLine);
 		final Callback<DatePicker, DateCell> dayCellFactory = 
 	            new Callback<DatePicker, DateCell>() {
@@ -164,6 +164,8 @@ public class OrderBuilderController {
 	 * 设置房间类型列表
 	 */
 	public void setTypeList(){
+		String deadLine = beginDate.getValue()+"24:00";
+		deadline.setText(deadLine);
 		Date inDateTime = localToDate(beginDate.getValue());
 		Date outDateTime = localToDate(outDate.getValue());
 		roomList = hotelService.getRoomOfHotel(hotelVo.getName(),new java.sql.Date(inDateTime.getTime()),new java.sql.Date(inDateTime.getTime()));

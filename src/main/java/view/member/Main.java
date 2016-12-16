@@ -3,25 +3,24 @@ package view.member;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.Date;
 import java.util.Stack;
 
-import Hotelblimpl.HotelRanking;
-import Hotelblimpl.HotelTradeArea;
+
 import Roomblimpl.RoomType;
 import Usersblimpl.MemberInformationVO;
-import Usersblimpl.Memberblimpl;
+
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
-import Usersblimpl.Userblimpl;
+
 import blservice.OrdersService;
 import blservice.UserService;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Modality;
+
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import loginblimpl.LoginVo;
@@ -29,16 +28,12 @@ import ordersblimpl.OrderServiceImpl;
 import ordersblimpl.OrderType;
 import vo.HotelVo;
 import vo.OrderVo;
-import javafx.scene.Parent;
+
 import javafx.scene.Scene;
-import javafx.scene.control.SplitPane;
+
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 
 
 public class Main extends Application {
@@ -76,6 +71,14 @@ public class Main extends Application {
 	public ObservableList<OrderVo> getOrderVolist() {
 		return orderVolist;
 	}
+	
+	public void logout(){
+		primaryStage.close();
+		membervo = null;
+		loginStage.showAndWait();
+	}
+	
+	
 	/**
 	 * @return 该用户的全部订单信息
 	 */
@@ -215,7 +218,7 @@ public class Main extends Application {
 			page= (BorderPane)loader.load();
 		    
 			RevampPasswordController controller=loader.getController();
-			controller.setMember(this.membervo);
+			controller.setMember(Main.membervo);
 	    }catch(Exception e){
 	    	e.printStackTrace();
 	    }
@@ -241,14 +244,14 @@ public class Main extends Application {
 			Scene scene = new Scene(loginPane,800,600);
 			primaryStage.setScene(scene);
 			primaryStage.show();*/
-		this.primaryStage = primaryStage;
+		Main.primaryStage = primaryStage;
 	
 			loginStage = new Stage();
-			Pane loginPane = loadPane("memberLogin.fxml");
+			Pane loginPane = loadPane("MemberLogin.fxml");
 			Scene scene = new Scene(loginPane,600,400);
 			tempScene = scene;
 			loginStage.setScene(scene);
-			loginStage.show();
+			loginStage.showAndWait();
 			
 			
 			
@@ -308,7 +311,7 @@ public class Main extends Application {
 	
 	public void setMemberVo(LoginVo vo){
 		userService = new UserControllerblimpl();
-		this.membervo = (MemberInformationVO) userService.find(vo.getId(), UserType.member);
+		Main.membervo = (MemberInformationVO) userService.find(vo.getId(), UserType.member);
 		
 		
 		

@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import loginblimpl.LoginControllerimpl;
 import loginblimpl.LoginVo;
 
@@ -38,6 +40,16 @@ public class MarketerLoginController {
 		passwordTipLabel = new Label();
 		errorMessage = new Label();
 		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * @param e
+	 * 回车按键的监听
+	 */
+	public void pressEnter(KeyEvent e){
+		if(e.getCode() == KeyCode.ENTER){
+			login();
+		}
 	}
 	
 	/**

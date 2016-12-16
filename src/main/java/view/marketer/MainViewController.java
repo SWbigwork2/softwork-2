@@ -16,6 +16,9 @@ public class MainViewController {
     private Button infoButton;
     @FXML
     private MarketerMain main;
+    @FXML
+    private Button logoutButton;
+    
     public MainViewController(){
     	main=MarketerMain.getMain();
     	addPromotionsButton=new Button();
@@ -24,6 +27,11 @@ public class MainViewController {
     	creditButton=new Button();
     	infoButton=new Button();
     	
+    }
+    
+    @FXML
+    public void logout(){
+    	main.logout();
     }
     @FXML
     public void addPromotionsView(){

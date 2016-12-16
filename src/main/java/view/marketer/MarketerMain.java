@@ -59,7 +59,12 @@ public class MarketerMain extends Application {
 		
 		
 	}
+	public void logout(){
+		primaryStage.close();
+		loginStage.showAndWait();
+	}
 	public void showMain(){
+		loginStage.close();
 		this.primaryStage.setTitle("营销人员主界面");
 		initmainPane();
 	}
