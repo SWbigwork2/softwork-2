@@ -57,6 +57,11 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="checkCreditButton" layoutY="192.0" mnemonicParsing="false" onAction="#showCreditRecord" prefHeight="28.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="信用记录">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </left>
