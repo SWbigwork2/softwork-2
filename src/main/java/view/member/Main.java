@@ -200,7 +200,7 @@ public class Main extends Application {
 		panes.push((Pane) root.getCenter());
 		Pane evalutePane = loadPane("evalauteUi.fxml");
 		EvaluateController controller = loader.getController();
-		controller.setOrderVo(vo);
+		controller.setOrderVo(vo,this.membervo.getName());
 		root.setCenter(evalutePane);
 	}
 	/**
