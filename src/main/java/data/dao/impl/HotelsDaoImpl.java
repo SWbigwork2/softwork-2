@@ -60,5 +60,10 @@ public class HotelsDaoImpl implements HotelsDao {
 		ArrayList<RoomPO> roomList = hotelsDataHelper.getRoomOfHotel(hotelName);
 		return roomList;
 	}
+	
+	public boolean judgeHotelExists(String hotelName){
+		boolean hotelExists = hotelsDataHelper.judgeHotelExists(hotelName);
+		return hotelExists;
+	}
 
 }
