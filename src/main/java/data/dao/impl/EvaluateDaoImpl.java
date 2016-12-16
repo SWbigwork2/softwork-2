@@ -34,9 +34,15 @@ public class EvaluateDaoImpl implements EvaluateDao {
 		return evaluateDataHelper.addEvaluate(evaluatePO.getHotelName(), evaluatePO.getScore(), evaluatePO.getS(),evaluatePO.getName());
 	}
 
-	public ArrayList getEvaluatetion(String hotelName) {
+	public ArrayList<String> getEvaluatetion(String hotelName) {
 		
 		return evaluateDataHelper.getEvaluate(hotelName);
+	}
+
+	@Override
+	public ArrayList<Double> getScore(String hotelName) {
+		
+		return evaluateDataHelper.getScore(hotelName);
 	}
 
 	
