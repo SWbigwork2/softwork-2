@@ -1,5 +1,10 @@
 package view.manager;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 import Usersblimpl.ManagerVO;
 import Usersblimpl.MarketerVO;
 import Usersblimpl.MemberInformationVO;
@@ -7,6 +12,7 @@ import Usersblimpl.StaffVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
 import blservice.UserService;
+import data.rmi.RemoteHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,9 +33,23 @@ public class Main extends Application{
 	private ManagerVO managerVO;
 	private static String userId;
 	private static Stage loginStage;
+private RemoteHelper remoteHelper;
 	
+	public void linkToServer(){
+		try{
+			remoteHelper = RemoteHelper.getInstance();
+			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DateRemoteObject"));
+			System.out.println("linked");
+		}catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+	}
 	public  Main() {
-		
+		linkToServer();
 		loader = new FXMLLoader();
 	    managerVO=new ManagerVO("1111", "2222", "3333");
 	}
@@ -63,6 +83,7 @@ public class Main extends Application{
 	}
 	
     public static void main(String agrs[]){
+    	main = new Main();
 	    	launch(agrs);
 	}
 	/**

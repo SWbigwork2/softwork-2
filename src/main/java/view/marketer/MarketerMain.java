@@ -1,10 +1,16 @@
 package view.marketer;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 import Usersblimpl.MarketerVO;
 import Usersblimpl.MemberInformationVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
 import blservice.UserService;
+import data.rmi.RemoteHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -30,8 +36,23 @@ public class MarketerMain extends Application {
 	private static MarketerVO marketer;
 	private static Stage loginStage;
 	private UserService userService;
+private RemoteHelper remoteHelper;
 	
+	public void linkToServer(){
+		try{
+			remoteHelper = RemoteHelper.getInstance();
+			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DateRemoteObject"));
+			System.out.println("linked");
+		}catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+	}
 	public  MarketerMain() {
+		linkToServer();
 		userService = new UserControllerblimpl();
 		loader = new FXMLLoader();
 	
@@ -253,6 +274,7 @@ public class MarketerMain extends Application {
 	  return primaryStage;
   }
 	public static void main(String[] args) {
+		main = new MarketerMain();
 		launch(args);
 	}
 	

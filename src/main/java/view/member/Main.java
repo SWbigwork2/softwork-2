@@ -1,12 +1,17 @@
 package view.member;
 	
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.Date;
 import java.util.Stack;
 
+import org.junit.Before;
 
 import Roomblimpl.RoomType;
 import Usersblimpl.MemberInformationVO;
@@ -16,6 +21,7 @@ import Usersblimpl.UserType;
 
 import blservice.OrdersService;
 import blservice.UserService;
+import data.rmi.RemoteHelper;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +32,7 @@ import javafx.stage.StageStyle;
 import loginblimpl.LoginVo;
 import ordersblimpl.OrderServiceImpl;
 import ordersblimpl.OrderType;
+import rmiTest.linkTest;
 import vo.HotelVo;
 import vo.OrderVo;
 
@@ -50,7 +57,23 @@ public class Main extends Application {
 	private static FXMLLoader loader;
 	private Stack<Pane> panes;
 	private static Scene tempScene;
+	private RemoteHelper remoteHelper;
+	
+	public void linkToServer(){
+		try{
+			remoteHelper = RemoteHelper.getInstance();
+			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DateRemoteObject"));
+			System.out.println("linked");
+		}catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+	}
 	public Main() {
+		linkToServer();
 		panes = new Stack<Pane>();
 		blService = new OrderServiceImpl();
 		loader = new FXMLLoader();
@@ -200,7 +223,7 @@ public class Main extends Application {
 		panes.push((Pane) root.getCenter());
 		Pane evalutePane = loadPane("evalauteUi.fxml");
 		EvaluateController controller = loader.getController();
-		controller.setOrderVo(vo,this.membervo.getName());
+		controller.setOrderVo(vo);
 		root.setCenter(evalutePane);
 	}
 	/**
@@ -343,6 +366,7 @@ public class Main extends Application {
 		
 	}
 	public static void main(String[] args) {
+		main = new Main();
 		launch(args);
 	}
 	public static MemberInformationVO getMembervo() {
