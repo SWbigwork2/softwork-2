@@ -1,12 +1,11 @@
 package data.dataHelper.impl;
 
-import java.security.Timestamp;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import data.dataHelper.MembersDataHelper;
 import po.CreditrecordPO;
@@ -21,7 +20,7 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 	
 	ResultSet resultSet = null;
 	private void getConnect() {         //连接到数据库
-		String url = "jdbc:mysql://localhost:3306/software2";
+		String url = "jdbc:mysql://loccalhost:3306/software2";
 		String user = "root";
 		String password = "zhurunzhi654";
 		connection = SqlConnectHelper.getConnection(url, user, password);
@@ -86,7 +85,7 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 			  }else if(changecredit>=5000){
 				  viplevel=6;
 			  }
-				String sql="update members set credit="+changecredit+" where id="+id+";update members set level="+viplevel+" where id ="+id+"";
+			  String sql="update members set credit="+changecredit+", level="+viplevel+" where id ="+"'"+id+"'";
 				
 				statement = connection.prepareStatement(sql);
 			  statement.executeUpdate();
@@ -130,7 +129,7 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 		// TODO Auto-generated method stub
 		try {
 			getConnect();
-			String sql="insert into creditrecord values( "+"'"+po.getMemberid()+"'"+","+"'"+po.getTime()+"'"+","
+			String sql="insert into creditrecord (memberid,time,orderid,action,creditchange,creditresult ) values( "+"'"+po.getMemberid()+"'"+","+"'"+po.getTime()+"'"+","
 			+po.getRecordid()+","+"'"+po.getAction()+"'"+","+po.getCreditchange()+","+po.getCreditresult()+")";
 			 statement=connection.prepareStatement(sql);
 			statement.executeUpdate();
