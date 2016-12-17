@@ -50,8 +50,8 @@ public class PromotionsviController  {
     String discountstr4=vip4discountTextfield.getText();
     String discountstr5=vip5discountTextfield.getText();
     String discountstr6=vip6discountTextfield.getText();
-    if(hotel==null||discountstr1==null||discountstr2==null||discountstr3==null
-    		||discountstr4==null||discountstr5==null||discountstr6==null){
+    if(hotel.length()==0||discountstr1.length()==0||discountstr2.length()==0||discountstr3.length()==0
+    		||discountstr4.length()==0||discountstr5.length()==0||discountstr6.length()==0){
     	Alert alert=new Alert(AlertType.INFORMATION);
 		alert.setTitle("提示");
 		alert.setHeaderText(null);

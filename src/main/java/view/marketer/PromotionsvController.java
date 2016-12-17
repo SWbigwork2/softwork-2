@@ -44,7 +44,7 @@ public class PromotionsvController  {
 	  String viplevelstr=viplevelTextField.getText();
 	  String discountstr=discountTextField.getText();
 	  String introduction=introductionTextField.getText();
-	  if(hotel==null||area==null||viplevelstr==null||discountstr==null||introduction==null){
+	  if(hotel.length()==0||area.length()==0||viplevelstr.length()==0||discountstr.length()==0||introduction.length()==0){
 		  Alert alert=new Alert(AlertType.INFORMATION);
 			alert.setTitle("提示");
 			alert.setHeaderText(null);

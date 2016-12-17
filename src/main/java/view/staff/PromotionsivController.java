@@ -39,7 +39,7 @@ public class PromotionsivController {
 		String companyname=companynameTextField.getText();
 		String discountstr=discountTextField.getText();
 		String introduction=introductionTextField.getText();
-		if(hotel==null||companyname==null||discountstr==null||introduction==null){
+		if(hotel.length()==0||companyname.length()==0||discountstr.length()==0||introduction.length()==0){
 			Alert alert=new Alert(AlertType.INFORMATION);
 			alert.setTitle("提示");
 			alert.setHeaderText(null);
