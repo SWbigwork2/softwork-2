@@ -1,5 +1,6 @@
 package Membersblimpl;
 
+import java.rmi.Remote;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,8 +8,9 @@ import java.util.Map;
 
 import blservice.MembersService;
 import blservice.OrdersService;
-import data.dao.MembersDao;
-import data.dao.impl.MembersDaoImpl;
+
+import data.dataservice.MembersDao;
+import data.rmi.RemoteHelper;
 import ordersblimpl.OrderServiceImpl;
 import ordersblimpl.OrderType;
 import po.CreditrecordPO;
@@ -19,13 +21,14 @@ import vo.OrderVo;
 
 public class MemberServiceImpl implements MembersService{
 	public MemberServiceImpl() {
-		
+		remoteHelper = RemoteHelper.getInstance();
+		membersDao = remoteHelper.getMembersDao();
 		// TODO Auto-generated constructor stub
 	}
-    MembersDao membersDao=new MembersDaoImpl();
+    MembersDao membersDao;
 	ResultMessage result=ResultMessage.Success;
 	OrdersService ordersService;
-	
+	RemoteHelper remoteHelper;
     public  ArrayList<OrderVo> getOrder(String id){
     	ordersService = new OrderServiceImpl();
     	

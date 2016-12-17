@@ -9,8 +9,8 @@ import Membersblimpl.MemberServiceImpl;
 import blservice.HotelService;
 import blservice.MembersService;
 import blservice.PromotionsService;
-import data.dao.PromotionsDao;
-import data.dao.impl.PromotionsDaoImpl;
+import data.dataservice.PromotionsDao;
+import data.rmi.RemoteHelper;
 import po.HotelPO;
 import po.MemberPO;
 import po.PromotionsIIIPO;
@@ -31,6 +31,7 @@ import view.staff.PromotionsVO;
 
 public class PromotionsServiceImpl implements PromotionsService,PromotionGetPrice{
 	PromotionsDao dao;
+	RemoteHelper remoteHelper;
 //	MembersService membersService=new MemberServiceImpl();
 //	HotelService  hotelService=new HotelServiceImpl();
 	DateFormat df = DateFormat.getDateInstance();
@@ -39,7 +40,8 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 	
 	ArrayList<PromotionsPO> strategieslist=new ArrayList<PromotionsPO>();	
 	public PromotionsServiceImpl(){
-		dao=PromotionsDaoImpl.getInstance();
+		remoteHelper = RemoteHelper.getInstance();
+		dao=remoteHelper.getPromotionsDao();
 		
 	}
 	/**
@@ -50,7 +52,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
        		ArrayList<String> list=new ArrayList<String>();
 		strategieslist=dao.getHotelPromotions(hotel);
 		for(PromotionsPO po:strategieslist){
-			list.add(po.getIntroduction());
+			list.add("策略"+po.getType()+po.getIntroduction());
 		}
 		
 		

@@ -13,17 +13,19 @@ import Membersblimpl.MembersInfo;
 import Promotionsblimpl.PriceInfo;
 import Promotionsblimpl.PromotionGetPrice;
 import Promotionsblimpl.Promotions;
+import Promotionsblimpl.PromotionsServiceImpl;
 import Roomblimpl.RoomsInfo;
 import blservice.MembersService;
 import blservice.OrdersService;
-import data.dao.OrdersDao;
-import data.dao.impl.OrdersDaoImpl;
-import javafx.geometry.Pos;
+
+import data.dataservice.OrdersDao;
+import data.rmi.RemoteHelper;
 import po.OrderPO;
 import vo.OrderVo;
 
 public class OrderServiceImpl implements OrdersService{
 	OrdersDao dao;
+	RemoteHelper remoteHelper;
 	String memberId;
 	int orderId;
 	OrderItem tempItem;
@@ -44,10 +46,12 @@ public class OrderServiceImpl implements OrdersService{
 	MembersService membersService;
 	OrderPoVoTran tran;
 	public OrderServiceImpl() {
+		remoteHelper = RemoteHelper.getInstance();
+		dao = remoteHelper.getOrdersDao();
 		tran = new OrderPoVoTran();
 		membersService = new MemberServiceImpl();
-		promotions = new Promotions();
-		dao = OrdersDaoImpl.getInstance();
+		promotions = new PromotionsServiceImpl();
+		
 		// TODO Auto-generated constructor stub
 	}
 	private void setId(String memberId){
