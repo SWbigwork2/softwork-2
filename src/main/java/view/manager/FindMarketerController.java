@@ -2,6 +2,7 @@ package view.manager;
 
 import java.util.ArrayList;
 
+import org.controlsfx.dialog.Dialogs;
 
 import Usersblimpl.ManagerVO;
 import Usersblimpl.MarketerVO;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
@@ -67,16 +69,16 @@ public class FindMarketerController {
 	
 	@FXML
 	private void selectMarketer(){
-		
-		MarketerModel marketer=marketerList.getSelectionModel().getSelectedItem();
-		UserService userService=new UserControllerblimpl();
-		MarketerVO marketerVO=(MarketerVO)userService.find(marketer.getId(), UserType.marketer);
+	    try{	
+	    	MarketerModel marketer=marketerList.getSelectionModel().getSelectedItem();
+	    	UserService userService=new UserControllerblimpl();
+	    	MarketerVO marketerVO=(MarketerVO)userService.find(marketer.getId(), UserType.marketer);
 
-		if(marketerVO!=null){
 		    main.showMarketerDetais(marketerVO);
-		}else{
-		    
-		}
+	    } catch (NullPointerException e) {
+	    	// TODO: handle exception
+	    	main.showWaningInformation(AlertType.ERROR, "", "请选择一项");
+	    }
 	}
 	
 	@FXML

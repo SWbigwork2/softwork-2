@@ -10,6 +10,7 @@ import blservice.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -66,7 +67,7 @@ public class FindStaffController {
 	public void findStaff(){
 		
         StaffVO staffVo =null;
-		if(staffIdFindField.getText()!=null){
+		if(staffIdFindField.getText().length()>=1){
 			String  staffId=staffIdFindField.getText();
 			UserControllerblimpl userControllerMock=new UserControllerblimpl();
 			staffVo=(StaffVO)userControllerMock.find(staffId, UserType.staff);
@@ -75,18 +76,32 @@ public class FindStaffController {
 		
 		if(staffVo!=null){
 			main.showStaffDetails(staffVo);
+		}else{
+			main.showWaningInformation(AlertType.ERROR, "提示", "这个id不存在");
 		}
 	}
 	
 	@FXML
-	private void selectStaff(){
-		StaffModel staffModel=staffList.getSelectionModel().getSelectedItem();
-		UserService userService=new UserControllerblimpl();
-		StaffVO staff=(StaffVO)userService.find(staffModel.getId(), UserType.staff);
-	    if(staff!=null){
+	public  void selectStaff(){
+		try {
+			
+			StaffModel staffModel=staffList.getSelectionModel().getSelectedItem();
+
+			
+		    UserService userService=new UserControllerblimpl();
+		    StaffVO staff=(StaffVO)userService.find(staffModel.getId(), UserType.staff);
+	        
 	    	main.showStaffDetails(staff);
-	    }
+	        
+		
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			main.showWaningInformation(AlertType.ERROR, "", "请选择一项");
+		}
+			
+			
+		}
 	}
 	
 	
-}
+

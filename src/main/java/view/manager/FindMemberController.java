@@ -95,14 +95,15 @@ public class FindMemberController {
 		 */
 		@FXML
 		public void selectMember(){
-			MemberModel memberModel=memberList.getSelectionModel().getSelectedItem();
-			if(memberModel!=null){
-			    
+			try{
+			    MemberModel memberModel=memberList.getSelectionModel().getSelectedItem();
 				UserService userService=new UserControllerblimpl();
 			    MemberInformationVO memberInformationVO=(MemberInformationVO)
 					userService.find(memberModel.getId(), UserType.member);
-			    main.showMemberDetails(memberInformationVO);
-			
+			    main.showMemberDetails(memberInformationVO);			
+			} catch (NullPointerException e) {
+				// TODO: handle exception
+				main.showWaningInformation(AlertType.ERROR, "", "请选择一项");
 			}
 			
 		
