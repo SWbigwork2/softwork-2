@@ -368,21 +368,5 @@ public ArrayList<PromotionsPO> getHotelPromotions(String hotel) {
 	
 	return list;
 }
-//private static ArrayList<PromotionsPO> resultSetToList(ResultSet rs) throws java.sql.SQLException {   //resultset转list，每个订单的数据存在一个map中
-//    if (rs == null)   
-//        return null;  
-//    ResultSetMetaData md = rs.getMetaData(); //得到结果集(rs)的结构信息，比如字段数、字段名等   
-//    int columnCount = md.getColumnCount(); //返回此 ResultSet 对象中的列数   
-//    ArrayList<PromotionsPO> list = new ArrayList<PromotionsPO>();   
-//    Map rowData = new HashMap();   
-//    while (rs.next()) {   
-//     rowData = new HashMap(columnCount);   
-//     for (int i = 1; i <= columnCount; i++) {   
-//             rowData.put(md.getColumnName(i), rs.getObject(i));   
-//     }   
-//     list.add(rowData);   
-//     System.out.println("list:" + list.toString());   
-//    }   
-//    return list;   
-//}  
+
 }
