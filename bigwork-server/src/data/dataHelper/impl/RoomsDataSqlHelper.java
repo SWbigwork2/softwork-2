@@ -152,25 +152,25 @@ public class RoomsDataSqlHelper implements RoomsDataHelper {
 				sqlExpression1 = "update Room set StartTime1= " + "\"" + startTime + "\"" + "where RoomID=" + roomID
 						+ ";";
 				sqlExpression2 = "update Room set EndTime1= " + "\"" + endTime + "\"" + "where RoomID=" + roomID + ";";
-				sqlExpression3 = "update Room set OrderId1= " +  String.valueOf(orderId)  + "where RoomID="
+				sqlExpression3 = "update Room set OrderId1= " +  String.valueOf(orderId)  + " where RoomID="
 						+ roomID + ";";
 			} else if (StartTime2 == null) {
 				sqlExpression1 = "update Room set StartTime2= " + "\"" + startTime + "\"" + "where RoomID=" + roomID
 						+ ";";
 				sqlExpression2 = "update Room set EndTime2= " + "\"" + endTime + "\"" + "where RoomID=" + roomID + ";";
-				sqlExpression3 = "update Room set OrderId2= "  + String.valueOf(orderId) + "where RoomID="
+				sqlExpression3 = "update Room set OrderId2= "  + String.valueOf(orderId) + " where RoomID="
 						+ roomID + ";";
 			} else if (StartTime3 == null) {
 				sqlExpression1 = "update Room set StartTime3= " + "\"" + startTime + "\"" + "where RoomID=" + roomID
 						+ ";";
 				sqlExpression2 = "update Room set EndTime3= " + "\"" + endTime + "\"" + "where RoomID=" + roomID + ";";
-				sqlExpression3 = "update Room set OrderId3= "  + String.valueOf(orderId)  + "where RoomID="
+				sqlExpression3 = "update Room set OrderId3= "  + String.valueOf(orderId)  + " where RoomID="
 						+ roomID + ";";
 			} else if (StartTime4 == null) {
 				sqlExpression1 = "update Room set StartTime4= " + "\"" + startTime + "\"" + "where RoomID=" + roomID
 						+ ";";
 				sqlExpression2 = "update Room set EndTime4= " + "\"" + endTime + "\"" + "where RoomID=" + roomID + ";";
-				sqlExpression3 = "update Room set OrderId4= "  + String.valueOf(orderId)  + "where RoomID="
+				sqlExpression3 = "update Room set OrderId4= "  + String.valueOf(orderId)  + " where RoomID="
 						+ roomID + ";";
 			}
 
