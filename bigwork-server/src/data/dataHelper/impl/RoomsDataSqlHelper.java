@@ -231,7 +231,7 @@ public class RoomsDataSqlHelper implements RoomsDataHelper {
 				sqlExpression2 = "update Room set EndTime2=" + "null" + " where RoomID=" + roomID + ";";
 				sqlExpression3 = "update Room set OrderId2=" + "null" + " where RoomID=" + roomID + ";";
 			} else if (orderId3 == orderId) {
-				sqlExpression1 = "update Room set StartTime3=" + "null" + "where RoomID=" + roomID + ";";
+				sqlExpression1 = "update Room set StartTime3=" + "null" + " where RoomID=" + roomID + ";";
 				sqlExpression2 = "update Room set EndTime3=" + "null" + " where RoomID=" + roomID + ";";
 				sqlExpression3 = "update Room set OrderId3=" + "null" + " where RoomID=" + roomID + ";";
 			} else if (orderId4 == orderId) {
