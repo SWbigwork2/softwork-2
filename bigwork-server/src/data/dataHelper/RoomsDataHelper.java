@@ -18,19 +18,6 @@ public interface RoomsDataHelper {
 	 * @return 添加房间
 	 */
 	boolean insertRoom(RoomPO roomPO);
-
-	/**
-	 * @param roomID
-	 * @return 删除房间
-	 */
-	
-	boolean deleteRoom(String roomID);
-	/**
-	 * @param roomPO
-	 * @return 更新房间信息
-	 */
-	
-	boolean updateRoom(RoomPO roomPO);
     
 	/**
 	 * 
@@ -39,7 +26,7 @@ public interface RoomsDataHelper {
 	 * @param EndTime
 	 * @return 录入房间预定时间
 	 */
-	boolean recordStartTime(String roomID, Date StartTime, Date EndTime);
+	boolean recordReservation(int roomID, Date StartTime, Date EndTime,int orderId);
 
 	/**
 	 * 
@@ -47,6 +34,27 @@ public interface RoomsDataHelper {
 	 * @param StartTime
 	 * @return 删除房间预定时间
 	 */
-	boolean recordCheckOut(String roomID, Date StartTime);
+	boolean recordCheckOut(int roomID, int orderId);
+	/**
+	 * @param orderId
+	 * @param roomIdList
+	 * @return 添加订单号对应的房间
+	 */
+	boolean recordOrderRoom(int orderId, ArrayList<Integer> roomIdList);
+	/**
+	 * 
+	 * @param orderId
+	 * @return 返回订单号对应的房间
+	 */
+	ArrayList<Integer> getOrderRoom(int orderId);
+	/**
+	 * 
+	 * @param roomID
+	 * @param orderId
+	 * @param StartTime
+	 * @return
+	 */
+	boolean recordCheckIn(int roomID, int orderId, Date StartTime);
+	
 
 }

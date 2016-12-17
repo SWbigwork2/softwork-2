@@ -2,8 +2,6 @@ package data.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
-
 import data.dataHelper.DataFactory;
 import data.dataHelper.RoomsDataHelper;
 import data.dataHelper.impl.DataFactoryImpl;
@@ -18,8 +16,6 @@ public class RoomsDaoImpl implements RoomsDao {
 
 	private DataFactory dataFactory;
 	
-	
-
 	public static RoomsDaoImpl getInstance() {
 		// 单例模式：只有一个RoomsDaoImpl
 		if (roomsDaoImpl == null) {
@@ -46,24 +42,33 @@ public class RoomsDaoImpl implements RoomsDao {
 		return insert;
 	}
 
-	public boolean deleteRoom(String roomID) {
-		boolean delete = roomsDataHelper.deleteRoom(roomID);
-		return delete;
-	}
 
-	public boolean updateRoom(RoomPO roomPO) {
-		boolean update = roomsDataHelper.updateRoom(roomPO);
-		return update;
-	}
-
-	public boolean recordStartTime(String roomID, Date StartTime, Date EndTime) {
-		boolean recordStart = roomsDataHelper.recordStartTime(roomID, StartTime, EndTime);
+	public boolean recordReservation(int roomID, Date StartTime, Date EndTime,int orderId) {
+		boolean recordStart = roomsDataHelper.recordReservation(roomID, StartTime, EndTime, orderId);
 		return recordStart;
 	}
 
-	public boolean recordCheckOut(String roomID, Date StartTime) {
-		boolean recordCheckOut = roomsDataHelper.recordCheckOut(roomID, StartTime);
+	public boolean recordCheckOut(int roomID, int orderId) {
+		boolean recordCheckOut = roomsDataHelper.recordCheckOut(roomID, orderId);
 		return recordCheckOut;
 	}
 
+	@Override
+	public ArrayList<Integer> getOrderRoom(int orderId) {
+		ArrayList<Integer> list = roomsDataHelper.getOrderRoom(orderId);
+		return list;
+	}
+
+	public boolean recordOrderRoom(int orderId, ArrayList<Integer> roomIdList){
+		boolean record = roomsDataHelper.recordOrderRoom(orderId, roomIdList);
+		return record;
+	}
+
+	@Override
+	public boolean recordCheckIn(int roomID, int orderId, Date StartTime) {
+		boolean record = roomsDataHelper.recordCheckIn(roomID, orderId, StartTime);
+		return record;
+	}
+
+	
 }

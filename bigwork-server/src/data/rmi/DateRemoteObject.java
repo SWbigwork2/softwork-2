@@ -92,42 +92,6 @@ public class DateRemoteObject extends UnicastRemoteObject implements OrdersDao,E
 	}
 
 	@Override
-	public ArrayList<RoomPO> getRoomList(String hotelName) throws RemoteException {
-		// TODO Auto-generated method stub
-		return roomsDao.getRoomList(hotelName);
-	}
-
-	@Override
-	public boolean insertRoom(RoomPO roomPO) throws RemoteException {
-		// TODO Auto-generated method stub
-		return roomsDao.insertRoom(roomPO);
-	}
-
-	@Override
-	public boolean deleteRoom(String roomID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return roomsDao.deleteRoom(roomID);
-	}
-
-	@Override
-	public boolean updateRoom(RoomPO roomPO) throws RemoteException {
-		// TODO Auto-generated method stub
-		return roomsDao.updateRoom(roomPO);
-	}
-
-	@Override
-	public boolean recordStartTime(String roomID, Date StartTime, Date EndTime) throws RemoteException {
-		// TODO Auto-generated method stub
-		return roomsDao.recordStartTime(roomID, StartTime, EndTime);
-	}
-
-	@Override
-	public boolean recordCheckOut(String roomID, Date StartTime) throws RemoteException {
-		// TODO Auto-generated method stub
-		return roomsDao.recordCheckOut(roomID, StartTime);
-	}
-
-	@Override
 	public ArrayList<PromotionsPO> getHotelPromotions(String hotel) throws RemoteException {
 		// TODO Auto-generated method stub
 		return promotionsDao.getHotelPromotions(hotel);
@@ -291,4 +255,40 @@ public class DateRemoteObject extends UnicastRemoteObject implements OrdersDao,E
 		return evaluateDao.addEvaluate(evaluatePO);
 	}
 
+	@Override
+	public boolean recordReservation(int roomID, Date StartTime, Date EndTime, int orderId) throws RemoteException {
+		return roomsDao.recordReservation(roomID, StartTime, EndTime, orderId);
+	}
+
+	@Override
+	public boolean recordCheckOut(int roomID, int orderId) throws RemoteException{
+		return roomsDao.recordCheckOut(roomID, orderId);
+	}
+
+	@Override
+	public ArrayList<Integer> getOrderRoom(int orderId) throws RemoteException {
+		return roomsDao.getOrderRoom(orderId);
+	}
+
+	@Override
+	public boolean recordOrderRoom(int orderId, ArrayList<Integer> roomIdList) throws RemoteException{
+		return roomsDao.recordOrderRoom(orderId, roomIdList);
+	}
+
+	@Override
+	public boolean recordCheckIn(int roomID, int orderId, Date StartTime) throws RemoteException{
+		return roomsDao.recordCheckIn(roomID, orderId, StartTime);
+	}
+	
+	@Override
+	public ArrayList<RoomPO> getRoomList(String hotelName) throws RemoteException{
+		return roomsDao.getRoomList(hotelName);
+	}
+
+	@Override
+	public boolean insertRoom(RoomPO roomPO) throws RemoteException{
+		return roomsDao.insertRoom(roomPO);
+	}
+
+	
 }

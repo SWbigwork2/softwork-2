@@ -1,23 +1,12 @@
 package po;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 import Roomblimpl.RoomType;
-
-
-
-
-
-
-public class RoomPO implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -438235272461601501L;
-	private String roomName;
+import Roomblimpl.RoomsInfo;
+public class RoomPO implements Serializable,RoomsInfo{
+	private int roomId;
 	private String hotelBelongTo;
 	private RoomType roomtype;
 	private String introdution;
@@ -25,17 +14,17 @@ public class RoomPO implements Serializable{
 	private Map<Date, Date> unavailablePeriod;
 	
 	
-	public RoomPO(String r, String h, RoomType t,String i,double p, Map<Date, Date> dateList){
-		this.roomName= r;
-		this.hotelBelongTo =h;
-		this.roomtype =t;
-		this.introdution=i;
-		this.price =p;
-		this.unavailablePeriod =dateList;
+	public RoomPO(int roomId, String hotelBelongTo, RoomType roomtype,String introdution,double price, Map<Date, Date> unavailablePeriod){
+		this.roomId= roomId;
+		this.hotelBelongTo =hotelBelongTo;
+		this.roomtype =roomtype;
+		this.introdution=introdution;
+		this.price =price;
+		this.unavailablePeriod =unavailablePeriod;
 	}
 	
-	public String getRoomName(){
-		return roomName;	
+	public int getId(){
+		return roomId;	
 	}
 	public String getHotelBelongTo(){
 		return hotelBelongTo;
@@ -52,9 +41,4 @@ public class RoomPO implements Serializable{
 	public Map<Date, Date> getUnavailablePeriod() {
 		return unavailablePeriod;
 	}
-
-	public ArrayList<Timestamp> getRoomStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}	
 }
