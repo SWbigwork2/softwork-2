@@ -45,7 +45,7 @@ public class PromotionsiiController {
 		String startdate=startdateDatePicker.getValue().toString();
 		String enddate=enddateDatePicker.getValue().toString();
 		String introduction=introductionTextField.getText();		
-		if(hotel==null||startdate==null||enddate==null||discountstr==null||introduction==null){
+		if(hotel.length()==0||startdate.length()==0||enddate.length()==0||discountstr.length()==0||introduction.length()==0){
 			Alert alert=new Alert(AlertType.INFORMATION);
 			alert.setTitle("提示");
 			alert.setHeaderText(null);
