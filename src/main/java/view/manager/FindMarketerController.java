@@ -83,8 +83,9 @@ public class FindMarketerController {
 	
 	@FXML
 	private void findMarketer(){
+		
 	    String id=marketerIdField.getText();
-	    if(id!=null){
+	    if(id.length()>=1){
 	        UserService userService=new UserControllerblimpl();
 	        MarketerVO marketerVO=(MarketerVO)userService.find(id, UserType.marketer);
 	        main.showMarketerDetais(marketerVO);
