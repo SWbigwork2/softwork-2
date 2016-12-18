@@ -70,6 +70,7 @@ public class PromotionsvController  {
 			}
 		  else {
 		 
+			  
 		  PromotionsVVO promotionsVVO=new PromotionsVVO(5, hotel, introduction, viplevel, area, discount);
 	      boolean result=promotionsService.addPromotionsV(promotionsVVO);
 	      if(result){
