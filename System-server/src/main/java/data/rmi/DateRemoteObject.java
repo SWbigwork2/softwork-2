@@ -295,5 +295,9 @@ public class DateRemoteObject extends UnicastRemoteObject implements OrdersDao,E
 		return roomsDao.judgeHotelEXists(hotelName);
 	}
 
-	
+	@Override
+	public double getScore(String hotelName) throws RemoteException {
+		// TODO Auto-generated method stub
+		return evaluateDao.getScore(hotelName);
+	}
 }

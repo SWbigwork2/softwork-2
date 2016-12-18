@@ -10,4 +10,5 @@ import po.EvaluatePO;
 public interface EvaluateDao extends Remote{
     public ResultMessage addEvaluate(EvaluatePO evaluatePO) throws RemoteException;
     public ArrayList getEvaluatetion(String hotelName) throws RemoteException;
+    public double getScore(String hotelName) throws RemoteException;
 }

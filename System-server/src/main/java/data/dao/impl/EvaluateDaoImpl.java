@@ -1,5 +1,6 @@
 package data.dao.impl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import Evaluateblimpl.ResultMessage;
@@ -37,6 +38,11 @@ public class EvaluateDaoImpl implements EvaluateDao {
 	public ArrayList getEvaluatetion(String hotelName) {
 		
 		return evaluateDataHelper.getEvaluate(hotelName);
+	}
+
+	@Override
+	public double getScore(String hotelName) throws RemoteException {
+		// TODO Auto-generated method stub
 	}
 
 	

@@ -35,11 +35,11 @@ public class EvaluateDataSqlHelper implements EvaluateDataHelper{
 		ResultMessage resultMessage=ResultMessage.fail;
         try {
 			this.getConnect();
-			String addSql="insert into evaluation (hotelName,score,comment,memberId) values("+"'"+hotelName+"'"+" , "+score+
+			String addSql="insert into evaluation (hotelName,score,comment,memberName) values("+"'"+hotelName+"'"+" , "+score+
 			        " , "+"'"+comment+"'"+","+"'"+memberId+"'"+")";
 			statement = connection.prepareStatement(addSql);
 			statement.executeUpdate();
-			System.out.println(addSql);
+//			System.out.println(addSql);
 			resultMessage=ResultMessage.success;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -55,7 +55,7 @@ public class EvaluateDataSqlHelper implements EvaluateDataHelper{
 		ArrayList<String> evaluateList=new ArrayList<String>();
 		try {
 			this.getConnect();
-			String selectSql="select hotelName,score,comment,memberId from evaluation where hotelName="+"'"+hotelName+"'";
+			String selectSql="select hotelName,score,comment,memberName from evaluation where hotelName="+"'"+hotelName+"'";
 			statement=connection.prepareStatement(selectSql);
 			resultSet= statement.executeQuery();
 			while(resultSet.next()){
@@ -69,6 +69,34 @@ public class EvaluateDataSqlHelper implements EvaluateDataHelper{
 			this.freeConnect();
 		}
 		return evaluateList;
+	}
+
+	@Override
+	public double getScore(String hotelName) {
+		// TODO Auto-generated method stub
+		double result=0;
+		try {
+			this.getConnect();
+			int num=0;
+            double score=0;
+			String selectSql="select score from evaluation where hotelName="+"'"+hotelName+"'";
+			System.out.println(selectSql);
+			statement=connection.prepareStatement(selectSql);
+			resultSet= statement.executeQuery();
+			while(resultSet.next()){
+				num++;
+				score=resultSet.getDouble(1)+score;
+			}
+			if(num!=0){
+				result=score/num;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			this.freeConnect();
+		}
+		return result;
 	}
 
 }
