@@ -136,11 +136,11 @@ public class BrowseHotelController {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.userName = userName;
-		initialize();
+		initialized();
 	}
 
 	@FXML
-	public void initialize() {
+	public void initialized() {
 		
 		ObservableList<HotelColumnVo> hotelColumList = FXCollections.observableArrayList();
 

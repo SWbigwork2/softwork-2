@@ -20,6 +20,7 @@ import vo.OrderVo;
 
 public class MemberServiceImpl implements MembersService{
 	public MemberServiceImpl() {
+		
 		remoteHelper = RemoteHelper.getInstance();
 		membersDao = remoteHelper.getMembersDao();
 		// TODO Auto-generated constructor stub
@@ -43,7 +44,7 @@ public class MemberServiceImpl implements MembersService{
     }
 	@Override
 	public MemberPO getMember(String id) {
-		ordersService = new OrderServiceImpl();
+		
 		// TODO Auto-generated method stub
 		return membersDao.getMember(id);
 	}

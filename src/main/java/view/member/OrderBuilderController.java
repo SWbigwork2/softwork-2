@@ -223,8 +223,8 @@ public class OrderBuilderController {
 		PriceInfo priceInfo = service.getPrice(hotelString, onePrice, roomNumber, memberInformationVO.getUserId(),calDays(inDateTime, outDateTime) );
 		//double price = priceInfo.getPrice();
 		//String promotionIntro = priceInfo.getIntroduction();
-		double price = 100.0;
-		String promotionIntro = "hha";
+		double price = priceInfo.getPrice();
+		String promotionIntro = priceInfo.getIntroduction();
 		orderVo = new OrderVo();
 		orderVo.setUserId(memberInformationVO.getUserId());
 		orderVo.setName(memberInformationVO.getName());

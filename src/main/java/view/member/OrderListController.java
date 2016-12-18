@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Usersblimpl.MemberInformationVO;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -90,7 +92,14 @@ public class OrderListController {
 		price.setText(orderVoInfo.getPrice()+"");
 		type.setText(orderVoInfo.getType());
 		
-		
+		orderTypeChoice.valueProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				// TODO Auto-generated method stub
+				changeChoice();
+			}
+		});
 		//OrderVo testinfo =  new OrderVo("lv3", 0002, "admin", "admin", "新月", new Date(), new Date(), new Date(), new Date(), new Date(), 100.0, "正在进行","normal",1,1,false);
 		//infoList.add(orderVoInfo);
 		//infoList.add(testinfo);
@@ -113,12 +122,13 @@ public class OrderListController {
 		temp = FXCollections.observableArrayList();
 		temp.clear();
 		for(OrderVo info:infoList){
-			if(info.getType().equals(choice)){
+			if(info.getType().equals(choice)||choice.equals("all")){
 				temp.add(simpleInfo(info));
 			}
 		}
-		orderListView = new ListView<String>();
+		
 		orderListView.setItems(temp);
+		
 	}
 	/**
 	 * @param vo

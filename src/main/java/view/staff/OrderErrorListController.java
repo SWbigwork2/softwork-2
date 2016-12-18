@@ -54,12 +54,13 @@ public class OrderErrorListController {
 	private Label userId;
 	@FXML
 	private Label roomType;
-	
+	private Main main;
 	private String hotel;
 	private ArrayList<OrderVo> infoList;
 	private OrderVo selectVo;
 	private OrdersService service;
 	public OrderErrorListController() {
+		main = Main.getMain();
 		concelButton = new Button();
 		service = new OrderServiceImpl();
 		orderType = new Label();
@@ -179,7 +180,7 @@ public class OrderErrorListController {
 		service.update(selectVo);
 		recoverButton.setText("补登记");
 		recoverButton.setDisable(false);
-		System.out.println("补登记");
+		main.showList();
 		}
 	}
 	

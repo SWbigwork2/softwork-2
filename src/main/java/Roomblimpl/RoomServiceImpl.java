@@ -22,7 +22,6 @@ public class RoomServiceImpl implements RoomService {
 		roomsDao = remoteHelper.getRoomsDao();
 		// TODO Auto-generated constructor stub
 	}
-	
 	/**
 	 * @param ArrayList<RoomVo>
 	 */
@@ -268,19 +267,14 @@ public class RoomServiceImpl implements RoomService {
 			switch (cell.getRoomType()) {
 			case 单人间:
 				roomType1++;
-				break;
 			case 商务间:
 				roomType2++;
-				break;
 			case 标准间:
 				roomType3++;
-				break;
 			case 行政标准间:
 				roomType4++;
-				break;
 			case 高级套间:
 				roomType5++;
-				break;
 			}
 		}
 		Map<RoomType, Integer> numOfRoomType = new HashMap<RoomType, Integer>();

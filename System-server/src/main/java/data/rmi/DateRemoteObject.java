@@ -292,7 +292,8 @@ public class DateRemoteObject extends UnicastRemoteObject implements OrdersDao,E
 
 	@Override
 	public boolean judgeHotelExists(String hotelName) throws RemoteException {
-		return roomsDao.judgeHotelEXists(hotelName);
+		// TODO Auto-generated method stub
+		return hotelsDao.judgeHotelExists(hotelName);
 	}
 
 	@Override
@@ -300,4 +301,7 @@ public class DateRemoteObject extends UnicastRemoteObject implements OrdersDao,E
 		// TODO Auto-generated method stub
 		return evaluateDao.getScore(hotelName);
 	}
+
+	
+	
 }

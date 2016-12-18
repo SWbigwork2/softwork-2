@@ -54,7 +54,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <ComboBox fx:id="orderTypeChoice" onAction="#changeChoice" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: lightgray;" GridPane.columnIndex="2" />
+                  <ComboBox fx:id="orderTypeChoice" onAction="#changeChoice" onContextMenuRequested="#changeChoice" onMouseClicked="#changeChoice" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: lightgray;" GridPane.columnIndex="2" />
                </children>
             </GridPane>
         <AnchorPane onContextMenuRequested="#showSelection">

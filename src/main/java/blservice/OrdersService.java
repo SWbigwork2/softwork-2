@@ -40,6 +40,11 @@ public interface OrdersService {
 	 */
 	public ArrayList<OrderVo> getOrderList(String memberId,OrderType type);
 	
+	/**
+	 * @return 得到未执行订单
+	 */
+	public ArrayList<OrderVo> getUndoList();
+	
 	
 	/**
 	 * @param memberId

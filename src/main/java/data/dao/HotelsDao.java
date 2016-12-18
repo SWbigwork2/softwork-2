@@ -1,22 +1,24 @@
 package data.dao;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.HotelPO;
 import po.RoomPO;
 
-public interface HotelsDao {
+public interface HotelsDao extends Remote{
 	/**
 	 * @param HotelPO
 	 * @return 获取符合条件的酒店列表
 	 */
-	public ArrayList<HotelPO> getHotelList(HotelPO hotelPO);
+	public ArrayList<HotelPO> getHotelList(HotelPO hotelPO) ;
 	
 	/**
 	 * @param HotelPO
 	 * @return 获取符合条件的一家酒店的细节信息
 	 */
-	public HotelPO getHotelDetails(String hotelName);
+	public HotelPO getHotelDetails(String hotelName) ;
 	
 	/**
 	 * @param HotelPO
@@ -25,11 +27,11 @@ public interface HotelsDao {
 	
 	public boolean insertHotel(HotelPO hotelPO);
 	
-	/**/Users/xutianze/softwork-2/src/main/java/data/dao/HotelsDao.java
+	/**
 	 * @param HotelPO
 	 * @return 删除酒店
 	 */
-	public boolean deleteHotel(String hotelName);
+	public boolean deleteHotel(String hotelName) ;
 	
 	/**
 	 * @param HotelPO 
@@ -42,13 +44,12 @@ public interface HotelsDao {
 	 * @return 返回该酒店的房间列表
 	 */
 	public ArrayList<RoomPO> getRoomOfHotel(String hotelName);
-
+	
 	/**
 	 * @param hotelName
 	 * @return 判断酒店是否存在
 	 */
-	public boolean judgeHotelExists(String hotelName);
-
+	public boolean judgeHotelExists(String hotelName) ;
 
 	
 }

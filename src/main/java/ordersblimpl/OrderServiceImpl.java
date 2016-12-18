@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrdersService{
 	Date completeDate;
 	Date revokeDate;
 	Date deadLine;
-	OrdersList ordersListMock;
+
 	MembersService membersService;
 	OrderPoVoTran tran;
 	public OrderServiceImpl() {
@@ -55,14 +55,14 @@ public class OrderServiceImpl implements OrdersService{
 	}
 	private void setId(String memberId){
 		this.memberId = memberId;
-		ordersListMock = new OrdersList();
+		
 	}
 	public void setUp(Promotions p,HotelsInfo h,RoomsInfo r,MembersInfo m){
 		promotions = p;
 		hotelsInfo = h;
 		membersInfo = m;
 		roomsInfo =r;
-		ordersListMock = new OrdersList();
+		
 	}
 	/*public OrderBlService_Stub(int orderId, int userId, String userNameString, String hotelsInfo.getName(),
 			roomsInfo.getType() roomsInfo.getType(), int roomNum, double price, OrderType orderType, Date inDate, Date outDate,
@@ -103,24 +103,9 @@ public class OrderServiceImpl implements OrdersService{
 		return resultList;
 		
 	}
-	private int makeId() {
-		int size = ordersListMock.orderList.size();
-		return size+1;
-	}
+	
 
-	public ResultMessage add( int peopleNum,int roomNum, Date beginDate, Date endDate, Date deadline){
-		if(membersInfo.getCredit()<200){
-			return ResultMessage.notEnough;
-		}
-		int orderId = makeId();
-		//tempItem = new OrderItem(promotions, orderId,  membersInfo, hotelsInfo, roomsInfo, roomNum, OrderType.normal, beginDate, deadline, beginDate, endDate, deadline,peopleNum);
-		
-		
-			return ResultMessage.success;
-		
-		
-		
-	}
+	
 	public OrderPO findOrder(int orderId) {
 		
 		return dao.getOrder(orderId);
@@ -147,35 +132,10 @@ public class OrderServiceImpl implements OrdersService{
 		
 
 	}
-	public void confirm(){
-		ordersListMock.add(tempItem);
-		
-	}
-	public OrdersList getList(){
-		return ordersListMock;
-	}
-	public ResultMessage cancel(int orderId){
-		OrderItem temp=null;
-		temp = ordersListMock.findOrder(orderId);
-		if(temp==null){
-			return ResultMessage.orderNotExist;
-		}
-		else{
-			tempItem = null;
-			return ResultMessage.success;
-		}
-	}
-	public ResultMessage recover(int orderId){
-		OrderItem temp=null;
-		temp = ordersListMock.findOrder(orderId);
-		if(temp==null){
-			return ResultMessage.orderNotExist;
-		}
-		else{
-			temp.orderType = OrderType.done;
-			return ResultMessage.success;
-		}
-	}
+	
+	
+	
+	
 	/**
 	 * @param memberId
 	 * @return 得到住过的所有酒店
@@ -201,17 +161,7 @@ public class OrderServiceImpl implements OrdersService{
 		}
 		return resultMap;
 	}
-	public ResultMessage changeError(int orderId){
-		OrderItem temp=null;
-		temp = ordersListMock.findOrder(orderId);
-		if(temp==null){
-			return ResultMessage.orderNotExist;
-		}
-		else{
-			temp.orderType = OrderType.done;
-			return ResultMessage.success;
-		}
-	}
+	
 	public ArrayList<OrderVo> getOrderHistory(String memberId,String HotelName) {
 		setId(memberId);
 		
@@ -328,6 +278,18 @@ public class OrderServiceImpl implements OrdersService{
 				resultList.add(tran.po2vo(po));
 			}
 		}
+		return resultList;
+	}
+	@Override
+	public ArrayList<OrderVo> getUndoList() {
+		ArrayList<OrderPO> allList = dao.getAllOrderList();
+		ArrayList<OrderVo> resultList = new ArrayList<OrderVo>();
+		for(OrderPO po:allList){
+			if(po.getOrderType()==orderType.normal||po.getOrderType()==orderType.appeal||po.getOrderType()==orderType.error){
+				resultList.add(tran.po2vo(po));
+			}
+		}
+		// TODO Auto-generated method stub
 		return resultList;
 	}
 

@@ -5,8 +5,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import Evaluateblimpl.Evaluateblimpl;
 import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomType;
+import blservice.EvaluateService;
 import blservice.HotelService;
 import blservice.RoomService;
 import data.dao.HotelsDao;
@@ -186,16 +189,23 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public double getHotelRemark(String hotelName) {
 		EvaluateService evaluateService = new Evaluateblimpl();
-		ArrayList<Double> scoreList = evaluateService.getScore(hotelName);
-		double sum = 0;
-		for (double cell : scoreList) {
-			sum = sum + cell;
-		}
-		return sum / scoreList.size();
+		
+		
+		return  evaluateService.getScore(hotelName);
 	}
 
 	@Override
 	public HotelPO getHotelInformation(String hotelName) {
 		return hotelsDao.getHotelDetails(hotelName);
 	}
+
+	@Override
+	public void setHotelRemark(String hotelName, int hotelRemark) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
 }
