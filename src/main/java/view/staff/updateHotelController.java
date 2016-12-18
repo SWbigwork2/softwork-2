@@ -1,7 +1,5 @@
 package view.staff;
 
-import java.awt.TextField;
-
 import Hotelblimpl.HotelServiceImpl;
 import Hotelblimpl.HotelRanking;
 import Hotelblimpl.HotelTradeArea;
@@ -17,9 +15,10 @@ import javafx.scene.control.TextArea;
 import vo.HotelVo;
 
 
-public class updateHotelController {
+public class UpdateHotelController {
 	
 	private String hotelName;
+	private HotelService hotelService = new HotelServiceImpl();
 	
 	@FXML
 	private TextArea introductionBar;
@@ -32,33 +31,48 @@ public class updateHotelController {
 	@FXML
 	private Button confirmButton;
 	@FXML
-	private TextField hotelAddressBar;
+	private TextArea hotelAddressBar;
 	@FXML
 	private ListView<String> roomInfoLabel;
 	@FXML
 	private Label hotelNameLabel;
 	
-	public updateHotelController(){
+	public UpdateHotelController(){
 		introductionBar = new TextArea();
 		hotelTradeAreaBar = new ComboBox<HotelTradeArea>();
 		hotelServiceBar = new TextArea();
 		hotelRankingBar = new ComboBox<HotelRanking>();
 		confirmButton = new Button();
-		hotelAddressBar = new TextField();
+		hotelAddressBar = new TextArea();
 		roomInfoLabel = new ListView<String>();
 		hotelNameLabel = new Label();
 	}
 	
 	public void setHotelName(String hotelName){
 		this.hotelName = hotelName;
-		initialize();
+		System.out.println(hotelName);
+		initialized();
+		
 	}
 	@FXML
-	public void initialize(){
+	public void initialized(){
+		
+		
+		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
+		
+		hotelNameLabel.setText(hotelName);
+		hotelAddressBar.setText(hotelVo.getAddress());
+		introductionBar.setText(hotelVo.getIntroduction());
+		hotelNameLabel.setText(hotelVo.getName());
+		hotelServiceBar.setText(hotelVo.getServiceAndFacility());
+		hotelRankingBar.setValue(hotelVo.getRanking());
+		hotelTradeAreaBar.setValue(hotelVo.getTradeArea());
+		
 		ObservableList<HotelRanking> rankingList= FXCollections.observableArrayList();
 		rankingList.add(HotelRanking.三星级);
 		rankingList.add(HotelRanking.四星级);
 		rankingList.add(HotelRanking.五星级);
+		hotelRankingBar.setItems(rankingList);
 		ObservableList<HotelTradeArea> tradeAreaList= FXCollections.observableArrayList();
 		tradeAreaList.add(HotelTradeArea.新街口商圈);
 		tradeAreaList.add(HotelTradeArea.夫子庙商圈);
@@ -67,17 +81,18 @@ public class updateHotelController {
 		tradeAreaList.add(HotelTradeArea.河西商圈);
 		tradeAreaList.add(HotelTradeArea.湖南路商圈);
 		tradeAreaList.add(HotelTradeArea.百家湖商圈);
-		
-		hotelRankingBar.setItems(rankingList);
 		hotelTradeAreaBar.setItems(tradeAreaList);
 	}
 	
 	@FXML
 	public void confirmHotelInfo(){
 		HotelService hotelService = new HotelServiceImpl();
+		
 		HotelVo hotelVo = new HotelVo(hotelName, hotelAddressBar.getText(), hotelTradeAreaBar.getValue() , introductionBar.getText(), hotelServiceBar.getText(),hotelRankingBar.getValue());
 		if(!hotelService.updateHotel(hotelVo)){
-			System.out.println("更新"+hotelName+"酒店信息失败");
+			
+		}else{
+			
 		}
 	}
 

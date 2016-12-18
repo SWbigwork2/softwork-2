@@ -13,9 +13,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class RecordCheckInController{
-	
+public class RecordCheckInController {
+
 	RoomService roomService = new RoomServiceImpl();
+	private String hotelName;
 
 	@FXML
 	private TextField orderIdBar;
@@ -31,12 +32,10 @@ public class RecordCheckInController{
 	private DatePicker inTimeBar;
 	@FXML
 	private DatePicker offlineOutTimeBar;
+	@FXML
+	private TextField offlineOrderBar;
 
-	
-	private Main main;
-	
 	public RecordCheckInController() {
-		main = Main.getMain();
 		orderIdBar = new TextField();
 		onlineButton = new Button();
 		roomTypeBar = new ComboBox<RoomType>();
@@ -44,23 +43,33 @@ public class RecordCheckInController{
 		offlineInTimeBar = new DatePicker();
 		inTimeBar = new DatePicker();
 		offlineOutTimeBar = new DatePicker();
+		offlineOrderBar = new TextField();
 	}
-	
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
 	@FXML
-	public void initialize(){
-		ObservableList<RoomType> list = FXCollections.observableArrayList(RoomType.单人间,RoomType.商务间,RoomType.标准间,RoomType.行政标准间,RoomType.高级套间);
+	public void initialize() {
+		ObservableList<RoomType> list = FXCollections.observableArrayList(RoomType.单人间, RoomType.商务间, RoomType.标准间,
+				RoomType.行政标准间, RoomType.高级套间);
 		roomTypeBar.setItems(list);
 	}
+
 	@FXML
-	public void onlineCheckIn(){
-		String orderId = orderIdBar.getText();
+	public void onlineCheckIn() {
+		int orderId = Integer.valueOf(orderIdBar.getText());
 		Date startTime = Date.valueOf(inTimeBar.getValue());
 		roomService.makeCheckIn(orderId, startTime);
 	}
+
 	@FXML
-	public void offlineCheckIn(){
-		roomService.makeReservation("0000", "金陵饭店", roomTypeBar.getValue(), Date.valueOf(offlineInTimeBar.getValue()), Date.valueOf(offlineOutTimeBar.getValue()), 1);
-		roomService.makeCheckIn("0000", Date.valueOf(offlineInTimeBar.getValue()));
+	public void offlineCheckIn() {
+
+		roomService.makeReservation(Integer.valueOf(offlineOrderBar.getText()), hotelName, roomTypeBar.getValue(),
+				Date.valueOf(offlineInTimeBar.getValue()), Date.valueOf(offlineOutTimeBar.getValue()), 1);
+		roomService.makeCheckIn(Integer.valueOf(offlineOrderBar.getText()), Date.valueOf(offlineInTimeBar.getValue()));
 	}
-	
+
 }

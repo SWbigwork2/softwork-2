@@ -6,50 +6,49 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.updateHotelController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.UpdateHotelController">
    <children>
-      <TextArea fx:id="introductionBar" layoutX="128.0" layoutY="92.0" prefHeight="75.0" prefWidth="568.0" style="-fx-border-color: #F0F0F0; -fx-background-color: white; -fx-background-radius: 3px;" wrapText="true" />
-      <Label layoutX="25.0" layoutY="9.0" prefHeight="32.0" prefWidth="110.0" text="酒店名">
+      <Label layoutX="814.0" layoutY="51.0" prefHeight="32.0" prefWidth="75.0" text="房间管理" AnchorPane.leftAnchor="670.0" AnchorPane.topAnchor="65.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="hotelServiceBar" layoutX="200.0" layoutY="320.0" prefHeight="130.0" prefWidth="350.0" style="-fx-background-color: white; -fx-border-color: #F0F0F0;" wrapText="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="320.0" />
+      <Label layoutX="85.0" layoutY="311.0" prefHeight="32.0" prefWidth="75.0" text="设施服务" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="311.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="80.0" layoutY="106.0" prefHeight="32.0" prefWidth="45.0" text=" 地址" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="106.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="77.0" layoutY="521.0" prefHeight="32.0" prefWidth="75.0" text="星级" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="500.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="hotelTradeAreaBar" layoutX="200.0" layoutY="550.0" prefHeight="27.0" prefWidth="195.0" style="-fx-background-color: #F0F0F0;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="550.0" />
+      <Label layoutX="75.0" layoutY="148.0" prefHeight="32.0" prefWidth="48.0" text=" 简介" AnchorPane.leftAnchor="80.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="83.0" layoutY="559.0" prefHeight="32.0" prefWidth="75.0" text="商圈" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="550.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="87.0" layoutY="65.0" prefHeight="32.0" prefWidth="306.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="65.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="confirmButton" layoutX="129.0" layoutY="539.0" mnemonicParsing="false" onAction="#confirmHotelInfo" prefHeight="27.0" prefWidth="570.0" style="-fx-background-color: #3366FF; -fx-text-fill: white;" text="提交" />
-      <Label layoutX="28.0" layoutY="52.0" prefHeight="32.0" prefWidth="45.0" text=" 地址">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="36.0" layoutY="327.0" prefHeight="32.0" prefWidth="75.0" text="房间管理">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="hotelRankingBar" layoutX="129.0" layoutY="264.0" prefHeight="27.0" prefWidth="208.0" style="-fx-background-color: #F0F0F0;" />
-      <TextArea fx:id="hotelServiceBar" layoutX="128.0" layoutY="176.0" prefHeight="77.0" prefWidth="568.0" style="-fx-background-color: white; -fx-border-color: #F0F0F0; -fx-border-radius: 3px;" wrapText="true" />
-      <Label layoutX="36.0" layoutY="261.0" prefHeight="32.0" prefWidth="75.0" text="星级">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <ListView fx:id="roomInfoLabel" layoutX="130.0" layoutY="326.0" prefHeight="189.0" prefWidth="567.0" style="-fx-background-color: white; -fx-border-color: #F0F0F0;" />
-      <Label layoutX="33.0" layoutY="179.0" prefHeight="32.0" prefWidth="75.0" text="设施服务">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="406.0" layoutY="261.0" prefHeight="32.0" prefWidth="75.0" text="商圈">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="hotelTradeAreaBar" layoutX="504.0" layoutY="264.0" prefHeight="27.0" prefWidth="195.0" style="-fx-background-color: #F0F0F0;" />
-      <TextField fx:id="hotelAddressbar" layoutX="128.0" layoutY="54.0" prefHeight="27.0" prefWidth="568.0" style="-fx-background-color: white; -fx-border-radius: 3px; -fx-border-color: #F0F0F0;" />
-      <Label layoutX="28.0" layoutY="88.0" prefHeight="32.0" prefWidth="48.0" text=" 简介">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <Button fx:id="confirmButton" layoutX="199.0" layoutY="617.0" mnemonicParsing="false" onAction="#confirmHotelInfo" prefHeight="27.0" prefWidth="294.0" style="-fx-background-color: #3366FF; -fx-text-fill: white;" text="提交" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="500.0" />
+      <TextArea fx:id="introductionBar" layoutX="278.0" layoutY="177.0" prefHeight="130.0" prefWidth="350.0" style="-fx-border-color: #F0F0F0; -fx-background-color: white;" wrapText="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="177.0" />
+      <ComboBox fx:id="hotelRankingBar" layoutX="200.0" layoutY="510.0" prefHeight="27.0" prefWidth="208.0" style="-fx-background-color: #F0F0F0;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="500.0" />
+      <ListView fx:id="roomInfoLabel" layoutX="759.0" layoutY="112.0" prefHeight="540.0" prefWidth="308.0" style="-fx-background-color: white; -fx-border-color: #F0F0F0;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="670.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0" />
+      <TextArea fx:id="hotelAddressBar" layoutX="200.0" layoutY="110.0" prefHeight="55.0" prefWidth="350.0" style="-fx-border-color: #F0F0F0; -fx-background-color: white;" AnchorPane.topAnchor="110.0" />
    </children>
 </AnchorPane>

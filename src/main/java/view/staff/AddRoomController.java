@@ -1,7 +1,6 @@
 package view.staff;
 
 import java.util.ArrayList;
-
 import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomType;
 import blservice.RoomService;
@@ -22,7 +21,7 @@ public class AddRoomController {
 	private RoomType roomType;
 	private double roomPrice;
 	private String roomIntroduction;
-	
+	private String hotelName;
 	
 	
 	@FXML
@@ -77,17 +76,21 @@ public class AddRoomController {
 		roomIntroduction = RoomIntroductionBar.getText();
 		
 		if (roomNum == 1) {
-			RoomVo roomVO = new RoomVo(RoomIDBar.getText(), HotelNameLabel.getText(), roomType, roomIntroduction, roomPrice);
+			RoomVo roomVO = new RoomVo(Integer.valueOf(RoomIDBar.getText()), hotelName, roomType, roomIntroduction, roomPrice);
 			roomList.add(roomVO);
 			
 		}else{
 			String[] list =  RoomIDBar.getText().split(",");
 			for(String cell:list){
-				RoomVo roomVo = new RoomVo(cell, HotelNameLabel.getText(), roomType, roomIntroduction, roomPrice);
+				RoomVo roomVo = new RoomVo(Integer.valueOf(cell), hotelName, roomType, roomIntroduction, roomPrice);
 				roomList.add(roomVo);
 			}
 		}
 		roomService.addNewRoom(roomList);
+	}
+	
+	public void setHotelName(String hotelName){
+		this.hotelName=hotelName;
 	}
 	
 

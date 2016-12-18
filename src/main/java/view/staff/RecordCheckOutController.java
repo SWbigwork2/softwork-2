@@ -32,7 +32,7 @@ public class RecordCheckOutController {
 	
 	@FXML
 	public void makeCheckOut(){
-		roomService.makeCheckOut(orderIdBar.getText(), roomIdBar.getText(),Date.valueOf(outTimeBar.getValue()));
+		roomService.makeCheckOut(Integer.valueOf(orderIdBar.getText()), Integer.valueOf(roomIdBar.getText()),Date.valueOf(outTimeBar.getValue()));
 	}
 	
 }

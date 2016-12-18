@@ -6,14 +6,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.AddRoomController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.AddRoomController">
    <children>
       <Label fx:id="HotelNameLabel" layoutX="26.0" layoutY="28.0" prefHeight="29.0" prefWidth="138.0" style="-fx-text-fill: #0000CD;" text="金陵饭店">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="22.0" layoutY="77.0" prefHeight="295.0" prefWidth="788.0" style="-fx-border-color: #F0F0F0; -fx-border-radius: 3;">
+      <AnchorPane layoutX="129.0" layoutY="93.0" prefHeight="295.0" prefWidth="788.0" style="-fx-border-color: #F0F0F0;">
          <children>
             <Label layoutX="18.0" layoutY="22.0" prefHeight="23.0" prefWidth="85.0" text="房间数量">
                <font>
