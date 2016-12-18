@@ -9,7 +9,7 @@
    <items>
       <GridPane>
          <children>
-            <ListView fx:id="orderListView" focusTraversable="false" prefHeight="429.0" prefWidth="293.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <ListView fx:id="orderListView" focusTraversable="false" onMouseClicked="#showSelection" prefHeight="429.0" prefWidth="293.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2" />
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label prefHeight="31.0" prefWidth="98.0" text="订单信息" textAlignment="CENTER" textFill="#b9b8b8">
@@ -70,7 +70,7 @@
                   <Label fx:id="orderType" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Button fx:id="recoverButton" mnemonicParsing="false" onAction="#recoverClink" style="-fx-background-color: white; -fx-border-color: lightgray;" text="补登记" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <DatePicker fx:id="inDate" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button fx:id="concelButton" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: lightgray;" text="取消" visible="false" GridPane.rowIndex="5" />
+                  <Button fx:id="concelButton" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: white; -fx-border-color: lightgray;" text="取消" visible="false" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </children>

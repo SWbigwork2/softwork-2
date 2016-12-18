@@ -29,8 +29,11 @@ public interface OrdersService {
 	 */
 	public void completeOrder(int orderId,Date outDate);
 		
-	
-	
+	/**
+	 * @param hotelName
+	 * @return 得到酒店的全部订单信息
+	 */
+	public ArrayList<OrderVo> getHotelOrder(String hotelName);
 	/**
 	 * @param type
 	 * @return 根据type返回的订单列表
@@ -73,7 +76,7 @@ public interface OrdersService {
 	 * @param info
 	 * @return	更新订单信息
 	 */
-	public ResultMessage update(OrderVo info);
+	public boolean update(OrderVo info);
 	
 	/**
 	 * @param info

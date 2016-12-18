@@ -254,9 +254,10 @@ public class OrderServiceImpl implements OrdersService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public ResultMessage update(OrderVo info) {
+	public boolean update(OrderVo info) {
+		OrderPO po = tran.vo2po(info);
 		// TODO Auto-generated method stub
-		return null;
+		return dao.updata(po);
 	}
 	@Override
 	public PriceInfo getPrice(String hotel, double price, int roomNum, String userId, int days) {
@@ -316,6 +317,18 @@ public class OrderServiceImpl implements OrdersService{
 				errorHandle(po.getOrderId());
 			}
 		}
+	}
+	@Override
+	public ArrayList<OrderVo> getHotelOrder(String hotelName) {
+		// TODO Auto-generated method stub
+		ArrayList<OrderPO> allList = dao.getAllOrderList();
+		ArrayList<OrderVo> resultList = new ArrayList<OrderVo>();
+		for(OrderPO po:allList){
+			if(po.getHotelNameString().equals(hotelName)){
+				resultList.add(tran.po2vo(po));
+			}
+		}
+		return resultList;
 	}
 
 

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
+
 import blservice.OrdersService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,6 +77,7 @@ public class OrderErrorListController {
 	public void initialize(ArrayList<OrderVo> orderList,String hotel){
 		infoList = orderList;
 		this.hotel = hotel;
+		System.out.println(infoList.size());
 		ObservableList<String> viewList = FXCollections.observableArrayList();
 		for(OrderVo vo:infoList){
 			viewList.add(simpleInfo(vo));
@@ -136,10 +139,23 @@ public class OrderErrorListController {
 	 */
 	@FXML
 	public void recoverClink(){
+		if(!recoverButton.getText().equals("确认")){
 		inDate.setEditable(true);
 		inDate.requestFocus();
 		recoverButton.setText("确认");
+		inDate.setEditable(true);
+		inDate.setDisable(false);
 		concelButton.setVisible(true);
+		}
+		else{
+			confirmClink();
+		}
+	}
+	@FXML
+	public void cancel(){
+		inDate.setEditable(false);
+		concelButton.setVisible(false);
+		recoverButton.setText("补登记");
 	}
 	
 	@FXML
@@ -163,6 +179,7 @@ public class OrderErrorListController {
 		service.update(selectVo);
 		recoverButton.setText("补登记");
 		recoverButton.setDisable(false);
+		System.out.println("补登记");
 		}
 	}
 	
