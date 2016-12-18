@@ -52,6 +52,7 @@ public class ShowPromotionsController {
 //    	  hotelpromotions.add(x1);
 //    	  hotelpromotions.add(x2);   	 
     	ArrayList<String> hotelpromotions= promotionsService.getHotelPromotion(hotelname);
+    	System.out.println(hotelpromotions.size());
     	temp = FXCollections.observableArrayList();
     	  for(String pro:hotelpromotions){
     		  temp.add(pro); 
