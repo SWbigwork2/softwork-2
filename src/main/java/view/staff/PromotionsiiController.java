@@ -1,16 +1,25 @@
 package view.staff;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import Hotelblimpl.HotelServiceImpl;
 import Promotionsblimpl.PromotionsServiceImpl;
+import Roomblimpl.RoomType;
 import blservice.HotelService;
 import blservice.PromotionsService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 
 public class PromotionsiiController {
 	
@@ -41,13 +50,45 @@ public class PromotionsiiController {
 		enddateDatePicker=new DatePicker();
 		enddateDatePicker=new DatePicker();
 		introductionTextField=new TextField();
+		
+	}
+	@FXML
+	public void initialize() {
+		final Callback<DatePicker, DateCell> dayCellFactory = 
+	            new Callback<DatePicker, DateCell>() {
+	                public DateCell call(final DatePicker datePicker) {
+	                    return new DateCell() {
+	                        @Override
+	                        public void updateItem(LocalDate item, boolean empty) {
+	                            super.updateItem(item, empty);
+	                            if (item.isBefore(
+	                            		startdateDatePicker.getValue().plusDays(1))
+	                                ) {
+	                                    setDisable(true);
+	                                    setStyle("-fx-background-color: #ffc0cb;");
+	                            }
+	                            long p = ChronoUnit.DAYS.between(
+	                            		startdateDatePicker.getValue(), item
+	                            );
+	                           
+	                    }
+	                };
+	            }
+	        };
+	    enddateDatePicker.setDayCellFactory(dayCellFactory);
 	}
 	public void addPromotionsII(){
 		String hotel=hotelnameTextField.getText();
 		String discountstr=discountTextField.getText();
 		String startdate=startdateDatePicker.getValue().toString();
 		String enddate=enddateDatePicker.getValue().toString();
-		String introduction=introductionTextField.getText();		
+		String introduction=introductionTextField.getText();
+		
+		
+		
+		
+		
+		
 		if(hotel.length()==0||startdate.length()==0||enddate.length()==0||discountstr.length()==0||introduction.length()==0){
 			Alert alert=new Alert(AlertType.INFORMATION);
 			alert.setTitle("提示");
@@ -100,4 +141,6 @@ public class PromotionsiiController {
 		enddateDatePicker.setValue(null);
 		introductionTextField.setText("");
 	}
+	
+
 }

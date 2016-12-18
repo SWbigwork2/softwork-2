@@ -1,5 +1,8 @@
 package view.marketer;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import Hotelblimpl.HotelServiceImpl;
 import Promotionsblimpl.PromotionsServiceImpl;
 import blservice.HotelService;
@@ -8,9 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 
 public class Promotionsii2Controller {
 	@FXML
@@ -41,6 +46,32 @@ public class Promotionsii2Controller {
 		enddateDatePicker=new DatePicker();
 		introductionTextField=new TextField();
 	}
+	@FXML
+	public void initialize() {
+		final Callback<DatePicker, DateCell> dayCellFactory = 
+	            new Callback<DatePicker, DateCell>() {
+	                public DateCell call(final DatePicker datePicker) {
+	                    return new DateCell() {
+	                        @Override
+	                        public void updateItem(LocalDate item, boolean empty) {
+	                            super.updateItem(item, empty);
+	                            if (item.isBefore(
+	                            		startdateDatePicker.getValue().plusDays(1))
+	                                ) {
+	                                    setDisable(true);
+	                                    setStyle("-fx-background-color: #ffc0cb;");
+	                            }
+	                            long p = ChronoUnit.DAYS.between(
+	                            		startdateDatePicker.getValue(), item
+	                            );
+	                           
+	                    }
+	                };
+	            }
+	        };
+	    enddateDatePicker.setDayCellFactory(dayCellFactory);
+	}
+	@FXML
 	public void addPromotionsII2(){
 		String hotel=hotelnameTextField.getText();
 		String discountstr=discountTextField.getText();
@@ -85,6 +116,7 @@ public class Promotionsii2Controller {
 		}
 		}
 	}
+	@FXML
 	public void clearPromotionsII2(){
 		hotelnameTextField.setText("");
 		discountTextField.setText("");
