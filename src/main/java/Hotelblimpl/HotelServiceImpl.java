@@ -83,67 +83,72 @@ public class HotelServiceImpl implements HotelService {
 					hotelSearchVo.getTradeArea(), null, null, null);
 		}
 		ArrayList<HotelPO> hotelList = hotelsDao.getHotelList(hotelPO);
-		
-		ArrayList<HotelPO> checkList = new ArrayList<HotelPO>();
 
 		// 查询酒店等级
+		ArrayList<HotelPO> hotelList1 = new ArrayList<HotelPO>();
 		HotelRanking hotelRanking = hotelSearchVo.getHotelRanking();
 		if (hotelRanking != null) {
 			for (HotelPO cell : hotelList) {
 				if (cell.getRanking().equals(hotelRanking)) {
-					checkList.add(cell);
+					hotelList1.add(cell);
 				}
 			}
-			hotelList.addAll(checkList);
-			checkList.clear();
+		}else{
+			hotelList1.addAll(hotelList);
 		}
-
 		
 		// 查询酒店价格区间
-		ArrayList<HotelPO> hotelList1 = hotelsDao.getHotelList(hotelPO);
+		ArrayList<HotelPO> hotelList2 = new ArrayList<HotelPO>();
 		String hotelName = hotelSearchVo.getHotelName();
 		double highPrice = hotelSearchVo.getHighPrice();
 		double lowPrice = hotelSearchVo.getLowPrice();
 		double highestPrice = 0;
 		double lowestPrice = 0;
 		if (highPrice != -1) {
-			for (HotelPO cell : hotelList) {
+			for (HotelPO cell : hotelList1) {
 				hotelName = cell.getName();
 				highestPrice = roomService.getHighestPrice(hotelName, startTimestamp, endTimestamp);
 				lowestPrice = roomService.getLowestPrice(hotelName, startTimestamp, endTimestamp);
 				if ((lowestPrice <= lowPrice) && (highestPrice >= highPrice)) {
-					hotelList1.add(cell);
+					hotelList2.add(cell);
 				}
 			}
+		}else{
+			hotelList2.addAll(hotelList1);
 		}
 		
 		
 		//查询空房数量
-		ArrayList<HotelPO> hotelList2 = hotelsDao.getHotelList(hotelPO);
+		ArrayList<HotelPO> hotelList3 = new ArrayList<HotelPO>();
 		int numOfRoomsNeeded = hotelSearchVo.getNumOfNeededRooms();
-		for (HotelPO cell : hotelList1) {
+		
+		RoomType roomType = hotelSearchVo.getRoomType();
+		if(roomType!=null){
+		for (HotelPO cell : hotelList2) {
 				if(roomService.getNumOfRoom(cell.getName(), startTimestamp, endTimestamp)
-					.get(hotelSearchVo.getRoomType())>numOfRoomsNeeded){
-					hotelList2.add(cell);
+					.get(hotelSearchVo.getRoomType())>=numOfRoomsNeeded){
+					hotelList3.add(cell);
 				}
+		}
+		}else{
+			hotelList3.addAll(hotelList2);
 		}
 		
 		
 		// 查询房间类型
-		ArrayList<HotelPO> hotelList3 = hotelsDao.getHotelList(hotelPO);
-		RoomType roomType = hotelSearchVo.getRoomType();
+		ArrayList<HotelPO> hotelList4 = new ArrayList<HotelPO>();
 		if (roomType != null) {
-			for (HotelPO cell : hotelList2) {
+			for (HotelPO cell : hotelList3) {
 				if (roomService.getHotelRoomType(hotelName, startTimestamp, endTimestamp).contains(roomType)) {
-					hotelList3.add(cell);
+					hotelList4.add(cell);
 				}
 			}
+		}else{
+			hotelList4.addAll(hotelList3);
 		}
 		
-		
-		
 		ArrayList<HotelColumnVo> hotelVoList = new ArrayList<HotelColumnVo>();
-		for (HotelPO cell : hotelList3) {
+		for (HotelPO cell : hotelList4) {
 			hotelVoList.add(new HotelColumnVo(cell.getName(),
 					roomService.getLowestPrice(cell.getName(), startTimestamp, endTimestamp), cell.getRanking(),
 					4.7));
