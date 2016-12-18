@@ -20,12 +20,7 @@ public class frameController {
       private Button deletePromotionsButton;
       @FXML
       private Main main;
-      
-      @FXML
-      private Button logoutButton;
-      
       public frameController(){
-    	  logoutButton = new Button();
     	  main=Main.getMain();
     	  checkInButton=new Button();
     	  checkOutButton=new Button();
@@ -34,11 +29,6 @@ public class frameController {
     	  addRoomButton=new Button();
     	  addPromotionsButton=new Button();
     	  deletePromotionsButton=new Button();
-      }
-      
-      @FXML
-      public void logout(){
-    	  main.logout();
       }
       @FXML
       public void addPromotionsView(){
@@ -69,8 +59,13 @@ public class frameController {
       private void showUpdateHotel(){
     	  main.showUpdateHotel();
       }
-      
+      @FXML
       public void showList(){
     	  main.showList();
+      }
+      @FXML
+      public void showPromotionView(){
+    	  
+    	  main.movetoLookPromotions();
       }
 }
