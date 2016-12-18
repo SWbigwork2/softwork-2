@@ -26,7 +26,6 @@ public class PromotionsiController  {
 	@FXML
 	private Main main;
 	PromotionsService promotionsService=new PromotionsServiceImpl();
-	
 	public PromotionsiController(){
 		main=Main.getMain();
 		hotelnameTextField=new TextField();
@@ -39,7 +38,6 @@ public class PromotionsiController  {
 		String hotel=hotelnameTextField.getText();
 		String discountstr=discountTextField.getText();
 		String introduction=introductionTextField.getText();
-		System.out.println(hotel+" "+discountstr+" "+introduction);
 		if(hotel.length()==0||discountstr.length()==0||introduction.length()==0){
 			Alert alert=new Alert(AlertType.INFORMATION);
 			alert.setTitle("提示");

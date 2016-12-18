@@ -1,6 +1,7 @@
 package blservice;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Promotionsblimpl.PriceInfo;
 import view.marketer.PromotionsII2VO;
@@ -31,7 +32,7 @@ public interface PromotionsService {
 	public boolean addPromotionsV(PromotionsVVO promotionsVVO);
 	public boolean addPromotionsVI(PromotionsVIVO promotionsVIVO);
 	public boolean deletePromotions(PromotionsVO promotionsVO);
-
+	public ArrayList<String> getHotelPromotion(String hotel);
 
 
 

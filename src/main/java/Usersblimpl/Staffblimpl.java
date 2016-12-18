@@ -3,15 +3,21 @@ package Usersblimpl;
 import java.sql.SQLException;
 
 import data.dao.UserDao;
-import data.dao.impl.UserDaoImpl;
+import data.rmi.RemoteHelper;
 import po.StaffPO;
 import po.UserPO;
 
 public class Staffblimpl extends Userblimpl {
-
+	private UserDao userDao;
+	private RemoteHelper remoteHelper;
+	public Staffblimpl() {
+		remoteHelper = RemoteHelper.getInstance();
+		userDao = remoteHelper.getUsersDao();
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public StaffVO find(String id, UserType type){
-		UserDao userDao=new UserDaoImpl();
+		
 		UserPO userPO=null;
 		
 		try{
@@ -36,7 +42,7 @@ public class Staffblimpl extends Userblimpl {
 	public ResultMessage revoke(UserVO user) {
 		ResultMessage resultMessage=null;
 		StaffPO staffPO=(StaffPO)UserPoVoTran.VoToPo(user);
-		UserDao userDao= new UserDaoImpl();
+		
         
 		try {
 			resultMessage=userDao.updateUser(staffPO);
@@ -49,7 +55,7 @@ public class Staffblimpl extends Userblimpl {
     
 	public ResultMessage add(StaffVO staff){
 		ResultMessage resultMessage=ResultMessage.fail;
-		UserDao userDao= new UserDaoImpl();
+	
 		
 			//判断酒店是否存在，不存在就添加酒店
 //			HotelService hotelService=new Hotel();
@@ -69,7 +75,7 @@ public class Staffblimpl extends Userblimpl {
 	}
 	
 	public boolean isStaffExist(String hotelName){
-		UserDao userDao= new UserDaoImpl();
+		
 		return userDao.isHotelHasStaff(hotelName);
 	}
 

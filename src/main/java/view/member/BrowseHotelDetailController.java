@@ -13,6 +13,7 @@ import Roomblimpl.RoomType;
 import blservice.HotelService;
 import blservice.RoomService;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -134,15 +135,18 @@ public class BrowseHotelDetailController {
 		HotelService hotelService = new HotelServiceImpl();
 		RoomService roomService  = new RoomServiceImpl();
 		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
-		//ArrayList<String> commentList = hotelService.getHotelComment(hotelName);
+		ArrayList<String> commentList = hotelService.getHotelComment(hotelName);
+		ObservableList<String> comment = FXCollections.observableArrayList(commentList);
 		HotelNameLabel.setText(hotelVo.getName());
 		AddressLabel.setText(hotelVo.getAddress());
-		//RemarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)));
-		//CommentList.setItems(FXCollections.observableArrayList(commentList));
+		RemarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)));
+		CommentList.setItems(comment);
 		IntroductionLabel.setText(hotelVo.getIntroduction());
 		ServiceLabel.setText(hotelVo.getServiceAndFacility());
+		
 		Map<RoomType, Integer> numOfType = roomService.getNumOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));
 		Map<RoomType, Double> priceOfType = roomService.getPriceOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));
+		
 		if (numOfType.get(RoomType.单人间) != 0) {
 			Button1.setVisible(false);
 			priceLabel1.setText("房间暂无");

@@ -1,6 +1,6 @@
 package blservice;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -30,14 +30,14 @@ public interface RoomService {
 	 * @param roomNum
 	 * 根据酒店名 房间类型 入住时间 退房时间 房间数量来记录入住
 	 */
-	public void makeReservation(String orderId,String hotelName,RoomType roomType,Date startTime,Date endTime,int roomNum);
+	public void makeReservation(int orderId,String hotelName,RoomType roomType,Date startTime,Date endTime,int roomNum);
 	/**
 	 * 
 	 * @param hotelName
 	 * @param roomId
 	 * @param endTime
 	 */
-	public void makeCheckOut(String orderId, String roomId, Date endTime);
+	public void makeCheckOut(int orderId, int roomId, Date endTime);
 	/**
 	 * 
 	 * @param hotelName
@@ -88,7 +88,7 @@ public interface RoomService {
 	 * @param orderId
 	 * @param startTime
 	 */
-	public void makeCheckIn(String orderId, Date startTime);
+	public void makeCheckIn(int orderId, Date startTime);
 	
 	
 }

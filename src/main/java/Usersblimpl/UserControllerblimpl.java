@@ -6,13 +6,19 @@ import Hotelblimpl.HotelRanking;
 import Hotelblimpl.HotelTradeArea;
 import blservice.UserService;
 import data.dao.UserDao;
-import data.dao.impl.UserDaoImpl;
+import data.rmi.RemoteHelper;
 import po.UserPO;
 
 
 public class UserControllerblimpl implements UserService,UserInfo {
     private Userblimpl user;
-    
+    private UserDao userDao;
+    private RemoteHelper remoteHelper;
+    public UserControllerblimpl() {
+    	remoteHelper = RemoteHelper.getInstance();
+    	userDao = remoteHelper.getUsersDao();
+		// TODO Auto-generated constructor stub
+	}
     public UserVO find(String  id,UserType type){
     	
     	if(type.equals(UserType.staff)){
@@ -98,7 +104,7 @@ public class UserControllerblimpl implements UserService,UserInfo {
 	public ArrayList<UserVO> getAllUsers(UserType type) {
         ArrayList<UserVO> userList=new ArrayList<UserVO>();
 		ArrayList<UserPO> userPOList=null;
-        UserDao userDao=new UserDaoImpl();
+        
         userPOList=userDao.getAllUsers(type);
         for(UserPO user:userPOList){
         	UserVO userVO=UserPoVoTran.PoToVo(user);

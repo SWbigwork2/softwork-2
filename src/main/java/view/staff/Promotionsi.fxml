@@ -19,7 +19,7 @@
             <Font size="25.0" />
          </font></Label>
       <Label layoutX="94.0" layoutY="330.0" text="请输入策略描述：" />
-      <TextField fx:id="introductionTextField" layoutX="214.0" layoutY="325.0" />
+      <TextField fx:id="IntroductionTextField" layoutX="214.0" layoutY="325.0" />
       <Label layoutX="423.0" layoutY="252.0" text="(0.1~0.99)" />
    </children>
 </AnchorPane>

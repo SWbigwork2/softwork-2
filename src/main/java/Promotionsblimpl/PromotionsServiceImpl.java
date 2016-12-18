@@ -9,7 +9,7 @@ import Membersblimpl.MemberServiceImpl;
 import blservice.HotelService;
 import blservice.MembersService;
 import blservice.PromotionsService;
-import data.dataservice.PromotionsDao;
+import data.dao.PromotionsDao;
 import data.rmi.RemoteHelper;
 import po.HotelPO;
 import po.MemberPO;

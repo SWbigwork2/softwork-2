@@ -5,7 +5,7 @@ import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
 import Usersblimpl.VipType;
 import blservice.UserService;
-import data.memberTester.getMemberTester;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;

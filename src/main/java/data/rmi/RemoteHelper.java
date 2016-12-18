@@ -2,20 +2,13 @@ package data.rmi;
 
 import java.rmi.Remote;
 
-import data.dao.EvaluateDataService;
-import data.dao.HotelsDataService;
-import data.dao.MembersDataService;
-import data.dao.OrdersDataService;
-import data.dao.PromotionsDataService;
-import data.dao.RoomsDataService;
-import data.dao.UserDataService;
-import data.dataservice.EvaluateDao;
-import data.dataservice.HotelsDao;
-import data.dataservice.MembersDao;
-import data.dataservice.OrdersDao;
-import data.dataservice.PromotionsDao;
-import data.dataservice.RoomsDao;
-import data.dataservice.UserDao;
+import data.dao.EvaluateDao;
+import data.dao.HotelsDao;
+import data.dao.MembersDao;
+import data.dao.OrdersDao;
+import data.dao.PromotionsDao;
+import data.dao.RoomsDao;
+import data.dao.UserDao;
 
 public class RemoteHelper {
 	private Remote remote;

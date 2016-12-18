@@ -1,10 +1,10 @@
 package Roomblimpl;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Map;
 
 public interface RoomsInfo {
-	public String getRoomName();
+	public int getId();
 	public String getHotelBelongTo();
 	public RoomType getRoomType();
 	public String getIntroduction();

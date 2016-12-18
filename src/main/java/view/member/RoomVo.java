@@ -4,13 +4,13 @@ import Roomblimpl.RoomType;
 
 public class RoomVo {
 
-	private String roomId;
+	private int roomId;
 	private String hotelBelongTo;
 	private RoomType roomType;
 	private String roomIntroduction;
 	private double roomPrice;
 
-	public RoomVo(String roomId, String hotelBelongTo, RoomType roomType, String roomIntroduction, double roomPrice
+	public RoomVo(int roomId, String hotelBelongTo, RoomType roomType, String roomIntroduction, double roomPrice
 			) {
 		this.roomId = roomId;
 		this.hotelBelongTo = hotelBelongTo;
@@ -21,11 +21,11 @@ public class RoomVo {
 
 	}
 
-	public String getRoomId() {
+	public int getRoomId() {
 		return roomId;
 	}
 
-	public void setRoomId(String roomId) {
+	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
 

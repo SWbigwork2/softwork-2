@@ -1,4 +1,4 @@
-﻿package view.staff;
+package view.staff;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -32,12 +32,14 @@ public class Main extends Application {
 	private static StaffVO staff;
 	private static Stage loginStage;
 	private UserService userService;
+	private static String hotelName;
 private RemoteHelper remoteHelper;
 	
 	public void linkToServer(){
+		final String ip = "localhost";
 		try{
 			remoteHelper = RemoteHelper.getInstance();
-			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DateRemoteObject"));
+			remoteHelper.setRemote(Naming.lookup("rmi://"+ip+":8888/DateRemoteObject"));
 			System.out.println("linked");
 		}catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -47,8 +49,8 @@ private RemoteHelper remoteHelper;
 			e.printStackTrace();
 		}
 	}
+	
 	public  Main() {
-		linkToServer();
 		userService = new UserControllerblimpl();
 		loader = new FXMLLoader();
 	  
@@ -64,34 +66,35 @@ private RemoteHelper remoteHelper;
 	}
 	public void setMemberVo(LoginVo vo){
 		userService = new UserControllerblimpl();
-		this.staff =(StaffVO) userService.find(vo.getId(), UserType.staff);
-		
-		
-		
+		this.staff = (StaffVO) userService.find(vo.getId(), UserType.staff);
+		this.hotelName=staff.getHotelName();
 	}
-	/**
-	 * 显示主界面
-	 */
-	public void showMain(){
-		this.primaryStage.setTitle("酒店工作人员主界面");
-		initmainPane();
-	}
-	
+
 	public void logout(){
 		primaryStage.close();
 		loginStage.showAndWait();
 		staff = null;
 	}
 	
+	public void showMain(){
+		this.primaryStage.setTitle("酒店工作人员主界面");
+		try {
+			loginStage.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		initmainPane();
+	}
 	@Override
 	public void start(Stage primaryStage) {
-		main = new Main();
+		linkToServer();
 		loginStage = new Stage();
 		Pane loginPane = loadPane("StaffLogin.fxml");
 		Scene loginScene = new Scene(loginPane,600,400);
 		loginStage.setScene(loginScene);
 		loginStage.show();
 		this.primaryStage=primaryStage;
+		
 		
 		
 		
@@ -217,6 +220,16 @@ private RemoteHelper remoteHelper;
  			// TODO: handle exception
  		}
     }
+    public void movetoLookPromotions(){
+    	try{
+    		AnchorPane showPromotionsPane=new AnchorPane();
+    		showPromotionsPane=(AnchorPane)loadPane("ShowPromotions.fxml");
+    		staffBorderPane.setCenter(showPromotionsPane);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	
+    }
    public void showInformation(){
 	   try {
 		Pane page=new BorderPane();
@@ -238,7 +251,7 @@ private RemoteHelper remoteHelper;
 		
 		staffBorderPane.setCenter(page);
 		
-		RevampPasswordController controller=loader.getController();
+		StaffInformationController controller=loader.getController();
 		controller.setStaffVO(staff);
 	} catch (Exception e) {
 		// TODO: handle exception
@@ -259,10 +272,9 @@ private RemoteHelper remoteHelper;
 			
 			staffBorderPane.setCenter(page);
 			
-			StaffInformationController controller=loader.getController();
-			controller.setStaffVO(staff);
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}
@@ -273,10 +285,8 @@ private RemoteHelper remoteHelper;
 			
 			staffBorderPane.setCenter(page);
 			
-			StaffInformationController controller=loader.getController();
-			controller.setStaffVO(staff);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}
@@ -287,23 +297,28 @@ private RemoteHelper remoteHelper;
 			
 			staffBorderPane.setCenter(page);
 			
+			AddRoomController controller=loader.getController();
+			controller.setHotelName(hotelName);
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}
 	public void showUpdateHotel() {
 		try {
 			AnchorPane page=new AnchorPane();
-			page=(AnchorPane)loadPane("updateHotel.fxml");
+			page=(AnchorPane)loadPane("UpdateHotel.fxml");
+			UpdateHotelController controller  = loader.getController();
+			controller.setHotelName(hotelName);
 			
 			staffBorderPane.setCenter(page);
-	
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}
-	
+
 	
 }

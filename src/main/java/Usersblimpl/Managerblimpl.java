@@ -3,15 +3,22 @@ package Usersblimpl;
 import java.sql.SQLException;
 
 import data.dao.UserDao;
-import data.dao.impl.UserDaoImpl;
+import data.rmi.RemoteHelper;
 import po.UserPO;
 
 public class Managerblimpl extends Userblimpl{
+	private UserDao userDao;
+	private RemoteHelper remoteHelper;
+	public Managerblimpl() {
+		remoteHelper = RemoteHelper.getInstance();
+		userDao = remoteHelper.getUsersDao();
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public ManagerVO find(String id, UserType type) {
 		
-		UserDao userDao=new UserDaoImpl();
+	
 		ManagerVO manager=null;
 		UserPO userPO=null;
 		try {
@@ -32,7 +39,7 @@ public class Managerblimpl extends Userblimpl{
 	@Override
 	public ResultMessage revoke(UserVO user) {
 		ResultMessage resultMessage=ResultMessage.fail;
-		UserDao userDao=new UserDaoImpl();
+	
 		
 		try {
 			resultMessage=userDao.updateUser(UserPoVoTran.VoToPo(user));

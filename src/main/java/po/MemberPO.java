@@ -5,7 +5,11 @@ import java.io.Serializable;
 import Membersblimpl.MembersInfo;
 
 public class MemberPO implements Serializable,MembersInfo{
-    String id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1678038984150126521L;
+	String id;
     String password;
     String name;
     String telephone;

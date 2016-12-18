@@ -5,6 +5,10 @@ import Usersblimpl.UserType;
 import Usersblimpl.VipType;
 
 public class MemberInformationPO extends UserPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8655213223816632704L;
 	String contactInformation;
 	String special;
 	double credit;

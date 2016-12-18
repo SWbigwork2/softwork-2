@@ -5,49 +5,55 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.RecordCheckInController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.RecordCheckInController">
    <children>
-      <Label layoutX="60.0" layoutY="45.0" text="线上入住" AnchorPane.leftAnchor="60.0">
+      <Label layoutX="60.0" layoutY="87.0" style="-fx-text-fill: #191970;" text="线上入住" AnchorPane.leftAnchor="135.0" AnchorPane.topAnchor="100.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="orderIdBar" layoutX="228.0" layoutY="121.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
-      <Label layoutX="60.0" layoutY="124.0" text="订单Id" AnchorPane.leftAnchor="60.0">
+      <TextField fx:id="orderIdBar" layoutX="138.0" layoutY="227.0" style="-fx-border-radius: 0; -fx-border-width: 1; -fx-border-color: #E8E8E8; -fx-background-color: #F8F8F8;" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="660.0" AnchorPane.topAnchor="290.0" />
+      <Label layoutX="135.0" layoutY="269.0" text="订单Id" AnchorPane.leftAnchor="135.0" AnchorPane.topAnchor="240.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <DatePicker fx:id="inTimeBar" layoutX="215.0" layoutY="190.0" prefHeight="27.0" prefWidth="254.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
-      <Label layoutX="60.0" layoutY="191.0" text="实际入住时间" AnchorPane.leftAnchor="60.0">
+      <DatePicker fx:id="inTimeBar" layoutX="157.0" layoutY="319.0" prefHeight="27.0" prefWidth="254.0" style="-fx-border-radius: 0; -fx-border-width: 1; -fx-border-color: #E8E8E8; -fx-background-color: #F8F8F8;" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="660.0" AnchorPane.topAnchor="400.0" />
+      <Label layoutX="164.0" layoutY="278.0" text="实际入住时间" AnchorPane.leftAnchor="135.0" AnchorPane.topAnchor="360.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="73.0" layoutY="307.0" text="线下入住" AnchorPane.leftAnchor="60.0">
+      <Label layoutX="708.0" layoutY="99.0" style="-fx-text-fill: #191970;" text="线下入住" AnchorPane.leftAnchor="660.0" AnchorPane.topAnchor="100.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <ComboBox fx:id="roomTypeBar" layoutX="219.0" layoutY="362.0" prefWidth="150.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
-      <Label layoutX="114.0" layoutY="367.0" text="房间类型" AnchorPane.leftAnchor="60.0">
+      <ComboBox fx:id="roomTypeBar" layoutX="706.0" layoutY="318.0" prefHeight="27.0" prefWidth="250.0" style="-fx-border-color: #E8E8E8; -fx-background-color: #F8F8F8;" AnchorPane.leftAnchor="660.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="310.0" />
+      <Label layoutX="710.0" layoutY="279.0" text="房间类型" AnchorPane.leftAnchor="660.0" AnchorPane.topAnchor="270.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="60.0" layoutY="417.0" text="入住时间" AnchorPane.leftAnchor="60.0">
+      <Label layoutX="710.0" layoutY="363.0" text="入住日期" AnchorPane.leftAnchor="660.0" AnchorPane.topAnchor="360.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <DatePicker fx:id="offlineInTimeBar" layoutX="202.0" layoutY="413.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
-      <Label layoutX="131.0" layoutY="465.0" text="预计离开时间" AnchorPane.leftAnchor="60.0">
+      <DatePicker fx:id="offlineInTimeBar" layoutX="709.0" layoutY="406.0" style="-fx-border-width: 1; -fx-border-radius: 0; -fx-background-color: #F8F8F8; -fx-border-color: #E8E8E8;" AnchorPane.leftAnchor="660.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="400.0" />
+      <Label layoutX="710.0" layoutY="452.0" text="预计离开日期" AnchorPane.leftAnchor="660.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <DatePicker fx:id="offlineOutTimeBar" layoutX="197.0" layoutY="460.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="581.0" />
-      <Button fx:id="onlineButton" layoutX="228.0" layoutY="273.0" mnemonicParsing="false" onAction="#onlineCheckIn" prefHeight="27.0" prefWidth="248.0" text="确定" />
-      <Button fx:id="offlineButton" layoutX="228.0" layoutY="521.0" mnemonicParsing="false" onAction="#offlineCheckIn" prefHeight="27.0" prefWidth="248.0" text="确定" />
+      <Button fx:id="onlineButton" layoutX="154.0" layoutY="451.0" mnemonicParsing="false" onAction="#onlineCheckIn" prefHeight="27.0" prefWidth="248.0" style="-fx-border-radius: 0; -fx-border-width: 2; -fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: white;" text="确定" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="660.0" />
+      <TextField fx:id="offlineOrderBar" layoutX="704.0" layoutY="226.0" prefHeight="31.0" prefWidth="235.0" promptText="五位入住序号" style="-fx-border-radius: 0; -fx-border-width: 1; -fx-border-color: #E8E8E8; -fx-background-color: #F8F8F8;" AnchorPane.leftAnchor="660.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="220.0" />
+      <Label layoutX="710.0" layoutY="182.0" text="入住序号" AnchorPane.leftAnchor="660.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="offlineOutTimeBar" layoutX="710.0" layoutY="489.0" style="-fx-border-width: 1; -fx-border-radius: 0; -fx-background-color: #F8F8F8; -fx-border-color: #E8E8E8;" AnchorPane.leftAnchor="660.0" AnchorPane.rightAnchor="135.0" />
+      <Button fx:id="offlineButton" layoutX="660.0" layoutY="549.0" mnemonicParsing="false" onAction="#onlineCheckIn" prefHeight="27.0" prefWidth="248.0" style="-fx-border-radius: 0; -fx-border-width: 2; -fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: white;" text="确定" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="660.0" AnchorPane.rightAnchor="135.0" />
    </children>
 </AnchorPane>

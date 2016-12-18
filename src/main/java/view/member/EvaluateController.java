@@ -27,7 +27,6 @@ public class EvaluateController {
     
 	private OrderVo order;
 	private Main main;
-	private String memberName;
 	public EvaluateController() {
 		main = main.getMain();
 		scoreComboBox=new ComboBox<Integer>();
@@ -58,7 +57,7 @@ public class EvaluateController {
 		int score=scoreComboBox.getValue();
 	    String evaluate=evaluationArea.getText();
 	    EvaluateService service=new Evaluateblimpl();
-	    EvaluatePO  po=new EvaluatePO(this.order.getHotel(), score, evaluate, this.memberName);
+	    EvaluatePO  po=new EvaluatePO(this.order.getHotel(), score, evaluate, this.order.getName());
 	    service.evaluate(po);
 	    OrdersService ordersService=new OrderServiceImpl();
 	    ordersService.setType(order.getOrderId(), OrderType.evaluation);
@@ -69,12 +68,13 @@ public class EvaluateController {
 	    alert.setContentText("");
 
 	    alert.showAndWait();
-	    main.showOrderList();
+	    
+	    cancel();
 	}
 	
-	public void setOrderVo(OrderVo orderVo,String memberName){
+	public void setOrderVo(OrderVo orderVo){
 		this.order=orderVo;
-		this.memberName=memberName;
+		
 		hotelNameLabel.setText(this.order.getHotel());
 		roomTypeLabel.setText(this.order.getRoomType());
 		inTimeLable.setText(this.order.getInDate().toLocaleString());

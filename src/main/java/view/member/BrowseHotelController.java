@@ -1,5 +1,6 @@
 package view.member;
 
+import java.nio.channels.SelectionKey;
 import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import vo.HotelVo;
 
 public class BrowseHotelController {
@@ -134,14 +136,11 @@ public class BrowseHotelController {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.userName = userName;
-		initialized();
+		initialize();
 	}
 
 	@FXML
-	public void initialized() {
-		HotelColumnVo hotelColumnVo = new HotelColumnVo("金陵饭店", 708, HotelRanking.五星级, 4.9);
-		ArrayList< HotelColumnVo> hotelList = new ArrayList<HotelColumnVo>();
-		hotelList.add(hotelColumnVo);
+	public void initialize() {
 		
 		ObservableList<HotelColumnVo> hotelColumList = FXCollections.observableArrayList();
 
@@ -155,13 +154,16 @@ public class BrowseHotelController {
 		hotelRankingColumn.setCellValueFactory(cellData -> cellData.getValue().getHotelRanking());
 		hotelRemarkColumn.setCellValueFactory(cellData -> cellData.getValue().getHotelRemark());
 		
-		System.out.print(hotelColumList.get(0).getHotelName().get());
 		setLabel(hotelColumList.get(0).getHotelName().get());
-
-		hotelLabel.getSelectionModel().selectedItemProperty()
-				.addListener((observable, oldValue, newValue) -> setLabel(newValue.getHotelName().toString()));
+		
 	}
 
+	@FXML
+	public void click(MouseEvent e){
+		if(e.getClickCount()>0){
+			setLabel(hotelLabel.getSelectionModel().getSelectedItem().getHotelName().get());
+		}
+	}
 	private void setLabel(String hotelName) {
 		
 		HotelService hotelService = new HotelServiceImpl();

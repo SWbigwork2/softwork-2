@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.RecordCheckOutController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.RecordCheckOutController">
    <children>
-      <Label layoutX="83.0" layoutY="40.0" text="退房" />
-      <Label layoutX="83.0" layoutY="98.0" text="订单Id" />
-      <TextField fx:id="orderIdBar" layoutX="140.0" layoutY="85.0" />
-      <DatePicker fx:id="outTimeBar" layoutX="150.0" layoutY="132.0" />
-      <Label layoutX="91.0" layoutY="137.0" text="退房时间" />
-      <Button fx:id="confirmButton" layoutX="173.0" layoutY="211.0" mnemonicParsing="false" onAction="#makeCheckOut" text="退房" />
-      <Label layoutX="367.0" layoutY="90.0" text="房间Id" />
-      <TextField fx:id="roomIdBar" layoutX="433.0" layoutY="93.0" />
+      <Label layoutX="109.0" layoutY="80.0" prefHeight="23.0" prefWidth="74.0" text="退房">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="406.0" layoutY="142.0" text="订单Id" AnchorPane.leftAnchor="260.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="orderIdBar" layoutX="548.0" layoutY="138.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="350.0" />
+      <DatePicker fx:id="outTimeBar" layoutX="479.0" layoutY="260.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="350.0" />
+      <Label layoutX="396.0" layoutY="265.0" text="退房时间" AnchorPane.leftAnchor="260.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button fx:id="confirmButton" layoutX="467.0" layoutY="334.0" mnemonicParsing="false" onAction="#makeCheckOut" text="退房" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="350.0" />
+      <Label layoutX="383.0" layoutY="207.0" text="房间Id" AnchorPane.leftAnchor="260.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="roomIdBar" layoutX="505.0" layoutY="201.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="350.0" />
    </children>
 </AnchorPane>

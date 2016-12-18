@@ -20,16 +20,16 @@ public class LoginControllerimpl implements LoginService{
 	}
 	public LoginVo login(String Id,String password,UserType type){
 		if(type==UserType.member){
-			login = new MemberLoginMock(users);
+			login = new MemberLogin(users);
 		}
 		else if(type==UserType.manager){
-			login=new ManagerLoginMock(users);
+			login=new ManagerLogin(users);
 		}
 		else if(type==UserType.marketer){
-			login=new MarketerLoginMock(users);
+			login=new MarketerLogin(users);
 		}
 		else if(type==UserType.staff){
-			login=new StaffLoginMock(users);
+			login=new StaffLogin(users);
 		}
 		LoginVo resultVo =login.login(Id, password);
 		

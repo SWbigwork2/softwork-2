@@ -60,9 +60,10 @@ public class Main extends Application {
 	private RemoteHelper remoteHelper;
 	
 	public void linkToServer(){
+		final String ip = "localhost";
 		try{
 			remoteHelper = RemoteHelper.getInstance();
-			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DateRemoteObject"));
+			remoteHelper.setRemote(Naming.lookup("rmi://"+ip+":8888/DateRemoteObject"));
 			System.out.println("linked");
 		}catch (MalformedURLException e) {
 			e.printStackTrace();

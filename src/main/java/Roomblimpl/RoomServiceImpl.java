@@ -1,36 +1,27 @@
 package Roomblimpl;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import blservice.RoomService;
 import data.dao.RoomsDao;
-import data.dao.impl.RoomsDaoImpl;
+import data.rmi.RemoteHelper;
 import po.RoomPO;
 import view.member.RoomVo;
 
 public class RoomServiceImpl implements RoomService {
 
-	private RoomsDao roomsDao = RoomsDaoImpl.getInstance();
+	private RoomsDao roomsDao;
+	private RemoteHelper remoteHelper;
 	private RoomVoPoTran roomVoPoTran = new RoomVoPoTran();
 	
-	/**
-	 * 用于记录当下入住的房间，房间号与实际入住时间对应
-	 */
-	private static Map<String,Date> presentUnavailableRooms = new HashMap<String, Date>();
-	/**
-	 * 用于记录订单与该订单的房间号的对应，一张订单可以预定多间房间，因此一个代表订单号的String键值
-	 * 对应一个包含本次预定所有房间号的数组
-	 */
-	private static Map<String, ArrayList<String>> orderRoomList = new HashMap<>();
-	/**
-	 * 用于记录订单号与预定入住时间的对应
-	 */
-	private static Map<String, Date> resvervationList = new HashMap<String,Date>();
-
-
+	public RoomServiceImpl() {
+		remoteHelper = RemoteHelper.getInstance();
+		roomsDao = remoteHelper.getRoomsDao();
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * @param ArrayList<RoomVo>
 	 */
@@ -46,7 +37,7 @@ public class RoomServiceImpl implements RoomService {
 	 */
 	@Override
 	public ArrayList<RoomVo> getRoomOfHotel(String hotelName, Date startTime, Date endTime) {
-		
+
 		ArrayList<RoomPO> roomList = roomsDao.getRoomList(hotelName);
 		boolean[] isAvailable = new boolean[roomList.size()];
 		for (int k = 0; k < isAvailable.length; k++) {
@@ -58,7 +49,9 @@ public class RoomServiceImpl implements RoomService {
 			if (timePeriod != null) {
 				Set<Date> startTimeList = timePeriod.keySet();
 				for (Date dateCell : startTimeList) {
-					if (!(  endTime.before(dateCell)  ||  endTime.equals(dateCell)   ||   startTime.after(timePeriod.get(dateCell))  ||  startTime.equals(timePeriod.get(dateCell))  )) {
+					if (!(endTime.before(dateCell) || endTime.equals(dateCell)
+							|| startTime.after(timePeriod.get(dateCell))
+							|| startTime.equals(timePeriod.get(dateCell)))) {
 						isAvailable[i] = false;
 						break;
 					}
@@ -82,45 +75,40 @@ public class RoomServiceImpl implements RoomService {
 	 * 
 	 */
 	@Override
-	public void makeReservation(String orderId,String hotelName, RoomType roomType, Date startTime, Date endTime, int roomNum) {
+	public void makeReservation(int orderId, String hotelName, RoomType roomType, Date startTime, Date endTime,
+			int roomNum) {
+
 		ArrayList<RoomVo> hotelList = getRoomOfHotel(hotelName, startTime, endTime);
-		ArrayList<String> roomNameList = new ArrayList<String>();
+		ArrayList<Integer> roomNameList = new ArrayList<Integer>();
 		for (RoomVo cell : hotelList) {
 			if (cell.getRoomType().equals(roomType)) {
 				roomNameList.add(cell.getRoomId());
 			}
 		}
-		ArrayList<String> roomList = new ArrayList<String>();
-		ArrayList<Date> dateList = new ArrayList<>();
-		dateList.add(startTime);
+
 		for (int i = 0; i < roomNum; i++) {
-			roomsDao.recordStartTime(roomNameList.get(i), startTime, endTime);
-			roomList.add(roomNameList.get(i));
+			roomsDao.recordReservation(roomNameList.get(i), startTime, endTime, orderId);
 		}
-		orderRoomList.put(orderId, roomList);
-		resvervationList.put(orderId, startTime);
+		roomsDao.recordOrderRoom(orderId, roomNameList);
 	}
-	
-	/**
-	 * 
-	 */
-	@Override
-	public void makeCheckIn(String orderId,Date startTime){
-		ArrayList<String> list = orderRoomList.get(orderId);
-		for(String cell:list){
-			presentUnavailableRooms.put(cell,startTime);
-		}
-	}
-	
 
 	/**
 	 * 
 	 */
 	@Override
-	public void makeCheckOut(String orderId,String roomId, Date endTime) {
-		Date startTime = resvervationList.get(roomId);
-		roomsDao.recordCheckOut(roomId, startTime);
-		presentUnavailableRooms.remove(roomId);
+	public void makeCheckIn(int orderId, Date startTime) {
+		ArrayList<Integer> roomList = roomsDao.getOrderRoom(orderId);
+		for (Integer cell : roomList) {
+			roomsDao.recordCheckIn(cell, orderId, startTime);
+		}
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public void makeCheckOut(int orderId, int roomId, Date endTime) {
+		roomsDao.recordCheckOut(roomId, orderId);
 	}
 
 	/**

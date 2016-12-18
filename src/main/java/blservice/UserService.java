@@ -2,15 +2,14 @@ package blservice;
 
 import java.util.ArrayList;
 
-import Hotelblimpl.HotelRanking;
-import Hotelblimpl.HotelTradeArea;
+
 import Usersblimpl.MarketerVO;
 import Usersblimpl.MemberInformationVO;
 import Usersblimpl.ResultMessage;
 import Usersblimpl.StaffVO;
 import Usersblimpl.UserType;
 import Usersblimpl.UserVO;
-import vo.HotelVo;
+
 
 public interface UserService {
 	public UserVO find(String  id,UserType type);

@@ -1,10 +1,16 @@
 package view.marketer;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 import Usersblimpl.MarketerVO;
 import Usersblimpl.MemberInformationVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
 import blservice.UserService;
+import data.rmi.RemoteHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import loginblimpl.LoginVo;
+import view.staff.Main;
 
 public class MarketerMain extends Application {
   
@@ -29,8 +36,24 @@ public class MarketerMain extends Application {
 	private static MarketerVO marketer;
 	private static Stage loginStage;
 	private UserService userService;
+private RemoteHelper remoteHelper;
 	
+public void linkToServer(){
+	final String ip = "localhost";
+	try{
+		remoteHelper = RemoteHelper.getInstance();
+		remoteHelper.setRemote(Naming.lookup("rmi://"+ip+":8888/DateRemoteObject"));
+		System.out.println("linked");
+	}catch (MalformedURLException e) {
+		e.printStackTrace();
+	} catch (RemoteException e) {
+		e.printStackTrace();
+	} catch (NotBoundException e) {
+		e.printStackTrace();
+	}
+}
 	public  MarketerMain() {
+		linkToServer();
 		userService = new UserControllerblimpl();
 		loader = new FXMLLoader();
 	
@@ -58,7 +81,12 @@ public class MarketerMain extends Application {
 		
 		
 	}
+	public void logout(){
+		primaryStage.close();
+		loginStage.showAndWait();
+	}
 	public void showMain(){
+		loginStage.close();
 		this.primaryStage.setTitle("营销人员主界面");
 		initmainPane();
 	}
@@ -73,14 +101,14 @@ public class MarketerMain extends Application {
 	}
 	@Override
 	public void start(Stage primaryStage) {
-//		loginStage = new Stage();
-//		Pane loginPane = loadPane("MarketLogin.fxml");
-//		Scene loginScene = new Scene(loginPane,600,400);
-//		loginStage.setScene(loginScene);
-//		loginStage.show();
+		loginStage = new Stage();
+		Pane loginPane = loadPane("MarketLogin.fxml");
+		Scene loginScene = new Scene(loginPane,600,400);
+		loginStage.setScene(loginScene);
+		loginStage.show();
 		
 		this.primaryStage=primaryStage;
-	    showMain();
+	
 		
 		
 	}
@@ -105,6 +133,17 @@ public class MarketerMain extends Application {
 		}
 		
 	}
+	public void movetoLookPromotions(){
+		 
+		 try {
+			AnchorPane showPromotionsPane=new AnchorPane();
+			showPromotionsPane=(AnchorPane)loadPane("ShowMarketPromotions.fxml");
+			marketerBorderPane.setCenter(showPromotionsPane);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	 }
 	private   Pane loadPane(String fxml) {
 		// TODO Auto-generated method stub
 		  loader=new FXMLLoader();
@@ -175,25 +214,15 @@ public class MarketerMain extends Application {
 			e.printStackTrace();
 		}
 	 }
-//	 public void movetoDeletePromotions(){
-//		 try {
-//			AnchorPane DeletePromotionsPane=new AnchorPane();
-//			DeletePromotionsPane=(AnchorPane)loadPane("DeleteMarketPromotions.fxml");
-//			marketerBorderPane.setCenter(DeletePromotionsPane);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			// TODO: handle exception
-//		}
-//	 }
-	 public void movetoLookPromotions(){
-		 
+	 public void movetoDeletePromotions(){
 		 try {
-			AnchorPane showPromotionsPane=new AnchorPane();
-			showPromotionsPane=(AnchorPane)loadPane("ShowMarketPromotions.fxml");
-			marketerBorderPane.setCenter(showPromotionsPane);
+			 System.out.println(2);
+			AnchorPane DeletePromotionsPane=new AnchorPane();
+			DeletePromotionsPane=(AnchorPane)loadPane("DeleteMarketPromotions.fxml");
+			marketerBorderPane.setCenter(DeletePromotionsPane);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
+			// TODO: handle exception
 		}
 	 }
 	 public void movetoAddCredit(){
@@ -257,6 +286,7 @@ public class MarketerMain extends Application {
 	  return primaryStage;
   }
 	public static void main(String[] args) {
+		main = new MarketerMain();
 		launch(args);
 	}
 	

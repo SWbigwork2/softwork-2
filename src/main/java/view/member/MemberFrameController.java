@@ -12,8 +12,7 @@ public class MemberFrameController {
 	private Button CreditButton;
 	@FXML
 	private Button FindHotelButton;
-	@FXML
-	private Button checkCreditButton;
+	
 	private Main main;
 	public MemberFrameController() {
 		main = Main.getMain();
@@ -50,13 +49,6 @@ public class MemberFrameController {
 	}
 	
 	public void showHistoryHotel(){
-		
-	}
-	
-	/**
-	 * 显示信用记录界面
-	 */
-	public void showCreditRecord(){
 		
 	}
 	

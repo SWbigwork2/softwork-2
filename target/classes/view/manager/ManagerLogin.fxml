@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manager.ManagerLoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#pressEnter" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.manager.ManagerLoginController">
    <top>
       <Label alignment="CENTER" style="-fx-font-size: 30;" text="网站管理人员登录" BorderPane.alignment="BOTTOM_LEFT" />
    </top>
@@ -30,7 +30,7 @@
             <Label text="密码" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="userId" onKeyTyped="#userFieldListener" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <PasswordField fx:id="password" onKeyTyped="#passWordListener" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="loginButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#login" text="登录" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Button fx:id="loginButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#login" style="-fx-background-color: white; -fx-border-color: lightgray;" text="登录" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Label fx:id="idTipLabel" style="-fx-text-fill: red; -fx-font-size: 15;" text="用户名不能为空！" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Label fx:id="passwordTipLabel" style="-fx-text-fill: red; -fx-font-size: 15;" text="密码不能为空！" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label fx:id="errorMessage" style="-fx-text-fill: red; -fx-font-size: 15;" text="用户名不存在或密码错误！" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
