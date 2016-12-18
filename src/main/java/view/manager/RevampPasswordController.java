@@ -39,7 +39,7 @@ public class RevampPasswordController {
 		oldPassword=oldPasswordField.getText();
 		newPassword=newPasswordField.getText();
 		confirmPassword=confirmPasswordField.getText();
-		
+		System.out.println(newPassword+" "+confirmPassword);
 		if(oldPassword.length()>=1&&
 				newPassword.length()>=1&&
 				    confirmPassword.length()>=1){//判断是否输入内容
