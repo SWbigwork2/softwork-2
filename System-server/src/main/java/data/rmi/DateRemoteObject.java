@@ -290,5 +290,10 @@ public class DateRemoteObject extends UnicastRemoteObject implements OrdersDao,E
 		return roomsDao.insertRoom(roomPO);
 	}
 
+	@Override
+	public boolean judgeHotelExists(String hotelName) throws RemoteException {
+		return roomsDao.judgeHotelEXists(hotelName);
+	}
+
 	
 }
