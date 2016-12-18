@@ -43,6 +43,7 @@ public class EvaluateDaoImpl implements EvaluateDao {
 	@Override
 	public double getScore(String hotelName) throws RemoteException {
 		// TODO Auto-generated method stub
+		return evaluateDataHelper.getScore(hotelName);
 	}
 
 	
