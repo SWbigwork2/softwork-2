@@ -68,6 +68,13 @@ public class PromotionsiiiController {
 			alert.setContentText("不存在该酒店");
 			alert.showAndWait();
 		}
+        else if(nums<=0){
+        	Alert alert=new Alert(AlertType.INFORMATION);
+			alert.setTitle("提示");
+			alert.setHeaderText(null);
+			alert.setContentText("房间数量必须大于0");
+			alert.showAndWait();
+        }
         else {
         PromotionsIIIVO promotionsIIIVO=new PromotionsIIIVO(3, hotel, introduction, nums, discount);
         boolean result=promotionsService.addPromotionsIII(promotionsIIIVO);
