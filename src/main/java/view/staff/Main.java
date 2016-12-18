@@ -1,4 +1,4 @@
-package view.staff;
+﻿package view.staff;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -238,7 +238,7 @@ private RemoteHelper remoteHelper;
 		
 		staffBorderPane.setCenter(page);
 		
-		StaffInformationController controller=loader.getController();
+		RevampPasswordController controller=loader.getController();
 		controller.setStaffVO(staff);
 	} catch (Exception e) {
 		// TODO: handle exception
