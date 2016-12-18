@@ -7,25 +7,20 @@ import java.util.Map;
 import java.util.Set;
 import blservice.RoomService;
 import data.dao.RoomsDao;
-import data.dao.impl.RoomsDaoImpl;
+import data.rmi.RemoteHelper;
 import po.RoomPO;
 import view.member.RoomVo;
 
 public class RoomServiceImpl implements RoomService {
 
-	private RoomsDao roomsDao = RoomsDaoImpl.getInstance();
+	private RoomsDao roomsDao;
+	private RemoteHelper remoteHelper;
 	private RoomVoPoTran roomVoPoTran = new RoomVoPoTran();
 	
-
-	public static void main(String [] args){
-		RoomServiceImpl roomServiceImpl = new RoomServiceImpl();
-		Date startTime = new Date(116,11,20);
-		Date endTime = new Date(116,11,22);
-		ArrayList<RoomType> list = roomServiceImpl.getHotelRoomType("金陵饭店", startTime, endTime);
-		System.out.println(list.contains(RoomType.单人间));
-		
-		
-		
+	public RoomServiceImpl() {
+		remoteHelper = RemoteHelper.getInstance();
+		roomsDao = remoteHelper.getRoomsDao();
+		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * @param ArrayList<RoomVo>
@@ -272,19 +267,14 @@ public class RoomServiceImpl implements RoomService {
 			switch (cell.getRoomType()) {
 			case 单人间:
 				roomType1++;
-				break;
 			case 商务间:
 				roomType2++;
-				break;
 			case 标准间:
 				roomType3++;
-				break;
 			case 行政标准间:
 				roomType4++;
-				break;
 			case 高级套间:
 				roomType5++;
-				break;
 			}
 		}
 		Map<RoomType, Integer> numOfRoomType = new HashMap<RoomType, Integer>();
