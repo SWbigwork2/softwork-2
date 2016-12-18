@@ -58,7 +58,8 @@ public class PromotionsvController  {
 				alert.setHeaderText(null);
 				alert.setContentText("折扣只能在0.1~0.99之间");
 				alert.showAndWait();
-			}else {
+			}
+		  else {
 		  int viplevel=Integer.parseInt(viplevelstr);
 		  PromotionsVVO promotionsVVO=new PromotionsVVO(5, hotel, introduction, viplevel, area, discount);
 	      boolean result=promotionsService.addPromotionsV(promotionsVVO);

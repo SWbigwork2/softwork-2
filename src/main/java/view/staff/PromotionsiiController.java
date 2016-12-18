@@ -1,6 +1,8 @@
 package view.staff;
 
+import Hotelblimpl.HotelServiceImpl;
 import Promotionsblimpl.PromotionsServiceImpl;
+import blservice.HotelService;
 import blservice.PromotionsService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -31,6 +33,7 @@ public class PromotionsiiController {
 	@FXML
 	private Main main;
 	PromotionsService promotionsService=new PromotionsServiceImpl();
+	HotelService hotelService=new HotelServiceImpl();
 	public PromotionsiiController(){
 		main=Main.getMain();
 		hotelnameTextField=new TextField();
@@ -51,7 +54,15 @@ public class PromotionsiiController {
 			alert.setHeaderText(null);
 			alert.setContentText("策略信息填写不完整");
 			alert.showAndWait();
-		}else{
+		}else if(hotelService.judgeHotelExists(hotel)){
+			Alert alert=new Alert(AlertType.INFORMATION);
+			alert.setTitle("提示");
+			alert.setHeaderText(null);
+			alert.setContentText("不存在该酒店");
+			alert.showAndWait();
+		}
+		
+		else{
 			
 			double discount=Double.parseDouble(discountstr);
 			if(discount>0.99||discount<0.1){

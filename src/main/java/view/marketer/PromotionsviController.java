@@ -1,6 +1,8 @@
 package view.marketer;
 
+import Hotelblimpl.HotelServiceImpl;
 import Promotionsblimpl.PromotionsServiceImpl;
+import blservice.HotelService;
 import blservice.PromotionsService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -30,6 +32,7 @@ public class PromotionsviController  {
    @FXML
    private MarketerMain main;
    PromotionsService promotionsService=new PromotionsServiceImpl();
+   HotelService hotelService=new HotelServiceImpl();
    public PromotionsviController(){
 	   main=MarketerMain.getMain();
 	   hotelnameTextfield=new TextField();
@@ -73,7 +76,11 @@ public class PromotionsviController  {
 			alert.setHeaderText(null);
 			alert.setContentText("折扣只能在0.1~0.99之间");
 			alert.showAndWait();
-		}else {
+		}
+    	else if(hotelService.judgeHotelExists(hotel)){
+			main.showWaningInformation(AlertType.INFORMATION, null, "不存在该酒店");
+		}
+    	else {
     	PromotionsVIVO promotionsVIVO1=new PromotionsVIVO(6, hotel,"VIP1 折扣 "+discountstr1, 1, discount1);
     	PromotionsVIVO promotionsVIVO2=new PromotionsVIVO(6, hotel,"VIP2 折扣 "+discountstr2, 2, discount2);
     	PromotionsVIVO promotionsVIVO3=new PromotionsVIVO(6, hotel,"VIP3 折扣 "+discountstr3, 3, discount3);
