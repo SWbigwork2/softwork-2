@@ -114,7 +114,12 @@ public class OrderRecoverListController {
 				break;
 			}
 		}
-		
+		if(orderVo.getType().equals("normal")){
+		recoverButton.setDisable(true);
+		}
+		else{
+			recoverButton.setDisable(false);
+		}
 		userId.setText(orderVo.getUserId());
 		this.orderId.setText(orderId+"");
 		hotel.setText(orderVo.getHotel());
