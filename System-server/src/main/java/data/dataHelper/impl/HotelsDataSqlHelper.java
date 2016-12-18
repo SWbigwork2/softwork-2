@@ -29,7 +29,7 @@ public class HotelsDataSqlHelper implements HotelsDataHelper {
 	private void getConnect() {
 		String url = "jdbc:mysql://localhost:3306/software2?characterEncoding=utf8";
 		String user = "root";
-		String password = "zhurunzhi654";
+		String password = "12345";
 		connection = SqlConnectHelper.getConnection(url, user, password);
 	}
 	
@@ -176,6 +176,27 @@ public class HotelsDataSqlHelper implements HotelsDataHelper {
 	public ArrayList<RoomPO> getRoomOfHotel(String hotelName) {
 		RoomsDataHelper roomsDataHelper = new RoomsDataSqlHelper();
 		return roomsDataHelper.getRoomList(hotelName);
+	}
+	public boolean judgeHotelExists(String hotelName){
+		boolean hotelExists;
+		getConnect();
+		try{
+			String sqlExpression =  "select *from Hotel where HotelName=" + "\"" + hotelName + "\"" + ";";
+			statement = connection.prepareStatement(sqlExpression);
+			resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				hotelExists = true;
+			}else{
+				hotelExists = false;
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			hotelExists = false;
+		}finally{
+			freeConnect();
+		}
+		return hotelExists;
 	}
 
 }

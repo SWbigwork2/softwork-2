@@ -44,6 +44,12 @@ public interface HotelsDao extends Remote{
 	 * @return 返回该酒店的房间列表
 	 */
 	public ArrayList<RoomPO> getRoomOfHotel(String hotelName) throws RemoteException;
+	
+	/**
+	 * @param hotelName
+	 * @return 判断酒店是否存在
+	 */
+	public boolean judgeHotelExists(String hotelName) throws RemoteException;
 
 	
 }
