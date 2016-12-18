@@ -25,7 +25,7 @@ public interface HotelsDao {
 	
 	public boolean insertHotel(HotelPO hotelPO);
 	
-	/**
+	/**/Users/xutianze/softwork-2/src/main/java/data/dao/HotelsDao.java
 	 * @param HotelPO
 	 * @return 删除酒店
 	 */
@@ -42,6 +42,13 @@ public interface HotelsDao {
 	 * @return 返回该酒店的房间列表
 	 */
 	public ArrayList<RoomPO> getRoomOfHotel(String hotelName);
+
+	/**
+	 * @param hotelName
+	 * @return 判断酒店是否存在
+	 */
+	public boolean judgeHotelExists(String hotelName);
+
 
 	
 }
