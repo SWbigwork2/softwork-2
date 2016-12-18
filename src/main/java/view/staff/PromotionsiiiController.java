@@ -51,6 +51,13 @@ public class PromotionsiiiController {
 		}else{
         int nums=Integer.parseInt(roomsnum);
         double discount=Double.parseDouble(discountstr);
+        if(discount>0.99||discount<0.1){
+			Alert alert=new Alert(AlertType.INFORMATION);
+			alert.setTitle("提示");
+			alert.setHeaderText(null);
+			alert.setContentText("折扣只能在0.1~0.99之间");
+			alert.showAndWait();
+		}else {
         PromotionsIIIVO promotionsIIIVO=new PromotionsIIIVO(3, hotel, introduction, nums, discount);
         boolean result=promotionsService.addPromotionsIII(promotionsIIIVO);
         if(result){
@@ -68,6 +75,7 @@ public class PromotionsiiiController {
 			alert.showAndWait();
         }
 	}
+		}
 }
 	public void clearPromotionsIII(){
 		hotelnameTextField.setText("");

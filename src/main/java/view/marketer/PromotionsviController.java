@@ -64,6 +64,16 @@ public class PromotionsviController  {
     	double discount4=Double.parseDouble(discountstr4);
     	double discount5=Double.parseDouble(discountstr5);
     	double discount6=Double.parseDouble(discountstr6);
+    	
+    	if(discount1>0.99||discount1<0.1||discount2>0.99||discount2<0.1||
+    			discount3>0.99||discount3<0.1||discount4>0.99||discount4<0.1||
+    			discount5>0.99||discount5<0.1||discount6>0.99||discount6<0.1){
+			Alert alert=new Alert(AlertType.INFORMATION);
+			alert.setTitle("提示");
+			alert.setHeaderText(null);
+			alert.setContentText("折扣只能在0.1~0.99之间");
+			alert.showAndWait();
+		}else {
     	PromotionsVIVO promotionsVIVO1=new PromotionsVIVO(6, hotel,"VIP1 折扣 "+discountstr1, 1, discount1);
     	PromotionsVIVO promotionsVIVO2=new PromotionsVIVO(6, hotel,"VIP2 折扣 "+discountstr2, 2, discount2);
     	PromotionsVIVO promotionsVIVO3=new PromotionsVIVO(6, hotel,"VIP3 折扣 "+discountstr3, 3, discount3);
@@ -90,7 +100,7 @@ public class PromotionsviController  {
 			alert.setContentText("已存在部分相同策略");
 			alert.showAndWait();
         }
-  
+		}
     }   
 }
    public void clearPromotionsVI(){

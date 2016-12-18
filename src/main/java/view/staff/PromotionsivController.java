@@ -47,6 +47,13 @@ public class PromotionsivController {
 			alert.showAndWait();
 		}else{
 			double discount=Double.parseDouble(discountstr);
+			if(discount>0.99||discount<0.1){
+				Alert alert=new Alert(AlertType.INFORMATION);
+				alert.setTitle("提示");
+				alert.setHeaderText(null);
+				alert.setContentText("折扣只能在0.1~0.99之间");
+				alert.showAndWait();
+			}else {
 			PromotionsIVVO promotionsIVVO=new PromotionsIVVO(4, hotel, introduction, companyname, discount);
 			boolean result=promotionsService.addPromotionsIV(promotionsIVVO);
 			if(result){
@@ -63,6 +70,7 @@ public class PromotionsivController {
 				alert.setContentText("策略已存在");
 				alert.showAndWait();
 			}
+		}
 		}
 	}
 	public void clearPromotionsIV(){

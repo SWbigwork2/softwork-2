@@ -52,7 +52,13 @@ public class Promotionsii2Controller {
 			alert.showAndWait();
 		}else{
 			double discount=Double.parseDouble(discountstr);
-			System.out.println(hotel+discount);
+			if(discount>0.99||discount<0.1){
+				Alert alert=new Alert(AlertType.INFORMATION);
+				alert.setTitle("提示");
+				alert.setHeaderText(null);
+				alert.setContentText("折扣只能在0.1~0.99之间");
+				alert.showAndWait();
+			}else {
 			PromotionsII2VO promotionsII2VO=new PromotionsII2VO(2, hotel, introduction, startdate, enddate, discount);
 			boolean result=promotionsService.addPromotionsII2(promotionsII2VO);
 			if(result){
@@ -70,7 +76,7 @@ public class Promotionsii2Controller {
 				alert.showAndWait();
 			}
 		}
-	
+		}
 	}
 	public void clearPromotionsII2(){
 		hotelnameTextField.setText("");

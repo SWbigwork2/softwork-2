@@ -52,7 +52,17 @@ public class PromotionsiiController {
 			alert.setContentText("策略信息填写不完整");
 			alert.showAndWait();
 		}else{
+			
 			double discount=Double.parseDouble(discountstr);
+			if(discount>0.99||discount<0.1){
+				Alert alert=new Alert(AlertType.INFORMATION);
+				alert.setTitle("提示");
+				alert.setHeaderText(null);
+				alert.setContentText("折扣只能在0.1~0.99之间");
+				alert.showAndWait();
+			}else {
+				
+			
 			PromotionsIIVO promotionsIIVO=new PromotionsIIVO(2, hotel, introduction, startdate, enddate, discount);
 			boolean result=promotionsService.addPromotionsII(promotionsIIVO);
 			if(result){
@@ -70,7 +80,7 @@ public class PromotionsiiController {
 				alert.showAndWait();
 			}
 		}
-	
+		}
 	}
 	public void clearPromotionsII(){
 		hotelnameTextField.setText("");
