@@ -21,11 +21,7 @@ public class Evaluateblimpl implements EvaluateService {
     }
     
     public ResultMessage evaluate(EvaluatePO evaluatePO){
-     
-//      hotel加评分
-        HotelService hotelService=new HotelServiceImpl();
-        hotelService.setHotelRemark(evaluatePO.getHotelName(),(int)evaluatePO.getScore()) ;
-
+ 
         return evaluateDao.addEvaluate(evaluatePO);
     }
     
@@ -37,6 +33,12 @@ public class Evaluateblimpl implements EvaluateService {
     	commentList=evaluateDao.getEvaluatetion(hotelName);
     	return commentList;
     }
+
+	@Override
+	public double getScore(String hotelName) {
+		// TODO Auto-generated method stub
+		return evaluateDao.getScore(hotelName);
+	}
     
     
     

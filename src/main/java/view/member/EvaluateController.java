@@ -56,20 +56,30 @@ public class EvaluateController {
 	private void confirm(){
 		int score=scoreComboBox.getValue();
 	    String evaluate=evaluationArea.getText();
-	    EvaluateService service=new Evaluateblimpl();
-	    EvaluatePO  po=new EvaluatePO(this.order.getHotel(), score, evaluate, this.order.getName());
-	    service.evaluate(po);
-	    OrdersService ordersService=new OrderServiceImpl();
-	    ordersService.setType(order.getOrderId(), OrderType.evaluation);
+	    if(evaluate.length()>=1){
+	    	EvaluateService service=new Evaluateblimpl();
+	    	EvaluatePO  po=new EvaluatePO(this.order.getHotel(), score, evaluate, this.order.getName());
+	    	service.evaluate(po);
+	    	OrdersService ordersService=new OrderServiceImpl();
+	    	ordersService.setType(order.getOrderId(), OrderType.evaluation);
 	    
-	    Alert alert = new Alert(AlertType.INFORMATION);
-	    alert.setTitle("提示");
-	    alert.setHeaderText("评价成功");
-	    alert.setContentText("");
+	    	Alert alert = new Alert(AlertType.INFORMATION);
+	    	alert.setTitle("提示");
+	    	alert.setHeaderText("评价成功");
+	    	alert.setContentText("");
 
-	    alert.showAndWait();
+	    	alert.showAndWait();
 	    
-	    cancel();
+	    	cancel();
+	    }else{
+	    	Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("错误");
+	    	alert.setHeaderText("评价不能为空");
+	    	alert.setContentText("");
+
+	    	alert.showAndWait();
+	    	
+	    }
 	}
 	
 	public void setOrderVo(OrderVo orderVo){
