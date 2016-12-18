@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
+import Membersblimpl.MemberServiceImpl;
+import blservice.MembersService;
 import blservice.OrdersService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import ordersblimpl.OrderServiceImpl;
+import view.staff.Main;
 import vo.OrderVo;
 import javafx.scene.control.Alert.AlertType;
 
@@ -44,7 +47,11 @@ public class OrderRecoverListController {
 	private OrderVo orderVo;
 	private ArrayList<OrderVo> infoList;
 	private OrdersService service;
+	private MembersService membersService;
+	private MarketerMain main;
 	public OrderRecoverListController() {
+		main = MarketerMain.getMain();
+		membersService = new MemberServiceImpl();
 		service = new OrderServiceImpl();
 		orderType = new Label();
 		recoverButton = new Button();
@@ -144,18 +151,25 @@ public class OrderRecoverListController {
 			if(result.get()=="一半"){
 				
 				service.recover(orderVo.getOrderId(), 0.5);
+				membersService.updateMemberCredit(orderVo.getUserId(), orderVo.getPrice()*0.5, orderVo.getOrderId(), "撤销异常订单");
 				//恢复一半信用值		
+				
 				orderVo.setType("revoke");
 				orderVo.setCompleteDate(new Date());
+				service.update(orderVo);
 				alert.showAndWait();
-				showSelection();
+				main.showList();
+				
 			}
 			else{
 				//恢复一半信用值
+				membersService.updateMemberCredit(orderVo.getUserId(), orderVo.getPrice(), orderVo.getOrderId(), "撤销异常订单");
 				orderVo.setType("revoke");
 				orderVo.setCompleteDate(new Date());
+				service.update(orderVo);
 				alert.showAndWait();
-				showSelection();
+				main.showList();
+				
 			}
 		}
 	}

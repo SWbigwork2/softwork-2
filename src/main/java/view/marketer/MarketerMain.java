@@ -9,6 +9,7 @@ import Usersblimpl.MarketerVO;
 import Usersblimpl.MemberInformationVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
+import blservice.OrdersService;
 import blservice.UserService;
 import data.rmi.RemoteHelper;
 import javafx.application.Application;
@@ -22,6 +23,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import loginblimpl.LoginVo;
+import ordersblimpl.OrderServiceImpl;
 import view.staff.Main;
 
 public class MarketerMain extends Application {
@@ -36,6 +38,7 @@ public class MarketerMain extends Application {
 	private static MarketerVO marketer;
 	private static Stage loginStage;
 	private UserService userService;
+	private OrdersService ordersService;
 private RemoteHelper remoteHelper;
 	
 public void linkToServer(){
@@ -53,7 +56,9 @@ public void linkToServer(){
 	}
 }
 	public  MarketerMain() {
+	
 		linkToServer();
+		ordersService = new OrderServiceImpl();
 		userService = new UserControllerblimpl();
 		loader = new FXMLLoader();
 	
@@ -66,6 +71,8 @@ public void linkToServer(){
 			
 				loader.setLocation(MarketerMain.class.getResource("OrderRecoverlist.fxml"));
 				pane = loader.load();
+				OrderRecoverListController controller = loader.getController();
+				controller.initialize(ordersService.getUndoList());
 				
 			} catch (Exception e) {
 				// TODO: handle exception

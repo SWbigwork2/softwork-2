@@ -20,7 +20,7 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 	
 	ResultSet resultSet = null;
 	private void getConnect() {         //连接到数据库
-		String url = "jdbc:mysql://loccalhost:3306/software2";
+		String url = "jdbc:mysql://localhost:3306/software2";
 		String user = "root";
 		String password = "zhurunzhi654";
 		connection = SqlConnectHelper.getConnection(url, user, password);
