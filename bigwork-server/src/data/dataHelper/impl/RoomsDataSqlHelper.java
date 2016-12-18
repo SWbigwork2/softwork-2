@@ -60,14 +60,32 @@ public class RoomsDataSqlHelper implements RoomsDataHelper {
 				 * resultSet中记录了最多四个房间不可预订时间戳
 				 * 如果时间戳不为null，将该时间戳加入到一个ArrayList<Date>中
 				 */
-				Date StartTime1 = new java.util.Date (resultSet.getDate("StartTime1").getTime());
-				Date EndTime1 = new java.util.Date (resultSet.getDate("EndTime1").getTime());
-				Date StartTime2 = new java.util.Date (resultSet.getDate("StartTime2").getTime());
-				Date EndTime2 = new java.util.Date (resultSet.getDate("EndTime2").getTime());
-				Date StartTime3 = new java.util.Date (resultSet.getDate("StartTime3").getTime());
-				Date EndTime3 = new java.util.Date (resultSet.getDate("EndTime3").getTime());
-				Date StartTime4 = new java.util.Date (resultSet.getDate("StartTime4").getTime());
-				Date EndTime4 = new java.util.Date (resultSet.getDate("EndTime4").getTime());
+
+				Date StartTime1 = null;
+				Date EndTime1 = null;
+				Date StartTime2 = null;
+				Date EndTime2 = null;
+				Date StartTime3 = null;
+				Date EndTime3 = null;
+				Date StartTime4 = null;
+				Date EndTime4 = null;
+				
+				if (resultSet.getDate("StartTime1") != null) {
+					StartTime1 = new java.util.Date(resultSet.getDate("StartTime1").getTime());
+					EndTime1 = new java.util.Date(resultSet.getDate("EndTime1").getTime());
+				}
+				if (resultSet.getDate("StartTime2") != null) {
+					StartTime2 = new java.util.Date(resultSet.getDate("StartTime2").getTime());
+					EndTime2 = new java.util.Date(resultSet.getDate("EndTime2").getTime());
+				}
+				if (resultSet.getDate("StartTime3") != null) {
+					StartTime3 = new java.util.Date(resultSet.getDate("StartTime3").getTime());
+					EndTime3 = new java.util.Date(resultSet.getDate("EndTime3").getTime());
+				}
+				if (resultSet.getDate("StartTime4") != null) {
+					StartTime4 = new java.util.Date(resultSet.getDate("StartTime4").getTime());
+					EndTime4 = new java.util.Date(resultSet.getDate("EndTime4").getTime());
+				}
 
 				if (StartTime1 != null) {
 					dateMap.put(StartTime1, EndTime1);
