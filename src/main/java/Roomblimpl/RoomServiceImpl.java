@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import blservice.OrdersService;
 import blservice.RoomService;
 import data.dao.RoomsDao;
 import data.rmi.RemoteHelper;
+import ordersblimpl.OrderServiceImpl;
 import po.RoomPO;
 import view.member.RoomVo;
 
@@ -16,6 +18,7 @@ public class RoomServiceImpl implements RoomService {
 	private RoomsDao roomsDao;
 	private RemoteHelper remoteHelper;
 	private RoomVoPoTran roomVoPoTran = new RoomVoPoTran();
+	private OrdersService ordersService = new OrderServiceImpl();
 	
 	public RoomServiceImpl() {
 		remoteHelper = RemoteHelper.getInstance();
@@ -100,6 +103,7 @@ public class RoomServiceImpl implements RoomService {
 		ArrayList<Integer> roomList = roomsDao.getOrderRoom(orderId);
 		for (Integer cell : roomList) {
 			roomsDao.recordCheckIn(cell, orderId, startTime);
+			ordersService.recordIn(orderId, startTime);
 		}
 	}
 
@@ -109,6 +113,7 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public void makeCheckOut(int orderId, int roomId, Date endTime) {
 		roomsDao.recordCheckOut(roomId, orderId);
+		ordersService.recordOut(orderId, endTime);
 	}
 
 	/**
