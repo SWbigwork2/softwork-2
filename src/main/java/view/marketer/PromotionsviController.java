@@ -5,7 +5,6 @@ import Promotionsblimpl.PromotionsServiceImpl;
 import blservice.HotelService;
 import blservice.PromotionsService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -55,11 +54,8 @@ public class PromotionsviController  {
     String discountstr6=vip6discountTextfield.getText();
     if(hotel.length()==0||discountstr1.length()==0||discountstr2.length()==0||discountstr3.length()==0
     		||discountstr4.length()==0||discountstr5.length()==0||discountstr6.length()==0){
-    	Alert alert=new Alert(AlertType.INFORMATION);
-		alert.setTitle("提示");
-		alert.setHeaderText(null);
-		alert.setContentText("策略信息填写不完整");
-		alert.showAndWait();
+    	main.showWaningInformation(AlertType.INFORMATION, null, "策略信息填写不完整");
+    	
     }else{
     	double discount1=Double.parseDouble(discountstr1);
     	double discount2=Double.parseDouble(discountstr2);
@@ -71,11 +67,8 @@ public class PromotionsviController  {
     	if(discount1>0.99||discount1<0.1||discount2>0.99||discount2<0.1||
     			discount3>0.99||discount3<0.1||discount4>0.99||discount4<0.1||
     			discount5>0.99||discount5<0.1||discount6>0.99||discount6<0.1){
-			Alert alert=new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("折扣只能在0.1~0.99之间");
-			alert.showAndWait();
+    		main.showWaningInformation(AlertType.INFORMATION, null, "折扣只能在0.1~0.99之间");
+    		
 		}
     	else if(hotelService.judgeHotelExists(hotel)){
 			main.showWaningInformation(AlertType.INFORMATION, null, "不存在该酒店");
@@ -94,18 +87,12 @@ public class PromotionsviController  {
         Boolean result5=promotionsService.addPromotionsVI(promotionsVIVO5);
         Boolean result6=promotionsService.addPromotionsVI(promotionsVIVO6);
         if(result1&&result2&&result3&&result4&&result5&&result6){
-        	Alert alert=new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("策略添加成功");
-			alert.showAndWait();
+        	main.showWaningInformation(AlertType.INFORMATION, null, "策略添加成功");
+        	
 			clearPromotionsVI();
         }else{
-        	Alert alert=new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("已存在部分相同策略");
-			alert.showAndWait();
+        	main.showWaningInformation(AlertType.INFORMATION, null, "已存在部分相同策略");
+        	
         }
 		}
     }   

@@ -8,7 +8,6 @@ import Promotionsblimpl.PromotionsServiceImpl;
 import blservice.HotelService;
 import blservice.PromotionsService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
@@ -79,19 +78,12 @@ public class Promotionsii2Controller {
 		String enddate=enddateDatePicker.getValue().toString();
 		String introduction=introductionTextField.getText();		
 		if(hotel.length()==0||startdate.length()==0||enddate.length()==0||discountstr.length()==0||introduction.length()==0){
-			Alert alert=new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("策略信息填写不完整");
-			alert.showAndWait();
+			main.showWaningInformation(AlertType.INFORMATION, null, "策略信息填写不完整");
 		}else{
 			double discount=Double.parseDouble(discountstr);
 			if(discount>0.99||discount<0.1){
-				Alert alert=new Alert(AlertType.INFORMATION);
-				alert.setTitle("提示");
-				alert.setHeaderText(null);
-				alert.setContentText("折扣只能在0.1~0.99之间");
-				alert.showAndWait();
+				main.showWaningInformation(AlertType.INFORMATION, null, "折扣只能在0.1~0.99之间");
+				
 			}else if(hotelService.judgeHotelExists(hotel)){
 				main.showWaningInformation(AlertType.INFORMATION, null, "不存在该酒店");
 			}
@@ -100,18 +92,11 @@ public class Promotionsii2Controller {
 			PromotionsII2VO promotionsII2VO=new PromotionsII2VO(2, hotel, introduction, startdate, enddate, discount);
 			boolean result=promotionsService.addPromotionsII2(promotionsII2VO);
 			if(result){
-				Alert alert=new Alert(AlertType.INFORMATION);
-				alert.setTitle("提示");
-				alert.setHeaderText(null);
-				alert.setContentText("策略添加成功");
-				alert.showAndWait();
+				main.showWaningInformation(AlertType.INFORMATION, null, "策略添加成功");
 				clearPromotionsII2();
 			}else{
-				Alert alert=new Alert(AlertType.INFORMATION);
-				alert.setTitle("提示");
-				alert.setHeaderText(null);
-				alert.setContentText("策略已存在");
-				alert.showAndWait();
+				main.showWaningInformation(AlertType.INFORMATION, null,"策略已存在");
+				
 			}
 		}
 		}
