@@ -1,27 +1,27 @@
 package view.staff;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import Membersblimpl.MemberVO;
 import Usersblimpl.StaffVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
-import blservice.OrdersService;
 import blservice.UserService;
 import data.rmi.RemoteHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import loginblimpl.LoginVo;
-import ordersblimpl.OrderServiceImpl;
 
 public class Main extends Application {
   
@@ -35,7 +35,6 @@ public class Main extends Application {
 	private static StaffVO staff;
 	private static Stage loginStage;
 	private UserService userService;
-	private OrdersService ordersService;
 	private static String hotelName;
 private RemoteHelper remoteHelper;
 	
@@ -55,7 +54,6 @@ private RemoteHelper remoteHelper;
 	}
 	
 	public  Main() {
-		ordersService = new OrderServiceImpl();
 		userService = new UserControllerblimpl();
 		loader = new FXMLLoader();
 	  
@@ -74,6 +72,20 @@ private RemoteHelper remoteHelper;
 		this.staff = (StaffVO) userService.find(vo.getId(), UserType.staff);
 		this.hotelName=staff.getHotelName();
 	}
+	public String getHotelname(){
+	String name=staff.getHotelName();
+		return name;
+		
+	}
+	 public void showWaningInformation(AlertType type,
+				String contentText){
+			 Alert alert = new Alert(type);
+		     alert.setTitle("提示");
+		     alert.setHeaderText(null);
+		     alert.setContentText(contentText);
+
+		     alert.showAndWait();
+		 }
 
 	public void logout(){
 		primaryStage.close();
@@ -109,15 +121,16 @@ private RemoteHelper remoteHelper;
 	public void showList(){
 		 loader=new FXMLLoader();
 		 SplitPane pane = null;
-	loader.setLocation(Main.class.getResource("OrderErrorlist.fxml"));
-	try {
-		pane = loader.load();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-		OrderErrorListController controller = loader.getController();
-		controller.initialize(ordersService.getHotelOrder(hotelName), hotelName);
+			try {
+			
+				loader.setLocation(Main.class.getResource("OrderErrorlist.fxml"));
+				pane = loader.load();
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				
+			}
 		
 		staffBorderPane.setCenter(pane);
 	}
