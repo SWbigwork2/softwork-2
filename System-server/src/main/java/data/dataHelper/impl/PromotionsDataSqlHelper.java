@@ -121,7 +121,9 @@ public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO){
 		if(!isExist(promotionsIVPO) ){
 			getConnect();
 		String sql="insert into strategiesiv values("+promotionsIVPO.getType()+","+"'"+promotionsIVPO.getHotel()+"'"
-				+","+"'"+promotionsIVPO.getIntroduction()+"'"+","+promotionsIVPO.getDiscount()+")";
+				+","+"'"+promotionsIVPO.getIntroduction()+"'"
+				+","+"'"+promotionsIVPO.getcompanyname()+"'"
+				+","+promotionsIVPO.getDiscount()+")";
 		 statement=connection.prepareStatement(sql);
 			int row=statement.executeUpdate();
 			if(row==1)
@@ -350,7 +352,7 @@ public ArrayList<PromotionsPO> getHotelPromotions(String hotel) {
 						int type=resultSet6.getInt(1);
 						String hotelname=resultSet6.getString(2);
 						String introduction =resultSet6.getString(3);
-						int  viplevel=resultSet5.getInt(4);
+						int  viplevel=resultSet6.getInt(4);
 						double discount=resultSet6.getDouble(5);
 						PromotionsVIPO promotionsVIPO=new PromotionsVIPO(type, hotelname, introduction, viplevel, discount);
 						list.add(promotionsVIPO);
