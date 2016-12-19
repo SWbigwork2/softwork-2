@@ -181,7 +181,7 @@ public class OrderServiceImpl implements OrdersService{
 	}
 	public OrderVo getOrder(int orderId) {
 		// TODO Auto-generated method stub
-		return null;
+		return tran.po2vo(dao.getOrder(orderId));
 	}
 	
 	public double addPre(OrderVo info) {
@@ -221,6 +221,8 @@ public class OrderServiceImpl implements OrdersService{
 		// TODO Auto-generated method stub
 		OrderPO tempPo = findOrder(orderId);
 		tempPo.setInDate(inDate);
+		tempPo.setOrderType(OrderType.done);
+		tempPo.setCompleteDate(new Date());
 		dao.updata(tempPo);
 	}
 	@Override
