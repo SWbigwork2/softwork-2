@@ -7,11 +7,13 @@ import blservice.RoomService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import view.member.RoomVo;
 
 public class AddRoomController {
@@ -22,8 +24,7 @@ public class AddRoomController {
 	private double roomPrice;
 	private String roomIntroduction;
 	private String hotelName;
-	
-	
+
 	@FXML
 	private TextField RoomNumBar;
 	@FXML
@@ -53,9 +54,9 @@ public class AddRoomController {
 		RoomPriceBar = new TextField();
 		RoomIntroductionBar = new TextArea();
 	}
-	
+
 	@FXML
-	private void initialize(){
+	private void initialize() {
 		roomTypeList = FXCollections.observableArrayList();
 		roomTypeList.add(RoomType.单人间);
 		roomTypeList.add(RoomType.商务间);
@@ -63,7 +64,7 @@ public class AddRoomController {
 		roomTypeList.add(RoomType.行政标准间);
 		roomTypeList.add(RoomType.高级套间);
 		RoomTypeBar.setItems(roomTypeList);
-		
+
 	}
 
 	@FXML
@@ -74,24 +75,47 @@ public class AddRoomController {
 		roomType = RoomTypeBar.getValue();
 		roomPrice = Double.valueOf(RoomPriceBar.getText());
 		roomIntroduction = RoomIntroductionBar.getText();
-		
+		String[] list = null;
+
 		if (roomNum == 1) {
-			RoomVo roomVO = new RoomVo(Integer.valueOf(RoomIDBar.getText()), hotelName, roomType, roomIntroduction, roomPrice);
+			RoomVo roomVO = new RoomVo(Integer.valueOf(RoomIDBar.getText()), hotelName, roomType, roomIntroduction,
+					roomPrice);
 			roomList.add(roomVO);
-			
-		}else{
-			String[] list =  RoomIDBar.getText().split(",");
-			for(String cell:list){
+
+		} else {
+			try {
+				list = RoomIDBar.getText().split(",");
+			} catch (Exception e) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("提示");
+				alert.setHeaderText(null);
+				alert.setContentText("分隔符为半角英文逗号");
+				alert.showAndWait();
+			}
+			if (list.length != roomNum) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("提示");
+				alert.setHeaderText(null);
+				alert.setContentText("请核对房间ID数目与与添加房间数目");
+				alert.showAndWait();
+			}	
+			for (String cell : list) {
 				RoomVo roomVo = new RoomVo(Integer.valueOf(cell), hotelName, roomType, roomIntroduction, roomPrice);
 				roomList.add(roomVo);
 			}
 		}
+
 		roomService.addNewRoom(roomList);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("提示");
+		alert.setHeaderText(null);
+		alert.setContentText("房间添加成功");
+		alert.showAndWait();
+		
 	}
-	
-	public void setHotelName(String hotelName){
-		this.hotelName=hotelName;
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
 	}
-	
 
 }
