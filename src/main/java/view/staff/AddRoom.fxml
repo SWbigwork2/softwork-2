@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.AddRoomController">
    <children>
-      <Label fx:id="HotelNameLabel" layoutX="26.0" layoutY="28.0" prefHeight="29.0" prefWidth="138.0" style="-fx-text-fill: #0000CD;" text="金陵饭店">
+      <Label fx:id="HotelNameLabel" layoutX="26.0" layoutY="28.0" prefHeight="29.0" prefWidth="138.0" style="-fx-text-fill: #0000CD;">
          <font>
             <Font size="24.0" />
          </font>
@@ -40,6 +40,12 @@
                </font>
             </Label>
             <TextArea fx:id="RoomIntroductionBar" layoutX="109.0" layoutY="158.0" prefHeight="78.0" prefWidth="643.0" style="-fx-background-color: white; -fx-border-color: #F0F0F0;" />
+            <TextField fx:id="RoomPriceBar" layoutX="394.0" layoutY="68.0" prefHeight="29.0" prefWidth="126.0" style="-fx-background-color: white; -fx-border-color: #F0F0F0;" />
+            <Label layoutX="301.0" layoutY="71.0" prefHeight="23.0" prefWidth="85.0" text="房间价格">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

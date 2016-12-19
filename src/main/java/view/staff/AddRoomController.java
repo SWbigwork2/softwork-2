@@ -64,6 +64,7 @@ public class AddRoomController {
 		roomTypeList.add(RoomType.行政标准间);
 		roomTypeList.add(RoomType.高级套间);
 		RoomTypeBar.setItems(roomTypeList);
+		HotelNameLabel.setText(hotelName);
 
 	}
 
