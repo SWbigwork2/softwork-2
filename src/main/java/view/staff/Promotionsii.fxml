@@ -13,18 +13,16 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="78.0" layoutY="121.0" prefHeight="35.0" prefWidth="105.0" text="请输入酒店名：" />
-      <TextField fx:id="hotelnameTextField" layoutX="220.0" layoutY="124.0" />
-      <Label layoutX="78.0" layoutY="211.0" prefHeight="20.0" prefWidth="124.0" text="请输入开始时间：" />
-      <Label layoutX="78.0" layoutY="299.0" prefHeight="20.0" prefWidth="124.0" text="请输入结束时间：" />
+      <Label layoutX="83.0" layoutY="135.0" prefHeight="20.0" prefWidth="124.0" text="请输入开始时间：" />
+      <Label layoutX="83.0" layoutY="227.0" prefHeight="20.0" prefWidth="124.0" text="请输入结束时间：" />
       <Button fx:id="okButton" layoutX="124.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#addPromotionsII" text="确认" />
       <Button fx:id="cancelButton" layoutX="334.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#clearPromotionsII" text="取消" />
-      <DatePicker fx:id="startdateDatePicker" layoutX="217.0" layoutY="206.0" />
-      <DatePicker fx:id="enddateDatePicker" layoutX="217.0" layoutY="294.0" />
-      <TextField fx:id="discountTextField" layoutX="217.0" layoutY="360.0" />
-      <Label layoutX="78.0" layoutY="365.0" prefHeight="20.0" prefWidth="105.0" text="请输入折扣：" />
-      <Label layoutX="78.0" layoutY="434.0" text="请输入策略描述：" />
-      <TextField fx:id="introductionTextField" layoutX="220.0" layoutY="429.0" />
-      <Label layoutX="431.0" layoutY="365.0" text="(0.1~0.99)" />
+      <DatePicker fx:id="startdateDatePicker" layoutX="222.0" layoutY="130.0" />
+      <DatePicker fx:id="enddateDatePicker" layoutX="222.0" layoutY="222.0" />
+      <TextField fx:id="discountTextField" layoutX="217.0" layoutY="319.0" />
+      <Label layoutX="78.0" layoutY="324.0" prefHeight="20.0" prefWidth="105.0" text="请输入折扣：" />
+      <Label layoutX="78.0" layoutY="413.0" text="请输入策略描述：" />
+      <TextField fx:id="introductionTextField" layoutX="220.0" layoutY="408.0" />
+      <Label layoutX="431.0" layoutY="324.0" text="(0.1~0.99)" />
    </children>
 </AnchorPane>

@@ -16,8 +16,6 @@ public class PromotionsiController  {
 	@FXML
 	private AnchorPane PromotionsiPane;
 	@FXML
-	private TextField hotelnameTextField;
-	@FXML
 	private TextField discountTextField;
 	@FXML
 	private TextField introductionTextField;
@@ -31,61 +29,43 @@ public class PromotionsiController  {
 	HotelService hotelService=new HotelServiceImpl();
 	public PromotionsiController(){
 		main=Main.getMain();
-		hotelnameTextField=new TextField();
 		discountTextField=new TextField();
 		introductionTextField=new TextField();
 		okButton=new Button();
 		cancelButton=new Button();
 	}
+	
 	public void addPromotionsI(){
-		String hotel=hotelnameTextField.getText();
+		String hotel=main.getHotelname();
 		String discountstr=discountTextField.getText();
 		String introduction=introductionTextField.getText();
-		if(hotel.length()==0||discountstr.length()==0||introduction.length()==0){
-			Alert alert=new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("策略信息填写不完整");
-			alert.showAndWait();
+		if(discountstr.length()==0||introduction.length()==0){
+			main.showWaningInformation(AlertType.INFORMATION, "策略信息填写不完整");
+	
 	}else{
 		double discount=Double.parseDouble(discountstr);
 		if(discount>0.99||discount<0.1){
-			Alert alert=new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("折扣只能在0.1~0.99之间");
-			alert.showAndWait();
+			
+		main.showWaningInformation(AlertType.INFORMATION, "折扣只能在0.1~0.99之间");
+			
 		}
 		else if(hotelService.judgeHotelExists(hotel)){
-			Alert alert=new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("不存在该酒店");
-			alert.showAndWait();
+			main.showWaningInformation(AlertType.INFORMATION, "不存在该酒店");
 		}
 		else {
 	
 		PromotionsIVO promotionsIVO=new PromotionsIVO(1, hotel, introduction, discount);
 		Boolean result=promotionsService.addPromotionsI(promotionsIVO);
 		if(result){
-			Alert alert=new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("策略添加成功");
-			alert.showAndWait();
+		 main.showWaningInformation(AlertType.INFORMATION, "策略添加成功");
 			clearPromotionsI();
 		}else{
-			Alert alert=new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("策略已存在");
-			alert.showAndWait();
+			main.showWaningInformation(AlertType.INFORMATION, "策略已存在");
 		}
 	}
 	}
 }
 	public void clearPromotionsI(){
-		hotelnameTextField.setText("");
 		discountTextField.setText("");
 		introductionTextField.setText("");
 	}
