@@ -32,6 +32,7 @@ public class EvaluateDaoImpl implements EvaluateDao {
 	    
 	public ResultMessage addEvaluate(EvaluatePO evaluatePO) {
 		// TODO Auto-generated method stub
+		System.out.println(2222);
 		return evaluateDataHelper.addEvaluate(evaluatePO.getHotelName(), evaluatePO.getScore(), evaluatePO.getS(),evaluatePO.getName());
 	}
 
