@@ -9,29 +9,28 @@
 
 <AnchorPane fx:id="ContentBar" prefHeight="750.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.member.BrowseHotelDetailController">
    <children>
-      <Label fx:id="HotelNameLabel" layoutX="12.0" layoutY="28.0" prefHeight="31.0" prefWidth="162.0" style="-fx-text-fill: #0000CD; -fx-font-weight: bold;" text="金陵饭店" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0">
+      <Label fx:id="HotelNameLabel" layoutX="12.0" layoutY="28.0" prefHeight="33.0" prefWidth="591.0" style="-fx-text-fill: #0000CD; -fx-font-weight: bold;" text="金陵饭店" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Label fx:id="AddressLabel" layoutX="12.0" layoutY="66.0" prefHeight="24.0" prefWidth="431.0" style="-fx-text-fill: #191970;" text="江苏省南京市鼓楼区汉中路2号Xinjiekou Square 210005" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
+      <Label fx:id="AddressLabel" layoutX="12.0" layoutY="66.0" prefHeight="24.0" prefWidth="682.0" style="-fx-text-fill: #191970;" text="江苏省南京市鼓楼区汉中路2号Xinjiekou Square 210005" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label fx:id="RemarkLabel" layoutX="485.0" layoutY="44.0" prefHeight="38.0" prefWidth="131.0" style="-fx-text-fill: #191970;" text="4.7分" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="30.0">
+      <Label fx:id="RemarkLabel" layoutX="825.0" layoutY="30.0" prefHeight="38.0" prefWidth="88.0" style="-fx-text-fill: #191970;" text="4.7分" AnchorPane.rightAnchor="137.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
       <TabPane fx:id="InformationBar" layoutX="36.0" layoutY="264.0" prefHeight="273.0" prefWidth="810.0" style="-fx-background-color: white; -fx-border-radius: 3; -fx-border-color: #F8F8F8;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="300.0">
          <tabs>
-            <Tab closable="false" style="-fx-background-color: white; -fx-border-radius: 0;" text="          简介          ">
+            <Tab closable="false" style="-fx-background-color: white;" text="          简介          ">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="530.0">
                      <children>
-                        <Label fx:id="IntroductionLabel" layoutY="36.0" prefHeight="105.0" prefWidth="808.0" text="Label" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0" />
-                        <Label fx:id="ServiceBar" layoutX="1.0" layoutY="134.0" prefHeight="158.0" prefWidth="1008.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                        <Separator layoutX="-1.0" layoutY="111.0" prefHeight="0.0" prefWidth="810.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0" />
+                        <TextArea fx:id="IntroductionLabel" editable="false" layoutX="7.0" layoutY="7.0" prefHeight="165.0" prefWidth="1008.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="201.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <TextArea fx:id="ServiceLabel" editable="false" layoutY="224.0" prefHeight="171.0" prefWidth="1008.0" style="-fx-background-color: white; -fx-border-color: white;" />
                      </children>
                   </AnchorPane>
                </content>
@@ -134,9 +133,9 @@
                </content>
             </Tab>
             <Tab style="-fx-background-color: white;" text="       优惠策略        ">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
+               <content>
+                  <ListView fx:id="promotionList" prefHeight="200.0" prefWidth="200.0" />
+               </content>
             </Tab>
          </tabs>
       </TabPane>

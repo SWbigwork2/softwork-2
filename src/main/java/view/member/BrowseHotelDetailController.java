@@ -1,5 +1,6 @@
 package view.member;
 
+import java.awt.TextArea;
 import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -8,9 +9,11 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import Hotelblimpl.HotelServiceImpl;
+import Promotionsblimpl.PromotionsServiceImpl;
 import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomType;
 import blservice.HotelService;
+import blservice.PromotionsService;
 import blservice.RoomService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,7 +37,7 @@ public class BrowseHotelDetailController {
 	@FXML
 	private Button Button1;
 	@FXML
-	private Label IntroductionLabel;
+	private TextArea IntroductionLabel;
 	@FXML
 	private Label roomType5;
 	@FXML
@@ -74,9 +77,11 @@ public class BrowseHotelDetailController {
 	@FXML
 	private Label priceLabel3;
 	@FXML
-	private Label ServiceLabel;
+	private TextArea ServiceLabel;
 	@FXML
 	private Label RemarkLabel;
+	@FXML
+	private ListView<String> promotionList;
 	/**@FXML
 	private ImageView picArea1;
 	@FXML
@@ -99,7 +104,7 @@ public class BrowseHotelDetailController {
 		picArea3 = new ImageView();
 		**/
 		Button1 = new Button();
-		IntroductionLabel = new Label();
+		IntroductionLabel = new TextArea();
 		roomType5 = new Label();
 		ContentBar = new AnchorPane();
 		InformationBar = new TabPane();
@@ -119,8 +124,9 @@ public class BrowseHotelDetailController {
 		HotelNameLabel = new Label();
 		Button2 = new Button();
 		priceLabel3 = new Label();
-		ServiceLabel = new Label();
+		ServiceLabel = new TextArea();
 		RemarkLabel = new Label();
+		promotionList = new ListView<String>();
 	}
 
 	public void setHotelNameAndDate(String hotelName,LocalDate startTime,LocalDate endTime) {
@@ -134,12 +140,17 @@ public class BrowseHotelDetailController {
 	public void initialized() {
 		HotelService hotelService = new HotelServiceImpl();
 		RoomService roomService  = new RoomServiceImpl();
+		PromotionsService  promotionsService = new PromotionsServiceImpl();
+		ArrayList<String> promotionStrList = promotionsService.getHotelPromotion(hotelName);
+		ObservableList<String> promotion = FXCollections.observableArrayList(promotionStrList);
+		promotionList.setItems(promotion);
+		
 		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
 		ArrayList<String> commentList = hotelService.getHotelComment(hotelName);
 		ObservableList<String> comment = FXCollections.observableArrayList(commentList);
 		HotelNameLabel.setText(hotelVo.getName());
 		AddressLabel.setText(hotelVo.getAddress());
-		RemarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)));
+		RemarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)).substring(0,3)+"分");
 		CommentList.setItems(comment);
 		IntroductionLabel.setText(hotelVo.getIntroduction());
 		ServiceLabel.setText(hotelVo.getServiceAndFacility());
@@ -151,31 +162,31 @@ public class BrowseHotelDetailController {
 			Button1.setVisible(false);
 			priceLabel1.setText("房间暂无");
 		} else {
-			priceLabel1.setText(String.valueOf(priceOfType.get(RoomType.单人间)));
+			priceLabel1.setText(String.valueOf(priceOfType.get(RoomType.单人间))+"元");
 		}
 		if (numOfType.get(RoomType.标准间) == 0) {
 			Button2.setVisible(false);
 			priceLabel2.setText("房间暂无");
 		} else {
-			priceLabel2.setText(String.valueOf(priceOfType.get(RoomType.标准间)));
+			priceLabel2.setText(String.valueOf(priceOfType.get(RoomType.标准间))+"元");
 		}
 		if (numOfType.get(RoomType.商务间) == 0) {
 			Button3.setVisible(false);
 			priceLabel3.setText("房间暂无");
 		} else {
-			priceLabel2.setText(String.valueOf(priceOfType.get(RoomType.商务间)));
+			priceLabel2.setText(String.valueOf(priceOfType.get(RoomType.商务间))+"元");
 		}
 		if (numOfType.get(RoomType.行政标准间) == 0) {
 			Button4.setVisible(false);
 			priceLabel4.setText("房间暂无");
 		} else {
-			priceLabel4.setText(String.valueOf(priceOfType.get(RoomType.行政标准间)));
+			priceLabel4.setText(String.valueOf(priceOfType.get(RoomType.行政标准间))+"元");
 		}
 		if (numOfType.get(RoomType.高级套间) == 0) {
 			Button5.setVisible(false);
 			priceLabel5.setText("房间暂无");
 		} else {
-			priceLabel5.setText(String.valueOf(priceOfType.get(RoomType.高级套间)));
+			priceLabel5.setText(String.valueOf(priceOfType.get(RoomType.高级套间))+"元");
 		}
 	}
 
