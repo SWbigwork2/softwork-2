@@ -20,7 +20,6 @@ import vo.OrderVo;
 
 public class MemberServiceImpl implements MembersService{
 	public MemberServiceImpl() {
-		
 		remoteHelper = RemoteHelper.getInstance();
 		membersDao = remoteHelper.getMembersDao();
 		// TODO Auto-generated constructor stub
@@ -29,12 +28,20 @@ public class MemberServiceImpl implements MembersService{
 	ResultMessage result=ResultMessage.Success;
 	OrdersService ordersService;
 	RemoteHelper remoteHelper;
+	/**
+	 * @param id
+	 * @return 得到历史订单
+	 */
     public  ArrayList<OrderVo> getOrder(String id){
     	ordersService = new OrderServiceImpl();
     	
 		return ordersService.getOrderList(id,OrderType.all);
     	
     }
+    /**
+	 * @param  id
+	 * @return  得到历史酒店
+	 */
     public Map<String, ArrayList<OrderType>> getHotel(String id){
     	ordersService = new OrderServiceImpl();
     	
@@ -42,13 +49,18 @@ public class MemberServiceImpl implements MembersService{
 		
     	
     }
-	@Override
+    /**
+	 * @param id
+	 * @return  得到会员信息
+	 */
 	public MemberPO getMember(String id) {
-		
 		// TODO Auto-generated method stub
 		return membersDao.getMember(id);
 	}
-	@Override
+	/**
+	 * @param id,changecredit,orderid,action
+	 * @return  更新会员信用和记录
+	 */
 	public boolean updateMemberCredit(String id, double changecredit,int orderid,String action) {
 		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
@@ -61,13 +73,15 @@ public class MemberServiceImpl implements MembersService{
 		membersDao.insertCreditRecord(creditrecordPO);
 		return membersDao.updateCredit(id, totalcredit);
 	}
-	@Override
+	/**
+	 * @param memberid
+	 * @return 得到会员信用记录
+	 */
 	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
 		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
 		return membersDao.getMemberCreditRecord(memberid);
 	}
-	@Override
 	public void insertCreditRecord(CreditrecordPO po) {
 		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub

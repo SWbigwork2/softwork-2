@@ -155,9 +155,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 				}
 			}
 		}
-			
-			
-			
+	
 		}
 		totalprice=price*roomNum*discount;
 		PriceInfo priceInfo=new PriceInfo(introduction, totalprice);
