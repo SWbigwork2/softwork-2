@@ -3,17 +3,16 @@ package Hotelblimpl;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import Evaluateblimpl.Evaluateblimpl;
 import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomType;
 import blservice.EvaluateService;
 import blservice.HotelService;
+import blservice.OrdersService;
 import blservice.RoomService;
 import data.dao.HotelsDao;
 import data.rmi.RemoteHelper;
+import ordersblimpl.OrderServiceImpl;
 import po.HotelPO;
 import view.member.HotelColumnVo;
 import view.member.HotelSearchVo;
@@ -22,16 +21,16 @@ import vo.HotelVo;
 
 public class HotelServiceImpl implements HotelService {
 
-	
 	private RemoteHelper remoteHelper;
 	private HotelsDao hotelsDao;
 	HotelVoPoTran hotelVoPoTran = new HotelVoPoTran();
+
 	public HotelServiceImpl() {
 		remoteHelper = RemoteHelper.getInstance();
 		hotelsDao = remoteHelper.getHotelsDao();
-		
+
 	}
-	
+
 	/**
 	 * 调用数据层接口得到酒店信息，该信息中并不包含房间信息
 	 */
@@ -74,9 +73,9 @@ public class HotelServiceImpl implements HotelService {
 
 		java.util.Date startTimestamp = new java.util.Date(java.sql.Date.valueOf(startTime).getTime());
 		java.util.Date endTimestamp = new java.util.Date(java.sql.Date.valueOf(endTime).getTime());
-		
-		
+
 		// 查询商圈 地址 酒店名称
+
 		HotelPO hotelPO = null;
 		if (hotelSearchVo.getHotelName() == "") {
 			hotelPO = new HotelPO(null, hotelSearchVo.getHotelAddress(), hotelSearchVo.getTradeArea(), null, null,
@@ -85,7 +84,22 @@ public class HotelServiceImpl implements HotelService {
 			hotelPO = new HotelPO(hotelSearchVo.getHotelName(), hotelSearchVo.getHotelAddress(),
 					hotelSearchVo.getTradeArea(), null, null, null);
 		}
-		ArrayList<HotelPO> hotelList = hotelsDao.getHotelList(hotelPO);
+		
+		ArrayList<HotelPO> newHotelList = hotelsDao.getHotelList(hotelPO);
+		ArrayList<HotelPO> hotelList = new ArrayList<HotelPO>();
+		if (hotelSearchVo.getIsHistorySearch()) {
+			OrdersService ordersService = new OrderServiceImpl();
+			ArrayList<String> hotelNameList = ordersService.getHotelList(hotelSearchVo.memberId());
+			for(HotelPO cell:newHotelList){
+				if(hotelNameList.contains(cell.getName())){
+					hotelList.add(cell);
+				}
+			}
+		}else{
+			for(HotelPO cell:newHotelList){
+				hotelList.add(cell);
+			}
+		}
 
 		// 查询酒店等级
 		ArrayList<HotelPO> hotelList1 = new ArrayList<HotelPO>();
@@ -96,10 +110,10 @@ public class HotelServiceImpl implements HotelService {
 					hotelList1.add(cell);
 				}
 			}
-		}else{
+		} else {
 			hotelList1.addAll(hotelList);
 		}
-		
+
 		// 查询酒店价格区间
 		ArrayList<HotelPO> hotelList2 = new ArrayList<HotelPO>();
 		String hotelName = hotelSearchVo.getHotelName();
@@ -116,28 +130,26 @@ public class HotelServiceImpl implements HotelService {
 					hotelList2.add(cell);
 				}
 			}
-		}else{
+		} else {
 			hotelList2.addAll(hotelList1);
 		}
-		
-		
-		//查询空房数量
+
+		// 查询空房数量
 		ArrayList<HotelPO> hotelList3 = new ArrayList<HotelPO>();
 		int numOfRoomsNeeded = hotelSearchVo.getNumOfNeededRooms();
-		
+
 		RoomType roomType = hotelSearchVo.getRoomType();
-		if(roomType!=null){
-		for (HotelPO cell : hotelList2) {
-				if(roomService.getNumOfRoom(cell.getName(), startTimestamp, endTimestamp)
-					.get(hotelSearchVo.getRoomType())>=numOfRoomsNeeded){
+		if (roomType != null) {
+			for (HotelPO cell : hotelList2) {
+				if (roomService.getNumOfRoom(cell.getName(), startTimestamp, endTimestamp)
+						.get(hotelSearchVo.getRoomType()) >= numOfRoomsNeeded) {
 					hotelList3.add(cell);
 				}
-		}
-		}else{
+			}
+		} else {
 			hotelList3.addAll(hotelList2);
 		}
-		
-		
+
 		// 查询房间类型
 		ArrayList<HotelPO> hotelList4 = new ArrayList<HotelPO>();
 		if (roomType != null) {
@@ -146,15 +158,14 @@ public class HotelServiceImpl implements HotelService {
 					hotelList4.add(cell);
 				}
 			}
-		}else{
+		} else {
 			hotelList4.addAll(hotelList3);
 		}
-		
+
 		ArrayList<HotelColumnVo> hotelVoList = new ArrayList<HotelColumnVo>();
 		for (HotelPO cell : hotelList4) {
 			hotelVoList.add(new HotelColumnVo(cell.getName(),
-					roomService.getLowestPrice(cell.getName(), startTimestamp, endTimestamp), cell.getRanking(),
-					4.7));
+					roomService.getLowestPrice(cell.getName(), startTimestamp, endTimestamp), cell.getRanking(), 4.7));
 		}
 		return hotelVoList;
 	}
@@ -189,9 +200,8 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public double getHotelRemark(String hotelName) {
 		EvaluateService evaluateService = new Evaluateblimpl();
-		
-		
-		return  evaluateService.getScore(hotelName);
+
+		return evaluateService.getScore(hotelName);
 	}
 
 	@Override
@@ -202,10 +212,7 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public void setHotelRemark(String hotelName, int hotelRemark) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-
-	
 }
