@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="view.member.CreditRecordController">
+   <children>
+      <Label layoutX="312.0" layoutY="36.0" prefHeight="48.0" prefWidth="225.0" text="信用记录如下">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <ListView fx:id="creditRecordListView" layoutX="35.0" layoutY="109.0" prefHeight="465.0" prefWidth="728.0" />
+   </children>
+</AnchorPane>

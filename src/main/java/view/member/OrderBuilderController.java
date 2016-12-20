@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -30,6 +31,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -200,7 +202,12 @@ public class OrderBuilderController {
 	public void addOrder(){
 		double credit = memberInformationVO.getCredit();
 		if(credit<0){
-			main.showTips("creditNotEnough.fxml");
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText("信用值不足，请充值！");
+			alert.setContentText("当前信用值: "+credit+'\n'
+					+"最低信用值: 0");
+			alert.showAndWait();
+			main.showCreditList();
 			return;
 		}
 		String hotelString = hotel.getText();
