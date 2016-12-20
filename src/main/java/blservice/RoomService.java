@@ -89,6 +89,10 @@ public interface RoomService {
 	 * @param startTime
 	 */
 	public void makeCheckIn(int orderId, Date startTime);
+	/**
+	 * 
+	 */
+	public void revokeReservatio(int orderId);
 	
 	
 }

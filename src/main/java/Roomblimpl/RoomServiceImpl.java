@@ -291,4 +291,15 @@ public class RoomServiceImpl implements RoomService {
 
 		return numOfRoomType;
 	}
+	
+	@Override
+	public void revokeReservatio(int orderId) {
+		ArrayList<Integer> roomIdList = roomsDao.getOrderRoom(orderId);
+		for(int cell:roomIdList){
+			roomsDao.recordCheckOut(cell, orderId);
+		}
+		
+	}
+	
+	
 }
