@@ -12,6 +12,8 @@ public class MemberFrameController {
 	private Button CreditButton;
 	@FXML
 	private Button FindHotelButton;
+	@FXML
+	private Button creditListButton;
 	
 	private Main main;
 	public MemberFrameController() {
@@ -20,6 +22,7 @@ public class MemberFrameController {
 		MyInformationButton = new Button();
 		CreditButton = new Button();
 		FindHotelButton = new Button();
+		creditListButton = new Button();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -46,6 +49,9 @@ public class MemberFrameController {
 	 */
 	public void showHotelSearch(){
 		main.showHotelSearch();
+	}
+	public void showCreditList(){
+		main.showCreditList();
 	}
 	
 	public void showHistoryHotel(){

@@ -30,7 +30,7 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button fx:id="seeHistoryHotel" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="历史酒店">
+            <Button fx:id="seeHistoryHotel" layoutY="53.0" mnemonicParsing="false" onAction="#showHistoryHotel" prefHeight="28.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="历史酒店">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -53,6 +53,11 @@
                   <Font size="14.0" />
                </font></Button>
             <Button fx:id="logoutButton" layoutY="247.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="登出">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="creditListButton" layoutY="194.0" mnemonicParsing="false" onAction="#showCreditList" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="信用记录">
                <font>
                   <Font size="14.0" />
                </font>

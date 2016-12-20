@@ -37,7 +37,7 @@ import vo.HotelVo;
 import vo.OrderVo;
 
 import javafx.scene.Scene;
-
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import javafx.scene.layout.Pane;
@@ -199,11 +199,11 @@ public class Main extends Application {
         
         AnchorPane historyHotelPane = (AnchorPane)loadPane("BrowseHistoryHotel.fxml");
         BrowseHistoryHotelController controller = loader.getController();
-        ordersService = new OrderServiceImpl();
-        ArrayList<String> hotelList = new ArrayList<String>(ordersService.getHotelList(membervo.getUserId()).keySet());
-        ArrayList<OrderVo> normalList =ordersService.getOrderList(membervo.getUserId(), OrderType.normal);
-        ArrayList<OrderVo> abnormalList =ordersService.getOrderList(membervo.getUserId(), OrderType.error);
-        ArrayList<OrderVo> revokedList =ordersService.getOrderList(membervo.getUserId(), OrderType.revoke);
+       blService = new OrderServiceImpl();
+        ArrayList<String> hotelList = new ArrayList<String>(blService.getHotelList(membervo.getUserId()));
+        ArrayList<OrderVo> normalList =blService.getOrderList(membervo.getUserId(), OrderType.normal);
+        ArrayList<OrderVo> abnormalList =blService.getOrderList(membervo.getUserId(), OrderType.error);
+        ArrayList<OrderVo> revokedList =blService.getOrderList(membervo.getUserId(), OrderType.revoke);
         controller.setHotelVo(hotelList, normalList, abnormalList, revokedList);
         root.setCenter(historyHotelPane);
     }
@@ -391,6 +391,15 @@ public class Main extends Application {
 	}
 	public static void setMembervo(MemberInformationVO membervo) {
 		Main.membervo = membervo;
+	}
+	/**
+	 * 显示信用记录
+	 */
+	public void showCreditList() {
+	Pane pane =loadPane("CreditRecord.fxml");
+		root.setCenter(pane);
+		// TODO Auto-generated method stub
+		
 	}
 }
 
