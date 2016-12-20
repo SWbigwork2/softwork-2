@@ -3,12 +3,15 @@ package view.member;
 import java.util.ArrayList;
 import Hotelblimpl.HotelServiceImpl;
 import blservice.HotelService;
+import blservice.OrdersService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import ordersblimpl.OrderServiceImpl;
+import ordersblimpl.OrderType;
 import vo.HotelVo;
 import vo.OrderVo;
 
@@ -18,6 +21,8 @@ public class BrowseHistoryHotelController {
 	private ArrayList<OrderVo> normalList;
 	private ArrayList<OrderVo> abnormalList;
 	private ArrayList<OrderVo> revokedList;
+	private String memberId;
+	private OrdersService ordersService;
 
 	@FXML
 	private ListView<String> hotelLabel;
@@ -45,17 +50,15 @@ public class BrowseHistoryHotelController {
 		revokedOrderList = new ListView<String>();
 	}
 
-	public void setHotelVo(ArrayList<String> hotelList, ArrayList<OrderVo> normalList, ArrayList<OrderVo> abnormalList,
-			ArrayList<OrderVo> revokedList) {
+	public void setHotelVo(ArrayList<String> hotelList, String memberId) {
 		this.hotelList = hotelList;
-		this.normalList = normalList;
-		this.abnormalList = abnormalList;
-		this.revokedList = revokedList;
+		this.memberId = memberId;
 		initialized();
 	}
 
 	@FXML
 	public void initialized() {
+		
 		ObservableList<String> hotelColumList = FXCollections.observableArrayList();
 		if (hotelList.size() != 0) {
 			hotelColumList.addAll(hotelList);
@@ -64,7 +67,30 @@ public class BrowseHistoryHotelController {
 		} else {
 			hotelColumList.add("无历史预定酒店");
 		}
+		
+		setLabel(hotelList.get(0));
+	}
 
+	@FXML
+	public void click(MouseEvent e) {
+		if (e.getClickCount() > 0) {
+			setLabel(hotelLabel.getSelectionModel().getSelectedItem());
+		}
+	}
+
+	private void setLabel(String hotelName) {
+
+		HotelService hotelService = new HotelServiceImpl();
+		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
+		hotelNameLabel.setText(hotelName);
+		hotelAddressLabel.setText(hotelVo.getAddress());
+		remarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)).substring(0,3));
+		
+		ordersService = new OrderServiceImpl();
+		normalList = ordersService.getHotelOrderList(hotelName, memberId, OrderType.normal);
+		abnormalList = ordersService.getHotelOrderList(hotelName, memberId, OrderType.error);
+		revokedList = ordersService.getHotelOrderList(hotelName, memberId, OrderType.revoke);
+		
 		ObservableList<String> normalOrderStrList = FXCollections.observableArrayList();
 		ObservableList<String> abnormalOrderStrList = FXCollections.observableArrayList();
 		ObservableList<String> revokedOrderStrList = FXCollections.observableArrayList();
@@ -96,23 +122,6 @@ public class BrowseHistoryHotelController {
 		normalOrderList.setItems(normalOrderStrList);
 		abnormalOrderList.setItems(abnormalOrderStrList);
 		revokedOrderList.setItems(revokedOrderStrList);
-
-	}
-
-	@FXML
-	public void click(MouseEvent e) {
-		if (e.getClickCount() > 0) {
-			setLabel(hotelLabel.getSelectionModel().getSelectedItem());
-		}
-	}
-
-	private void setLabel(String hotelName) {
-
-		HotelService hotelService = new HotelServiceImpl();
-		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
-		hotelNameLabel.setText(hotelName);
-		hotelAddressLabel.setText(hotelVo.getAddress());
-		remarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)));
 
 	}
 

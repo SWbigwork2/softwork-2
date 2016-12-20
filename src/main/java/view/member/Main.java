@@ -199,15 +199,12 @@ public class Main extends Application {
         
         AnchorPane historyHotelPane = (AnchorPane)loadPane("BrowseHistoryHotel.fxml");
         BrowseHistoryHotelController controller = loader.getController();
-       blService = new OrderServiceImpl();
-        ArrayList<String> hotelList = new ArrayList<String>(blService.getHotelList(membervo.getUserId()));
-        ArrayList<OrderVo> normalList =blService.getOrderList(membervo.getUserId(), OrderType.normal);
-        ArrayList<OrderVo> abnormalList =blService.getOrderList(membervo.getUserId(), OrderType.error);
-        ArrayList<OrderVo> revokedList =blService.getOrderList(membervo.getUserId(), OrderType.revoke);
-        controller.setHotelVo(hotelList, normalList, abnormalList, revokedList);
+        blService = new OrderServiceImpl();
+        ArrayList<String> hotelList = blService.getHotelList(membervo.getUserId());
+        controller.setHotelVo(hotelList, membervo.getUserId());
         root.setCenter(historyHotelPane);
     }
-	
+    
 	/**
 	 * 显示搜索酒店界面
 	 */

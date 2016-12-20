@@ -1,14 +1,11 @@
 package view.member;
 
-import java.nio.channels.SelectionKey;
 import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Map;
-
-import Hotelblimpl.HotelRanking;
 import Hotelblimpl.HotelServiceImpl;
 import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomType;
@@ -28,7 +25,6 @@ public class BrowseHotelController {
 
 	private ArrayList<HotelColumnVo> hotelList;
 	private String userName;
-	private String hotelName;
 	private LocalDate startTime;
 	private LocalDate endTime;
 
