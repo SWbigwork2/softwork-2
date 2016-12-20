@@ -148,7 +148,9 @@ public class OrderServiceImpl implements OrdersService{
 		ArrayList<OrderPO> tempList =dao.getOrderList(memberId);
 		ArrayList<String> resultList = new ArrayList<String>();
 		for(OrderPO po:tempList){
+			if(!resultList.contains(po.getHotelNameString())){
 			resultList.add(po.getHotelNameString());
+			}
 		}
 		return resultList;
 	}
