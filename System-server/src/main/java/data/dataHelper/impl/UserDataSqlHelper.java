@@ -28,7 +28,7 @@ public class UserDataSqlHelper implements UserDataHelper{
     private void getConnect() {         //连接到数据库
 		String url = "jdbc:mysql://localhost:3306/software2";
 		String user = "root";
-		String password = "zhurunzhi654";
+		String password = "yktobeno.1";
 		connection = SqlConnectHelper.getConnection(url, user, password);
 		// TODO Auto-generated constructor stub
 	}
@@ -170,7 +170,7 @@ public class UserDataSqlHelper implements UserDataHelper{
             
             try {
 				this.getConnect();
-				String insertStaffSql="insert into staffs values("+staff.getId()+","+"'"+staff.getName()+"'"+","+"'"+staff.getPassword()+"'"+","+
+				String insertStaffSql="insert into staffs values("+"'"+staff.getId()+"'"+","+"'"+staff.getName()+"'"+","+"'"+staff.getPassword()+"'"+","+
 				                             "'"+staff.getHotelName()+"'"+");";
 				statement = connection.prepareStatement(insertStaffSql);
 				statement.executeUpdate();
@@ -186,7 +186,7 @@ public class UserDataSqlHelper implements UserDataHelper{
         	MarketerPO marketer=(MarketerPO)userPO;
         	try {
 				this.getConnect();
-				String insertStaffSql="insert into marketers values("+marketer.getId()+","+"'"+marketer.getName()+"'"+","+"'"+marketer.getPassword()+"'"+")";                        
+				String insertStaffSql="insert into marketers values("+"'"+marketer.getId()+"'"+","+"'"+marketer.getName()+"'"+","+"'"+marketer.getPassword()+"'"+")";                        
 				statement = connection.prepareStatement(insertStaffSql);
 				statement.executeUpdate();
 			} catch (Exception e) {
@@ -201,7 +201,7 @@ public class UserDataSqlHelper implements UserDataHelper{
         	ManagerPO managerPO=(ManagerPO)userPO;
         	try {
 				this.getConnect();
-				String insertStaffSql="insert into managers values("+managerPO.getId()+","+"'"+managerPO.getName()+"'"+","+"'"+managerPO.getPassword()+"'"+")";                        
+				String insertStaffSql="insert into managers values("+"'"+managerPO.getId()+"'"+","+"'"+managerPO.getName()+"'"+","+"'"+managerPO.getPassword()+"'"+")";                        
 				statement = connection.prepareStatement(insertStaffSql);
 				statement.executeUpdate();
 			} catch (Exception e) {
