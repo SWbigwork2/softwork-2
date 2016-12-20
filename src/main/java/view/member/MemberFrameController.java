@@ -49,7 +49,7 @@ public class MemberFrameController {
 	}
 	
 	public void showHistoryHotel(){
-		
+		main.seeHistoryHotel();
 	}
 	
 

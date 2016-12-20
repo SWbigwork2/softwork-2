@@ -30,7 +30,7 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="历史酒店">
+            <Button fx:id="seeHistoryHotel" layoutY="53.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="149.0" style="-fx-background-color: #3366FF; -fx-background-radius: 0; -fx-text-fill: #FFFFFF;" text="历史酒店">
                <font>
                   <Font size="14.0" />
                </font></Button>

@@ -191,6 +191,22 @@ public class Main extends Application {
 		controller.setHotelVo(hotelList, membervo.getUserId(), startTime, endTime);
 		root.setCenter(browseHotelPane);
 	}
+    
+    /**
+     * 浏览历史酒店界面
+     */
+    public void seeHistoryHotel(){
+        
+        AnchorPane historyHotelPane = (AnchorPane)loadPane("BrowseHistoryHotel.fxml");
+        BrowseHistoryHotelController controller = loader.getController();
+        ordersService = new OrderServiceImpl();
+        ArrayList<String> hotelList = new ArrayList<String>(ordersService.getHotelList(membervo.getUserId()).keySet());
+        ArrayList<OrderVo> normalList =ordersService.getOrderList(membervo.getUserId(), OrderType.normal);
+        ArrayList<OrderVo> abnormalList =ordersService.getOrderList(membervo.getUserId(), OrderType.error);
+        ArrayList<OrderVo> revokedList =ordersService.getOrderList(membervo.getUserId(), OrderType.revoke);
+        controller.setHotelVo(hotelList, normalList, abnormalList, revokedList);
+        root.setCenter(historyHotelPane);
+    }
 	
 	/**
 	 * 显示搜索酒店界面
