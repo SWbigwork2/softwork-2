@@ -14,11 +14,13 @@ import Promotionsblimpl.PriceInfo;
 import Promotionsblimpl.PromotionGetPrice;
 import Promotionsblimpl.Promotions;
 import Promotionsblimpl.PromotionsServiceImpl;
+import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomsInfo;
 import blservice.MembersService;
 import blservice.OrdersService;
 import data.dao.OrdersDao;
 import data.rmi.RemoteHelper;
+import javafx.geometry.Pos;
 import po.OrderPO;
 import vo.OrderVo;
 
@@ -118,7 +120,8 @@ public class OrderServiceImpl implements OrdersService{
 		Date revokeDate = new Date();
 		findPo.setCompleteDate(revokeDate);
 		int hours = ((int)(findPo.getDeadLine().getTime()-revokeDate.getTime()))/(3600*1000);
-		
+		RoomReservationService reservationService = new RoomServiceImpl();
+		reservationService.revokeReservatio(findPo.getOrderId());
 		if(dao.updata(findPo)){
 			if(hours<6){
 				membersService.updateMemberCredit(findPo.getUserId(), -findPo.getPrice()/2.0,findPo.getOrderId(),"撤销订单");
@@ -140,26 +143,14 @@ public class OrderServiceImpl implements OrdersService{
 	 * @param memberId
 	 * @return 得到住过的所有酒店
 	 */
-	public Map<String, ArrayList<OrderType>> getHotelList(String memberId){
+	public ArrayList<String> getHotelList(String memberId){
 		
-		Map<String, ArrayList<OrderType>> resultMap =new HashMap<String, ArrayList<OrderType>>();
-		ArrayList<OrderPO> tempList=dao.getOrderList(memberId);
+		ArrayList<OrderPO> tempList =dao.getOrderList(memberId);
+		ArrayList<String> resultList = new ArrayList<String>();
 		for(OrderPO po:tempList){
-			if(!resultMap.containsKey(po.getHotelNameString())){
-				ArrayList<OrderType> types = new ArrayList<OrderType>();
-				types.add(po.getOrderType());
-				resultMap.put(po.getHotelNameString(), types);
-			}
-			else {
-				ArrayList<OrderType> types=resultMap.get(po.getHotelNameString());
-				if(!types.contains(po.getOrderType())){
-					types.add(po.getOrderType());
-					resultMap.put(po.getHotelNameString(), types);
-				}
-			}
-			
+			resultList.add(po.getHotelNameString());
 		}
-		return resultMap;
+		return resultList;
 	}
 	
 	public ArrayList<OrderVo> getOrderHistory(String memberId,String HotelName) {
@@ -191,6 +182,8 @@ public class OrderServiceImpl implements OrdersService{
 	public void confirmAdd(OrderVo info) {
 		OrderPO po = tran.vo2po(info);
 		dao.insert(po);
+		RoomReservationService reservationService = new RoomServiceImpl();
+		reservationService.makeReservation(po.getOrderId(), po.getHotelNameString(), po.getRoomType(), po.getInDate(), po.getOutDate(),po.getRoomNum());
 	}
 	public void delete(int orderId){
 		dao.delete(orderId);
@@ -224,12 +217,14 @@ public class OrderServiceImpl implements OrdersService{
 		tempPo.setOrderType(OrderType.done);
 		tempPo.setCompleteDate(new Date());
 		dao.updata(tempPo);
+		System.out.println("checkin");
 	}
 	@Override
 	public void recordOut(int orderId, Date outDate) {
 		OrderPO tempPo = findOrder(orderId);
 		tempPo.setOutDate(outDate);
 		dao.updata(tempPo);
+		System.out.println("checkout");
 		// TODO Auto-generated method stub
 		
 	}
@@ -292,6 +287,18 @@ public class OrderServiceImpl implements OrdersService{
 			}
 		}
 		// TODO Auto-generated method stub
+		return resultList;
+	}
+	@Override
+	public ArrayList<OrderVo> getHotelOrderList(String hotel, String userId, OrderType type) {
+		// TODO Auto-generated method stub
+		ArrayList<OrderVo> tempList = getOrderList(userId, type);
+		ArrayList<OrderVo> resultList = new ArrayList<OrderVo>();
+		for(OrderVo vo:tempList){
+			if(vo.getHotel().equals(hotel)){
+				resultList.add(vo);
+			}
+		}
 		return resultList;
 	}
 

@@ -10,6 +10,14 @@ import ordersblimpl.OrderType;
 import ordersblimpl.ResultMessage;
 import vo.OrderVo;
 
+/**
+ * @author Administrator
+ *
+ */
+/**
+ * @author Administrator
+ *
+ */
 public interface OrdersService {
 	
 	/**
@@ -50,7 +58,7 @@ public interface OrdersService {
 	 * @param memberId
 	 * @return 得到用户住过的酒店
 	 */
-	public Map<String, ArrayList<OrderType>> getHotelList(String memberId);
+	public ArrayList<String> getHotelList(String memberId);
 	/**
 	 * @param orderId
 	 * @return 根据id查找的order
@@ -124,5 +132,12 @@ public interface OrdersService {
 	 */
 	public ResultMessage recover(int orderId,double recoverPer);
 	
+	/**
+	 * @param hotel
+	 * @param userId
+	 * @param type
+	 * @return 得到对应酒店，id，type的list
+	 */
+	public ArrayList<OrderVo> getHotelOrderList(String hotel,String userId,OrderType type); 
 	
 }
