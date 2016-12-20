@@ -20,7 +20,7 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 	
 	ResultSet resultSet = null;
 	private void getConnect() {         //连接到数据库
-		String url = "jdbc:mysql://localhost:3306/software2";
+		String url = "jdbc:mysql://loccalhost:3306/software2";
 		String user = "root";
 		String password = "zhurunzhi654";
 		connection = SqlConnectHelper.getConnection(url, user, password);
@@ -34,6 +34,10 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * @param id
+	 * @return 得到会员信息
+	 */
 	public MemberPO getMember(String id) {
 		// TODO Auto-generated method stub
 		MemberPO po=null;
@@ -64,7 +68,10 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 		return po;
 	}
 
-
+	/**
+	 * @param id，changecredit
+	 * @return 更新会员信用
+	 */
 	public boolean updateMemberCredit(String id,double changecredit) {
 		// TODO Auto-generated method stub	
 		try {
@@ -98,7 +105,10 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 		}
 		return false;
 	}
-	@Override
+	/**
+	 * @param memberid
+	 * @return 得到会员信用记录
+	 */
 	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
 		// TODO Auto-generated method stub
 		ArrayList<CreditrecordPO> list=new ArrayList<CreditrecordPO>();
@@ -124,7 +134,10 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 		}
 		return list;
 	}
-	@Override
+	/**
+	 * @param po
+	 * @return 插入会员信用记录
+	 */
 	public void insertCreditRecord(CreditrecordPO po) {
 		// TODO Auto-generated method stub
 		try {
