@@ -36,6 +36,11 @@ public class PromotionsDataSqlHelper implements PromotionsDataHelper{
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * @param promotionsIPO
+	 * @return 制定策略一生日特惠
+	 */
 public boolean addPromotionsI(PromotionsIPO promotionsIPO){
         
 		boolean result=false;
@@ -60,6 +65,11 @@ public boolean addPromotionsI(PromotionsIPO promotionsIPO){
 		
 		
 	}
+
+/**
+ * @param promotionsIIPO
+ * @return 制定策略二节日特惠
+ */
 	public  boolean addPromotionsII(PromotionsIIPO promotionsIIPO){//date时间转换？？？
 		boolean result=false;
 		
@@ -86,6 +96,11 @@ public boolean addPromotionsI(PromotionsIPO promotionsIPO){
 		return result;
 		
 	}
+
+	/**
+	 * @param promotionsIIIPO
+	 * @return 制定策略三多间特惠
+	 */
 public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO){
 		
 
@@ -112,6 +127,11 @@ public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO){
 		
 		
 	}
+
+/**
+ * @param promotionsIVPO
+ * @return 制定策略四合作企业特惠
+ */
 public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO){
 	
 
@@ -139,6 +159,11 @@ public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO){
 	
 	
 }
+
+/**
+ * @param promotionsVPO
+ * @return 制定策略五商圈特惠
+ */
 public boolean addPromotionsV(PromotionsVPO promotionsVPO){
 	
 
@@ -165,6 +190,11 @@ public boolean addPromotionsV(PromotionsVPO promotionsVPO){
 	
 	
 }
+
+/**
+ * @param promotionsVIPO
+ * @return 制定策略六等级特惠
+ */
 public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO){
 	
 
@@ -191,6 +221,11 @@ public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO){
 	
 	
 }
+
+/**
+ * @param promotionsPO
+ * @return 删除策略
+ */
 public boolean deletePromotions(PromotionsPO promotionsPO){
 	boolean result=false;
 	int table[]={1,2,3,4,5,6};
@@ -221,6 +256,10 @@ public boolean deletePromotions(PromotionsPO promotionsPO){
 	return result;
 }
 
+/**
+ * @param promotionsPO
+ * @return 判断策略是否存在
+ */
 private boolean isExist(PromotionsPO promotionsPO){
 	boolean result=false;
 	int table[]={1,2,3,4,5,6};
@@ -248,11 +287,13 @@ private boolean isExist(PromotionsPO promotionsPO){
 	}
 	return result;
 }
-@Override
+
+/**
+ * @param hotel
+ * @return 得到酒店策略列表
+ */
 public ArrayList<PromotionsPO> getHotelPromotions(String hotel) {
 	// TODO Auto-generated method stub
-//	String promotions[]={"strategiesi","strategiesii","strategiesiii","strategiesiv","strategiesv"
-//			,"strategiesvi"}; 
 	 ArrayList<PromotionsPO> list=new ArrayList<PromotionsPO>();
 	
 	try {
@@ -264,8 +305,6 @@ public ArrayList<PromotionsPO> getHotelPromotions(String hotel) {
 			if(resultSet1==null){
 				
 			}else{
-//				ResultSetMetaData md1=resultSet1.getMetaData();////得到结果集(rs)的结构信息，比如字段数、字段名等   
-//				int columncount1=md1.getColumnCount();
 				while(resultSet1.next()){
 					int type=resultSet1.getInt(1);
 					String hotelname=resultSet1.getString(2);
@@ -281,7 +320,6 @@ public ArrayList<PromotionsPO> getHotelPromotions(String hotel) {
 			if(resultSet2==null){
 				
 			}else{
-//				ResultSetMetaData md2=resultSet2.getMetaData();
 				while(resultSet2.next()){
 					int type=resultSet2.getInt(1);
 					String hotelname=resultSet2.getString(2);
