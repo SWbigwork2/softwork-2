@@ -54,6 +54,7 @@ public class MemberServiceImpl implements MembersService{
 	 * @return  得到会员信息
 	 */
 	public MemberPO getMember(String id) {
+	
 		// TODO Auto-generated method stub
 		return membersDao.getMember(id);
 	}
@@ -78,10 +79,13 @@ public class MemberServiceImpl implements MembersService{
 	 * @return 得到会员信用记录
 	 */
 	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
-		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
 		return membersDao.getMemberCreditRecord(memberid);
 	}
+	/**
+	 * @param po
+	 * @return  插入信用记录
+	 */
 	public void insertCreditRecord(CreditrecordPO po) {
 		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
