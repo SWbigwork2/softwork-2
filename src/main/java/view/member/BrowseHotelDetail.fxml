@@ -29,7 +29,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="530.0">
                      <children>
-                        <TextArea fx:id="IntroductionLabel" editable="false" layoutX="7.0" layoutY="7.0" prefHeight="165.0" prefWidth="1008.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="201.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <TextArea fx:id="IntroductionLabel" editable="false" layoutX="7.0" layoutY="7.0" prefHeight="165.0" prefWidth="1008.0" style="-fx-background-color: white;" wrapText="true" AnchorPane.bottomAnchor="201.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                         <TextArea fx:id="ServiceLabel" editable="false" layoutY="224.0" prefHeight="171.0" prefWidth="1008.0" style="-fx-background-color: white; -fx-border-color: white;" />
                      </children>
                   </AnchorPane>
