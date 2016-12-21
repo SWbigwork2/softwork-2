@@ -213,19 +213,27 @@ public class SearchHotelController {
 			highPrice = -1;
 		}
 
-		if (tradeArea == null || hotelAddress == "") {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("提示");
-			alert.setHeaderText(null);
-			alert.setContentText("请填写完整信息进行搜索");
-			alert.showAndWait();
-		} else {
-			HotelSearchVo hotelSearchVo = new HotelSearchVo(hotelName, hotelAddress, inDate, outDate, roomType,
-					tradeArea, highPrice, lowPrice, false, memberId, hotelRanking, roomsNeeded);
-			ArrayList<HotelColumnVo> hotelList = hotelService.getHotelListInfo(hotelSearchVo);
-			main.showBrowseHotel(hotelList, inDate, outDate);
-		}
-		System.out.println(inDate.toString());
-		// 跳转到浏览酒店界面
+        if (tradeArea == null || hotelAddress == "") {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("提示");
+            alert.setHeaderText(null);
+            alert.setContentText("请填写完整信息进行搜索");
+            alert.showAndWait();
+        } else {
+            HotelSearchVo hotelSearchVo = new HotelSearchVo(hotelName, hotelAddress, inDate, outDate, roomType,
+                                                            tradeArea, highPrice, lowPrice, false, memberId, hotelRanking, roomsNeeded);
+            ArrayList<HotelColumnVo> hotelList = hotelService.getHotelListInfo(hotelSearchVo);
+            if(hotelList.size()==0){
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("提示");
+                alert.setHeaderText(null);
+                alert.setContentText("不存在符合条件的酒店");
+                alert.showAndWait();
+            }else{
+                main.showBrowseHotel(hotelList, inDate, outDate);
+            }
+        }
+        System.out.println(inDate.toString());
+        // 跳转到浏览酒店界面
 	}
 }
