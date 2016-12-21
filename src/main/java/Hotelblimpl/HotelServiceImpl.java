@@ -24,7 +24,7 @@ public class HotelServiceImpl implements HotelService {
 	private RemoteHelper remoteHelper;
 	private HotelsDao hotelsDao;
 	HotelVoPoTran hotelVoPoTran = new HotelVoPoTran();
-
+	private EvaluateService evaluateService = new Evaluateblimpl();
 	public HotelServiceImpl() {
 		remoteHelper = RemoteHelper.getInstance();
 		hotelsDao = remoteHelper.getHotelsDao();
@@ -165,7 +165,7 @@ public class HotelServiceImpl implements HotelService {
 		ArrayList<HotelColumnVo> hotelVoList = new ArrayList<HotelColumnVo>();
 		for (HotelPO cell : hotelList4) {
 			hotelVoList.add(new HotelColumnVo(cell.getName(),
-					roomService.getLowestPrice(cell.getName(), startTimestamp, endTimestamp), cell.getRanking(), 4.7));
+					roomService.getLowestPrice(cell.getName(), startTimestamp, endTimestamp), cell.getRanking(), evaluateService.getScore(cell.getName())));
 		}
 		return hotelVoList;
 	}

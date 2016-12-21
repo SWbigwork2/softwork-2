@@ -1,6 +1,5 @@
 package view.member;
 
-import java.awt.TextArea;
 import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -13,6 +12,7 @@ import Promotionsblimpl.PromotionsServiceImpl;
 import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomType;
 import blservice.HotelService;
+import blservice.OrdersService;
 import blservice.PromotionsService;
 import blservice.RoomService;
 import javafx.collections.FXCollections;
@@ -22,16 +22,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import ordersblimpl.OrderServiceImpl;
+import ordersblimpl.OrderType;
 import vo.HotelVo;
+import vo.OrderVo;
 
 public class BrowseHotelDetailController {
 	
 	private LocalDate startTime;
 	private LocalDate endTime;
-
+	private String userId;
 	private String hotelName;
+	
 	@FXML
 	private Pane base;
 	@FXML
@@ -82,6 +87,8 @@ public class BrowseHotelDetailController {
 	private Label RemarkLabel;
 	@FXML
 	private ListView<String> promotionList;
+	@FXML
+	private ListView<String> orderListView;
 	/**@FXML
 	private ImageView picArea1;
 	@FXML
@@ -127,12 +134,14 @@ public class BrowseHotelDetailController {
 		ServiceLabel = new TextArea();
 		RemarkLabel = new Label();
 		promotionList = new ListView<String>();
+		orderListView = new ListView<String>();
 	}
 
-	public void setHotelNameAndDate(String hotelName,LocalDate startTime,LocalDate endTime) {
+	public void setHotelNameAndDate(String hotelName,LocalDate startTime,LocalDate endTime,String userId) {
 		this.hotelName = hotelName;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.userId = userId;
 		initialized();
 	}
 
@@ -140,20 +149,37 @@ public class BrowseHotelDetailController {
 	public void initialized() {
 		HotelService hotelService = new HotelServiceImpl();
 		RoomService roomService  = new RoomServiceImpl();
+		OrdersService ordersService = new OrderServiceImpl();
 		PromotionsService  promotionsService = new PromotionsServiceImpl();
+		
+		//得到界面上的促销列表
 		ArrayList<String> promotionStrList = promotionsService.getHotelPromotion(hotelName);
 		ObservableList<String> promotion = FXCollections.observableArrayList(promotionStrList);
 		promotionList.setItems(promotion);
 		
-		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
+		//得到界面上的评价列表
 		ArrayList<String> commentList = hotelService.getHotelComment(hotelName);
 		ObservableList<String> comment = FXCollections.observableArrayList(commentList);
+		CommentList.setItems(comment);
+		
+		//得到界面上的历史订单列表
+		ArrayList<OrderVo> orderList = ordersService.getHotelOrderList(hotelName, userId, OrderType.all);
+		ArrayList<String> orderStrList = new ArrayList<String>();
+		for(OrderVo cell:orderList){
+			orderStrList.add(cell.getOrderId()+" "+cell.getType());
+		}
+		ObservableList<String> order = FXCollections.observableArrayList(orderStrList);
+		orderListView.setItems(order);
+		
+		
+		//设置界面上的酒店基本信息
+		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
 		HotelNameLabel.setText(hotelVo.getName());
 		AddressLabel.setText(hotelVo.getAddress());
 		RemarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)).substring(0,3)+"分");
-		CommentList.setItems(comment);
 		IntroductionLabel.setText(hotelVo.getIntroduction());
 		ServiceLabel.setText(hotelVo.getServiceAndFacility());
+		
 		
 		Map<RoomType, Integer> numOfType = roomService.getNumOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));
 		Map<RoomType, Double> priceOfType = roomService.getPriceOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));

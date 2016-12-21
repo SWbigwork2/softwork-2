@@ -10,6 +10,7 @@ import Hotelblimpl.HotelServiceImpl;
 import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomType;
 import blservice.HotelService;
+import blservice.OrdersService;
 import blservice.RoomService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +20,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import ordersblimpl.OrderServiceImpl;
+import ordersblimpl.OrderType;
 import vo.HotelVo;
+import vo.OrderVo;
 
 public class BrowseHotelController {
 
@@ -27,6 +31,7 @@ public class BrowseHotelController {
 	private String userName;
 	private LocalDate startTime;
 	private LocalDate endTime;
+	private OrdersService ordersService;
 
 	@FXML
 	private Button button4;
@@ -125,6 +130,7 @@ public class BrowseHotelController {
 		orderLabel1 = new Label();
 		orderLabel2 = new Label();
 		orderLabel3 = new Label();
+		ordersService = new OrderServiceImpl();
 	}
 	
 	public void setHotelVo(ArrayList<HotelColumnVo> hotelList,String userName,LocalDate startTime,LocalDate endTime) {
@@ -205,6 +211,21 @@ public class BrowseHotelController {
 		} else {
 			priceLabel5.setText(String.valueOf(roomPrice.get(RoomType.高级套间)));
 		}
+		
+		ArrayList<OrderVo> normalOrderNum = ordersService.getHotelOrderList(hotelName, userName, OrderType.normal);
+		if(normalOrderNum.size()==0){
+			orderLabel1.setVisible(false);
+		}
+		ArrayList<OrderVo> abnormalOrderNum = ordersService.getHotelOrderList(hotelName, userName, OrderType.error);
+		if(abnormalOrderNum.size()==0){
+			orderLabel2.setVisible(false);
+		}
+		ArrayList<OrderVo> revokedOrderNum = ordersService.getHotelOrderList(hotelName, userName, OrderType.revoke);
+		if(revokedOrderNum.size()==0){
+			orderLabel3.setVisible(false);
+		}
+		
+		
 	}
 
 	@FXML
@@ -249,18 +270,7 @@ public class BrowseHotelController {
 		//跳转到查看详细信息界面
 	}
 	
-	@FXML
-	public void setPriceOrder(){
-		
-	}
-	@FXML
-	public void setRankingOrder(){
-		
-	}
-	@FXML
-	public void setRemarkOrder(){
-		
-	}
+	
 	private java.util.Date localToDate(LocalDate time){
 		System.out.println("test1"+time.toString());
 		Instant instant = Instant.from(time.atStartOfDay(ZoneId.systemDefault()));

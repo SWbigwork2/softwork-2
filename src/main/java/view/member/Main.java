@@ -174,13 +174,13 @@ public class Main extends Application {
 		
 	}
 	
-	public void showHotelDetail(String hotelName,LocalDate startTime,LocalDate endTime){
-		panes.push((Pane) root.getCenter());
-		Pane hotelDetailPane = loadPane("BrowseHotelDetail.fxml");
-		BrowseHotelDetailController controller = loader.getController();
-		controller.setHotelNameAndDate(hotelName, startTime, endTime);
-		root.setCenter(hotelDetailPane);
-	}
+    public void showHotelDetail(String hotelName,LocalDate startTime,LocalDate endTime){
+        panes.push((Pane) root.getCenter());
+        Pane hotelDetailPane = loadPane("BrowseHotelDetail.fxml");
+        BrowseHotelDetailController controller = loader.getController();
+        controller.setHotelNameAndDate(hotelName, startTime, endTime,membervo.getUserId());
+        root.setCenter(hotelDetailPane);
+    }
 	
 	/**
 	 * 显示浏览酒店界面

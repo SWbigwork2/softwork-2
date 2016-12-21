@@ -9,22 +9,7 @@
    <children>
       <AnchorPane layoutY="54.0" prefHeight="750.0" prefWidth="387.0" style="-fx-background-color: #3F51B5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="650.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="priceButton" layoutX="68.0" layoutY="7.0" mnemonicParsing="false" onAction="#setPriceOrder" style="-fx-background-color: #3F51B5; -fx-background-radius: 0; -fx-text-fill: white;" text="价格顺序" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="rankingButton" layoutX="153.0" layoutY="20.0" mnemonicParsing="false" onAction="#setRankingOrder" style="-fx-background-color: #3F51B5; -fx-text-fill: white; -fx-background-radius: 0;" text="星级顺序" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="remarkButton" layoutX="84.0" layoutY="20.0" mnemonicParsing="false" onAction="#setRemarkOrder" style="-fx-background-color: #3F51B5; -fx-text-fill: white; -fx-background-radius: 0;" text="评分顺序" AnchorPane.rightAnchor="252.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font size="12.0" />
-               </font>
-            </Button>
-            <TableView fx:id="hotelLabel" layoutX="15.0" layoutY="78.0" onMouseClicked="#click" prefHeight="442.0" prefWidth="340.0" style="-fx-background-color: white; -fx-border-radius: 3; -fx-border-color: #F0F0F0;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="78.0">
+            <TableView fx:id="hotelLabel" layoutX="15.0" layoutY="46.0" onMouseClicked="#click" prefHeight="674.0" prefWidth="340.0" style="-fx-background-color: white; -fx-border-radius: 3; -fx-border-color: #F0F0F0;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="46.0">
               <columns>
                 <TableColumn fx:id="hotelNameColumn" prefWidth="85.0" text="酒店" />
                   <TableColumn fx:id="hotelPriceColumn" prefWidth="85.0" text="价格" />
