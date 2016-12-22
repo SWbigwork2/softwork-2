@@ -114,7 +114,8 @@ public class OrderServiceImpl implements OrdersService{
 		
 			
 	}
-	public ResultMessage revoke(int orderId){
+	public double revoke(int orderId){
+		double changeCredit = 0;
 		OrderPO findPo = dao.getOrder(orderId);
 		findPo.setOrderType(OrderType.revoke);
 		Date revokeDate = new Date();
@@ -125,12 +126,13 @@ public class OrderServiceImpl implements OrdersService{
 		if(dao.updata(findPo)){
 			if(hours<6){
 				membersService.updateMemberCredit(findPo.getUserId(), -findPo.getPrice()/2.0,findPo.getOrderId(),"撤销订单");
+				changeCredit = findPo.getPrice()/2.0;
 			}
 			
-			return ResultMessage.success;
+			return changeCredit;
 		}
 		else{
-			return ResultMessage.fail;
+			return changeCredit;
 		}
 		
 
@@ -253,6 +255,7 @@ public class OrderServiceImpl implements OrdersService{
 		OrderPO tempPo = findOrder(orderId);
 		tempPo.setCompleteDate(new Date());
 		tempPo.setOrderType(orderType.error);
+		dao.updata(tempPo);
 		membersService.updateMemberCredit(tempPo.getUserId(), -tempPo.getPrice(),tempPo.getOrderId(),"异常订单");
 	}
 	@Override
@@ -262,7 +265,7 @@ public class OrderServiceImpl implements OrdersService{
 		ArrayList<OrderPO> allOrderList = dao.getAllOrderList();
 		for(OrderPO po:allOrderList){
 			Date deadline = po.getDeadLine();
-			if(nowDate.getTime()>deadline.getTime()){
+			if(nowDate.getTime()>deadline.getTime()&&po.getOrderType().equals(OrderType.normal)){
 				errorHandle(po.getOrderId());
 			}
 		}

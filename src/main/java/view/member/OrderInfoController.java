@@ -156,6 +156,7 @@ public class OrderInfoController {
 		infoAlert.setHeaderText(null);
 		infoAlert.setContentText("订单已申诉！");
 		infoAlert.showAndWait();
+		main.showOrderList();
 	}
 	
 	/**
@@ -176,12 +177,12 @@ public class OrderInfoController {
 		 peopleNum.setText(vo.getPeopleNum()+"");
 		 System.out.println(vo.getType());
 		 revokeButton.setText("text");
-		 if(vo.getType()!="normal"){
+		 if(vo.getType()!="normal"&&vo.getType()!="error"){
 			 revokeButton.setText("删除订单");
 			
 			
 		 }
-		 else if(vo.getType()=="error"){
+		 else if(vo.getType().equals("error")){
 			 revokeButton.setText("异常申诉");
 		 }
 		 else{

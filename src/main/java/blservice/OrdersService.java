@@ -113,7 +113,7 @@ public interface OrdersService {
 	 * @param orderId
 	 * @return 撤销订单
 	 */
-	public ResultMessage revoke(int orderId);
+	public double revoke(int orderId);
 	
 	/**
 	 * @param orderId

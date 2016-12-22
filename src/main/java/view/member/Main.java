@@ -381,6 +381,7 @@ public class Main extends Application {
 	}
 	public static void main(String[] args) {
 		main = new Main();
+		main.blService.checkOrder();
 		launch(args);
 	}
 	public static MemberInformationVO getMembervo() {
