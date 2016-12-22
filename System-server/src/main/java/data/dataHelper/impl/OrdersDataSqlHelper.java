@@ -97,13 +97,17 @@ public class OrdersDataSqlHelper implements OrdersDataHelper{
 		String roomtype = po.getRoomType().toString();
 		String type = po.getOrderType().toString();
 		String price = po.getPrice()+"";
+		int hasChild = 0;
+		if(po.isHasChild()){
 		
+			hasChild=1;
+		}
 		String preCommand = "INSERT INTO orders ";
 		
-		String dataField = "(orderid,userid,hotel,type,price,roomnumber,roomtype,peoplenumber,begindate,completedate,deadline,indate,outdate) " ;
+		String dataField = "(orderid,userid,hotel,type,price,roomnumber,roomtype,peoplenumber,hasChild,begindate,completedate,deadline,indate,outdate) " ;
 		
 		String values = "VALUES "+"("+orderid+","+"'"+userid+"'"+","+"'"+hotel+"'"+","+"'"+type+"'"+","+price+","+roomnumber+","
-		+"'"+roomtype+"'"+","+peoplenumber+",?,?,?,?,?"+")"+";";
+		+"'"+roomtype+"'"+","+peoplenumber+","+hasChild+",?,?,?,?,?"+")"+";";
 		String SQL = preCommand+dataField+values;
 		System.out.println(SQL);
 		try {

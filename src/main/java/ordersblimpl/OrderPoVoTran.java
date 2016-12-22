@@ -51,6 +51,7 @@ public class OrderPoVoTran {
 		boolean hasChild = vo.isHasChild();
 		String name = vo.getName();
 		OrderPO po = new OrderPO(orderId, userId, name,hotelNameString, roomType, roomNum, price, orderType, inDate, outDate, completeDate, deadLine, peopleNum, beginDate, hasChild);
+		po.setHasChild(hasChild);
 		return po;
 	}
 	

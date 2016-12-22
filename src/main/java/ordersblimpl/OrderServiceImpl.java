@@ -184,7 +184,9 @@ public class OrderServiceImpl implements OrdersService{
 		return 0;
 	}
 	public void confirmAdd(OrderVo info) {
+		System.out.println(info.isHasChild());
 		OrderPO po = tran.vo2po(info);
+		System.out.println(po.isHasChild());
 		dao.insert(po);
 		RoomReservationService reservationService = new RoomServiceImpl();
 		reservationService.makeReservation(po.getOrderId(), po.getHotelNameString(), po.getRoomType(), po.getInDate(), po.getOutDate(),po.getRoomNum());

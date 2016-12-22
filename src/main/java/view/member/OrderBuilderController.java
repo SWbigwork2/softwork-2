@@ -225,6 +225,7 @@ public class OrderBuilderController {
 		System.out.println(deadLine.toLocaleString());
 		boolean isHasChild = false;
 		if(hasChild.isSelected()){
+			System.out.println("有小孩");
 			isHasChild = true;
 		}
 		PriceInfo priceInfo = service.getPrice(hotelString, onePrice, roomNumber, memberInformationVO.getUserId(),calDays(inDateTime, outDateTime) );
@@ -246,6 +247,7 @@ public class OrderBuilderController {
 		orderVo.setBeginDate(beginDateTime);
 		orderVo.setOutDate(outDateTime);
 		orderVo.setDeadLine(deadLine);
+		orderVo.setHasChild(isHasChild);
 		main.showOrderInfoConfirm(orderVo, promotionIntro);
 		
 		
