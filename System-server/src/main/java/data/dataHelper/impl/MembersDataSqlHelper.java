@@ -79,7 +79,7 @@ public class MembersDataSqlHelper implements MembersDataHelper {
 			  int viplevel=1;
 			  if(changecredit<0){
 				  viplevel=0;
-			  }else if(changecredit>=0&&viplevel<500){
+			  }else if(changecredit>=0&&changecredit<500){
 				  viplevel=1;
 			  }else if(changecredit>=500&&changecredit<1000){
 				  viplevel=2;
