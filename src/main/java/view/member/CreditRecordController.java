@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import po.CreditrecordPO;
-import po.PromotionsPO;
 
 public class CreditRecordController {
      @FXML
@@ -25,7 +24,6 @@ public class CreditRecordController {
      }
      @FXML
      public void initialize(){
-    	 System.out.println("test");
     	 temp = FXCollections.observableArrayList();
     	 MembersService membersService=new MemberServiceImpl();
     	String member=main.getMembervo().getUserId();
@@ -33,7 +31,7 @@ public class CreditRecordController {
     	list=membersService.getMemberCreditRecord(member);
         ArrayList<String> creditlist=new ArrayList<String>();
         for(CreditrecordPO po:list){
-			creditlist.add(po.getTime()+" "+po.getRecordid()+" "+po.getAction()+" "+po.getCreditchange()+" "+po.getCreditresult());
+			creditlist.add(po.getTime()+" "+po.getRecordid()+" "+po.getAction()+" 信用改变值："+po.getCreditchange()+" 信用剩余："+po.getCreditresult());
 			
 		}
         for(String cre:creditlist){
