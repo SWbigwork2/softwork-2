@@ -15,6 +15,11 @@
                   <Font size="17.0" />
                </font>
             </Label>
+            <Button mnemonicParsing="false" prefHeight="14.0" prefWidth="44.0" style="-fx-background-color: #3366FF; -fx-border-radius: 0; -fx-text-fill: #FFFFFF; -fx-border-color: lightgray; -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" text="&lt;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </items>
       </ToolBar>
    </top>

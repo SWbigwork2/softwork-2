@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="742.0" style="-fx-background-color: white;" stylesheets="@orderinfo.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.member.OrderInfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="845.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.member.OrderInfoController">
    <top>
       <Label style="-fx-font-size: 43;" text="详细信息" textAlignment="CENTER" textFill="#c3aaaa" BorderPane.alignment="CENTER">
          <font>
@@ -47,24 +47,24 @@
             <Label text="酒店名:" GridPane.rowIndex="2" />
             <Label text="房间类型:" GridPane.rowIndex="3" />
             <Label fx:id="orderId" GridPane.columnIndex="1" />
-            <Label fx:id="beginDate" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="hotel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="roomType" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="beginDate" prefHeight="42.0" prefWidth="277.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="hotel" prefHeight="42.0" prefWidth="273.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="roomType" prefHeight="42.0" prefWidth="277.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="房间数量:" GridPane.rowIndex="4" />
-            <Label fx:id="roomNum" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="roomNum" prefHeight="42.0" prefWidth="282.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="总金额:" GridPane.rowIndex="5" />
-            <Label fx:id="price" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="price" prefHeight="42.0" prefWidth="301.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label text="入住时间:" GridPane.rowIndex="7" />
-            <Label fx:id="inDate" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label fx:id="inDate" prefHeight="42.0" prefWidth="277.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Label text="订单状态:" GridPane.rowIndex="6" />
-            <Label fx:id="type" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label fx:id="deadline" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label fx:id="type" prefHeight="42.0" prefWidth="267.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label fx:id="deadline" prefHeight="42.0" prefWidth="287.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <Label text="退房时间:" GridPane.rowIndex="9" />
-            <Label fx:id="outDate" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="outDate" prefHeight="42.0" prefWidth="211.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Label text="入住人数:" GridPane.rowIndex="10" />
-            <Label fx:id="peopleNum" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label fx:id="peopleNum" prefHeight="42.0" prefWidth="212.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <Label text="有无儿童:" GridPane.rowIndex="11" />
-            <Label fx:id="hasChild" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Label fx:id="hasChild" prefHeight="42.0" prefWidth="227.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="11" />
             <Label text="最晚时间:" GridPane.rowIndex="8" />
          </children>
       </GridPane>
@@ -82,8 +82,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="revokeButton" mnemonicParsing="false" onAction="#cancelAndRevoke" GridPane.columnIndex="1" />
-            <Button fx:id="evluateButton" mnemonicParsing="false" onAction="#evaluate" text="评价订单" GridPane.columnIndex="3" />
+            <Button fx:id="revokeButton" mnemonicParsing="false" onAction="#cancelAndRevoke" style="-fx-background-color: white; -fx-border-color: lightgray;" GridPane.columnIndex="1" />
+            <Button fx:id="evluateButton" mnemonicParsing="false" onAction="#evaluate" style="-fx-background-color: white; -fx-border-color: lightgray;" text="评价订单" GridPane.columnIndex="3" />
          </children>
       </GridPane>
    </bottom>

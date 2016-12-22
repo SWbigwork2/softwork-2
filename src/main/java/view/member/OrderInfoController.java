@@ -1,8 +1,14 @@
 package view.member;
 
+import java.util.Date;
+import java.util.Optional;
+
 import blservice.OrdersService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import ordersblimpl.OrderServiceImpl;
 import vo.OrderVo;
@@ -84,23 +90,72 @@ public class OrderInfoController {
 	 * 撤销订单的响应操作
 	 */
 	private void revoke(){ 
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		int hours = ((int)(vo.getDeadLine().getTime()-(new Date()).getTime()))/(3600*1000);
+		if(hours<6){
+			alert.setContentText("将扣除"+vo.getPrice()/2.0+"信用值");
+		}
+		else{
+			alert.setContentText("不会扣除您的信用值");
+		}
+		alert.setTitle("确认撤销");
+		alert.setHeaderText("确认要撤销订单么？");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		if(result.get()==ButtonType.CANCEL){
+			return;
+		}
+		
 		service.revoke(vo.getOrderId());
+		Alert infoAlert = new Alert(AlertType.INFORMATION);
+		infoAlert.setTitle("成功");
+		infoAlert.setHeaderText(null);
+		infoAlert.setContentText("订单已撤销！");
+		infoAlert.showAndWait();
+		main.showOrderList();
 	}
 	
 	/**
 	 * 删除订单的响应操作
 	 */
 	private void delete(){
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setHeaderText(null);
+		alert.setTitle("确认删除");
+		alert.setContentText("确认要删除订单么？");
+		Optional<ButtonType> result=alert.showAndWait();
+		if(result.get()==ButtonType.CANCEL){
+			return;
+		}
 		service.delete(vo.getOrderId());
-		
+		Alert infoAlert = new Alert(AlertType.INFORMATION);
+		infoAlert.setTitle("成功");
+		infoAlert.setHeaderText(null);
+		infoAlert.setContentText("订单已删除！");
+		infoAlert.showAndWait();
+		main.showOrderList();
 	}
 	
 	/**
 	 * 订单申诉
 	 */
 	private void appeal(){
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("确认申诉");
+		alert.setHeaderText(null);
+		alert.setContentText("确认要申诉订单么？");
+		Optional<ButtonType> result=alert.showAndWait();
+		if(result.get()==ButtonType.CANCEL){
+			return;
+		}
 		vo.setType("appeal");
+		
 		service.update(vo);
+		Alert infoAlert = new Alert(AlertType.INFORMATION);
+		infoAlert.setTitle("成功");
+		infoAlert.setHeaderText(null);
+		infoAlert.setContentText("订单已申诉！");
+		infoAlert.showAndWait();
 	}
 	
 	/**
