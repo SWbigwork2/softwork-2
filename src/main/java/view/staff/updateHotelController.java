@@ -73,7 +73,7 @@ public class UpdateHotelController {
 		ArrayList<RoomVo> roomList = roomService.getRoomOfHotel(hotelName, startTime, endTime);
 		ObservableList<String> roomStrList = FXCollections.observableArrayList();
 		for(RoomVo cell: roomList){
-			roomStrList.add(cell.getRoomId()+"   "+String.valueOf(cell.getRoomPrice()));
+			roomStrList.add("房间ID ："+cell.getRoomId()+"        价格 ："+String.valueOf(cell.getRoomPrice())+"元");
 		}
 		
 

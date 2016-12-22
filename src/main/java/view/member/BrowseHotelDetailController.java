@@ -1,6 +1,7 @@
 package view.member;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -98,6 +99,8 @@ public class BrowseHotelDetailController {
 	**/
 	@FXML
 	private Main main;
+	@FXML
+	private Label rankingBar;
 	
 	private HotelService service;
 	
@@ -135,6 +138,7 @@ public class BrowseHotelDetailController {
 		RemarkLabel = new Label();
 		promotionList = new ListView<String>();
 		orderListView = new ListView<String>();
+		rankingBar = new Label();
 	}
 
 	public void setHotelNameAndDate(String hotelName,LocalDate startTime,LocalDate endTime,String userId) {
@@ -165,8 +169,9 @@ public class BrowseHotelDetailController {
 		//得到界面上的历史订单列表
 		ArrayList<OrderVo> orderList = ordersService.getHotelOrderList(hotelName, userId, OrderType.all);
 		ArrayList<String> orderStrList = new ArrayList<String>();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		for(OrderVo cell:orderList){
-			orderStrList.add(cell.getOrderId()+" "+cell.getType());
+			orderStrList.add(cell.getOrderId()+" 类型："+cell.getType()+" 起始："+formatter.format(cell.getInDate())+" 结束："+formatter.format(cell.getOutDate()));
 		}
 		ObservableList<String> order = FXCollections.observableArrayList(orderStrList);
 		orderListView.setItems(order);
@@ -176,6 +181,7 @@ public class BrowseHotelDetailController {
 		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
 		HotelNameLabel.setText(hotelVo.getName());
 		AddressLabel.setText(hotelVo.getAddress());
+		rankingBar.setText(hotelVo.getRanking().toString());
 		RemarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)).substring(0,3)+"分");
 		IntroductionLabel.setText(hotelVo.getIntroduction());
 		ServiceLabel.setText(hotelVo.getServiceAndFacility());
@@ -186,33 +192,38 @@ public class BrowseHotelDetailController {
 		
 		if (numOfType.get(RoomType.单人间) != 0) {
 			Button1.setVisible(false);
-			priceLabel1.setText("房间暂无");
+			priceLabel1.setText("暂无空房");
 		} else {
 			priceLabel1.setText(String.valueOf(priceOfType.get(RoomType.单人间))+"元");
+			Button1.setVisible(true);
 		}
 		if (numOfType.get(RoomType.标准间) == 0) {
 			Button2.setVisible(false);
-			priceLabel2.setText("房间暂无");
+			priceLabel2.setText("暂无空房");
 		} else {
 			priceLabel2.setText(String.valueOf(priceOfType.get(RoomType.标准间))+"元");
+			Button2.setVisible(true);
 		}
 		if (numOfType.get(RoomType.商务间) == 0) {
 			Button3.setVisible(false);
-			priceLabel3.setText("房间暂无");
+			priceLabel3.setText("暂无空房");
 		} else {
-			priceLabel2.setText(String.valueOf(priceOfType.get(RoomType.商务间))+"元");
+			priceLabel3.setText(String.valueOf(priceOfType.get(RoomType.商务间))+"元");
+			Button3.setVisible(true);
 		}
 		if (numOfType.get(RoomType.行政标准间) == 0) {
 			Button4.setVisible(false);
-			priceLabel4.setText("房间暂无");
+			priceLabel4.setText("暂无空房");
 		} else {
 			priceLabel4.setText(String.valueOf(priceOfType.get(RoomType.行政标准间))+"元");
+			Button4.setVisible(true);
 		}
 		if (numOfType.get(RoomType.高级套间) == 0) {
 			Button5.setVisible(false);
-			priceLabel5.setText("房间暂无");
+			priceLabel5.setText("暂无空房");
 		} else {
 			priceLabel5.setText(String.valueOf(priceOfType.get(RoomType.高级套间))+"元");
+			Button5.setVisible(true);
 		}
 	}
 

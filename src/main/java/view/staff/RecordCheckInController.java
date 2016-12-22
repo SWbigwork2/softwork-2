@@ -76,6 +76,9 @@ public class RecordCheckInController {
 			alert.setHeaderText(null);
 			alert.setContentText("入住信息更新成功");
 			alert.showAndWait();
+			
+			orderIdBar.setText("");
+			inTimeBar.setValue(null);
 		}
 	}
 
@@ -105,6 +108,12 @@ public class RecordCheckInController {
 			alert.setHeaderText(null);
 			alert.setContentText("入住信息更新成功");
 			alert.showAndWait();
+			
+			offlineOrderBar.setText("");
+			roomTypeBar.setValue(null);
+			offlineInTimeBar.setValue(null);
+			offlineOutTimeBar.setValue(null);
+			
 		}
 	}
 

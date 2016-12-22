@@ -44,7 +44,17 @@ public class RecordCheckOutController {
 			alert.showAndWait();
 		}else{
 		roomService.makeCheckOut(Integer.valueOf(orderIdStr),Integer.valueOf(roomIdStr) ,new java.util.Date(java.sql.Date.valueOf(date).getTime()));
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("提示");
+		alert.setHeaderText(null);
+		alert.setContentText("退房已成功");
+		alert.showAndWait();
 		}
+		
+		orderIdBar.setText("");
+		roomIdBar.setText("");
+		outTimeBar.setValue(null);
 	}
 	
 }

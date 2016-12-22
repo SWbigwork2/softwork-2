@@ -1,5 +1,6 @@
 package view.member;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import Hotelblimpl.HotelServiceImpl;
 import blservice.HotelService;
@@ -94,10 +95,12 @@ public class BrowseHistoryHotelController {
 		ObservableList<String> normalOrderStrList = FXCollections.observableArrayList();
 		ObservableList<String> abnormalOrderStrList = FXCollections.observableArrayList();
 		ObservableList<String> revokedOrderStrList = FXCollections.observableArrayList();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
 		if (normalList.size() != 0) {
 			for (OrderVo cell : normalList) {
-				normalOrderStrList.add(cell.getOrderId() + "     " + cell.getPrice());
+				normalOrderStrList.add(cell.getOrderId()+" 起始："+formatter.format(cell.getInDate())+" 结束："+formatter.format(cell.getOutDate())+ " 价格："+cell.getPrice());
 			}
 		} else {
 			normalOrderStrList.add("不存在正常订单");
@@ -105,7 +108,7 @@ public class BrowseHistoryHotelController {
 
 		if (abnormalList.size() != 0) {
 			for (OrderVo cell : abnormalList) {
-				abnormalOrderStrList.add(cell.getOrderId() + "     " + cell.getPrice());
+				abnormalOrderStrList.add(cell.getOrderId()+" 起始："+formatter.format(cell.getInDate())+" 结束："+formatter.format(cell.getOutDate())+ " 价格："+ cell.getPrice());
 			}
 		} else {
 			abnormalOrderStrList.add("不存在异常订单");
@@ -113,7 +116,7 @@ public class BrowseHistoryHotelController {
 
 		if (revokedList.size() != 0) {
 			for (OrderVo cell : revokedList) {
-				revokedOrderStrList.add(cell.getOrderId() + "     " + cell.getPrice());
+				revokedOrderStrList.add(cell.getOrderId()+" 起始："+formatter.format(cell.getInDate())+" 结束："+formatter.format(cell.getOutDate())+ " 价格：" +cell.getPrice());
 			}
 		} else {
 			revokedOrderStrList.add("不存在撤回订单");

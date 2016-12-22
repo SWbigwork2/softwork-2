@@ -113,6 +113,10 @@ public class AddRoomController {
 		alert.setContentText("房间添加成功");
 		alert.showAndWait();
 		
+		RoomIDBar.setText("");
+		RoomTypeBar.setValue(null);
+		RoomPriceBar.setText("");
+		RoomIntroductionBar.setText("");
 	}
 
 	public void setHotelName(String hotelName) {

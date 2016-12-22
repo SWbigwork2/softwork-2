@@ -173,43 +173,48 @@ public class BrowseHotelController {
 		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
 		hotelNameLabel.setText(hotelName);
 		hotelAddressLabel.setText(hotelVo.getAddress());
-		remarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)));
+		remarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)).substring(0,3)+"分");
 		Map<RoomType, Double> roomPrice = roomService.getPriceOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));
 		Map<RoomType, Integer> roomNum = roomService.getNumOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));
 		
 		if (roomNum.get(RoomType.单人间) == 0) {
-			priceLabel1.setText("房间暂无");
+			priceLabel1.setText("暂无空房");
 			button1.setVisible(false);
 		} else {
 			priceLabel1.setText(String.valueOf((roomPrice.get(RoomType.单人间))));
+			button1.setVisible(true);
 		}
 
 		if (roomNum.get(RoomType.标准间) == 0) {
-			priceLabel2.setText("房间暂无");
+			priceLabel2.setText("暂无空房");
 			button2.setVisible(false);
 		} else {
 			priceLabel2.setText(String.valueOf(roomPrice.get(RoomType.标准间)));
+			button2.setVisible(true);
 		}
 
 		if (roomNum.get(RoomType.商务间) == 0) {
-			priceLabel3.setText("房间暂无");
+			priceLabel3.setText("暂无空房");
 			button3.setVisible(false);
 		} else {
 			priceLabel3.setText(String.valueOf(roomPrice.get(RoomType.商务间)));
+			button3.setVisible(true);
 		}
 
 		if (roomNum.get(RoomType.行政标准间) == 0) {
-			priceLabel4.setText("房间暂无");
+			priceLabel4.setText("暂无空房");
 			button4.setVisible(false);
 		} else {
 			priceLabel4.setText(String.valueOf(roomPrice.get(RoomType.行政标准间)));
+			button4.setVisible(true);
 		}
 
 		if (roomNum.get(RoomType.高级套间) == 0) {
-			priceLabel5.setText("房间暂无");
+			priceLabel5.setText("暂无空房");
 			button5.setVisible(false);
 		} else {
 			priceLabel5.setText(String.valueOf(roomPrice.get(RoomType.高级套间)));
+			button5.setVisible(true);
 		}
 		
 		ArrayList<OrderVo> normalOrderNum = ordersService.getHotelOrderList(hotelName, userName, OrderType.normal);
