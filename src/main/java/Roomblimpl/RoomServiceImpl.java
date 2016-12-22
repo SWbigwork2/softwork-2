@@ -210,46 +210,44 @@ public class RoomServiceImpl implements RoomService {
 	/**
 	 * 
 	 */
-	@Override
-	public Map<RoomType, Double> getPriceOfRoom(String hotelName, Date startTime, Date endTime) {
-		RoomService roomService = new RoomServiceImpl();
-		ArrayList<RoomVo> roomList = roomService.getRoomOfHotel(hotelName, startTime, endTime);
-		/**
-		 * priceType1指的是单人间 priceType2指的是商务间 priceType3指的是标准间 priceType4指的是行政标准间
-		 * priceType5指的是高级套间
-		 */
-		double priceType1 = 0;
-		double priceType2 = 0;
-		double priceType3 = 0;
-		double priceType4 = 0;
-		double priceType5 = 0;
-
-		for (RoomVo cell : roomList) {
-			switch (cell.getRoomType()) {
-			case 单人间:
-				priceType1 = cell.getRoomPrice();
-			case 商务间:
-				priceType2 = cell.getRoomPrice();
-			case 标准间:
-				priceType3 = cell.getRoomPrice();
-			case 行政标准间:
-				priceType4 = cell.getRoomPrice();
-			case 高级套间:
-				priceType5 = cell.getRoomPrice();
-			}
-		}
-
-		Map<RoomType, Double> PriceOfType = new HashMap<RoomType, Double>();
-		PriceOfType.put(RoomType.单人间, priceType1);
-		PriceOfType.put(RoomType.商务间, priceType2);
-		PriceOfType.put(RoomType.标准间, priceType3);
-		PriceOfType.put(RoomType.行政标准间, priceType4);
-		PriceOfType.put(RoomType.高级套间, priceType5);
-
-		return PriceOfType;
-
-	}
-
+    @Override
+    public Map<RoomType, Double> getPriceOfRoom(String hotelName, Date startTime, Date endTime) {
+        ArrayList<RoomPO> roomList = roomsDao.getRoomList(hotelName);
+        /**
+         * priceType1指的是单人间 priceType2指的是商务间 priceType3指的是标准间 priceType4指的是行政标准间
+         * priceType5指的是高级套间
+         */
+        double priceType1 = 0;
+        double priceType2 = 0;
+        double priceType3 = 0;
+        double priceType4 = 0;
+        double priceType5 = 0;
+        
+        for (RoomPO cell : roomList) {
+            switch (cell.getRoomType()) {
+                case 单人间:
+                    priceType1 = cell.getPrice();
+                case 商务间:
+                    priceType2 = cell.getPrice();
+                case 标准间:
+                    priceType3 = cell.getPrice();
+                case 行政标准间:
+                    priceType4 = cell.getPrice();
+                case 高级套间:
+                    priceType5 = cell.getPrice();
+            }
+        }
+        
+        Map<RoomType, Double> PriceOfType = new HashMap<RoomType, Double>();
+        PriceOfType.put(RoomType.单人间, priceType1);
+        PriceOfType.put(RoomType.商务间, priceType2);
+        PriceOfType.put(RoomType.标准间, priceType3);
+        PriceOfType.put(RoomType.行政标准间, priceType4);
+        PriceOfType.put(RoomType.高级套间, priceType5);
+        
+        return PriceOfType;
+        
+    }
 	/**
 	 * 
 	 */

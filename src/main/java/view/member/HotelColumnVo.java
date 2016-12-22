@@ -41,6 +41,6 @@ public class HotelColumnVo {
 		return new SimpleStringProperty(String.valueOf(hotelRanking));
 	}
 	public StringProperty getHotelRemark(){
-		return new SimpleStringProperty(String.valueOf(hotelRemark));
+		return new SimpleStringProperty(String.valueOf(hotelRemark).substring(0,3));
 	}
 }
