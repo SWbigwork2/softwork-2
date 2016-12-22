@@ -32,8 +32,6 @@ import view.staff.PromotionsVO;
 public class PromotionsServiceImpl implements PromotionsService,PromotionGetPrice{
 	PromotionsDao dao;
 	RemoteHelper remoteHelper;
-//	MembersService membersService=new MemberServiceImpl();
-//	HotelService  hotelService=new HotelServiceImpl();
 	DateFormat df = DateFormat.getDateInstance();
 	
 	
@@ -52,7 +50,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
        		ArrayList<String> list=new ArrayList<String>();
 		strategieslist=dao.getHotelPromotions(hotel);
 		for(PromotionsPO po:strategieslist){
-			list.add("策略"+po.getType()+po.getIntroduction());
+			list.add("策略"+po.getType()+":"+po.getIntroduction());
 		}
 		
 		
