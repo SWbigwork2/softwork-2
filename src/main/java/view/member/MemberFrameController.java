@@ -14,10 +14,12 @@ public class MemberFrameController {
 	private Button FindHotelButton;
 	@FXML
 	private Button creditListButton;
-	
+	@FXML
+	private Button returnButton;
 	private Main main;
 	public MemberFrameController() {
 		main = Main.getMain();
+		returnButton = new Button();
 		totalOrderButton = new Button();
 		MyInformationButton = new Button();
 		CreditButton = new Button();
@@ -57,6 +59,9 @@ public class MemberFrameController {
 	public void showHistoryHotel(){
 		main.seeHistoryHotel();
 	}
-	
+	public void backPane(){
+		System.out.println("back");
+		main.backPane();
+	}
 
 }

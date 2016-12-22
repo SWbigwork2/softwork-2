@@ -190,7 +190,7 @@ public class BrowseHotelDetailController {
 		Map<RoomType, Integer> numOfType = roomService.getNumOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));
 		Map<RoomType, Double> priceOfType = roomService.getPriceOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));
 		
-		if (numOfType.get(RoomType.单人间) != 0) {
+		if (numOfType.get(RoomType.单人间) == 0) {
 			Button1.setVisible(false);
 			priceLabel1.setText("暂无空房");
 		} else {

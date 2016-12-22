@@ -267,7 +267,14 @@ public class Main extends Application {
 	 * 回到上一个页面
 	 */
 	public void backPane(){
+		try{
 		root.setCenter(panes.pop());
+		System.out.println("back");
+		}
+		catch (Exception e) {
+			System.out.println("fail");
+			// TODO: handle exception
+		}
 	}
 	
 	
@@ -336,6 +343,11 @@ public class Main extends Application {
 	 */
 	private  Pane loadPane(String FXML){
 		loader = new FXMLLoader();
+		try{
+		panes.push((Pane) root.getCenter());
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		loader.setLocation(Main.class.getResource(FXML));
 		try {
 			return (Pane)loader.load();

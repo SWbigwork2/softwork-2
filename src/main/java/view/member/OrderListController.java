@@ -91,7 +91,7 @@ public class OrderListController {
 		hotel.setText(orderVoInfo.getHotel());
 		price.setText(orderVoInfo.getPrice()+"");
 		type.setText(orderVoInfo.getType());
-		
+	
 		orderTypeChoice.valueProperty().addListener(new ChangeListener<String>() {
 
 			@Override
@@ -109,7 +109,9 @@ public class OrderListController {
 		}
 		
 		
+		
 		orderTypeChoice.setItems(FXCollections.observableArrayList("revoke","normal","done","error","all","evaluation"));
+		orderTypeChoice.setValue("all");
 		orderListView.setItems(temp);
 	}
 	/**

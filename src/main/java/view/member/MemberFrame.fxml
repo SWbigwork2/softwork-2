@@ -8,14 +8,14 @@
 
 <BorderPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-radius: 3px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.member.MemberFrameController">
    <top>
-      <ToolBar fx:id="ToorBar" disable="true" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #3366FF;" stylesheets="@../../../../../../../Desktop/frame.css" BorderPane.alignment="CENTER">
+      <ToolBar fx:id="ToorBar" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #3366FF;" stylesheets="@../../../../../../../Desktop/frame.css" BorderPane.alignment="CENTER">
          <items>
             <Label fx:id="GroupNameLabel" prefHeight="25.0" prefWidth="153.0" style="-fx-font-family: Chalkduster;" text="Winter Studio" textFill="#f5f5f5">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="14.0" prefWidth="44.0" style="-fx-background-color: #3366FF; -fx-border-radius: 0; -fx-text-fill: #FFFFFF; -fx-border-color: lightgray; -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );" text="&lt;">
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#backPane" prefHeight="14.0" prefWidth="44.0" style="-fx-background-color: #3366FF; -fx-border-radius: 0; -fx-text-fill: #FFFFFF; -fx-border-color: lightgray;" text="&lt;">
                <font>
                   <Font size="14.0" />
                </font>
