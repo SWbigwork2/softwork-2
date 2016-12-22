@@ -1,5 +1,6 @@
 package view.marketer;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import ordersblimpl.OrderServiceImpl;
@@ -43,13 +45,17 @@ public class OrderRecoverListController {
 	private Label userId;
 	@FXML
 	private Label roomType;
+	@FXML
+	private DatePicker dateChoice;
 	
+	private ObservableList<String> viewList;
 	private OrderVo orderVo;
 	private ArrayList<OrderVo> infoList;
 	private OrdersService service;
 	private MembersService membersService;
 	private MarketerMain main;
 	public OrderRecoverListController() {
+		dateChoice = new DatePicker();
 		main = MarketerMain.getMain();
 		membersService = new MemberServiceImpl();
 		service = new OrderServiceImpl();
@@ -63,17 +69,33 @@ public class OrderRecoverListController {
 		concelButton = new Button();
 		userId = new Label();
 		roomType = new Label();
+		
 		// TODO Auto-generated constructor stub
 	}
 	
 	public void initialize(ArrayList<OrderVo> orderList){
 		infoList = orderList;
-		
-		ObservableList<String> viewList = FXCollections.observableArrayList();
+		dateChoice.setValue(LocalDate.now());
+		LocalDate nowDate = dateChoice.getValue();
+		viewList = FXCollections.observableArrayList();
 		for(OrderVo vo:infoList){
+			System.out.println(vo.getInDate().getDate()+" "+vo.getInDate().getMonth());
+			System.out.println(nowDate.getDayOfMonth()+" "+nowDate.getMonthValue());
+			if(vo.getInDate().getDate()==nowDate.getDayOfMonth()&&vo.getInDate().getMonth()+1==nowDate.getMonthValue())
 			viewList.add(simpleInfo(vo));
 		}
 		orderListView.setItems(viewList);
+		
+	}
+	
+	public void changeDate(){
+		LocalDate nowDate = dateChoice.getValue();
+		viewList.clear();
+		for(OrderVo vo:infoList){
+			if(vo.getInDate().getDate()==nowDate.getDayOfMonth()&&vo.getInDate().getMonth()+1==nowDate.getMonthValue()){
+				viewList.add(simpleInfo(vo));
+			}
+		}
 		
 	}
 	
