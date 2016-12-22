@@ -11,14 +11,23 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
 public class RevampPasswordController {
-    @FXML private PasswordField oldPasswordField;
-    @FXML private PasswordField newPasswordField;
-    @FXML private PasswordField confirmPasswordField;
+    
+	@FXML 
+    private PasswordField oldPasswordField;
+    
+    @FXML 
+    private PasswordField newPasswordField;
+    
+    @FXML 
+    private PasswordField confirmPasswordField;
+    
     
     private ManagerVO managerVO;
+    
     private String oldPassword;
     private String newPassword;
     private String confirmPassword;
+    
     private Main main;
     
 	public RevampPasswordController(){
@@ -34,6 +43,9 @@ public class RevampPasswordController {
 		//界面消失
 	}
 	
+	/**
+	 * 确认修改
+	 */
 	@FXML
 	public void confirm(){
 		oldPassword=oldPasswordField.getText();

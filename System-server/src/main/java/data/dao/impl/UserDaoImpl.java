@@ -37,7 +37,11 @@ public class UserDaoImpl implements UserDao{
     	}
     }
     
-    //找用户
+    
+	/** (non-Javadoc)
+	 * @see data.dao.UserDao#findUser(java.lang.String, Usersblimpl.UserType)
+	 * 查找用户
+	 */
 	public UserPO findUser(String id, UserType type) throws SQLException{
 		// TODO Auto-generated method stub
 		UserPO userPO=null;
@@ -48,6 +52,7 @@ public class UserDaoImpl implements UserDao{
 		
 		Map hm = (Map)list.get(0);
 		
+		//按照类型把得到的数据变成PO
 		switch (type){
 		case member: userPO=this.Map2MemberPo(hm);return userPO;
 		case staff:userPO=this.Map2StaffPo(hm);return userPO;
@@ -57,14 +62,20 @@ public class UserDaoImpl implements UserDao{
 		return null;
 	}
     
-	//更新用户信息
+	/**
+	 * 更新用户信息(non-Javadoc)
+	 * @see data.dao.UserDao#updateUser(po.UserPO)
+	 */
 	public ResultMessage updateUser(UserPO userPO) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		return userDataHelper.updateUser(userPO);
 	}
     
-	//添加用户
+	/**
+	 * 添加用户(non-Javadoc)
+	 * @see data.dao.UserDao#addUser(po.UserPO)
+	 */
 	public ResultMessage addUser(UserPO userPO) throws SQLException {
 		// TODO Auto-generated method stub
 		return userDataHelper.addUser(userPO);
@@ -95,7 +106,7 @@ public class UserDaoImpl implements UserDao{
 	}
 	
     
-	private MemberInformationPO Map2MemberPo(Map map) {    //将map里的数据转换成Staffpo
+	private MemberInformationPO Map2MemberPo(Map map) {    //将map里的数据转换成memberpo
 		Map hm = map;
 		
 		String name= (String) hm.get("name");
@@ -117,7 +128,7 @@ public class UserDaoImpl implements UserDao{
 		return po;
 	}
 	
-	private MarketerPO Map2MarketerPo(Map map) {    //将map里的数据转换成Staffpo
+	private MarketerPO Map2MarketerPo(Map map) {    //将map里的数据转换成marketerpo
 		Map hm = map;
 		
 		String name= (String) hm.get("name");
@@ -127,7 +138,7 @@ public class UserDaoImpl implements UserDao{
 		return po;
 	}
 	
-	private ManagerPO Map2ManagerPo(Map map){
+	private ManagerPO Map2ManagerPo(Map map){  //将map里的数据转换成ManagePO
         Map hm = map;
 		
 		String name= (String) hm.get("name");

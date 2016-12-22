@@ -17,17 +17,34 @@ import javafx.scene.control.TextField;
 
 public class MemberInformationController {
     
-	@FXML private Label memberId;
-	@FXML private TextField memberName;
-	@FXML private PasswordField memberPassword;
-	@FXML private Label memberType;
-	@FXML private Label memberLevel;
-	@FXML private TextField contactInformation;
-	@FXML private Label credit;
-	@FXML private Label special;
+	@FXML 
+	private Label memberId;
+	
+	@FXML 
+	private TextField memberName;
+	
+	@FXML 
+	private PasswordField memberPassword;
+	
+	@FXML 
+	private Label memberType;
+	
+	@FXML 
+	private Label memberLevel;
+	
+	@FXML 
+	private TextField contactInformation;//会员的联系方式
+	
+	@FXML 
+	private Label credit;
+	
+	@FXML 
+	private Label special;//会员的生日
 	
 	boolean isRevamped;
+	
 	private MemberInformationVO memeber;
+	
 	private Main main;
 	
 	public MemberInformationController() {
@@ -49,6 +66,9 @@ public class MemberInformationController {
         main.moveToFindMember();
     }
     
+	/**
+	 * 确认修改信息
+	 */
 	@FXML
 	private void confirm(){
 		if(isRevamped){
@@ -90,6 +110,10 @@ public class MemberInformationController {
 	}
     
 	
+	/**
+	 * @param memberInformationVO
+	 * 设置初始信息
+	 */
 	public void setMember(MemberInformationVO memberInformationVO){
 		this.memeber=memberInformationVO;
 		
@@ -98,12 +122,14 @@ public class MemberInformationController {
 		memberPassword.setText(memeber.getPassword());
 		memberLevel.setText(memeber.getLevel());
 		
+		//设置会员类型
 		if(memeber.getVipType().equals("CompanyVip")){
     		memberType.setText(("企业会员"));
     	}else{
     		memberType.setText(("普通会员"));
     	}
 		
+		//如果有联系方式
 		if(memeber.getContactInformation()!=null){
 		    contactInformation.setText(memeber.getContactInformation());
 		}else{
@@ -111,7 +137,6 @@ public class MemberInformationController {
 		}
 		
 		if(memberInformationVO.getSpecial()!=null){
-			System.out.println(memberInformationVO.getSpecial());
 		    special.setText(memberInformationVO.getSpecial());
 		}else{
 			special.setText("");

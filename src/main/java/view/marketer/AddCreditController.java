@@ -40,7 +40,7 @@ public class AddCreditController {
 	}
 	
 	/**
-	 *   未完成 
+	 *   确定增加信用 
 	 */
 	@FXML
 	private void confirm(){
@@ -68,6 +68,10 @@ public class AddCreditController {
 		}
 	}
 	
+	/**
+	 * @param str金额的字符串
+	 * @return 是否有除了数字之外的其他字符
+	 */
 	private boolean isLegal(String str){
 		String reg = "[^a-zA-Z]";
         if(str.replaceAll(reg,"").length()!=0){

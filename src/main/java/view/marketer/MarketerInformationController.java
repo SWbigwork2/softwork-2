@@ -27,11 +27,17 @@ public class MarketerInformationController {
         main=main.getMain();
     }
     
+    /**
+     * 修改密码
+     */
     @FXML
     private void revampPassword() {
         main.movetoRevampPassword();
     }
     
+    /**
+     * 确定
+     */
     @FXML
     private void confirm(){
     	//返回上一界面

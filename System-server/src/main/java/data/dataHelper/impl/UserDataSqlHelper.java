@@ -42,12 +42,11 @@ public class UserDataSqlHelper implements UserDataHelper{
 		}
 	}
     
-    /*
+    /**
      * 获得查找的userPo的list
      */
     private ArrayList getUserList(String userId,UserType type){
     	
-//		String  id=Integer.parseInt(userId);
 		ArrayList list=new ArrayList();//用来保存user的list
 		//列表查找
         String users[]={"members","staffs","marketers","managers"};
@@ -59,7 +58,6 @@ public class UserDataSqlHelper implements UserDataHelper{
 			    	this.getConnect();
 			    	
 				    String selectSql="SELECT * from "+users[i]+" where id="+"'"+userId+"'";
-//				    System.out.println(selectSql);
 				    
 				    try {
 				    	 
@@ -80,7 +78,7 @@ public class UserDataSqlHelper implements UserDataHelper{
 		return list; 
     }
     
-    /*
+    /**
      * 返回给dao一个arraylist
      */
 	public ArrayList findUser(String Userid, UserType type) throws SQLException {		
@@ -88,7 +86,8 @@ public class UserDataSqlHelper implements UserDataHelper{
 		return this.getUserList(Userid, type);
 			
 	}
-    /*
+	
+    /**
      * 修改信息，传入一个新的userpo,先看有没有，然后把原来的删了，再add一个新的
      */
 	public ResultMessage updateUser(UserPO userPO) throws SQLException{
@@ -127,7 +126,7 @@ public class UserDataSqlHelper implements UserDataHelper{
 	}
 
 	
-	/*
+	/**
 	 * 添加用户，传入一个Po，成功返回success，失败返回fail
 	 */
 	public ResultMessage addUser(UserPO userPO) throws SQLException {
@@ -215,14 +214,20 @@ public class UserDataSqlHelper implements UserDataHelper{
 		return resultMessage;
 	}
 	
+	
+	/**
+	 * 得到所有用户
+	 *  (non-Javadoc)
+	 * @see data.dataHelper.UserDataHelper#getAllUsers(Usersblimpl.UserType)
+	 */
 	public ArrayList<UserPO> getAllUsers(UserType type) {
         
 		ArrayList<UserPO> userList=null;
        
 		String usersTable[]={"members","staffs","marketers"};
 		UserType userType[]={UserType.member,UserType.staff,UserType.marketer};
-		
-		//删除原来的user
+
+		//遍历数组
 		for(int i=0;i<3;i++){
 			 if(type.equals(userType[i])){
 				 String findSql="select * from "+usersTable[i];

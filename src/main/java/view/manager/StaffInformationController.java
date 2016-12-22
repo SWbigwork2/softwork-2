@@ -12,12 +12,20 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class StaffInformationController {
-    @FXML private Label staffIdField;
-    @FXML private TextField staffNameField;
-    @FXML private PasswordField staffPasswordField;
-    @FXML private Label hotelNameField;
+    
+	@FXML 
+    private Label staffIdField;
+    
+    @FXML 
+    private TextField staffNameField;
+    
+    @FXML 
+    private PasswordField staffPasswordField;
+    
+    @FXML 
+    private Label hotelNameField;
+    
     private StaffVO staff;
-    private String oldName;
 	private Main main;
     private boolean isRevamp;
     
@@ -33,6 +41,9 @@ public class StaffInformationController {
     }
     
     
+	/**
+	 * 修改用户名
+	 */
 	@FXML
 	private void revampName(){
 		staffNameField.setEditable(true);
@@ -49,16 +60,19 @@ public class StaffInformationController {
 	@FXML
 	private void confirm(){
 			//跳出一个确认界面，然后保存
-		ResultMessage resultMessage=ResultMessage.fail;
-		staff.setName(staffNameField.getText());			
-
-		UserService userService=new UserControllerblimpl();
 		
-		resultMessage=userService.revoke(staff.getUserId(), staff, UserType.staff);
-	    
-		System.out.println(resultMessage);
+		ResultMessage resultMessage=ResultMessage.fail;
+		
+		if(isRevamp){
+		    staff.setName(staffNameField.getText());			
+
+		    UserService userService=new UserControllerblimpl();
+		
+		    resultMessage=userService.revoke(staff.getUserId(), staff, UserType.staff);
+		}		
 		
 		main.moveToFindStaff();
+		
 	}
 	
 	public  void setStaff(StaffVO staffVO){

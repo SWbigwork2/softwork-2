@@ -31,17 +31,24 @@ public class EvaluateDataSqlHelper implements EvaluateDataHelper{
 			}
 		}
 	
+	/**
+	 * 添加评论
+	 *  (non-Javadoc)
+	 * @see data.dataHelper.EvaluateDataHelper#addEvaluate(java.lang.String, double, java.lang.String, java.lang.String)
+	 */
 	public ResultMessage addEvaluate(String hotelName, double score, String comment,String memberId) {
 		ResultMessage resultMessage=ResultMessage.fail;
         try {
+        	
 			this.getConnect();
+			//插入的语句
 			String addSql="insert into evaluation (hotelName,score,comment,memberName) values("+"'"+hotelName+"'"+" , "+score+
 			        " , "+"'"+comment+"'"+","+"'"+memberId+"'"+")";
 			statement = connection.prepareStatement(addSql);
 			statement.executeUpdate();
-//			System.out.println(addSql);
 			resultMessage=ResultMessage.success;
-		} catch (SQLException e) {
+		
+        } catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
@@ -51,12 +58,14 @@ public class EvaluateDataSqlHelper implements EvaluateDataHelper{
 		return resultMessage;
 	}
 
-	public ArrayList getEvaluate(String hotelName) {
+	public ArrayList<String> getEvaluate(String hotelName) {
 		ArrayList<String> evaluateList=new ArrayList<String>();
 		try {
 			this.getConnect();
+			//查找的语句
 			String selectSql="select hotelName,score,comment,memberName from evaluation where hotelName="+"'"+hotelName+"'";
 			statement=connection.prepareStatement(selectSql);
+			
 			resultSet= statement.executeQuery();
 			while(resultSet.next()){
 				String comment=resultSet.getString(4)+"_"+resultSet.getString(1)+"_"+resultSet.getDouble(2)+"_"+resultSet.getString(3);

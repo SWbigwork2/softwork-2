@@ -268,7 +268,7 @@ private RemoteHelper remoteHelper;
 		
 		staffBorderPane.setCenter(page);
 		
-		StaffInformationController controller=loader.getController();
+		RevampPasswordController controller=loader.getController();
 		controller.setStaffVO(staff);
 	} catch (Exception e) {
 		// TODO: handle exception

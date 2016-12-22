@@ -23,11 +23,20 @@ public class FindStaffController {
     private ObservableList<StaffModel> staffItems=
     		FXCollections.observableArrayList();
     
-	@FXML private TextField staffIdFindField;
-	@FXML private TableView<StaffModel> staffList;
-	@FXML private TableColumn<StaffModel, String> staffId;
-	@FXML private TableColumn<StaffModel, String> staffName;
-	@FXML private TableColumn<StaffModel, String> hotelName;
+	@FXML 
+	private TextField staffIdFindField;
+	
+	@FXML 
+	private TableView<StaffModel> staffList;
+	
+	@FXML 
+	private TableColumn<StaffModel, String> staffId;
+	
+	@FXML 
+	private TableColumn<StaffModel, String> staffName;
+	
+	@FXML 
+	private TableColumn<StaffModel, String> hotelName;
 	
 	
 	public FindStaffController() {
@@ -61,7 +70,7 @@ public class FindStaffController {
 	}
 	
 	/**
-	 * 搜索按钮
+	 * 文本框搜索按钮
 	 */
 	@FXML
 	public void findStaff(){
@@ -81,6 +90,9 @@ public class FindStaffController {
 		}
 	}
 	
+	/**
+	 * 列表选择一项
+	 */
 	@FXML
 	public  void selectStaff(){
 		try {

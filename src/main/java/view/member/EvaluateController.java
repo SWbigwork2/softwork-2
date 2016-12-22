@@ -47,11 +47,17 @@ public class EvaluateController {
 		scoreComboBox.setItems(scoreList);
 	}
 	
+	/**
+	 * 返回
+	 */
 	@FXML
 	private void cancel(){
 		main.backPane();
 	}
 	
+	/**
+	 * 评论
+	 */
 	@FXML
 	private void confirm(){
 		int score=scoreComboBox.getValue();

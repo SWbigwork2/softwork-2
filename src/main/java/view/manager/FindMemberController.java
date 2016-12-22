@@ -24,16 +24,27 @@ public class FindMemberController {
 	
 	@FXML private TextField memberIdFindField;
 	
-	@FXML private TableView<MemberModel> memberList;
-	@FXML private TableColumn<MemberModel, String> memberIdColumn;
-	@FXML private TableColumn<MemberModel, String> memberNameColumn;
-	@FXML private TableColumn<MemberModel, String> memberLevelColumn;
-	@FXML private TableColumn<MemberModel, Double> memberCreditColumn;
+	@FXML 
+	private TableView<MemberModel> memberList;
+	
+	@FXML 
+	private TableColumn<MemberModel, String> memberIdColumn;
+	
+	@FXML 
+	private TableColumn<MemberModel, String> memberNameColumn;
+	
+	@FXML 
+	private TableColumn<MemberModel, String> memberLevelColumn;
+	
+	@FXML 
+	private TableColumn<MemberModel, Double> memberCreditColumn;
 	
 		
 	public FindMemberController() {
 	    memberIdFindField=new TextField();
+	    
 	    memberList=new TableView<MemberModel>();
+	    
 	    memberIdColumn=new TableColumn<MemberModel, String>();
 	    memberNameColumn=new TableColumn<MemberModel, String>();
 	    memberLevelColumn=new TableColumn<MemberModel, String>();
@@ -48,7 +59,8 @@ public class FindMemberController {
 	@FXML
 	private void initialize(){
 		UserService userService=new UserControllerblimpl();
-	    ArrayList<UserVO> list=userService.getAllUsers(UserType.member);
+	    
+		ArrayList<UserVO> list=userService.getAllUsers(UserType.member);
 	    for(UserVO user:list){
 	    	MemberInformationVO memberInformationVO=(MemberInformationVO)user;
 	    	MemberModel memberModel=new MemberModel(memberInformationVO.getUserId()
@@ -68,7 +80,7 @@ public class FindMemberController {
 	}
 		
 		/**
-		 * 搜索按钮
+		 * 文本框搜索按钮，
 		 */
 		@FXML
 		public void findMember(){
@@ -97,16 +109,16 @@ public class FindMemberController {
 		public void selectMember(){
 			try{
 			    MemberModel memberModel=memberList.getSelectionModel().getSelectedItem();
-				UserService userService=new UserControllerblimpl();
+				
+			    UserService userService=new UserControllerblimpl();
 			    MemberInformationVO memberInformationVO=(MemberInformationVO)
 					userService.find(memberModel.getId(), UserType.member);
 			    main.showMemberDetails(memberInformationVO);			
+			
 			} catch (NullPointerException e) {
 				// TODO: handle exception
 				main.showWaningInformation(AlertType.ERROR, "", "请选择一项");
 			}
-			
-		
 		}
 		
 }

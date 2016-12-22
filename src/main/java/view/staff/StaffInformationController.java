@@ -55,6 +55,9 @@ public class StaffInformationController {
 		main.initmainPane();
 	}
 	
+	/**
+	 * 确定
+	 */
 	@FXML
 	public void confirm(){
 		main.initmainPane();
@@ -66,6 +69,7 @@ public class StaffInformationController {
 		staffIdField.setText(staffVO.getUserId());
         staffNameField.setText(staffVO.getName());
         staffPasswordField.setText(staffVO.getPassword());
+        staffPasswordField.setEditable(false);
         hotelNameField.setText(staffVO.getHotelName());	
 	}
 	

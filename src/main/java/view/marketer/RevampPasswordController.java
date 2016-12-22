@@ -27,6 +27,9 @@ public class RevampPasswordController {
 		main.movetoInformation();
 	}
 	
+	/**
+	 * 确认修改
+	 */
 	@FXML
 	public void confirm(){
 		String oldPassword=oldPasswordField.getText();

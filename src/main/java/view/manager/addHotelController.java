@@ -8,6 +8,7 @@ import blservice.HotelService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -20,19 +21,19 @@ public class addHotelController {
     private Main main;
 	
 	@FXML
-	private TextArea introductionBar;
+	private TextArea introductionBar; //酒店介绍
 	@FXML
-	private TextArea hotelServiceBar;
+	private TextArea hotelServiceBar; //酒店服务
 	@FXML
-	private TextField hotelAddressBar;
+	private TextField hotelAddressBar;//酒店地址
 	@FXML 
-	private TextField hotelNameBar;
+	private TextField hotelNameBar;//酒店名称
 	@FXML
-	private ComboBox<HotelTradeArea> hotelTradeAreaBar;
+	private ComboBox<HotelTradeArea> hotelTradeAreaBar;//酒店商圈
 	@FXML
-	private ComboBox<HotelRanking> hotelRankingBar;
+	private ComboBox<HotelRanking> hotelRankingBar;//酒店等级
 	@FXML
-	private Button confirmButton;
+	private Button confirmButton;//按钮
 	@FXML
 	private ListView<String> roomInfoLabel;	
 	
@@ -68,16 +69,43 @@ public class addHotelController {
 		hotelTradeAreaBar.setItems(tradeAreaList);
 	}
 	
+	/**
+	 * 确定添加酒店
+	 */
 	@FXML
 	public void confirmHotelInfo(){
+		
 		HotelService hotelService = new HotelServiceImpl();
+		//判断是否填写完整
+		if(isEmpty()){
+		    if(hotelService.judgeHotelExists(hotelNameBar.getText())){
+		        HotelVo hotelVo = new HotelVo(hotelNameBar.getText()
+				, hotelAddressBar.getText(), hotelTradeAreaBar.getValue()
+				,introductionBar.getText(), hotelServiceBar.getText(),hotelRankingBar.getValue());
 		
-		HotelVo hotelVo = new HotelVo(hotelNameBar.getText()
-				, hotelAddressBar.getText(), null,introductionBar.getText(), hotelServiceBar.getText(),hotelRankingBar.getValue());
-		
-		hotelService.addHotel(hotelVo);
-		
-		main.moveToAddStaff();
+		        hotelService.addHotel(hotelVo);
+		        main.showWaningInformation(AlertType.INFORMATION,"成功", "已添加"+hotelNameBar.getText()+"的信息");
+		        main.moveToAddStaff();
+		    }else{
+		    	//提示用户酒店已存在
+		    	main.showWaningInformation(AlertType.ERROR, "错误", "酒店已存在");
+		    }
+		}else{
+			//提示用户输入完整
+			main.showWaningInformation(AlertType.ERROR, "错误", "请输入完整");
+		}
+	}
+	
+	/**
+	 * @return 判断是否填写完整
+	 */
+	private boolean  isEmpty(){
+		if(hotelNameBar.getText().length()>=1&&hotelAddressBar.getText().length()>=1&&
+				hotelRankingBar.getValue()!=null&&hotelServiceBar.getText().length()>=1&&
+				hotelTradeAreaBar.getValue()!=null){
+			return true;
+		}
+		return false;
 	}
 
 }

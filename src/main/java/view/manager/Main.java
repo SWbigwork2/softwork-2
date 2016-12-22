@@ -33,26 +33,26 @@ public class Main extends Application{
 	private ManagerVO managerVO;
 	private static String userId;
 	private static Stage loginStage;
-private RemoteHelper remoteHelper;
+    private RemoteHelper remoteHelper;
 	
-public void linkToServer(){
-	final String ip = "localhost";
-	try{
-		remoteHelper = RemoteHelper.getInstance();
-		remoteHelper.setRemote(Naming.lookup("rmi://"+ip+":8888/DateRemoteObject"));
-		System.out.println("linked");
-	}catch (MalformedURLException e) {
-		e.printStackTrace();
-	} catch (RemoteException e) {
-		e.printStackTrace();
-	} catch (NotBoundException e) {
-		e.printStackTrace();
-	}
-}
+    public void linkToServer(){
+	    final String ip = "localhost";
+	    try{
+	    	remoteHelper = RemoteHelper.getInstance();
+	    	remoteHelper.setRemote(Naming.lookup("rmi://"+ip+":8888/DateRemoteObject"));
+	    	System.out.println("linked");
+	    }catch (MalformedURLException e) {
+	    	e.printStackTrace();
+	    } catch (RemoteException e) {
+	    	e.printStackTrace();
+	    } catch (NotBoundException e) {
+	    	e.printStackTrace();
+	    }
+    }
+    
 	public  Main() {
 		linkToServer();
 		loader = new FXMLLoader();
-	    managerVO=new ManagerVO("1111", "2222", "3333");
 	}
 	
 	public static Main getMain(){
@@ -78,7 +78,6 @@ public void linkToServer(){
 		Scene loginScene = new Scene(loginPane,600,400);
 		loginStage.setScene(loginScene);
 		loginStage.showAndWait();
-		
 		
 		
 	}
@@ -109,9 +108,6 @@ public void linkToServer(){
 		
 	}
 	
-	public void showMainPane(){
-		
-	}
 	
 	private   BorderPane loadPane(String fxml) {
 		// TODO Auto-generated method stub
@@ -129,35 +125,40 @@ public void linkToServer(){
 		}
 	}
 	
+	/**
+	 * 跳转到查看会员界面
+	 */
 	public void moveToFindMember(){
 		
 		BorderPane findMember=loadPane("FindMember.fxml");
-//		BorderPane pane=(SplitPane)mainPane.getItems().get(1);
-//		pane.getItems().set(1, findMember);
-//		mainPane.set(Center)
 		mainPane.setCenter(findMember);
 	        
 	}
 	
+	/**
+	 * 跳转到查看酒店工作人员界面
+	 */
 	public void moveToFindStaff(){
+
 		BorderPane findStaff=loadPane("FindStaff.fxml");
-//		SplitPane pane=(SplitPane)mainPane.getItems().get(1);
-		//pane.getItems().set(1, findStaff);
 		mainPane.setCenter(findStaff);
 		
 	}
 	
+	/**
+	 *跳转到查看营销人员界面 
+	 */
 	public void moveToFindMarketer(){
-		//初始化列表		
 		
 		BorderPane findMarketer=loadPane("FindMarketer.fxml");
-//		SplitPane pane=(SplitPane)main/Pane.getItems().get(1);
-//		pane.getItems().set(1, findMarketer);
 		
 		mainPane.setCenter(findMarketer);
 		
 	}
 	
+	/**
+	 * 跳转到个人信息界面
+	 */
 	public void moveToInformation(){
 		try {
 			BorderPane informationPane=loadPane("ManagerInformationUi.fxml");
@@ -166,8 +167,6 @@ public void linkToServer(){
 		    		=loader.getController();
 		    managerInformationController.setManagerVO(managerVO);
 		    
-//		    SplitPane pane=(SplitPane) mainPane.getItems().get(1);
-//		    pane.getItems().set(1,informationPane);
 		    
 		    mainPane.setCenter(informationPane);
 	    
@@ -178,19 +177,20 @@ public void linkToServer(){
 	    }
 	}
 	
+	/**
+	 * 添加酒店工作人员
+	 */
 	public void moveToAddStaff(){
 		BorderPane addStaff=loadPane("staffRegisterUi.fxml");
-//		SplitPane pane=(SplitPane)mainPane.getItems().get(1);
-//		pane.getItems().set(1, addStaff);
 		
 		mainPane.setCenter(addStaff);
 	}
 	
+	/**
+	 * 添加营销人员
+	 */
 	public void moveToAddMarketer(){
 		BorderPane addMarketer=loadPane("marketerRegisterUi.fxml");
-		
-//		SplitPane pane=(SplitPane)mainPane.getItems().get(1);
-//		pane.getItems().set(1, addMarketer);
 		
 		mainPane.setCenter(addMarketer);
 	}
@@ -199,26 +199,34 @@ public void linkToServer(){
 	    return primaryStage;
 	}
 		
+	/**
+	 * @param marketerVO
+	 * 营销人员个人信息
+	 */
 	public void  showMarketerDetais(MarketerVO marketerVO){		
 	        BorderPane page = loadPane("MarketerInformationUi.fxml");
 	        MarketerInformationController controller=loader.getController();
 	        controller.setMarketer(marketerVO);
-//	        SplitPane pane=(SplitPane)mainPane.getItems().get(1);
-//			pane.getItems().set(1, page);
 	        
 	        mainPane.setCenter(page);
 	}
 	
+	/**
+	 * @param staffVO
+	 * 酒店工作人员个人信息
+	 */
 	public void showStaffDetails(StaffVO staffVO){
 		BorderPane page =loadPane("StaffInformation.fxml");
 		StaffInformationController controller=loader.getController();
 		controller.setStaff(staffVO);
-//		SplitPane pane=(SplitPane)mainPane.getItems().get(1);
-//		pane.getItems().set(1, page);
 		
 		mainPane.setCenter(page);
 	}
 	
+	/**
+	 * @param managerVO
+	 * 修改密码
+	 */
 	public void showRevamoPassword(ManagerVO managerVO){
 		BorderPane page=loadPane("revampPasswordUi.fxml");
 		RevampPasswordController controller=loader.getController();
@@ -227,17 +235,22 @@ public void linkToServer(){
 		mainPane.setCenter(page);
 	}
 	
+	/**
+	 * @param member
+	 * 会员个人信息
+	 */
 	public void showMemberDetails(MemberInformationVO member){
 		BorderPane page=loadPane("memberInformationUi.fxml");
 		MemberInformationController controller=loader.getController();
 		controller.setMember(member);
-//		SplitPane pane=(SplitPane)mainPane.getItems().get(1);
-//		pane.getItems().set(1, page);
 		
 		
 		mainPane.setCenter(page);
 	}
 	
+	/**
+	 * 添加酒店
+	 */
 	public void moveAddHotel(){
 		  loader=new FXMLLoader();
 		  AnchorPane page=null;
@@ -252,11 +265,21 @@ public void linkToServer(){
 		  mainPane.setCenter(page);
 	}
 	
+	/**
+	 * @param managerId
+	 * 设置管理人员信息
+	 */
 	public void setManager(String managerId){
 		UserService userService =new UserControllerblimpl();
 		this.managerVO=(ManagerVO)userService.find(managerId, UserType.manager);
 	}
 
+	/**
+	 * @param type
+	 * @param headerText
+	 * @param contentText
+	 * 显示提示信息
+	 */
 	public void showWaningInformation(AlertType type,
 			String headerText,String contentText){
 		Alert alert = new Alert(type);

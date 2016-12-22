@@ -61,8 +61,9 @@ public class StaffRegisterController {
 			    	        StaffVO staffVO=new StaffVO(staffIdField.getText()
 			    			    , staffPasswordField.getText(), 
 							    staffNameField.getText(), hotelNameField.getText());
-			    	        System.out.println(userService.find(staffIdField.getText(), UserType.staff));
-			    	        System.out.println(userService.addStaff(staffVO).name());
+			    	        userService.addStaff(staffVO);
+			    	        this.showDialog(AlertType.INFORMATION, "成功", "成功添加一名工作人员");
+			    	        
 			    		}else{
 			    			//这个账号不可用
 			    			this.showDialog(AlertType.WARNING, "提醒", "这个账号有人啦");

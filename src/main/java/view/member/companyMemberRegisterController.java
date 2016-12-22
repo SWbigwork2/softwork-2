@@ -22,6 +22,7 @@ public class companyMemberRegisterController {
     String type;
     
     private Main main;
+    
     public companyMemberRegisterController() {
 		// TODO Auto-generated constructor stub
     	main = Main.getMain();
@@ -32,11 +33,17 @@ public class companyMemberRegisterController {
         confirmPasswordField=new PasswordField();
         companyName=new TextField();
     }
+	/**
+	 * 返回登录界面 
+	 */
 	@FXML
 	private void cancel(){
 	    main.returnLogin();   
 	}
 	
+	/**
+	 * 确定注册
+	 */
 	@FXML
 	private void confirm(){
 		//先验证写的对不对

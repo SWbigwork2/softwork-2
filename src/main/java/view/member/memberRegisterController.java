@@ -1,6 +1,7 @@
 package view.member;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import Usersblimpl.MemberInformationVO;
 import Usersblimpl.UserControllerblimpl;
@@ -13,6 +14,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 
@@ -33,17 +35,45 @@ public class memberRegisterController {
         confirmPasswordField=new PasswordField();
         birthday=new DatePicker();
         
-        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
-			public DateCell call(final DatePicker datePicker) {
-			return new DateCell() {
-			public void updateItem(LocalDate item, boolean empty) {
-			super.updateItem(item, empty);
-			if (item.isAfter(LocalDate.now())) {
-				setDisable(true);setStyle("-fx-background-color: #ffc0cb;");}}};}};
-        birthday.setDayCellFactory(dayCellFactory);
+//        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
+//			public DateCell call(final DatePicker datePicker) {
+//			return new DateCell() {
+//			public void updateItem(LocalDate item, boolean empty) {
+//			super.updateItem(item, empty);
+//			if (item.isAfter(LocalDate.now())) {
+//				setDisable(true);setStyle("-fx-background-color: #ffc0cb;");}}};}};
+//				
+//        birthday.setDayCellFactory(dayCellFactory);
         
+        
+       
+          
         main=main.getMain();
     }
+    
+    @FXML
+    private void initialize() {
+    	 final Callback<DatePicker, DateCell> dayCellFactory = 
+ 	            new Callback<DatePicker, DateCell>() {
+ 	                public DateCell call(final DatePicker datePicker) {
+ 	                    return new DateCell() {
+ 	                        @Override
+ 	                        public void updateItem(LocalDate item, boolean empty) {
+ 	                            super.updateItem(item, empty);
+ 	                            if (item.isAfter(
+ 	                                    LocalDate.now())
+ 	                                ) {
+ 	                                    setDisable(true);
+ 	                                    setStyle("-fx-background-color: #ffc0cb;");
+ 	                            }
+ 	                    }
+ 	                };
+ 	            }
+ 	        };
+ 	       birthday.setDayCellFactory(dayCellFactory);
+ 	       
+	}
+    
 	@FXML
 	private void cancel(){
 		main.returnLogin();

@@ -30,17 +30,28 @@ public class EvaluateDaoImpl implements EvaluateDao {
 	    	}
 	    }
 	    
+	/** (non-Javadoc)
+	 * @see data.dao.EvaluateDao#addEvaluate(po.EvaluatePO)
+	 * 添加评论
+	 */
 	public ResultMessage addEvaluate(EvaluatePO evaluatePO) {
 		// TODO Auto-generated method stub
-		System.out.println(2222);
 		return evaluateDataHelper.addEvaluate(evaluatePO.getHotelName(), evaluatePO.getScore(), evaluatePO.getS(),evaluatePO.getName());
 	}
 
-	public ArrayList getEvaluatetion(String hotelName) {
+	/** (non-Javadoc)
+	 * @see data.dao.EvaluateDao#getEvaluatetion(java.lang.String)
+	 * 得到评论
+	 */
+	public ArrayList<String> getEvaluatetion(String hotelName) {
 		
 		return evaluateDataHelper.getEvaluate(hotelName);
 	}
 
+	/*** (non-Javadoc)
+	 * @see data.dao.EvaluateDao#getScore(java.lang.String)
+	 * 得到评分
+	 */
 	@Override
 	public double getScore(String hotelName) throws RemoteException {
 		// TODO Auto-generated method stub
