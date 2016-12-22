@@ -38,42 +38,41 @@ public class RoomServiceImpl implements RoomService {
 	/**
 	 * 
 	 */
-	@Override
-	public ArrayList<RoomVo> getRoomOfHotel(String hotelName, Date startTime, Date endTime) {
-
-		ArrayList<RoomPO> roomList = roomsDao.getRoomList(hotelName);
-		boolean[] isAvailable = new boolean[roomList.size()];
-		for (int k = 0; k < isAvailable.length; k++) {
-			isAvailable[k] = true;
-		}
-		int i = 0;
-		for (RoomPO cell : roomList) {
-			Map<Date, Date> timePeriod = cell.getUnavailablePeriod();
-			if (timePeriod != null) {
-				Set<Date> startTimeList = timePeriod.keySet();
-				for (Date dateCell : startTimeList) {
-					if (!(endTime.before(dateCell) || endTime.equals(dateCell)
-							|| startTime.after(timePeriod.get(dateCell))
-							|| startTime.equals(timePeriod.get(dateCell)))) {
-						isAvailable[i] = false;
-						break;
-					}
-				}
-			}
-			i++;
-		}
-
-		ArrayList<RoomVo> resultList = new ArrayList<RoomVo>();
-		int j = 0;
-		for (boolean cell : isAvailable) {
-			if (cell) {
-				resultList.add(roomVoPoTran.PoToVO(roomList.get(j)));
-			}
-			j++;
-		}
-		return resultList;
-	}
-
+    @Override
+    public ArrayList<RoomVo> getRoomOfHotel(String hotelName, Date startTime, Date endTime) {
+        
+        ArrayList<RoomPO> roomList = roomsDao.getRoomList(hotelName);
+        boolean[] isAvailable = new boolean[roomList.size()];
+        for (int k = 0; k < isAvailable.length; k++) {
+            isAvailable[k] = true;
+        }
+        int i = 0;
+        for (RoomPO cell : roomList) {
+            Map<Date, Date> timePeriod = cell.getUnavailablePeriod();
+            if (timePeriod != null) {
+                Set<Date> startTimeList = timePeriod.keySet();
+                for (Date dateCell : startTimeList) {
+                    if (!((endTime.before(dateCell) || endTime.equals(dateCell)
+                           || startTime.after(timePeriod.get(dateCell))
+                           || startTime.equals(timePeriod.get(dateCell))))) {
+                        isAvailable[i] = false;
+                        break;
+                    }
+                }
+            }
+            i++;
+        }
+        
+        ArrayList<RoomVo> resultList = new ArrayList<RoomVo>();
+        int j = 0;
+        for (boolean cell : isAvailable) {
+            if (cell) {
+                resultList.add(roomVoPoTran.PoToVO(roomList.get(j)));
+            }
+            j++;
+        }
+        return resultList;
+    }
 	/**
 	 * 
 	 */
@@ -227,14 +226,19 @@ public class RoomServiceImpl implements RoomService {
             switch (cell.getRoomType()) {
                 case 单人间:
                     priceType1 = cell.getPrice();
+                    break;
                 case 商务间:
                     priceType2 = cell.getPrice();
+                    break;
                 case 标准间:
                     priceType3 = cell.getPrice();
+                    break;
                 case 行政标准间:
                     priceType4 = cell.getPrice();
+                    break;
                 case 高级套间:
                     priceType5 = cell.getPrice();
+                    break;
             }
         }
         
@@ -270,14 +274,19 @@ public class RoomServiceImpl implements RoomService {
 			switch (cell.getRoomType()) {
 			case 单人间:
 				roomType1++;
+                break;
 			case 商务间:
 				roomType2++;
+                break;
 			case 标准间:
 				roomType3++;
+                break;
 			case 行政标准间:
 				roomType4++;
+                break;
 			case 高级套间:
 				roomType5++;
+                break;
 			}
 		}
 		Map<RoomType, Integer> numOfRoomType = new HashMap<RoomType, Integer>();
