@@ -6,7 +6,11 @@ import Usersblimpl.UserVO;
 import Usersblimpl.Users;
 import po.LoginPO;
 
-public class ManagerLogin extends LoginMock{
+/**
+ * @author 朱润之
+ * 网站管理人员登陆的子类
+ */
+public class ManagerLogin extends Login{
 	UserVO vo;
 	UserInfo use;
 	public ManagerLogin(UserInfo u) {

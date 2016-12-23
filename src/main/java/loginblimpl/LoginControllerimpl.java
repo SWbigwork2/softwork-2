@@ -3,13 +3,16 @@ package loginblimpl;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserInfo;
 import Usersblimpl.UserType;
-import Usersblimpl.Users;
 import blservice.LoginService;
 
+/**
+ * @author 朱润之
+ * 登陆的控制器，根据不同的type创建不同的login对象
+ */
 public class LoginControllerimpl implements LoginService{
 	public  int []loginType = new int [4];
 	private String []loginM = new String[4];
-	private LoginMock login;
+	private Login login;
 	UserInfo users;
 	public LoginControllerimpl(){
 		users = new UserControllerblimpl();

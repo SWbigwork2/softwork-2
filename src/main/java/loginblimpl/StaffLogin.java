@@ -6,7 +6,11 @@ import Usersblimpl.UserVO;
 import Usersblimpl.Users;
 import po.LoginPO;
 
-public class StaffLogin extends LoginMock{
+/**
+ * @author 朱润之
+ * 酒店工作人员登录的子类
+ */
+public class StaffLogin extends Login{
 	UserVO vo;
 	UserInfo use;
 	public StaffLogin(UserInfo u) {

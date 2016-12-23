@@ -6,7 +6,11 @@ import Usersblimpl.UserVO;
 import Usersblimpl.Users;
 import po.LoginPO;
 
-public class MarketerLogin extends LoginMock{
+/**
+ * @author 朱润之
+ * 网站营销人员的子类
+ */
+public class MarketerLogin extends Login{
 	UserVO vo;
 	UserInfo use;
 	public MarketerLogin(UserInfo u) {

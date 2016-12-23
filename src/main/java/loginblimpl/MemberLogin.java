@@ -7,7 +7,11 @@ import Usersblimpl.UserVO;
 import Usersblimpl.Users;
 import po.LoginPO;
 
-public class MemberLogin extends LoginMock{
+/**
+ * @author 朱润之
+ * 会员登录的子类
+ */
+public class MemberLogin extends Login{
 	UserVO vo;
 	UserInfo use;
 	public MemberLogin(UserInfo u) {
