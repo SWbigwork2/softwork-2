@@ -13,7 +13,7 @@ import data.dao.impl.MembersDaoImpl;
 import po.MemberPO;
 
 public class updateCreditTester {
-	MemberPO testpo=new MemberPO("1000", "王明","1111" , "13109290200", 300,null,0,1);
+	MemberPO testpo=new MemberPO("1000", "王明","1111" , "13109290200", 100,null,0,1);
 	@Test
 	public void updateCredittest() throws SQLException, RemoteException {
 		MembersDao dao=new MembersDaoImpl().getInstance();
