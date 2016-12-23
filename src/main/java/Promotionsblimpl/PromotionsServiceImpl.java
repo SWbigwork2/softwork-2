@@ -80,6 +80,9 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 			MemberPO member=membersService.getMember(userId);
 			if(member.getType()==0){
 				String birth=member.getSpecial();
+				if(birth==null){
+					
+				}else{
 			    String date[]=birth.split("-");
 			    String today[]=nowday.split("-");
 			    if(date[1].equals(today[1])&&date[2].equals(today[2])){
@@ -89,6 +92,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 			    		
 			    	}
 			    }
+				}
 			}
 			
 		}else if(po.getType()==2){
