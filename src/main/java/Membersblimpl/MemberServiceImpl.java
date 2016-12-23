@@ -10,6 +10,7 @@ import blservice.MembersService;
 import blservice.OrdersService;
 import data.dao.MembersDao;
 import data.rmi.RemoteHelper;
+import ordersblimpl.MembersInfo;
 import ordersblimpl.OrderServiceImpl;
 import ordersblimpl.OrderType;
 import po.CreditrecordPO;
@@ -18,7 +19,7 @@ import vo.OrderVo;
 
 
 
-public class MemberServiceImpl implements MembersService{
+public class MemberServiceImpl implements MembersService,MembersInfo{
 	public MemberServiceImpl() {
 		
 		remoteHelper = RemoteHelper.getInstance();
@@ -72,5 +73,10 @@ public class MemberServiceImpl implements MembersService{
 		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
 		membersDao.insertCreditRecord(po);
+	}
+	@Override
+	public String getMemberLevel(String membersId) {
+		// TODO Auto-generated method stub
+		return "lv"+getMember(membersId).getLevel();
 	}
 }

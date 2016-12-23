@@ -4,23 +4,20 @@ package ordersblimpl;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import Hotelblimpl.HotelsInfo;
 import Membersblimpl.MemberServiceImpl;
-import Membersblimpl.MembersInfo;
+
 import Promotionsblimpl.PriceInfo;
-import Promotionsblimpl.PromotionGetPrice;
-import Promotionsblimpl.Promotions;
 import Promotionsblimpl.PromotionsServiceImpl;
 import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomsInfo;
-import blservice.MembersService;
+
 import blservice.OrdersService;
 import data.dao.OrdersDao;
 import data.rmi.RemoteHelper;
-import javafx.geometry.Pos;
+
 import po.OrderPO;
 import vo.OrderVo;
 
@@ -29,9 +26,9 @@ public class OrderServiceImpl implements OrdersService{
 	RemoteHelper remoteHelper;
 	String memberId;
 	int orderId;
-	OrderItem tempItem;
+	
 	PromotionGetPrice promotions;
-	MembersInfo membersInfo;
+	
 	//String hotelsInfo.getName();
 	HotelsInfo hotelsInfo;
 	RoomsInfo roomsInfo;
@@ -44,7 +41,7 @@ public class OrderServiceImpl implements OrdersService{
 	Date revokeDate;
 	Date deadLine;
 
-	MembersService membersService;
+	MembersInfo membersService;
 	OrderPoVoTran tran;
 	public OrderServiceImpl() {
 		remoteHelper = RemoteHelper.getInstance();
@@ -59,30 +56,8 @@ public class OrderServiceImpl implements OrdersService{
 		this.memberId = memberId;
 		
 	}
-	public void setUp(Promotions p,HotelsInfo h,RoomsInfo r,MembersInfo m){
-		promotions = p;
-		hotelsInfo = h;
-		membersInfo = m;
-		roomsInfo =r;
-		
-	}
-	/*public OrderBlService_Stub(int orderId, int userId, String userNameString, String hotelsInfo.getName(),
-			roomsInfo.getType() roomsInfo.getType(), int roomNum, double price, OrderType orderType, Date inDate, Date outDate,
-			Date completeDate, Date revokeDate, Date deadLine) {
-		this.orderId = orderId;
-		this.userId = userId;
-		this.userNameString = userNameString;
-		this.hotelsInfo.getName() = hotelsInfo.getName();
-		this.roomsInfo.getType() = roomsInfo.getType();
-		this.roomNum = roomNum;
-		this.price = price;
-		this.orderType = orderType;
-		this.inDate = inDate;
-		this.outDate = outDate;
-		this.completeDate = completeDate;
-		this.revokeDate = revokeDate;
-		this.deadLine = deadLine;
-	}*/
+	
+
 	//传到界面层的vo
 	public OrderVo view(){
 		

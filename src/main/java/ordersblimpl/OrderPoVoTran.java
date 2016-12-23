@@ -1,6 +1,7 @@
 package ordersblimpl;
 import java.util.Date;
 
+import Membersblimpl.MemberServiceImpl;
 import Roomblimpl.RoomType;
 import po.OrderPO;
 import vo.OrderVo;
@@ -22,7 +23,8 @@ public class OrderPoVoTran {
 		Date deadLine = po.getDeadLine();
 		double price = po.getPrice();
 		String type = po.getOrderType().toString();
-		String userLevel = MembersInfo.getMemberLevel(userId);
+		MembersInfo info = new MemberServiceImpl();
+		String userLevel =info.getMemberLevel(po.getUserId());
 		int roomNum = po.getRoomNum();
 		String roomType = po.getRoomType().toString();
 		int peopleNum = po.getPeopleNum();
