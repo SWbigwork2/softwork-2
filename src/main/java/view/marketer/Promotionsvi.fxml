@@ -13,14 +13,12 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="124.0" prefHeight="20.0" prefWidth="132.0" text="请输入酒店：" />
       <Label layoutX="56.0" layoutY="175.0" prefHeight="20.0" prefWidth="179.0" text="请输入会员等级1的折扣：" />
       <Label layoutX="56.0" layoutY="229.0" prefHeight="20.0" prefWidth="179.0" text="请输入会员等级2的折扣：" />
       <Label layoutX="56.0" layoutY="289.0" prefHeight="20.0" prefWidth="179.0" text="请输入会员等级3的折扣：" />
       <Label layoutX="56.0" layoutY="344.0" prefHeight="20.0" prefWidth="179.0" text="请输入会员等级4的折扣：" />
       <Label layoutX="56.0" layoutY="403.0" prefHeight="20.0" prefWidth="179.0" text="请输入会员等级5的折扣：" />
       <Label layoutX="56.0" layoutY="461.0" prefHeight="20.0" prefWidth="179.0" text="请输入会员等级6的折扣：" />
-      <TextField fx:id="hotelnameTextfield" layoutX="277.0" layoutY="119.0" />
       <TextField fx:id="vip1discountTextfield" layoutX="277.0" layoutY="170.0" />
       <TextField fx:id="vip2discountTextfield" layoutX="277.0" layoutY="224.0" />
       <TextField fx:id="vip3discountTextfield" layoutX="277.0" layoutY="284.0" />

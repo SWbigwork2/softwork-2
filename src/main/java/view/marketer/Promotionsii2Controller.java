@@ -20,8 +20,6 @@ public class Promotionsii2Controller {
 	@FXML
 	private AnchorPane PromotionsiiPane;
 	@FXML
-	private TextField hotelnameTextField;
-	@FXML
 	private TextField discountTextField;
 	@FXML	
 	private DatePicker startdateDatePicker;
@@ -39,7 +37,6 @@ public class Promotionsii2Controller {
 	HotelService hotelService=new HotelServiceImpl();
 	public Promotionsii2Controller(){
 		main=MarketerMain.getMain();
-		hotelnameTextField=new TextField();
 		discountTextField=new TextField();
 		startdateDatePicker=new DatePicker();
 		enddateDatePicker=new DatePicker();
@@ -72,22 +69,19 @@ public class Promotionsii2Controller {
 	}
 	@FXML
 	public void addPromotionsII2(){
-		String hotel=hotelnameTextField.getText();
+		String hotel="网站";
 		String discountstr=discountTextField.getText();
 		String startdate=startdateDatePicker.getValue().toString();
 		String enddate=enddateDatePicker.getValue().toString();
 		String introduction=introductionTextField.getText();		
-		if(hotel.length()==0||startdate.length()==0||enddate.length()==0||discountstr.length()==0||introduction.length()==0){
+		if(startdate.length()==0||enddate.length()==0||discountstr.length()==0||introduction.length()==0){
 			main.showWaningInformation(AlertType.INFORMATION, null, "策略信息填写不完整");
 		}else{
 			double discount=Double.parseDouble(discountstr);
 			if(discount>0.99||discount<0.1){
 				main.showWaningInformation(AlertType.INFORMATION, null, "折扣只能在0.1~0.99之间");
 				
-			}else if(hotelService.judgeHotelExists(hotel)){
-				main.showWaningInformation(AlertType.INFORMATION, null, "不存在该酒店");
 			}
-			
 			else {
 			PromotionsII2VO promotionsII2VO=new PromotionsII2VO(2, hotel, introduction, startdate, enddate, discount);
 			boolean result=promotionsService.addPromotionsII2(promotionsII2VO);
@@ -103,7 +97,6 @@ public class Promotionsii2Controller {
 	}
 	@FXML
 	public void clearPromotionsII2(){
-		hotelnameTextField.setText("");
 		discountTextField.setText("");
 		startdateDatePicker.setValue(null);
 		enddateDatePicker.setValue(null);

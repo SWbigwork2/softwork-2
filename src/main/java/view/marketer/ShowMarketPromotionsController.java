@@ -20,11 +20,7 @@ public class ShowMarketPromotionsController {
 	   @FXML
 		  private ObservableList<String> temp ;
 	      @FXML
-	      private TextField hotelnameTextField;
-	      @FXML
 	      private ListView< String> promotionslistListView;
-	      @FXML 
-	      private Button showButton;
 	      @FXML
 	      private Button deletePromotionsButton;
 	      @FXML 
@@ -32,26 +28,25 @@ public class ShowMarketPromotionsController {
 	      PromotionsService promotionsService=new PromotionsServiceImpl();
 	      public ShowMarketPromotionsController(){
 	    	  main=MarketerMain.getMain();
-	    	  hotelnameTextField=new TextField();
-	    	  showButton =new Button();
 	    	  deletePromotionsButton=new Button();
 	    	  promotionslistListView=new ListView<String>();
 	    	  
 	      }
 	      public void showpromotions(){
-	    	  String hotelname=hotelnameTextField.getText();
-	    	  if(hotelname.length()==0){
-	    		  Alert alert=new Alert(AlertType.INFORMATION);
-	    		    alert.setTitle("提示");
-	    			alert.setHeaderText(null);
-	    			alert.setContentText("请输入酒店名");
-	    			alert.showAndWait();
-	    	  }else{
+//	    	  String hotelname=hotelnameTextField.getText();
+//	    	  if(hotelname.length()==0){
+//	    		  Alert alert=new Alert(AlertType.INFORMATION);
+//	    		    alert.setTitle("提示");
+//	    			alert.setHeaderText(null);
+//	    			alert.setContentText("请输入酒店名");
+//	    			alert.showAndWait();
+//	    	  }else{
 //	    	  ArrayList<String> hotelpromotions=new ArrayList<String>();
 //	    	  String x1="ssss";
 //	    	  String x2="xxxx";
 //	    	  hotelpromotions.add(x1);
-//	    	  hotelpromotions.add(x2);   	 
+//	    	  hotelpromotions.add(x2); 
+	    	  String hotelname="网站";
 	    	ArrayList<String> hotelpromotions= promotionsService.getHotelPromotion(hotelname);
 	    	temp = FXCollections.observableArrayList();
 	    	  for(String pro:hotelpromotions){
@@ -59,7 +54,7 @@ public class ShowMarketPromotionsController {
 	    	  }
 	    	  promotionslistListView.setItems(temp);
 	    	  }
-	      }
+//	      }
 
 	  	/**
 	  	 * 策略列表选择点击删除的响应
@@ -87,7 +82,7 @@ public class ShowMarketPromotionsController {
 	    	    		String typestr=selectedStr.substring(2, 3);
 	    	    		int  type=Integer.parseInt(typestr);
 	    	    		String introduction=selectedStr.substring(4);
-	    	    		String hotelname=hotelnameTextField.getText();
+	    	    		String hotelname="网站";
 	    	    		PromotionsVO promotionsVO=new PromotionsVO();
 	    	    		promotionsVO.setHotel(hotelname);
 	    	    		promotionsVO.setType(type);

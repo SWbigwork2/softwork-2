@@ -69,6 +69,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 		// TODO Auto-generated method stub
 		DateFormat df = DateFormat.getDateInstance();
 		strategieslist=dao.getHotelPromotions(hotel);
+		ArrayList<PromotionsPO> webstrategieslist=dao.getHotelPromotions("网站");
 		String introduction="";
 		double discount=1.0;
 		double totalprice=1000000;	
@@ -116,7 +117,8 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 					introduction=poIII.getIntroduction();
 				}
 			}
-		}else if(po.getType()==4){
+		}
+		else if(po.getType()==4){
 			MembersService membersService=new MemberServiceImpl();
 			MemberPO memberPO=membersService.getMember(userId);	
 			PromotionsIVPO poIV=(PromotionsIVPO)po;
@@ -129,35 +131,53 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 				}
 			}
 			
-		}else if(po.getType()==5){
-			MembersService membersService=new MemberServiceImpl();
-		    HotelService  hotelService=new HotelServiceImpl();
-		   PromotionsVPO poV=(PromotionsVPO)po;
-		   HotelPO hotelPO=hotelService.getHotelInformation(hotel);
-		   MemberPO memberPO=membersService.getMember(userId);
-		   String area=hotelPO.getTradeArea().toString();
-		   if(memberPO.getLevel()==poV.getViplevel()&&area==poV.getArea()){
-			   if(poV.getDiscount()<=discount){
-				   discount=poV.getDiscount();
-				   introduction=poV.getIntroduction();
+		}
+
+	  for(PromotionsPO webpo:webstrategieslist){
+		  if(webpo.getType()==2){
+				PromotionsIIPO newpo=(PromotionsIIPO)po;
+				Date now=new Date();
+				String nowday=df.format(now);
+				String startdate=newpo.getStartdate();
+				String enddate=newpo.getEnddate();
+				if(indays(nowday, startdate, enddate)){
+					if(newpo.getDiscount()<=discount){
+						discount=newpo.getDiscount();
+						introduction=newpo.getIntroduction();
+					}
+				}
+			
+			}
+			else if(po.getType()==5){
+				MembersService membersService=new MemberServiceImpl();
+			    HotelService  hotelService=new HotelServiceImpl();
+			   PromotionsVPO poV=(PromotionsVPO)po;
+			   HotelPO hotelPO=hotelService.getHotelInformation(hotel);
+			   MemberPO memberPO=membersService.getMember(userId);
+			   String area=hotelPO.getTradeArea().toString();
+			   if(memberPO.getLevel()==poV.getViplevel()&&area==poV.getArea()){
+				   if(poV.getDiscount()<=discount){
+					   discount=poV.getDiscount();
+					   introduction=poV.getIntroduction();
+				   }
+				   
 			   }
-			   
-		   }
-			
-			
-			
-		}else if(po.getType()==6){
-			MembersService membersService=new MemberServiceImpl();
-			MemberPO memberPO =membersService.getMember(userId);
-			PromotionsVIPO poVI=(PromotionsVIPO)po;
-			if(poVI.getViplevel()==memberPO.getLevel()){
-				if(poVI.getDiscount()<=discount){
-					discount=poVI.getDiscount();
-					introduction=poVI.getIntroduction();
+				
+				
+				
+			}else if(po.getType()==6){
+				MembersService membersService=new MemberServiceImpl();
+				MemberPO memberPO =membersService.getMember(userId);
+				PromotionsVIPO poVI=(PromotionsVIPO)po;
+				if(poVI.getViplevel()==memberPO.getLevel()){
+					if(poVI.getDiscount()<=discount){
+						discount=poVI.getDiscount();
+						introduction=poVI.getIntroduction();
+					}
 				}
 			}
-		}
-	
+		  
+	  }
 		}
 		totalprice=price*roomNum*discount;
 		PriceInfo priceInfo=new PriceInfo(introduction, totalprice);

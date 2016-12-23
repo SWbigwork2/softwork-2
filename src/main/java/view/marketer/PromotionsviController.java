@@ -11,8 +11,6 @@ import javafx.scene.control.Alert.AlertType;
 
 public class PromotionsviController  {
    @FXML
-   private TextField hotelnameTextfield;
-   @FXML
    private TextField vip1discountTextfield;
    @FXML
    private TextField vip2discountTextfield;
@@ -34,7 +32,6 @@ public class PromotionsviController  {
    HotelService hotelService=new HotelServiceImpl();
    public PromotionsviController(){
 	   main=MarketerMain.getMain();
-	   hotelnameTextfield=new TextField();
 	   vip1discountTextfield=new TextField();
 	   vip2discountTextfield=new TextField();
 	   vip3discountTextfield=new TextField();
@@ -45,7 +42,7 @@ public class PromotionsviController  {
 	   cancelButton=new Button();
    }
    public void addPromotionsVI(){
-    String hotel=hotelnameTextfield.getText();
+    String hotel="网站";
     String discountstr1=vip1discountTextfield.getText();
     String discountstr2=vip2discountTextfield.getText();
     String discountstr3=vip3discountTextfield.getText();
@@ -69,9 +66,6 @@ public class PromotionsviController  {
     			discount5>0.99||discount5<0.1||discount6>0.99||discount6<0.1){
     		main.showWaningInformation(AlertType.INFORMATION, null, "折扣只能在0.1~0.99之间");
     		
-		}
-    	else if(hotelService.judgeHotelExists(hotel)){
-			main.showWaningInformation(AlertType.INFORMATION, null, "不存在该酒店");
 		}
     	else {
     	PromotionsVIVO promotionsVIVO1=new PromotionsVIVO(6, hotel,"VIP1 折扣 "+discountstr1, 1, discount1);
@@ -98,7 +92,6 @@ public class PromotionsviController  {
     }   
 }
    public void clearPromotionsVI(){
-	   hotelnameTextfield.setText("");
 		vip1discountTextfield.setText("");
 		vip2discountTextfield.setText("");
 		vip3discountTextfield.setText("");

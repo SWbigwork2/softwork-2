@@ -8,13 +8,11 @@
 
 <AnchorPane fx:id="showPromotionsPane" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.marketer.ShowMarketPromotionsController">
    <children>
-      <Label layoutX="147.0" layoutY="82.0" text="请输入要查看的酒店名：">
+      <Label layoutX="302.0" layoutY="88.0" text="网站促销策略如下：">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="hotelnameTextField" layoutX="537.0" layoutY="83.0" />
-      <Button fx:id="showButton" layoutX="786.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#showpromotions" text="查看" />
       <ListView fx:id="promotionslistListView" layoutX="161.0" layoutY="194.0" prefHeight="353.0" prefWidth="598.0" />
       <Button fx:id="deletePromotionsButton" layoutX="796.0" layoutY="194.0" mnemonicParsing="false" onMouseClicked="#deletepromotions" text="删除" />
    </children>

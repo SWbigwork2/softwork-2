@@ -11,8 +11,6 @@ import javafx.scene.control.Alert.AlertType;
 
 public class PromotionsvController  {
   @FXML
-  private TextField hotelnameTextField;
-  @FXML
   private TextField areaTextField;
   @FXML
   private TextField viplevelTextField;
@@ -30,7 +28,6 @@ public class PromotionsvController  {
   HotelService hotelService=new HotelServiceImpl();
  public PromotionsvController(){
 	 main=MarketerMain.getMain();
-	 hotelnameTextField=new TextField();
 	 areaTextField=new TextField();
 	 viplevelTextField=new TextField();
 	 discountTextField=new TextField();
@@ -39,12 +36,12 @@ public class PromotionsvController  {
 	 cancelButton=new Button();
  }
   public void addPromotionsV(){
-	  String hotel=hotelnameTextField.getText();
+	  String hotel="网站";
 	  String area=areaTextField.getText();
 	  String viplevelstr=viplevelTextField.getText();
 	  String discountstr=discountTextField.getText();
 	  String introduction=introductionTextField.getText();
-	  if(hotel.length()==0||area.length()==0||viplevelstr.length()==0||discountstr.length()==0||introduction.length()==0){
+	  if(area.length()==0||viplevelstr.length()==0||discountstr.length()==0||introduction.length()==0){
 		  main.showWaningInformation(AlertType.INFORMATION, null, "策略信息填写不完整");
 		 
 	  }else{
@@ -54,9 +51,7 @@ public class PromotionsvController  {
 			  main.showWaningInformation(AlertType.INFORMATION, null,"折扣只能在0.1~0.99之间");
 				
 			}
-		  else if(hotelService.judgeHotelExists(hotel)){
-				main.showWaningInformation(AlertType.INFORMATION, null, "不存在该酒店");
-			}else if(viplevel<0||viplevel>6){
+		 else if(viplevel<0||viplevel>6){
 				main.showWaningInformation(AlertType.INFORMATION, null, "会员等级在0-6之间");
 			}
 		  else {
@@ -77,7 +72,6 @@ public class PromotionsvController  {
 	  
   }
   public void clearPromotionsV(){
-	  hotelnameTextField.setText("");
 		areaTextField.setText("");
 		viplevelTextField.setText("");
 		discountTextField.setText("");
