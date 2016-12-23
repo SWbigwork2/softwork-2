@@ -24,7 +24,6 @@ public class MemberInformationController {
 	@FXML private Label special;
 	
 	private MemberInformationVO member;
-	boolean isRevamped;
 	private Main main;
 	private boolean isRevampName;
 	private boolean isRevampedTel;
@@ -38,7 +37,8 @@ public class MemberInformationController {
         contactInformation=new TextField();
         credit=new Label();
         special=new Label();
-        isRevamped=false;
+        isRevampName=false;
+        isRevampedTel=false;
 	}
 	
 	@FXML
@@ -51,23 +51,36 @@ public class MemberInformationController {
 	private void confirm(){
 		
 		UserControllerblimpl userControllerMock=new UserControllerblimpl();
+		String Namecontent="";
+		
 		if(isRevampName){
-			String Content="名字";
-			member.setName(memberName.getText());
-			
-			if(isRevampedTel){
-				member.setContactInformation(contactInformation.getText());
-				Content=Content+"和联系方式";
+			if(!memberName.getText().equals(member.getName())){
+			    member.setName(memberName.getText());
+			    Namecontent="名字";
+			    userControllerMock.revoke(member.getUserId(), member,UserType.valueOf( member.getType()));
 			}
-			userControllerMock.revoke(member.getUserId(), member,UserType.valueOf( member.getType()));
+		}
+		
+		String contact="";
+		if(isRevampedTel){
+			if(!contactInformation.getText().equals(member.getContactInformation())){
+			    member.setContactInformation(contactInformation.getText());
+			    contact="联系方式";
+			    userControllerMock.revoke(member.getUserId(), member,UserType.valueOf( member.getType()));
+		    }
+		}
+		
+		if(Namecontent.length()>=1||contact.length()>=1){
+			
 			Alert alert = new Alert(AlertType.INFORMATION);
-		    alert.setTitle("系统提示");
-		    alert.setHeaderText("修改成功");
-		    alert.setContentText(Content+"已经修改");
+	    	alert.setTitle("系统提示");
+	    	alert.setHeaderText("修改成功");
+		    alert.setContentText(Namecontent+" "+contact+"已经修改");
 		    alert.showAndWait();
-		    main.showMain();
 		}
-		}
+		main.showMain();
+	}
+		
 	
 	/**
 	 * 修改用户名，直接在界面里修改
@@ -76,7 +89,7 @@ public class MemberInformationController {
 	private void revampName(){
         
 		memberName.setEditable(true);
-		isRevamped = true;
+		isRevampName = true;
 	}
 	
 	/**
@@ -93,7 +106,7 @@ public class MemberInformationController {
 	@FXML
 	private void revampContactInformation(){
 		contactInformation.setEditable(true);
-	    isRevamped=true;
+	    isRevampedTel=true;
 	}
 	
 	public void setMember(MemberInformationVO member){

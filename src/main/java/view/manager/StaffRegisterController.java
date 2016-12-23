@@ -49,47 +49,48 @@ public class StaffRegisterController {
 		if(staffIdField.getText().length()>0&&staffNameField.getText().length()>0
 				&&staffPasswordField.getText().length()>0&&staffConfirmField.getText().length()>0
 				&&hotelNameField.getText().length()>0){
+			
 			if(staffConfirmField.getText().equals(staffPasswordField.getText())){
-			    
-				HotelService hotelService=new HotelServiceImpl();
-			    
-			    if(hotelService.judgeHotelExists(hotelNameField.getText())){
-			    	UserService userService=new UserControllerblimpl();
+			        
+			    UserService userService=new UserControllerblimpl();
 			    	
-			    	if(!userService.isStaffExist(hotelNameField.getText())){
-			    		if(userService.find(staffIdField.getText(), UserType.staff)==null){
-			    	        StaffVO staffVO=new StaffVO(staffIdField.getText()
-			    			    , staffPasswordField.getText(), 
-							    staffNameField.getText(), hotelNameField.getText());
-			    	        userService.addStaff(staffVO);
-			    	        this.showDialog(AlertType.INFORMATION, "成功", "成功添加一名工作人员");
+			    if(!userService.isStaffExist(hotelNameField.getText())){
+			    	if(userService.find(staffIdField.getText(), UserType.staff)==null){
+			            StaffVO staffVO=new StaffVO(staffIdField.getText()
+			   			    , staffPasswordField.getText(), 
+						    staffNameField.getText(), hotelNameField.getText());
+		    	        ResultMessage resultMessage=userService.addStaff(staffVO);
+		    	        
+		    	        if(resultMessage.equals(ResultMessage.hotelNotExist)){
+		    	        	this.showDialog(AlertType.WARNING, "酒店不存在", "现在添加酒店");		
+		    	        	main.moveAddHotel();
+		    	        	
+		    	        }else{
+			    	     
+		    	        	this.showDialog(AlertType.INFORMATION, "成功", "成功添加一名工作人员");
+			    	    }
 			    	        
 			    		}else{
 			    			//这个账号不可用
-			    			this.showDialog(AlertType.WARNING, "提醒", "这个账号有人啦");
+			    			this.showDialog(AlertType.WARNING, "提醒", "这个账号不可用");
 			    		}
 			        }else{
 			        	//提示酒店已存在工作人员
 			        	this.showDialog(AlertType.WARNING, "提醒", "酒店已存在工作人员");
 			        }
-			    }else{
-			        //酒店不存在，跳转到添加酒店的界面
-			    	this.showDialog(AlertType.WARNING, "酒店不存在", "现在添加酒店");
-			    	main.moveAddHotel();
-			    }
 			}else{
 				//密码不一致
 				this.showDialog(AlertType.WARNING, "提醒", "密码不一致");
 			}
 		}else{
 			//提示输入不完整
-			this.showDialog(AlertType.ERROR, "提醒", "输入位完成");
+			this.showDialog(AlertType.ERROR, "提醒", "输入未完成");
 		}
 	}
 	
 	private void showDialog(AlertType type,String Headertext,String Content){
 		Alert alert = new Alert(type);
-	    alert.setTitle("来自爸爸的问候");
+	    alert.setTitle("来自系统的消息");
 	    alert.setHeaderText(Headertext);
 	    alert.setContentText(Content);
 

@@ -2,8 +2,9 @@ package blservice;
 
 import java.util.ArrayList;
 
+import Evaluateblimpl.EvaluateVO;
 import Evaluateblimpl.ResultMessage;
-import po.EvaluatePO;
+import vo.OrderVo;
 
 public interface EvaluateService {
 	 
@@ -12,7 +13,7 @@ public interface EvaluateService {
      * @param evaluatePO 需要保存的值
      * 
      */
-	 public ResultMessage evaluate(EvaluatePO evaluatePO);
+	 public ResultMessage evaluate(EvaluateVO evaluateVO,OrderVo orderVo);
 	 
 	 /**
 	 * @param hotelName 酒店的名称

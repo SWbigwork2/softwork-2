@@ -1,9 +1,14 @@
 package view.member;
 
+import Evaluateblimpl.EvaluateVO;
 import Evaluateblimpl.Evaluateblimpl;
 import Hotelblimpl.HotelRanking;
+import Usersblimpl.UserControllerblimpl;
+import Usersblimpl.UserType;
+import Usersblimpl.UserVO;
 import blservice.EvaluateService;
 import blservice.OrdersService;
+import blservice.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,7 +57,7 @@ public class EvaluateController {
 	 */
 	@FXML
 	private void cancel(){
-		main.backPane();
+		main.showOrderList();
 	}
 	
 	/**
@@ -64,10 +69,12 @@ public class EvaluateController {
 	    String evaluate=evaluationArea.getText();
 	    if(evaluate.length()>=1){
 	    	EvaluateService service=new Evaluateblimpl();
-	    	EvaluatePO  po=new EvaluatePO(this.order.getHotel(), score, evaluate, this.order.getName());
-	    	service.evaluate(po);
-	    	OrdersService ordersService=new OrderServiceImpl();
-	    	ordersService.setType(order.getOrderId(), OrderType.evaluation);
+	    	
+	    	String name=new UserControllerblimpl().find(order.getUserId(), UserType.member).getName();
+	    	
+	    	EvaluateVO  vo=new EvaluateVO(this.order.getHotel(), score, evaluate, name);
+	    	
+	    	service.evaluate(vo,order);
 	    
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 	    	alert.setTitle("提示");

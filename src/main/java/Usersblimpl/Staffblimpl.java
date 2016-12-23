@@ -2,6 +2,9 @@ package Usersblimpl;
 
 import java.sql.SQLException;
 
+import Hotelblimpl.HotelServiceImpl;
+import Hotelblimpl.HotelsInfo;
+import blservice.HotelService;
 import data.dao.UserDao;
 import data.rmi.RemoteHelper;
 import po.StaffPO;
@@ -15,7 +18,10 @@ public class Staffblimpl extends Userblimpl {
 		userDao = remoteHelper.getUsersDao();
 		// TODO Auto-generated constructor stub
 	}
-	@Override
+	
+	/**
+	 *查找酒店工作人员 
+	 */
 	public StaffVO find(String id, UserType type){
 		
 		UserPO userPO=null;
@@ -38,7 +44,9 @@ public class Staffblimpl extends Userblimpl {
 		return staffVO;
 	}
 
-	@Override
+	/**
+	 * 修改酒店工作人员信息
+	 */
 	public ResultMessage revoke(UserVO user) {
 		ResultMessage resultMessage=null;
 		StaffPO staffPO=(StaffPO)UserPoVoTran.VoToPo(user);
@@ -53,18 +61,23 @@ public class Staffblimpl extends Userblimpl {
         return resultMessage;
 	}
     
+	/**
+	 * 
+	 * @param staff
+	 * @return 添加酒店工作人员
+	 */
 	public ResultMessage add(StaffVO staff){
 		ResultMessage resultMessage=ResultMessage.fail;
-	
-		
-			//判断酒店是否存在，不存在就添加酒店
-//			HotelService hotelService=new Hotel();
 			
-			
-			//已存在酒店，添加工作人员
 	        StaffPO staffPO=(StaffPO)UserPoVoTran.VoToPo(staff);
 			
+	        HotelService hotelService=new HotelServiceImpl();
+	        if(!hotelService.judgeHotelExists(staff.getHotelName())){
+	        	return ResultMessage.hotelNotExist;
+	        }
+	        
 	        try {
+	        	
 				resultMessage=userDao.addUser(staffPO);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -73,7 +86,11 @@ public class Staffblimpl extends Userblimpl {
 	
         return resultMessage;
 	}
-	
+	/**
+	 * 
+	 * @param hotelName
+	 * @return 判断酒店是否存在工作人员
+	 */
 	public boolean isStaffExist(String hotelName){
 		
 		return userDao.isHotelHasStaff(hotelName);
