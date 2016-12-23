@@ -6,6 +6,10 @@ import Roomblimpl.RoomType;
 import po.OrderPO;
 import vo.OrderVo;
 
+/**
+ * @author 朱润之
+ * 用于vo与po的互相转换
+ */
 public class OrderPoVoTran {
 	/**
 	 * @param po
@@ -36,6 +40,10 @@ public class OrderPoVoTran {
 		return vo;
 	}
 	
+	/**
+	 * @param vo
+	 * @return vo转po
+	 */
 	public OrderPO vo2po(OrderVo vo){
 		int orderId = vo.getOrderId();
 		String userId = vo.getUserId();
