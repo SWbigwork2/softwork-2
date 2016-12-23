@@ -86,7 +86,7 @@ public class ShowMarketPromotionsController {
 	    			if (result.get() == ButtonType.OK){
 	    	    		String typestr=selectedStr.substring(2, 3);
 	    	    		int  type=Integer.parseInt(typestr);
-	    	    		String introduction=selectedStr.substring(3);
+	    	    		String introduction=selectedStr.substring(4);
 	    	    		String hotelname=hotelnameTextField.getText();
 	    	    		PromotionsVO promotionsVO=new PromotionsVO();
 	    	    		promotionsVO.setHotel(hotelname);
