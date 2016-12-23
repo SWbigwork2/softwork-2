@@ -33,6 +33,7 @@ public class SearchHotelController {
 	private ObservableList<HotelRanking> rankingList;
 	private ObservableList<RoomType> roomTypeList;
 	private ObservableList<String> priceList;
+	private ObservableList<String> remarkList;
 	private String memberId;
 
 	@FXML
@@ -61,6 +62,8 @@ public class SearchHotelController {
 	private TextField AddressBar;
 	@FXML
 	private TextField roomNumBar;
+	@FXML
+	private ComboBox<String> remarkBar;
 
 	private Main main;
 
@@ -79,6 +82,7 @@ public class SearchHotelController {
 		AdvertisementArea = new Pagination();
 		AddressBar = new TextField();
 		roomNumBar = new TextField();
+		remarkBar = new ComboBox<String>();
 	}
 
 	@FXML
@@ -106,13 +110,16 @@ public class SearchHotelController {
 				HotelTradeArea.新街口商圈, HotelTradeArea.桥北商圈, HotelTradeArea.河西商圈, HotelTradeArea.湖南路商圈,
 				HotelTradeArea.百家湖商圈);
 		rankingList = FXCollections.observableArrayList(HotelRanking.三星级, HotelRanking.四星级, HotelRanking.五星级);
-		priceList = FXCollections.observableArrayList("100-199元", "200-299元", "300-399元", "400-499元", "500元以上");
+		priceList = FXCollections.observableArrayList("500元以下", "500～999元", "1000元以上");
 		roomTypeList = FXCollections.observableArrayList(RoomType.单人间, RoomType.商务间, RoomType.标准间, RoomType.行政标准间,
 				RoomType.高级套间);
+		remarkList = FXCollections.observableArrayList("4.5以上","4.0~4.5","3.5~4.0");
 		TypeBar.setItems(roomTypeList);
 		TradeAreaBar.setItems(tradeAreaList);
 		PriceBar.setItems(priceList);
 		rankingBar.setItems(rankingList);
+		remarkBar.setItems(remarkList);
+		
 	}
 
 	@FXML
@@ -129,29 +136,46 @@ public class SearchHotelController {
 		HotelTradeArea tradeArea = TradeAreaBar.getValue();
 		HotelRanking hotelRanking = rankingBar.getValue();
 		int roomsNeeded = 0;
+		
 		double highPrice = 0;
 		double lowPrice = 0;
 		String priceStr = PriceBar.getValue();
 		if (priceStr != null) {
-			if (priceStr.equals("100-199元")) {
-				highPrice = 199;
-				lowPrice = 100;
-			} else if (priceStr.equals("200-299元")) {
-				highPrice = 299;
-				lowPrice = 200;
-			} else if (priceStr.equals("300-399元")) {
-				highPrice = 399;
-				lowPrice = 300;
-			} else if (priceStr.equals("400-499元")) {
+			if (priceStr.equals("500元以下")) {
 				highPrice = 499;
-				lowPrice = 400;
-			} else if (priceStr.equals("500元以上")) {
-				highPrice = 1500;
+				lowPrice = 0;
+			} else if (priceStr.equals("500～999元")) {
+				highPrice = 999;
 				lowPrice = 500;
+			} else if (priceStr.equals("1000元以上")) {
+				highPrice = 2000;
+				lowPrice = 1000;
 			}
 		} else {
 			highPrice = -1;
 		}
+		
+		
+		double highRemark = 0;
+		double lowRemark = 0;
+		
+		
+		String remarkStr = PriceBar.getValue();
+		if (remarkStr != null) {
+			if (priceStr.equals("4.5及以上")) {
+				highRemark = 5.0;
+				lowRemark = 4.5;
+			} else if (priceStr.equals("4.0~4.5")) {
+				highRemark = 4.5;
+				lowRemark = 4.0;
+			} else if (priceStr.equals("3.5~4.0")) {
+				highRemark = 4.0;
+				lowRemark = 3.5;
+			} 
+		} else {
+			highRemark = -1;
+		}
+		
 		if (tradeArea == null || hotelAddress == "") {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("提示");
@@ -160,7 +184,7 @@ public class SearchHotelController {
 			alert.showAndWait();
 		} else {
 			HotelSearchVo hotelSearchVo = new HotelSearchVo(hotelName, hotelAddress, inDate, outDate, roomType,
-					tradeArea, highPrice, lowPrice, true, memberId, hotelRanking, roomsNeeded);
+					tradeArea, highPrice, lowPrice, true, memberId, hotelRanking, roomsNeeded,highRemark,lowRemark);
 			ArrayList<HotelColumnVo> hotelList = hotelService.getHotelListInfo(hotelSearchVo);
 			main.showBrowseHotel(hotelList, inDate, outDate);
 		}
@@ -192,48 +216,63 @@ public class SearchHotelController {
 		double highPrice = 0;
 		double lowPrice = 0;
 		String priceStr = PriceBar.getValue();
+		
 		if (priceStr != null) {
-			if (priceStr.equals("100-199元")) {
-				highPrice = 199;
-				lowPrice = 100;
-			} else if (priceStr.equals("200-299元")) {
-				highPrice = 299;
-				lowPrice = 200;
-			} else if (priceStr.equals("300-399元")) {
-				highPrice = 399;
-				lowPrice = 300;
-			} else if (priceStr.equals("400-499元")) {
+			if (priceStr.equals("500元以下")) {
 				highPrice = 499;
-				lowPrice = 400;
-			} else if (priceStr.equals("500元以上")) {
-				highPrice = 1500;
+				lowPrice = 0;
+			} else if (priceStr.equals("500～999元")) {
+				highPrice = 999;
 				lowPrice = 500;
+			} else if (priceStr.equals("1000元以上")) {
+				highPrice = 2000;
+				lowPrice = 1000;
 			}
 		} else {
 			highPrice = -1;
 		}
+		
+		double highRemark = 0;
+		double lowRemark = 0;
+		
+		String remarkStr = PriceBar.getValue();
+		if (remarkStr != null) {
+			if (priceStr.equals("4.5及以上")) {
+				highRemark = 5.0;
+				lowRemark = 4.5;
+			} else if (priceStr.equals("4.0~4.5")) {
+				highRemark = 4.5;
+				lowRemark = 4.0;
+			} else if (priceStr.equals("3.5~4.0")) {
+				highRemark = 4.0;
+				lowRemark = 3.5;
+			} 
+		} else {
+			highRemark = -1;
+		}
+		
 
-        if (tradeArea == null || hotelAddress == "") {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("提示");
-            alert.setHeaderText(null);
-            alert.setContentText("请填写完整信息进行搜索");
-            alert.showAndWait();
-        } else {
-            HotelSearchVo hotelSearchVo = new HotelSearchVo(hotelName, hotelAddress, inDate, outDate, roomType,
-                                                            tradeArea, highPrice, lowPrice, false, memberId, hotelRanking, roomsNeeded);
-            ArrayList<HotelColumnVo> hotelList = hotelService.getHotelListInfo(hotelSearchVo);
-            if(hotelList.size()==0){
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("提示");
-                alert.setHeaderText(null);
-                alert.setContentText("不存在符合条件的酒店");
-                alert.showAndWait();
-            }else{
-                main.showBrowseHotel(hotelList, inDate, outDate);
-            }
-        }
-        System.out.println(inDate.toString());
-        // 跳转到浏览酒店界面
+		if (tradeArea == null || hotelAddress == "") {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("提示");
+			alert.setHeaderText(null);
+			alert.setContentText("请填写完整信息进行搜索");
+			alert.showAndWait();
+		} else {
+			HotelSearchVo hotelSearchVo = new HotelSearchVo(hotelName, hotelAddress, inDate, outDate, roomType,
+					tradeArea, highPrice, lowPrice, false, memberId, hotelRanking, roomsNeeded,highRemark,lowRemark);
+			ArrayList<HotelColumnVo> hotelList = hotelService.getHotelListInfo(hotelSearchVo);
+			if(hotelList.size()==0){
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("提示");
+				alert.setHeaderText(null);
+				alert.setContentText("不存在符合条件的酒店");
+				alert.showAndWait();
+			}else{
+			main.showBrowseHotel(hotelList, inDate, outDate);
+			}
+		}
+		System.out.println(inDate.toString());
+		// 跳转到浏览酒店界面
 	}
 }

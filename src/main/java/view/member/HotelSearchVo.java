@@ -19,10 +19,13 @@ public class HotelSearchVo {
 	private String memberId;
 	private HotelRanking hotelRanking;
 	private int numOfNeededRooms;
+	private double highRemark;
+	private double lowReamark;
 	
 
 	public HotelSearchVo(String hotelName, String hotelAddress, LocalDate inTime, LocalDate outTime, RoomType roomType,
-			HotelTradeArea tradeArea, double highPrice, double lowPrice, boolean isHistorySearch,String memberId,HotelRanking hotelRanking,int numOfNeededRooms) {
+			HotelTradeArea tradeArea, double highPrice, double lowPrice, boolean isHistorySearch,String memberId,HotelRanking hotelRanking,int numOfNeededRooms
+			,double highRemark, double lowRemark) {
 		this.hotelName = hotelName;
 		this.hotelAddress = hotelAddress;
 		this.inTime = inTime;
@@ -35,6 +38,8 @@ public class HotelSearchVo {
 		this.memberId = memberId;
 		this.hotelRanking = hotelRanking;
 		this.numOfNeededRooms = numOfNeededRooms;
+		this.highRemark = highRemark;
+		this.lowReamark = lowRemark;
 	}
 	
 	public String getHotelName(){
@@ -74,4 +79,13 @@ public class HotelSearchVo {
 	public int getNumOfNeededRooms(){
 		return numOfNeededRooms;
 	}
+	
+	public double getHighRemark(){
+		return highRemark;
+	}
+	
+	public double getLowRemark(){
+		return lowReamark;
+	}
+	
 }
