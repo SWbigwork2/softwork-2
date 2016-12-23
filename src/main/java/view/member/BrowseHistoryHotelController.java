@@ -67,6 +67,7 @@ public class BrowseHistoryHotelController {
 			setLabel(hotelColumList.get(0));
 		} else {
 			hotelColumList.add("无历史预定酒店");
+			return;
 		}
 		
 		setLabel(hotelList.get(0));

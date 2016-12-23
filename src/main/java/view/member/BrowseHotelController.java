@@ -155,7 +155,7 @@ public class BrowseHotelController {
 		hotelPriceColumn.setCellValueFactory(cellData -> cellData.getValue().getHotelPrice());
 		hotelRankingColumn.setCellValueFactory(cellData -> cellData.getValue().getHotelRanking());
 		hotelRemarkColumn.setCellValueFactory(cellData -> cellData.getValue().getHotelRemark());
-		
+		if(hotelColumList.size()>0)
 		setLabel(hotelColumList.get(0).getHotelName().get());
 		
 	}

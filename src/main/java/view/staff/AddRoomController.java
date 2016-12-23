@@ -92,6 +92,7 @@ public class AddRoomController {
 				alert.setHeaderText(null);
 				alert.setContentText("分隔符为半角英文逗号");
 				alert.showAndWait();
+				return;
 			}
 			if (list.length != roomNum) {
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -99,6 +100,7 @@ public class AddRoomController {
 				alert.setHeaderText(null);
 				alert.setContentText("请核对房间ID数目与与添加房间数目");
 				alert.showAndWait();
+				return;
 			}	
 			for (String cell : list) {
 				RoomVo roomVo = new RoomVo(Integer.valueOf(cell), hotelName, roomType, roomIntroduction, roomPrice);

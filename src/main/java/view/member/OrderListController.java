@@ -79,18 +79,19 @@ public class OrderListController {
 		
 		memberInformationVO = memberVo;
 		infoList = main.getOrderList(memberVo.getUserId());
-		
+		if(infoList.size()>=1){
 		orderVoInfo = infoList.get(0);
-		
-		ID.setText(memberVo.getUserId());
-		name.setText(memberVo.getName());
-		level.setText(memberVo.getLevel());
 		orderId.setText(orderVoInfo.getOrderId()+"");
 		beginDate .setText(orderVoInfo.getBeginDate().toLocaleString());
 		endDate.setText(orderVoInfo.getCompleteDate().toLocaleString());
 		hotel.setText(orderVoInfo.getHotel());
 		price.setText(orderVoInfo.getPrice()+"");
 		type.setText(orderVoInfo.getType());
+		}
+		ID.setText(memberVo.getUserId());
+		name.setText(memberVo.getName());
+		level.setText(memberVo.getLevel());
+		
 	
 		orderTypeChoice.valueProperty().addListener(new ChangeListener<String>() {
 
