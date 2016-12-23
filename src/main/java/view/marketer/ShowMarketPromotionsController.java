@@ -32,7 +32,8 @@ public class ShowMarketPromotionsController {
 	    	  promotionslistListView=new ListView<String>();
 	    	  
 	      }
-	      public void showpromotions(){
+	      @FXML
+	      public void initialize(){
 //	    	  String hotelname=hotelnameTextField.getText();
 //	    	  if(hotelname.length()==0){
 //	    		  Alert alert=new Alert(AlertType.INFORMATION);
@@ -48,6 +49,7 @@ public class ShowMarketPromotionsController {
 //	    	  hotelpromotions.add(x2); 
 	    	  String hotelname="网站";
 	    	ArrayList<String> hotelpromotions= promotionsService.getHotelPromotion(hotelname);
+	    
 	    	temp = FXCollections.observableArrayList();
 	    	  for(String pro:hotelpromotions){
 	    		  temp.add(pro); 

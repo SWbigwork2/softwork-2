@@ -119,7 +119,7 @@ public class SearchHotelController {
 		PriceBar.setItems(priceList);
 		rankingBar.setItems(rankingList);
 		remarkBar.setItems(remarkList);
-		
+		memberId = main.getMembervo().getUserId();
 	}
 
 	@FXML
@@ -160,15 +160,15 @@ public class SearchHotelController {
 		double lowRemark = 0;
 		
 		
-		String remarkStr = PriceBar.getValue();
+		String remarkStr = remarkBar.getValue();
 		if (remarkStr != null) {
-			if (priceStr.equals("4.5及以上")) {
+			if (remarkStr.equals("4.5及以上")) {
 				highRemark = 5.0;
 				lowRemark = 4.5;
-			} else if (priceStr.equals("4.0~4.5")) {
+			} else if (remarkStr.equals("4.0~4.5")) {
 				highRemark = 4.5;
 				lowRemark = 4.0;
-			} else if (priceStr.equals("3.5~4.0")) {
+			} else if (remarkStr.equals("3.5~4.0")) {
 				highRemark = 4.0;
 				lowRemark = 3.5;
 			} 
@@ -185,8 +185,17 @@ public class SearchHotelController {
 		} else {
 			HotelSearchVo hotelSearchVo = new HotelSearchVo(hotelName, hotelAddress, inDate, outDate, roomType,
 					tradeArea, highPrice, lowPrice, true, memberId, hotelRanking, roomsNeeded,highRemark,lowRemark);
+			
 			ArrayList<HotelColumnVo> hotelList = hotelService.getHotelListInfo(hotelSearchVo);
+			if(hotelList.size()==0){
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("提示");
+				alert.setHeaderText(null);
+				alert.setContentText("不存在符合条件的酒店");
+				alert.showAndWait();
+			}else{
 			main.showBrowseHotel(hotelList, inDate, outDate);
+			}
 		}
 
 		// 跳转到浏览酒店界面
@@ -235,15 +244,15 @@ public class SearchHotelController {
 		double highRemark = 0;
 		double lowRemark = 0;
 		
-		String remarkStr = PriceBar.getValue();
+		String remarkStr = remarkBar.getValue();
 		if (remarkStr != null) {
-			if (priceStr.equals("4.5及以上")) {
+			if (remarkStr.equals("4.5及以上")) {
 				highRemark = 5.0;
 				lowRemark = 4.5;
-			} else if (priceStr.equals("4.0~4.5")) {
+			} else if (remarkStr.equals("4.0~4.5")) {
 				highRemark = 4.5;
 				lowRemark = 4.0;
-			} else if (priceStr.equals("3.5~4.0")) {
+			} else if (remarkStr.equals("3.5~4.0")) {
 				highRemark = 4.0;
 				lowRemark = 3.5;
 			} 

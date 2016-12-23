@@ -1,5 +1,6 @@
 package view.staff;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -9,6 +10,7 @@ import Membersblimpl.MemberVO;
 import Usersblimpl.StaffVO;
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
+import blservice.OrdersService;
 import blservice.UserService;
 import data.rmi.RemoteHelper;
 import javafx.application.Application;
@@ -22,6 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import loginblimpl.LoginVo;
+import ordersblimpl.OrderServiceImpl;
 
 public class Main extends Application {
   
@@ -36,6 +39,7 @@ public class Main extends Application {
 	private static Stage loginStage;
 	private UserService userService;
 	private static String hotelName;
+	private OrdersService ordersService;
 private RemoteHelper remoteHelper;
 	
 	public void linkToServer(){
@@ -54,6 +58,7 @@ private RemoteHelper remoteHelper;
 	}
 	
 	public  Main() {
+		ordersService = new OrderServiceImpl();
 		userService = new UserControllerblimpl();
 		loader = new FXMLLoader();
 	  
@@ -121,6 +126,8 @@ private RemoteHelper remoteHelper;
 	public void showList(){
 		 loader=new FXMLLoader();
 		 SplitPane pane = null;
+	
+		
 			try {
 			
 				loader.setLocation(Main.class.getResource("OrderErrorlist.fxml"));
@@ -131,7 +138,8 @@ private RemoteHelper remoteHelper;
 				e.printStackTrace();
 				
 			}
-		
+			OrderErrorListController controller = loader.getController();
+			controller.initialize(ordersService.getHotelOrder(hotelName), hotelName);
 		staffBorderPane.setCenter(pane);
 	}
 	

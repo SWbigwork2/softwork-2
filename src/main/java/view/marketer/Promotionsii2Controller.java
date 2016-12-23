@@ -44,6 +44,7 @@ public class Promotionsii2Controller {
 	}
 	@FXML
 	public void initialize() {
+		
 		final Callback<DatePicker, DateCell> dayCellFactory = 
 	            new Callback<DatePicker, DateCell>() {
 	                public DateCell call(final DatePicker datePicker) {
@@ -98,8 +99,8 @@ public class Promotionsii2Controller {
 	@FXML
 	public void clearPromotionsII2(){
 		discountTextField.setText("");
-		startdateDatePicker.setValue(null);
-		enddateDatePicker.setValue(null);
+		startdateDatePicker.setValue(LocalDate.now());
+		
 		introductionTextField.setText("");
 	}
 	

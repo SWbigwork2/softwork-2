@@ -11,6 +11,7 @@ import blservice.MembersService;
 import blservice.PromotionsService;
 import data.dao.PromotionsDao;
 import data.rmi.RemoteHelper;
+import ordersblimpl.PromotionGetPrice;
 import po.HotelPO;
 import po.MemberPO;
 import po.PromotionsIIIPO;
@@ -81,7 +82,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 			MemberPO member=membersService.getMember(userId);
 			if(member.getType()==0){
 				String birth=member.getSpecial();
-				if(birth==null){
+				if(birth.equals("null")){
 					
 				}else{
 			    String date[]=birth.split("-");
@@ -135,7 +136,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 
 	  for(PromotionsPO webpo:webstrategieslist){
 		  if(webpo.getType()==2){
-				PromotionsIIPO newpo=(PromotionsIIPO)po;
+				PromotionsIIPO newpo=(PromotionsIIPO)webpo;
 				Date now=new Date();
 				String nowday=df.format(now);
 				String startdate=newpo.getStartdate();
@@ -148,10 +149,10 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 				}
 			
 			}
-			else if(po.getType()==5){
+			else if(webpo.getType()==5){
 				MembersService membersService=new MemberServiceImpl();
 			    HotelService  hotelService=new HotelServiceImpl();
-			   PromotionsVPO poV=(PromotionsVPO)po;
+			   PromotionsVPO poV=(PromotionsVPO)webpo;
 			   HotelPO hotelPO=hotelService.getHotelInformation(hotel);
 			   MemberPO memberPO=membersService.getMember(userId);
 			   String area=hotelPO.getTradeArea().toString();
@@ -165,10 +166,10 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 				
 				
 				
-			}else if(po.getType()==6){
+			}else if(webpo.getType()==6){
 				MembersService membersService=new MemberServiceImpl();
 				MemberPO memberPO =membersService.getMember(userId);
-				PromotionsVIPO poVI=(PromotionsVIPO)po;
+				PromotionsVIPO poVI=(PromotionsVIPO)webpo;
 				if(poVI.getViplevel()==memberPO.getLevel()){
 					if(poVI.getDiscount()<=discount){
 						discount=poVI.getDiscount();
@@ -176,6 +177,7 @@ public class PromotionsServiceImpl implements PromotionsService,PromotionGetPric
 					}
 				}
 			}
+
 		  
 	  }
 		}

@@ -49,7 +49,8 @@ public class PromotionsiController  {
 		main.showWaningInformation(AlertType.INFORMATION, "折扣只能在0.1~0.99之间");
 			
 		}
-		else if(hotelService.judgeHotelExists(hotel)){
+		else if(!hotelService.judgeHotelExists(hotel)){
+			
 			main.showWaningInformation(AlertType.INFORMATION, "不存在该酒店");
 		}
 		else {

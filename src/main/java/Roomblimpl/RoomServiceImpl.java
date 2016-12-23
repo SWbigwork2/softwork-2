@@ -10,10 +10,11 @@ import blservice.RoomService;
 import data.dao.RoomsDao;
 import data.rmi.RemoteHelper;
 import ordersblimpl.OrderServiceImpl;
+import ordersblimpl.RoomReservationService;
 import po.RoomPO;
 import view.member.RoomVo;
 
-public class RoomServiceImpl implements RoomService {
+public class RoomServiceImpl implements RoomService,RoomReservationService{
 
 	private RoomsDao roomsDao;
 	private RemoteHelper remoteHelper;
@@ -38,41 +39,42 @@ public class RoomServiceImpl implements RoomService {
 	/**
 	 * 
 	 */
-    @Override
-    public ArrayList<RoomVo> getRoomOfHotel(String hotelName, Date startTime, Date endTime) {
-        
-        ArrayList<RoomPO> roomList = roomsDao.getRoomList(hotelName);
-        boolean[] isAvailable = new boolean[roomList.size()];
-        for (int k = 0; k < isAvailable.length; k++) {
-            isAvailable[k] = true;
-        }
-        int i = 0;
-        for (RoomPO cell : roomList) {
-            Map<Date, Date> timePeriod = cell.getUnavailablePeriod();
-            if (timePeriod != null) {
-                Set<Date> startTimeList = timePeriod.keySet();
-                for (Date dateCell : startTimeList) {
-                    if (!((endTime.before(dateCell) || endTime.equals(dateCell)
-                           || startTime.after(timePeriod.get(dateCell))
-                           || startTime.equals(timePeriod.get(dateCell))))) {
-                        isAvailable[i] = false;
-                        break;
-                    }
-                }
-            }
-            i++;
-        }
-        
-        ArrayList<RoomVo> resultList = new ArrayList<RoomVo>();
-        int j = 0;
-        for (boolean cell : isAvailable) {
-            if (cell) {
-                resultList.add(roomVoPoTran.PoToVO(roomList.get(j)));
-            }
-            j++;
-        }
-        return resultList;
-    }
+	@Override
+	public ArrayList<RoomVo> getRoomOfHotel(String hotelName, Date startTime, Date endTime) {
+
+		ArrayList<RoomPO> roomList = roomsDao.getRoomList(hotelName);
+		boolean[] isAvailable = new boolean[roomList.size()];
+		for (int k = 0; k < isAvailable.length; k++) {
+			isAvailable[k] = true;
+		}
+		int i = 0;
+		for (RoomPO cell : roomList) {
+			Map<Date, Date> timePeriod = cell.getUnavailablePeriod();
+			if (timePeriod != null) {
+				Set<Date> startTimeList = timePeriod.keySet();
+				for (Date dateCell : startTimeList) {
+					if (!((endTime.before(dateCell) || endTime.equals(dateCell)
+							|| startTime.after(timePeriod.get(dateCell))
+							|| startTime.equals(timePeriod.get(dateCell))))) {
+						isAvailable[i] = false;
+						break;
+					}
+				}
+			}
+			i++;
+		}
+
+		ArrayList<RoomVo> resultList = new ArrayList<RoomVo>();
+		int j = 0;
+		for (boolean cell : isAvailable) {
+			if (cell) {
+				resultList.add(roomVoPoTran.PoToVO(roomList.get(j)));
+			}
+			j++;
+		}
+		return resultList;
+	}
+
 	/**
 	 * 
 	 */
@@ -209,49 +211,48 @@ public class RoomServiceImpl implements RoomService {
 	/**
 	 * 
 	 */
-    @Override
-    public Map<RoomType, Double> getPriceOfRoom(String hotelName, Date startTime, Date endTime) {
-        ArrayList<RoomPO> roomList = roomsDao.getRoomList(hotelName);
-        /**
-         * priceType1指的是单人间 priceType2指的是商务间 priceType3指的是标准间 priceType4指的是行政标准间
-         * priceType5指的是高级套间
-         */
-        double priceType1 = 0;
-        double priceType2 = 0;
-        double priceType3 = 0;
-        double priceType4 = 0;
-        double priceType5 = 0;
-        
-        for (RoomPO cell : roomList) {
-            switch (cell.getRoomType()) {
-                case 单人间:
-                    priceType1 = cell.getPrice();
-                    break;
-                case 商务间:
-                    priceType2 = cell.getPrice();
-                    break;
-                case 标准间:
-                    priceType3 = cell.getPrice();
-                    break;
-                case 行政标准间:
-                    priceType4 = cell.getPrice();
-                    break;
-                case 高级套间:
-                    priceType5 = cell.getPrice();
-                    break;
-            }
-        }
-        
-        Map<RoomType, Double> PriceOfType = new HashMap<RoomType, Double>();
-        PriceOfType.put(RoomType.单人间, priceType1);
-        PriceOfType.put(RoomType.商务间, priceType2);
-        PriceOfType.put(RoomType.标准间, priceType3);
-        PriceOfType.put(RoomType.行政标准间, priceType4);
-        PriceOfType.put(RoomType.高级套间, priceType5);
-        
-        return PriceOfType;
-        
-    }
+	@Override
+	public Map<RoomType, Double> getPriceOfRoom(String hotelName, Date startTime, Date endTime) {
+		ArrayList<RoomPO> roomList = roomsDao.getRoomList(hotelName);
+		/**
+		 * priceType1指的是单人间 priceType2指的是商务间 priceType3指的是标准间 priceType4指的是行政标准间
+		 * priceType5指的是高级套间
+		 */
+		double priceType1 = 0;
+		double priceType2 = 0;
+		double priceType3 = 0;
+		double priceType4 = 0;
+		double priceType5 = 0;
+
+		for (RoomPO cell : roomList) {
+			switch (cell.getRoomType()) {
+			case 单人间:
+				priceType1 = cell.getPrice();
+				break;
+			case 商务间:
+				priceType2 = cell.getPrice();
+				break;
+			case 标准间:
+				priceType3 = cell.getPrice();
+				break;
+			case 行政标准间:
+				priceType4 = cell.getPrice();
+			case 高级套间:
+				priceType5 = cell.getPrice();
+			}
+		}
+
+		Map<RoomType, Double> PriceOfType = new HashMap<RoomType, Double>();
+		PriceOfType.put(RoomType.单人间, priceType1);
+		PriceOfType.put(RoomType.商务间, priceType2);
+		PriceOfType.put(RoomType.标准间, priceType3);
+		PriceOfType.put(RoomType.行政标准间, priceType4);
+		PriceOfType.put(RoomType.高级套间, priceType5);
+
+		return PriceOfType;
+
+	}
+
 	/**
 	 * 
 	 */
@@ -274,19 +275,19 @@ public class RoomServiceImpl implements RoomService {
 			switch (cell.getRoomType()) {
 			case 单人间:
 				roomType1++;
-                break;
+				break;
 			case 商务间:
 				roomType2++;
-                break;
+				break;
 			case 标准间:
 				roomType3++;
-                break;
+				break;
 			case 行政标准间:
 				roomType4++;
-                break;
+				break;
 			case 高级套间:
 				roomType5++;
-                break;
+				break;
 			}
 		}
 		Map<RoomType, Integer> numOfRoomType = new HashMap<RoomType, Integer>();
@@ -307,6 +308,8 @@ public class RoomServiceImpl implements RoomService {
 		}
 		
 	}
+	
+	
 	
 	
 }

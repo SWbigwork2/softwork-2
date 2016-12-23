@@ -4,19 +4,19 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.Date;
 
-import data.dao.MembersDataService;
+import data.dao.MembersDao;
 import data.dao.impl.MembersDaoImpl;
 import po.MemberPO;
 
 public class getMemberTester {
-	MemberPO testpo=new MemberPO("1000", "王华","wanghua" , null, 100,"1997-05-02",0,2);
-	@Test
-	
-	public void getMembertest() throws SQLException {
-	 MembersDataService dao =MembersDaoImpl.getInstance();
+	MemberPO testpo=new MemberPO("1000", "王明","1111" , "13109290200", 200,null,0,1);
+	@Test	
+	public void getMembertest() throws SQLException, RemoteException {
+	MembersDao dao =MembersDaoImpl.getInstance();
 	 MemberPO po=dao.getMember("1000");
 	 assertTrue(isEqual(po, testpo));
 	}

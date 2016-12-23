@@ -109,7 +109,7 @@ public class PromotionsiiController {
 	public void clearPromotionsII(){
 //		hotelnameTextField.setText("");
 		discountTextField.setText("");
-		startdateDatePicker.setValue(null);
+		startdateDatePicker.setValue(LocalDate.now());
 		enddateDatePicker.setValue(null);
 		introductionTextField.setText("");
 	}

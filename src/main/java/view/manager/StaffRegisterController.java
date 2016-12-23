@@ -38,6 +38,10 @@ public class StaffRegisterController {
 	 */
 	@FXML
 	public void cancel(){
+		staffIdField.setText("");
+		staffNameField.setText("");
+		staffPasswordField.setText("");
+		staffConfirmField.setText("");
 		
 	}
 	
@@ -68,6 +72,7 @@ public class StaffRegisterController {
 		    	        }else{
 			    	     
 		    	        	this.showDialog(AlertType.INFORMATION, "成功", "成功添加一名工作人员");
+		    	        	cancel();
 			    	    }
 			    	        
 			    		}else{
@@ -95,6 +100,10 @@ public class StaffRegisterController {
 	    alert.setContentText(Content);
 
 	    alert.showAndWait();
+	}
+	
+	public void setHotel(String Hotel){
+		hotelNameField.setText(Hotel);
 	}
 	
 }

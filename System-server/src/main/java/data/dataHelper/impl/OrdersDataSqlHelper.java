@@ -45,7 +45,7 @@ public class OrdersDataSqlHelper implements OrdersDataHelper{
                  rowData.put(md.getColumnName(i), rs.getObject(i));   
          }   
          list.add(rowData);   
-         System.out.println("list:" + list.toString());   
+         
         }   
         return list;   
 }  

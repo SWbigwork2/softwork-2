@@ -3,6 +3,8 @@ package Hotelblimpl;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
+
 import Evaluateblimpl.Evaluateblimpl;
 import Roomblimpl.RoomServiceImpl;
 import Roomblimpl.RoomType;
@@ -156,7 +158,7 @@ public class HotelServiceImpl implements HotelService {
         ArrayList<HotelPO> hotelList4 = new ArrayList<HotelPO>();
         if (roomType != null) {
             for (HotelPO cell : hotelList3) {
-                if (roomService.getHotelRoomType(hotelName, startTimestamp, endTimestamp).contains(roomType)) {
+                if (roomService.getHotelRoomType(cell.getName(), startTimestamp, endTimestamp).contains(roomType)) {
                     hotelList4.add(cell);
                 }
             }

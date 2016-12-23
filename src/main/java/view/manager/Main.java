@@ -34,6 +34,7 @@ public class Main extends Application{
 	private static String userId;
 	private static Stage loginStage;
     private RemoteHelper remoteHelper;
+    private String hotelName;
 	
     public void linkToServer(){
 	    final String ip = "localhost";
@@ -182,6 +183,11 @@ public class Main extends Application{
 	 */
 	public void moveToAddStaff(){
 		BorderPane addStaff=loadPane("staffRegisterUi.fxml");
+		StaffRegisterController controller=loader.getController();
+		if(hotelName!=null){
+		    controller.setHotel(hotelName);
+		    hotelName=null;
+		}
 		
 		mainPane.setCenter(addStaff);
 	}
@@ -296,6 +302,10 @@ public class Main extends Application{
 
 	public static void setUserId(String userId) {
 		Main.userId = userId;
+	}
+	
+	public void setHotel(String hotelName){
+		this.hotelName=hotelName;
 	}
 }
 

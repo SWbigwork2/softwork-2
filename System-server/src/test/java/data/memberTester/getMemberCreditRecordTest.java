@@ -4,22 +4,25 @@ import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
 import java.rmi.RemoteException;
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
 import data.dao.MembersDao;
 import data.dao.impl.MembersDaoImpl;
-import po.MemberPO;
+import po.CreditrecordPO;
 
-public class updateCreditTester {
-	MemberPO testpo=new MemberPO("1000", "王明","1111" , "13109290200", 300,null,0,1);
+public class getMemberCreditRecordTest {
+
 	@Test
-	public void updateCredittest() throws SQLException, RemoteException {
+	public void creditRecordtest() throws RemoteException {
 		MembersDao dao=new MembersDaoImpl().getInstance();
-		assertTrue(dao.updateCredit("1000", 100));
-		assertTrue(isEqual(dao.getMember("1000"), testpo));
+		ArrayList<CreditrecordPO> testlist=new ArrayList<CreditrecordPO>();
+		CreditrecordPO creditrecordPO=new CreditrecordPO("1001", "2016-10-24", 1002, "订单执行", 100, 200);
+		testlist.add(creditrecordPO);
+		assertTrue(isEqual(dao.getMemberCreditRecord("1001"),testlist));
 	}
+
 	private boolean isEqual(Object obj1,Object obj2){       //比较两个类是否相同
 		Field[] f1 = obj1.getClass().getDeclaredFields();
 		Field[] f2 = obj1.getClass().getDeclaredFields();
@@ -30,5 +33,4 @@ public class updateCreditTester {
 		}
 		return true;
 	}
-
 }

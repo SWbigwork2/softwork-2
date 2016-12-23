@@ -78,13 +78,14 @@ public class addHotelController {
 		HotelService hotelService = new HotelServiceImpl();
 		//判断是否填写完整
 		if(isEmpty()){
-		    if(hotelService.judgeHotelExists(hotelNameBar.getText())){
+		    if(!hotelService.judgeHotelExists(hotelNameBar.getText())){
 		        HotelVo hotelVo = new HotelVo(hotelNameBar.getText()
 				, hotelAddressBar.getText(), hotelTradeAreaBar.getValue()
 				,introductionBar.getText(), hotelServiceBar.getText(),hotelRankingBar.getValue());
 		
 		        hotelService.addHotel(hotelVo);
 		        main.showWaningInformation(AlertType.INFORMATION,"成功", "已添加"+hotelNameBar.getText()+"的信息");
+		        main.setHotel(hotelNameBar.getText());
 		        main.moveToAddStaff();
 		    }else{
 		    	//提示用户酒店已存在
