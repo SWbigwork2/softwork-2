@@ -173,7 +173,7 @@ public class OrderInfoController {
 		 beginDate.setText(vo.getBeginDate().toLocaleString());
 		 outDate.setText(vo.getOutDate().toLocaleString());
 		 inDate.setText(vo.getInDate().toLocaleString());
-		 type.setText(vo.getType());
+		 type.setText(typeToName(vo.getType()));
 		 peopleNum.setText(vo.getPeopleNum()+"");
 		 System.out.println(vo.getType());
 		 revokeButton.setText("text");
@@ -202,5 +202,51 @@ public class OrderInfoController {
 		deadline.setText(vo.getDeadLine().toLocaleString());
 		 hotel.setText(vo.getHotel());
 	 }
+	 /**
+		 * @param type
+		 * @return 将订单状态改为中文显示
+		 */
+		private String typeToName(String type){
+			switch (type) {
+			case "normal":
+				return "未执行订单";
+			case "error":
+				return "异常订单";
+			case "done":
+				return "已完成订单";
+			case "appel":
+				return "已申请订单";
+			case "all":
+				return "全部订单";
+			case "revoke":
+				return "已撤销订单";
+			case "evaluation":
+				return "已评价订单";
+			default:
+				return null;
+				
+			}
+		}
+		private String nameToType(String name){
+			switch (name) {
+			case "未执行订单":
+				return "normal";
+			case "异常订单":
+				return "error";
+			case "已完成订单":
+				return "done";
+			case "已申请订单":
+				return "appel";
+			case "全部订单":
+				return "all";
+			case "已撤销订单":
+				return "revoke";
+			case "已评价订单":
+				return "evaluation";
+			default:
+				return null;
+				
+			}
+		}
 	
 }

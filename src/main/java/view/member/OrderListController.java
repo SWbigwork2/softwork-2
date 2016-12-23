@@ -111,8 +111,8 @@ public class OrderListController {
 		
 		
 		
-		orderTypeChoice.setItems(FXCollections.observableArrayList("revoke","normal","done","error","all","evaluation"));
-		orderTypeChoice.setValue("all");
+		orderTypeChoice.setItems(FXCollections.observableArrayList("已撤销订单","未执行订单","已完成订单","异常订单","全部订单","已评价订单"));
+		orderTypeChoice.setValue("全部订单");
 		orderListView.setItems(temp);
 	}
 	/**
@@ -121,7 +121,7 @@ public class OrderListController {
 	@FXML
 	public void changeChoice(){
 		String choice = orderTypeChoice.getSelectionModel().getSelectedItem();
-		
+		choice = nameToType(choice);
 		temp = FXCollections.observableArrayList();
 		temp.clear();
 		for(OrderVo info:infoList){
@@ -195,8 +195,55 @@ public class OrderListController {
 		String hotelStr = info.getHotel();
 		String beginStr = toForm(info.getBeginDate());
 		String price = info.getPrice()+"";
-		String type = info.getType();
+		String type = typeToName(info.getType());
+		
 		return orderId+" "+hotelStr+" "+beginStr+" "+price+"元"+" "+type;
+	}
+	/**
+	 * @param type
+	 * @return 将订单状态改为中文显示
+	 */
+	private String typeToName(String type){
+		switch (type) {
+		case "normal":
+			return "未执行订单";
+		case "error":
+			return "异常订单";
+		case "done":
+			return "已完成订单";
+		case "appel":
+			return "已申请订单";
+		case "all":
+			return "全部订单";
+		case "revoke":
+			return "已撤销订单";
+		case "evaluation":
+			return "已评价订单";
+		default:
+			return null;
+			
+		}
+	}
+	private String nameToType(String name){
+		switch (name) {
+		case "未执行订单":
+			return "normal";
+		case "异常订单":
+			return "error";
+		case "已完成订单":
+			return "done";
+		case "已申请订单":
+			return "appel";
+		case "全部订单":
+			return "all";
+		case "已撤销订单":
+			return "revoke";
+		case "已评价订单":
+			return "evaluation";
+		default:
+			return null;
+			
+		}
 	}
 	/**
 	 * @param date
@@ -232,7 +279,7 @@ public class OrderListController {
 		}
 		hotel.setText(resultInfo.getHotel());
 		price.setText(resultInfo.getPrice()+"");
-		type.setText(resultInfo.getType());
+		type.setText(typeToName(resultInfo.getType()));
 		
 		
 	}
