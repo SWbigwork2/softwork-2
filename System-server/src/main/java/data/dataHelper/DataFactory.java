@@ -1,7 +1,11 @@
 package data.dataHelper;
 
-import data.dataHelper.impl.MembersDataSqlHelper;
 
+
+/**
+ * @author 朱润之
+ * 工厂模式，用于创建对象
+ */
 public interface DataFactory {
 	 public MembersDataHelper getMembersDataHelper();
 	public OrdersDataHelper getOrdersDataHelper();
