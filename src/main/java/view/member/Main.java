@@ -7,18 +7,12 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.Stack;
-
-import org.junit.Before;
-
 import Roomblimpl.RoomType;
 import Usersblimpl.MemberInformationVO;
-
 import Usersblimpl.UserControllerblimpl;
 import Usersblimpl.UserType;
-
 import blservice.OrdersService;
 import blservice.UserService;
 import data.rmi.RemoteHelper;
@@ -26,23 +20,24 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import loginblimpl.LoginVo;
 import ordersblimpl.OrderServiceImpl;
 import ordersblimpl.OrderType;
-import rmiTest.linkTest;
 import vo.HotelVo;
 import vo.OrderVo;
-
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
 import javafx.scene.layout.Pane;
 
 
+/**
+ * @author 朱润之
+ *	会员客户端界面的主控制器以及进入的接口
+ *	控制界面间的跳转
+ */
 public class Main extends Application {
 	private static UserService userService;
 	private static MemberInformationVO membervo;
@@ -52,14 +47,17 @@ public class Main extends Application {
 	OrderVo testOrder = new OrderVo("lv3", 0001, "admin", "admin", "皇朝", new Date(), new Date(), new Date(), new Date(), new Date(), 100.0, "正在进行","normal",1,1,false);
 	private ObservableList<OrderVo> orderVolist = FXCollections.observableArrayList();
 	private static BorderPane root;
-	private static Stage primaryStage ;
+	private static Stage primaryStage;
 	private static Stage loginStage;
 	private static FXMLLoader loader;
-	private Stack<Pane> panes;
+	private Stack<Pane> panes;     //用于保存上一个界面的栈
 	private static Scene tempScene;
 	private RemoteHelper remoteHelper;
 	
-	public void linkToServer(){
+	/**
+	 * 连接到服务器端
+	 */
+	public void linkToServer(){ 
 		final String ip = "localhost";
 		try{
 			remoteHelper = RemoteHelper.getInstance();
@@ -82,6 +80,9 @@ public class Main extends Application {
 		//blService.checkOrder();
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * @return 单件模式，得到main的引用
+	 */
 	public static Main getMain(){
 		if(main==null){
 			main = new Main();
@@ -92,10 +93,16 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * @return 得到订单列表
+	 */
 	public ObservableList<OrderVo> getOrderVolist() {
 		return orderVolist;
 	}
 	
+	/**
+	 * 登出的实现
+	 */
 	public void logout(){
 		primaryStage.close();
 		membervo = null;
@@ -130,14 +137,10 @@ public class Main extends Application {
 	 * 显示个人信息
 	 */
 	public void showMemberInfo(){
-		
 		Pane infoPane = loadPane("memberInformationUi.fxml");
 		MemberInformationController controller = loader.getController();
 		controller.setMember(membervo);
 		root.setCenter(infoPane);
-		
-		
-		
 	}
 	
 	/**
@@ -165,6 +168,11 @@ public class Main extends Application {
 		root.setCenter(OrderBuilderPane);
 	}
 	
+	/**
+	 * @param orderVo
+	 * @param introduction
+	 * 显示订单信息确认页面
+	 */
 	public void showOrderInfoConfirm(OrderVo orderVo,String introduction){
 		panes.push((Pane) root.getCenter());
 		Pane OrderInfoConfirm = loadPane("OrderInfoConfirm.fxml");
@@ -174,6 +182,12 @@ public class Main extends Application {
 		
 	}
 	
+    /**
+     * @param hotelName
+     * @param startTime
+     * @param endTime
+     * 显示酒店详细信息的界面
+     */
     public void showHotelDetail(String hotelName,LocalDate startTime,LocalDate endTime){
         panes.push((Pane) root.getCenter());
         Pane hotelDetailPane = loadPane("BrowseHotelDetail.fxml");
@@ -279,15 +293,12 @@ public class Main extends Application {
 	
 	
 	
+	/* 
+	 * 启动客户端
+	 */
 	@Override
 	public void start(Stage primaryStage) {
-		try {/*
-			this.primaryStage = primaryStage;
-			this.primaryStage.setTitle("Winter Studio");
-			Pane loginPane = loadPane("MemberLogin.fxml");
-			Scene scene = new Scene(loginPane,800,600);
-			primaryStage.setScene(scene);
-			primaryStage.show();*/
+		try {
 		Main.primaryStage = primaryStage;
 	
 			loginStage = new Stage();
@@ -358,7 +369,11 @@ public class Main extends Application {
 		}
 	}
 	
-	public void setMemberVo(LoginVo vo){
+	/**
+	 * @param vo
+	 * 根据登陆信息，设置用户信息
+	 */
+	public void setMemberVo(LoginVo vo){ 
 		userService = new UserControllerblimpl();
 		Main.membervo = (MemberInformationVO) userService.find(vo.getId(), UserType.member);
 		
@@ -366,11 +381,17 @@ public class Main extends Application {
 		
 	}
 	
+	/**
+	 * 返回登陆界面
+	 */
 	public void returnLogin(){
 		loginStage.setScene(tempScene);
 		System.out.println("test");
 	}
 	
+	/**
+	 * 初始化显示主界面的方法
+	 */
 	public void initStage(){
 		orderVolist.add(testOrder);
 		
@@ -396,9 +417,16 @@ public class Main extends Application {
 		main.blService.checkOrder();
 		launch(args);
 	}
+	/**
+	 * @return 得到用户信息
+	 */
 	public static MemberInformationVO getMembervo() {
 		return membervo;
 	}
+	/**
+	 * @param membervo
+	 *  设置用户信息
+	 */
 	public static void setMembervo(MemberInformationVO membervo) {
 		Main.membervo = membervo;
 	}

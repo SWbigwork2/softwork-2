@@ -81,7 +81,7 @@ public class OrderInfoConfirmController {
 	 */
 	@FXML
 	public void cancel(){
-		stage.close();
+		main.backPane();
 		
 	}
 	

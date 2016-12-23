@@ -41,14 +41,14 @@
             <Label text="入住天数：" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label text="优惠策略：" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <Label text="总价格：" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Label fx:id="orderId" text="Label" GridPane.columnIndex="3" />
-            <Label fx:id="hotel" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label fx:id="roomType" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Label fx:id="roomNum" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Label fx:id="inDate" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Label fx:id="days" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Label fx:id="promotion" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <Label fx:id="price" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Label fx:id="orderId" prefHeight="19.0" prefWidth="172.0" text="Label" GridPane.columnIndex="3" />
+            <Label fx:id="hotel" prefHeight="19.0" prefWidth="157.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="roomType" prefHeight="19.0" prefWidth="136.0" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="roomNum" prefHeight="19.0" prefWidth="142.0" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="inDate" prefHeight="19.0" prefWidth="175.0" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label fx:id="days" prefHeight="19.0" prefWidth="191.0" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Label fx:id="promotion" prefHeight="19.0" prefWidth="179.0" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Label fx:id="price" prefHeight="19.0" prefWidth="154.0" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirmAdd" text="确认" GridPane.columnIndex="5" GridPane.rowIndex="8" />
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancel" text="取消" GridPane.rowIndex="8" />
          </children>

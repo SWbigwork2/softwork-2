@@ -55,7 +55,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="scoreComboBox" layoutX="419.0" layoutY="34.0" prefHeight="23.0" prefWidth="60.0" />
+            <ComboBox fx:id="scoreComboBox" layoutX="419.0" layoutY="34.0" prefHeight="29.0" prefWidth="87.0" style="-fx-background-color: white; -fx-border-color: lightgray;" />
             <Label alignment="CENTER" layoutX="357.0" layoutY="84.0" text="评价">
                <font>
                   <Font size="14.0" />
