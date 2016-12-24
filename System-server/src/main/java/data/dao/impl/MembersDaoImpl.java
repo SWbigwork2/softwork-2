@@ -32,22 +32,37 @@ public class MembersDaoImpl implements MembersDao{
 			return membersDaoImpl;
 		}
 	}
-	public MemberPO getMember(String id)  {//根据id查找用户信息
+	/**
+	 * @param id
+	 * @return 得到会员信息
+	 */
+	public MemberPO getMember(String id)  {
 		// TODO Auto-generated method stub
 		
 		return  membersDataHelper.getMember(id);
 	}
 
 
-
+	/**
+	 * @param id，changecredit
+	 * @return 更新会员信用
+	 */
 	public boolean updateCredit(String id, double changecredit) {
 		// TODO Auto-generated method stub
 		return membersDataHelper.updateMemberCredit(id, changecredit);
 	}
+	/**
+	 * @param memberid
+	 * @return 得到会员信用记录
+	 */
 	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
 		// TODO Auto-generated method stub
 		return membersDataHelper.getMemberCreditRecord(memberid);
 	}
+	/**
+	 * @param po
+	 * @return 插入会员信用记录
+	 */
 	public void insertCreditRecord(CreditrecordPO po) {
 		// TODO Auto-generated method stub
 		membersDataHelper.insertCreditRecord(po);

@@ -42,36 +42,58 @@ public class PromotionsDaoImpl implements PromotionsDao{
 		
 		return promotionsDataHelper.deletePromotions(promotionsPO);
 	}
-
+	/**
+	 * @param promotionsIPO
+	 * @return 制定策略一生日特惠
+	 */
 	public boolean addPromotionsI(PromotionsIPO promotionsIPO) {
 		// TODO Auto-generated method stub
 		return promotionsDataHelper.addPromotionsI(promotionsIPO);
 	}
-
+	/**
+	 * @param promotionsIIPO
+	 * @return 制定策略二节日特惠
+	 */
 	public boolean addPromotionsII(PromotionsIIPO promotionsIIPO) {
 		// TODO Auto-generated method stub
 		return promotionsDataHelper.addPromotionsII(promotionsIIPO);
 	}
-
+	/**
+	 * @param promotionsIIIPO
+	 * @return 制定策略三多间特惠
+	 */
 	public boolean addPromotionsIII(PromotionsIIIPO promotionsIIIPO) {
 		// TODO Auto-generated method stub
 		return promotionsDataHelper.addPromotionsIII(promotionsIIIPO);
 	}
-
+	/**
+	 * @param promotionsIVPO
+	 * @return 制定策略四合作企业特惠
+	 */
 	public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO) {
 		// TODO Auto-generated method stub
 		return promotionsDataHelper.addPromotionsIV(promotionsIVPO);
 	}
-
+	/**
+	 * @param promotionsVPO
+	 * @return 制定策略五商圈特惠
+	 */
 	public boolean addPromotionsV(PromotionsVPO promotionsVPO) {
 		// TODO Auto-generated method stub
 		return promotionsDataHelper.addPromotionsV(promotionsVPO);
 	}
-
+	/**
+	 * @param promotionsVIPO
+	 * @return 制定策略六等级特惠
+	 */
 	public boolean addPromotionsVI(PromotionsVIPO promotionsVIPO) {
 		// TODO Auto-generated method stub
 		return promotionsDataHelper.addPromotionsVI(promotionsVIPO);
 	}
+	/**
+	 * @param promotionsPO
+	 * @return 删除策略
+	 */
 	@Override
 	public ArrayList<PromotionsPO> getHotelPromotions(String hotel) {
 		// TODO Auto-generated method stub

@@ -9,9 +9,34 @@ import java.util.ArrayList;
 import po.CreditrecordPO;
 import po.MemberPO;
 
+/**
+ * @author 张磊
+ *member模块的数据层接口
+ */
 public interface MembersDao extends Remote{
-      public MemberPO getMember(String id) throws RemoteException ;//获得用户信息
-      public  boolean updateCredit(String id,double changecredit)throws RemoteException;//修改用户信用
-      public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid)throws RemoteException;//查看用户历史信用记录
-      public void insertCreditRecord(CreditrecordPO po)throws RemoteException;//插入用户信用记录到数据库
+      /**
+     * @param id
+     * @return 得到会员信息
+     * @throws RemoteException
+     */
+    public MemberPO getMember(String id) throws RemoteException ;
+      /**
+     * @param id
+     * @param changecredit
+     * @return 修改用户信用
+     * @throws RemoteException
+     */
+    public  boolean updateCredit(String id,double changecredit)throws RemoteException;
+      /**
+     * @param memberid
+     * @return 查看用户历史信用记录
+     * @throws RemoteException
+     */
+    public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid)throws RemoteException;
+      /**
+     * @param po
+     * 插入用户信用记录到数据库
+     * @throws RemoteException
+     */
+    public void insertCreditRecord(CreditrecordPO po)throws RemoteException;
 }
