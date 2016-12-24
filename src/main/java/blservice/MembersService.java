@@ -20,7 +20,7 @@ public interface MembersService {
 	 * @param  id
 	 * @return  得到历史酒店
 	 */
-    public  Map<String, ArrayList<OrderType>> getHotel(String id);
+	 public  ArrayList<String> getHotel(String id);
     
     /**
    	 * @param id

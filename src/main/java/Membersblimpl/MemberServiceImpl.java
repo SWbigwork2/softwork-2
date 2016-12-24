@@ -30,12 +30,20 @@ public class MemberServiceImpl implements MembersService,MembersInfo{
 	ResultMessage result=ResultMessage.Success;
 	OrdersService ordersService;
 	RemoteHelper remoteHelper;
+	/**
+	 * @param id
+	 * @return 得到历史订单
+	 */
     public  ArrayList<OrderVo> getOrder(String id){
     	ordersService = new OrderServiceImpl();
     	
 		return ordersService.getOrderList(id,OrderType.all);
     	
     }
+    /**
+	 * @param  id
+	 * @return  得到历史酒店
+	 */
     public ArrayList<String> getHotel(String id){
     	ordersService = new OrderServiceImpl();
     	
@@ -43,12 +51,20 @@ public class MemberServiceImpl implements MembersService,MembersInfo{
 		
     	
     }
+    /**
+   	 * @param id
+   	 * @return  得到会员信息
+   	 */
 	@Override
 	public MemberPO getMember(String id) {
 		
 		// TODO Auto-generated method stub
 		return membersDao.getMember(id);
 	}
+	/**
+	 * @param id,changecredit,orderid,action
+	 * @return  更新会员信用和记录
+	 */
 	@Override
 	public boolean updateMemberCredit(String id, double changecredit,int orderid,String action) {
 		ordersService = new OrderServiceImpl();
@@ -62,12 +78,20 @@ public class MemberServiceImpl implements MembersService,MembersInfo{
 		membersDao.insertCreditRecord(creditrecordPO);
 		return membersDao.updateCredit(id, totalcredit);
 	}
+	/**
+	 * @param memberid
+	 * @return 得到会员信用记录
+	 */
 	@Override
 	public ArrayList<CreditrecordPO> getMemberCreditRecord(String memberid) {
 		ordersService = new OrderServiceImpl();
 		// TODO Auto-generated method stub
 		return membersDao.getMemberCreditRecord(memberid);
 	}
+	/**
+	 * @param po
+	 * @return  插入信用记录
+	 */
 	@Override
 	public void insertCreditRecord(CreditrecordPO po) {
 		ordersService = new OrderServiceImpl();
