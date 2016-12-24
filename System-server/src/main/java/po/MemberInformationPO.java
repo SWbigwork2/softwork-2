@@ -20,6 +20,7 @@ public class MemberInformationPO extends UserPO{
         this.credit=credit;
         this.level=level;
         this.vipType=type;
+        this.special=special;
 	}
 	
 	public String getContactInformation() {

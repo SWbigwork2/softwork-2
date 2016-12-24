@@ -14,14 +14,22 @@ import javafx.scene.control.TextField;
 
 public class MemberInformationController {
     
-	@FXML private Label memberId;
-	@FXML private TextField memberName;
-	@FXML private PasswordField memberPassword;
-	@FXML private Label memberType;
-	@FXML private Label memberLevel;
-	@FXML private TextField contactInformation;
-	@FXML private Label credit;
-	@FXML private Label special;
+	@FXML 
+	private Label memberId;
+	@FXML 
+	private TextField memberName;
+	@FXML 
+	private PasswordField memberPassword;
+	@FXML 
+	private Label memberType;
+	@FXML 
+	private Label memberLevel;
+	@FXML 
+	private TextField contactInformation;
+	@FXML 
+	private Label credit;
+	@FXML 
+	private Label special;
 	
 	private MemberInformationVO member;
 	private Main main;
@@ -41,35 +49,69 @@ public class MemberInformationController {
         isRevampedTel=false;
 	}
 	
+	/**
+	 * 返回主界面
+	 */
 	@FXML
     private void cancel(){
         //返回到xxx	
 		main.showMemberInfo();
     }
     
+	/**
+	 * 确认修改
+	 */
 	@FXML
 	private void confirm(){
 		
 		UserControllerblimpl userControllerMock=new UserControllerblimpl();
 		String Namecontent="";
 		
+		//判断是否修改名称
 		if(isRevampName){
-			if(!memberName.getText().equals(member.getName())){
-			    member.setName(memberName.getText());
-			    Namecontent="名字";
-			    userControllerMock.revoke(member.getUserId(), member,UserType.valueOf( member.getType()));
-			}
-		}
-		
-		String contact="";
-		if(isRevampedTel){
-			if(!contactInformation.getText().equals(member.getContactInformation())){
-			    member.setContactInformation(contactInformation.getText());
-			    contact="联系方式";
-			    userControllerMock.revoke(member.getUserId(), member,UserType.valueOf( member.getType()));
+			//如果修改不为空
+			if(memberName.getText().length()>=1){
+		        //如果不一样
+		    	if(!memberName.getText().equals(member.getName())){
+		    		member.setName(memberName.getText());
+		    		Namecontent="名字";
+			        userControllerMock.revoke(member.getUserId(), member,UserType.valueOf( member.getType()));
+			    }
+		    }else{
+		    	//修改为空就提醒，并恢复
+		    	Alert alert = new Alert(AlertType.ERROR);
+		    	alert.setTitle("系统提示");
+		    	alert.setHeaderText("提示");
+			    alert.setContentText("修改不能为空");
+			    alert.showAndWait();
+			    memberName.setText(member.getName());
 		    }
 		}
 		
+		String contact="";
+		//和修改Name一样
+		if(isRevampedTel){
+			if(contactInformation.getText().length()>=1){
+				if(!contactInformation.getText().equals(member.getContactInformation())){
+			    	member.setContactInformation(contactInformation.getText());
+			    	contact="联系方式";
+			    	userControllerMock.revoke(member.getUserId(), member,UserType.valueOf( member.getType()));
+		        }
+			}else{
+				Alert alert = new Alert(AlertType.ERROR);
+		    	alert.setTitle("系统提示");
+		    	alert.setHeaderText("提示");
+			    alert.setContentText("修改不能为空");
+			    alert.showAndWait();
+			    if(!member.getContactInformation().equals("null")){
+				    contactInformation.setText(member.getContactInformation());
+				}else{
+					contactInformation.setText("");
+				}
+			}
+		}
+		
+		//如果有修改提示修改了哪里
 		if(Namecontent.length()>=1||contact.length()>=1){
 			
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -78,7 +120,7 @@ public class MemberInformationController {
 		    alert.setContentText(Namecontent+" "+contact+"已经修改");
 		    alert.showAndWait();
 		}
-		main.showMain();
+//		main.showMain();
 	}
 		
 	
@@ -131,6 +173,7 @@ public class MemberInformationController {
 		
 		credit.setText(Double.toString(member.getCredit()));
 		
+		if(!member.getSpecial().equals("null")&&member.getSpecial()!=null)
 		special.setText(member.getSpecial());
 	}
 	
