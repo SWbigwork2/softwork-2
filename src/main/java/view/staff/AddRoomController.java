@@ -87,6 +87,7 @@ public class AddRoomController {
 			try {
 				list = RoomIDBar.getText().split(",");
 			} catch (Exception e) {
+				//防止输入逗号错误的弹窗
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("提示");
 				alert.setHeaderText(null);
@@ -95,6 +96,7 @@ public class AddRoomController {
 				return;
 			}
 			if (list.length != roomNum) {
+				//防止输入房间号数目与房间数不符的弹窗
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("提示");
 				alert.setHeaderText(null);

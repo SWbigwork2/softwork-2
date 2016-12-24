@@ -90,13 +90,7 @@ public class BrowseHotelDetailController {
 	private ListView<String> promotionList;
 	@FXML
 	private ListView<String> orderListView;
-	/**@FXML
-	private ImageView picArea1;
-	@FXML
-	private ImageView picArea2;
-	@FXML
-	private ImageView picArea3;
-	**/
+	
 	@FXML
 	private Main main;
 	@FXML

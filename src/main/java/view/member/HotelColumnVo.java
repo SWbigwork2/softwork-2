@@ -4,7 +4,11 @@ package view.member;
 import Hotelblimpl.HotelRanking;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
+/**
+ * 用于浏览酒店 浏览历史酒店界面组件的Vo对象
+ * @author xutianze
+ *
+ */
 public class HotelColumnVo {
 	
 	private String hotelName;

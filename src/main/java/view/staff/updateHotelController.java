@@ -101,7 +101,7 @@ public class UpdateHotelController {
 		tradeAreaList.add(HotelTradeArea.百家湖商圈);
 		hotelTradeAreaBar.setItems(tradeAreaList);
 	}
-
+	//提交更新后的酒店信息
 	@FXML
 	public void confirmHotelInfo() {
 		HotelService hotelService = new HotelServiceImpl();

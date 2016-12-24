@@ -35,7 +35,7 @@ public class RecordCheckOutController {
 		String orderIdStr = orderIdBar.getText();
 		String roomIdStr = roomIdBar.getText();
 		LocalDate date = outTimeBar.getValue();
-		
+		//防止退房填写退房信息不完整的情况
 		if(orderIdStr==""||roomIdStr==""||date==null){
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("提示");

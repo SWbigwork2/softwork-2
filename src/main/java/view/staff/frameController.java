@@ -2,7 +2,11 @@ package view.staff;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
+/**
+ * 酒店工作人员客户端的controller
+ * @author xutianze
+ *
+ */
 public class frameController {
       @FXML
       private Button checkInButton;

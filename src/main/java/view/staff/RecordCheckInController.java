@@ -56,7 +56,7 @@ public class RecordCheckInController {
 				RoomType.行政标准间, RoomType.高级套间);
 		roomTypeBar.setItems(list);
 	}
-
+	//线上入住的情况
 	@FXML
 	public void onlineCheckIn() {
 		String orderIdStr = orderIdBar.getText();
@@ -81,7 +81,8 @@ public class RecordCheckInController {
 			inTimeBar.setValue(null);
 		}
 	}
-
+	
+	 //线下入住的情况
 	@FXML
 	public void offlineCheckIn() {
 

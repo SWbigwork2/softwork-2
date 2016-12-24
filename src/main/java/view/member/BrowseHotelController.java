@@ -140,7 +140,7 @@ public class BrowseHotelController {
 		this.userName = userName;
 		initialized();
 	}
-
+	
 	@FXML
 	public void initialized() {
 		
@@ -159,7 +159,11 @@ public class BrowseHotelController {
 		setLabel(hotelColumList.get(0).getHotelName().get());
 		
 	}
-
+	
+	/**
+	 *添加监听 根据鼠标选择改变页面内容
+	 * @param e
+	 */
 	@FXML
 	public void click(MouseEvent e){
 		if(e.getClickCount()>0){

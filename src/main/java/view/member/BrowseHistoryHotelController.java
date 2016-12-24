@@ -72,14 +72,20 @@ public class BrowseHistoryHotelController {
 		
 		setLabel(hotelList.get(0));
 	}
-
+	/**
+	 * 添加监听 根据选择改变页面内容
+	 * @param e
+	 */
 	@FXML
 	public void click(MouseEvent e) {
 		if (e.getClickCount() > 0) {
 			setLabel(hotelLabel.getSelectionModel().getSelectedItem());
 		}
 	}
-
+	/**
+	 * 设置页面内容
+	 * @param hotelName
+	 */
 	private void setLabel(String hotelName) {
 
 		HotelService hotelService = new HotelServiceImpl();
@@ -98,7 +104,8 @@ public class BrowseHistoryHotelController {
 		ObservableList<String> revokedOrderStrList = FXCollections.observableArrayList();
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
+		
+		//设置订单框内容
 		if (normalList.size() != 0) {
 			for (OrderVo cell : normalList) {
 				normalOrderStrList.add(cell.getOrderId()+" 起始："+formatter.format(cell.getInDate())+" 结束："+formatter.format(cell.getOutDate())+ " 价格："+cell.getPrice());

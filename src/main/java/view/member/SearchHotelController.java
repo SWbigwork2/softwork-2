@@ -121,7 +121,7 @@ public class SearchHotelController {
 		remarkBar.setItems(remarkList);
 		memberId = main.getMembervo().getUserId();
 	}
-
+	//点击按钮 搜索历史酒店
 	@FXML
 	public void startHistorySearch() {
 		HotelService hotelService = new HotelServiceImpl();
@@ -207,7 +207,7 @@ public class SearchHotelController {
 		java.util.Date nowDate = Date.from(instant);
 		return new Date(nowDate.getTime());
 	}
-
+	//点击按钮 搜索酒店
 	@FXML
 	public void startSearch() {
 		HotelService hotelService = new HotelServiceImpl();
