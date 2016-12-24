@@ -1,8 +1,12 @@
 package view.member;
 
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Date;
+
+import com.sun.org.apache.xml.internal.resolver.Catalog;
 
 import Usersblimpl.MemberInformationVO;
 import javafx.beans.value.ChangeListener;
@@ -10,13 +14,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import ordersblimpl.OrderType;
 import vo.OrderVo;
 
@@ -179,10 +188,11 @@ public class OrderListController {
 	public void MouseClink(MouseEvent event){
 		if(event.getClickCount()<2){
 			showSelection();
+			
 		}
 		else{
 			showDetails();
-			System.out.println("clinkTwice");
+			
 		}
 		
 	}
@@ -288,6 +298,12 @@ public class OrderListController {
 	 * 跳转到详细信息页面
 	 */
 	public void showDetails(){
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Exception Dialog");
+		alert.setHeaderText("Look, an Exception Dialog");
+		alert.setContentText("Could not find file blabla.txt!");
+
+		try{
 		String selectedStr =orderListView.getSelectionModel().getSelectedItem();
 		
 		int orderId = Integer.valueOf(selectedStr.split(" ")[0]);
@@ -298,7 +314,35 @@ public class OrderListController {
 				break;
 			}
 		}
+		
 		main.viewDetails(resultInfo);
+		}catch (Exception ex) {
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			String exceptionText = sw.toString();
+
+			Label label = new Label("The exception stacktrace was:");
+
+			TextArea textArea = new TextArea(exceptionText);
+			textArea.setEditable(false);
+			textArea.setWrapText(true);
+
+			textArea.setMaxWidth(Double.MAX_VALUE);
+			textArea.setMaxHeight(Double.MAX_VALUE);
+			GridPane.setVgrow(textArea, Priority.ALWAYS);
+			GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+			GridPane expContent = new GridPane();
+			expContent.setMaxWidth(Double.MAX_VALUE);
+			expContent.add(label, 0, 0);
+			expContent.add(textArea, 0, 1);
+
+			// Set expandable Exception into the dialog pane.
+			alert.getDialogPane().setExpandableContent(expContent);
+
+			alert.showAndWait();
+		}
 	}
 	public void setMain(Main main){
 		this.main = main;

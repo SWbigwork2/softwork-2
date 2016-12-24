@@ -1,5 +1,6 @@
 package view.member;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import blservice.OrdersService;
@@ -66,11 +67,12 @@ public class OrderInfoConfirmController {
 	 * 初始化信息
 	 */
 	private void setup(){
+		DecimalFormat df = new DecimalFormat("#.00");  
 		roomNum.setText(vo.getRoomNum()+"");
 		roomType.setText(vo.getRoomType());
 		promotion.setText(introduction);
 		orderId.setText(vo.getOrderId()+"");
-		price.setText(vo.getPrice()+"");
+		price.setText(df.format(vo.getPrice()));
 		inDate.setText(vo.getInDate().toLocaleString());
 		hotel.setText(vo.getHotel());
 		days.setText(calDays(vo.getInDate(), vo.getOutDate())+"天");

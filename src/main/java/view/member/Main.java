@@ -236,7 +236,7 @@ public class Main extends Application {
 	 */
 	public void viewDetails(OrderVo vo){
 		
-		Pane orderDetailPane = loadPane("OrderInfo.fxml");
+		Pane orderDetailPane = loadPane("orderInfo.fxml");
 		OrderInfoController controller = loader.getController();
 	
 		controller.setOrderVo(vo);
