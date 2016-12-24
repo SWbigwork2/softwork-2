@@ -73,7 +73,7 @@ public class Main extends Application{
 	
 	public void start(Stage primaryStage) {
 		this.primaryStage=primaryStage;
-		this.primaryStage.setTitle("网站营销人员主界面");
+		this.primaryStage.setTitle("网站管理人员主界面");
 		loginStage = new Stage();
 		Pane loginPane = loadPane("ManagerLogin.fxml");
 		Scene loginScene = new Scene(loginPane,600,400);

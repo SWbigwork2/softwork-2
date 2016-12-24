@@ -3,6 +3,10 @@ package view.member;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
+/**
+ * @author 朱润之
+ * 框架frame的controller
+ */
 public class MemberFrameController {
 	@FXML
 	private Button totalOrderButton;
@@ -52,15 +56,24 @@ public class MemberFrameController {
 	public void showHotelSearch(){
 		main.showHotelSearch();
 	}
+	/**
+	 * 显示信用记录界面
+	 */
 	public void showCreditList(){
 		main.showCreditList();
 	}
 	
+	/**
+	 * 显示历史酒店界面
+	 */
 	public void showHistoryHotel(){
 		main.seeHistoryHotel();
 	}
+	/**
+	 * 退回到上一个界面
+	 */
 	public void backPane(){
-		System.out.println("back");
+	
 		main.backPane();
 	}
 

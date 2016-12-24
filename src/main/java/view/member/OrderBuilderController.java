@@ -39,6 +39,10 @@ import ordersblimpl.OrderServiceImpl;
 import vo.HotelVo;
 import vo.OrderVo;
 
+/**
+ * @author 朱润之
+ * 创建订单的controller
+ */
 public class OrderBuilderController {
 	@FXML
 	private ImageView hotelImage;
@@ -75,6 +79,14 @@ public class OrderBuilderController {
 	private RoomType type;
 	private LocalDate inDateInfo;
 	private LocalDate outDateInfo;
+	/**
+	 * @param vo
+	 * @param type
+	 * @param inDate
+	 * @param outDate
+	 * @param memberVo
+	 * 初始化方法，设置hotelvo信息，以及所选择的房间
+	 */
 	public void setHotelVo(HotelVo vo,RoomType type,LocalDate inDate,LocalDate outDate,MemberInformationVO memberVo){
 		memberInformationVO = memberVo;
 		this.type = type;
@@ -104,6 +116,9 @@ public class OrderBuilderController {
 		
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * 初始化设置值
+	 */
 	@FXML
 	private void initialized(){
 		hotel.setText(hotelVo.getName());
@@ -158,6 +173,9 @@ public class OrderBuilderController {
 		
 	}
 	
+	/**
+	 * 取消，返回上一个界面
+	 */
 	public void cancel(){
 		main.backPane();
 	}
@@ -253,6 +271,10 @@ public class OrderBuilderController {
 		
 	}
 	
+	/**
+	 * @return
+	 * 构造一个orderid，用当前时间生成
+	 */
 	private int orderIdCreate(){
 		Date date = new Date();
 		int day = date.getDate()*10000+date.getHours()*100+date.getSeconds();

@@ -41,6 +41,11 @@ public class OrderInfoConfirmController {
 	private Stage stage;
 	private OrdersService service;
 	private Main main;
+	/**
+	 * @param orderVo
+	 * @param introduction
+	 * 初始化设置值
+	 */
 	public void setVo(OrderVo orderVo,String introduction){
 		
 		vo = orderVo;
