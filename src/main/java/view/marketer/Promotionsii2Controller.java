@@ -68,6 +68,9 @@ public class Promotionsii2Controller {
 	        };
 	    enddateDatePicker.setDayCellFactory(dayCellFactory);
 	}
+	/**
+	 * 添加策略
+	 */
 	@FXML
 	public void addPromotionsII2(){
 		String hotel="网站";
@@ -96,6 +99,9 @@ public class Promotionsii2Controller {
 		}
 		}
 	}
+	/**
+	 * 清空信息
+	 */
 	@FXML
 	public void clearPromotionsII2(){
 		discountTextField.setText("");
