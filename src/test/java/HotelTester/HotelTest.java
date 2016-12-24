@@ -12,14 +12,14 @@ import org.junit.Test;
 import Hotelblimpl.HotelServiceImpl;
 import blservice.HotelService;
 import data.rmi.RemoteHelper;
+import vo.HotelVo;
 
 public class HotelTest {
-private RemoteHelper remoteHelper;
 	
 	public void linkToServer(){
 		final String ip = "localhost";
 		try{
-			remoteHelper = RemoteHelper.getInstance();
+			RemoteHelper remoteHelper = RemoteHelper.getInstance();
 			remoteHelper.setRemote(Naming.lookup("rmi://"+ip+":8888/DateRemoteObject"));
 			System.out.println("linked");
 		}catch (MalformedURLException e) {
@@ -30,12 +30,18 @@ private RemoteHelper remoteHelper;
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Test
-	public void test() {
-		linkToServer();
+	public void test1(){
 		HotelService hotelService = new HotelServiceImpl();
-		assertTrue(hotelService.judgeHotelExists("南京金丝利喜来登酒店"));
+		HotelVo hotelVo = hotelService.getHotelInfo("金陵饭店");
+		assertEquals(hotelVo.getName(),"金陵饭店");
+		
 	}
-
+	
+	@Test
+	public void test2(){
+		HotelService hotelService = new HotelServiceImpl();
+		assertTrue(hotelService.judgeHotelExists("金陵饭店"));
+	}
 }
