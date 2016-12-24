@@ -52,7 +52,7 @@
             </Label>
             <Label fx:id="managerIdField" prefHeight="25.0" prefWidth="236.0" GridPane.columnIndex="1" />
             <Label fx:id="managerNameField" prefHeight="25.0" prefWidth="235.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <PasswordField fx:id="managerPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="managerPasswordField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button fx:id="revampPasswordButton" mnemonicParsing="false" onAction="#revampPassword" text="√" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
