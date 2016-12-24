@@ -20,8 +20,6 @@ public class PromotionsiiController {
 	
 	@FXML
 	private AnchorPane PromotionsiiPane;
-//	@FXML
-//	private TextField hotelnameTextField;
 	@FXML
 	private TextField discountTextField;
 	@FXML	
@@ -40,7 +38,6 @@ public class PromotionsiiController {
 	HotelService hotelService=new HotelServiceImpl();
 	public PromotionsiiController(){
 		main=Main.getMain();
-//		hotelnameTextField=new TextField();
 		discountTextField=new TextField();
 		enddateDatePicker=new DatePicker();
 		enddateDatePicker=new DatePicker();
@@ -72,18 +69,15 @@ public class PromotionsiiController {
 	        };
 	    enddateDatePicker.setDayCellFactory(dayCellFactory);
 	}
+	/**
+	 * 添加策略
+	 */
 	public void addPromotionsII(){
 		String hotel=main.getHotelname();
 		String discountstr=discountTextField.getText();
 		String startdate=startdateDatePicker.getValue().toString();
 		String enddate=enddateDatePicker.getValue().toString();
 		String introduction=introductionTextField.getText();
-		
-		
-		
-		
-		
-		
 		if(startdate.length()==0||enddate.length()==0||discountstr.length()==0||introduction.length()==0){
 		  main.showWaningInformation(AlertType.INFORMATION, "策略信息填写不完整");
 		}	
@@ -106,8 +100,10 @@ public class PromotionsiiController {
 		}
 		}
 	}
+	/**
+	 * 清空制定策略的信息
+	 */
 	public void clearPromotionsII(){
-//		hotelnameTextField.setText("");
 		discountTextField.setText("");
 		startdateDatePicker.setValue(LocalDate.now());
 		enddateDatePicker.setValue(null);

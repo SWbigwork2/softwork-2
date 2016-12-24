@@ -15,8 +15,6 @@ public class PromotionsiiiController {
 
 	@FXML
 	private AnchorPane PromotionsiiiPane;
-//	@FXML
-//	private TextField hotelnameTextField;
 	@FXML
 	private TextField roomsnumTextField;
 	@FXML
@@ -33,13 +31,15 @@ public class PromotionsiiiController {
 	HotelService hotelService=new HotelServiceImpl();
 	public PromotionsiiiController(){
 		main=Main.getMain();
-//		hotelnameTextField=new TextField();
 		roomsnumTextField=new TextField();
 		discountTextField=new TextField();
 		introductionTextField=new TextField();
 		okButton=new Button();
 		cancelButton=new Button();
 	}
+	/**
+	 * 添加策略
+	 */
 	public void addPromotionsIII(){
 		String hotel=main.getHotelname();
 		String roomsnum=roomsnumTextField.getText();
@@ -69,8 +69,10 @@ public class PromotionsiiiController {
 	}
 		}
 }
+	/**
+	 * 清空制定策略的信息
+	 */
 	public void clearPromotionsIII(){
-//		hotelnameTextField.setText("");
 		roomsnumTextField.setText("");
 		discountTextField.setText("");
 		introductionTextField.setText("");

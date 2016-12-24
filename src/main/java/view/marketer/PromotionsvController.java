@@ -35,7 +35,10 @@ public class PromotionsvController  {
 	 okButton=new Button();
 	 cancelButton=new Button();
  }
-  public void addPromotionsV(){
+  /**
+ * 添加策略
+ */
+public void addPromotionsV(){
 	  String hotel="网站";
 	  String area=areaTextField.getText();
 	  String viplevelstr=viplevelTextField.getText();
@@ -71,7 +74,10 @@ public class PromotionsvController  {
 	  }
 	  
   }
-  public void clearPromotionsV(){
+  /**
+ * 清空信息
+ */
+public void clearPromotionsV(){
 		areaTextField.setText("");
 		viplevelTextField.setText("");
 		discountTextField.setText("");

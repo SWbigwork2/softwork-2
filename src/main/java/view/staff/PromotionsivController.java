@@ -37,6 +37,9 @@ public class PromotionsivController {
 		cancelbutton=new Button();
 		
 	}
+	/**
+	 * 添加策略
+	 */
 	public void addPromotionsIV(){
 		String hotel=main.getHotelname();
 		String companyname=companynameTextField.getText();
@@ -62,8 +65,10 @@ public class PromotionsivController {
 		}
 		}
 	}
+	/**清空制定策略信息
+	 * 
+	 */
 	public void clearPromotionsIV(){
-//		hotelnameTextField.setText("");
 		companynameTextField.setText("");
 		discountTextField.setText("");
 		introductionTextField.setText("");

@@ -41,7 +41,10 @@ public class PromotionsviController  {
 	   okButton=new Button();
 	   cancelButton=new Button();
    }
-   public void addPromotionsVI(){
+   /**
+ * 添加策略
+ */
+public void addPromotionsVI(){
     String hotel="网站";
     String discountstr1=vip1discountTextfield.getText();
     String discountstr2=vip2discountTextfield.getText();
@@ -91,7 +94,10 @@ public class PromotionsviController  {
 		}
     }   
 }
-   public void clearPromotionsVI(){
+   /**
+ * 清空信息
+ */
+public void clearPromotionsVI(){
 		vip1discountTextfield.setText("");
 		vip2discountTextfield.setText("");
 		vip3discountTextfield.setText("");

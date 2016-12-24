@@ -5,7 +5,6 @@ import Promotionsblimpl.PromotionsServiceImpl;
 import blservice.HotelService;
 import blservice.PromotionsService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -35,6 +34,9 @@ public class PromotionsiController  {
 		cancelButton=new Button();
 	}
 	
+	/**
+	 * 添加策略
+	 */
 	public void addPromotionsI(){
 		String hotel=main.getHotelname();
 		String discountstr=discountTextField.getText();
@@ -66,6 +68,9 @@ public class PromotionsiController  {
 	}
 	}
 }
+	/**
+	 * 清空制定的策略信息
+	 */
 	public void clearPromotionsI(){
 		discountTextField.setText("");
 		introductionTextField.setText("");
