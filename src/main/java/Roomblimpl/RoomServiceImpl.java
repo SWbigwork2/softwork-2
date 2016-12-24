@@ -27,7 +27,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	 * @param ArrayList<RoomVo>
+	 * @param roomList
+	 * @return 添加一系列新房间
 	 */
 	@Override
 	public void addNewRoom(ArrayList<RoomVo> roomList) {
@@ -37,7 +38,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	 * @param hotelName startTime endTime
+	 * @return 返回符合条件的房间列表
 	 */
 	@Override
 	public ArrayList<RoomVo> getRoomOfHotel(String hotelName, Date startTime, Date endTime) {
@@ -76,7 +78,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	 * @param orderId hotelName roomType startTime endTime roomNum
+	 * @return 对一组房间进行预定
 	 */
 	@Override
 	public void makeReservation(int orderId, String hotelName, RoomType roomType, Date startTime, Date endTime,
@@ -97,7 +100,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	 * @param orderId startTime
+	 * @return 对一组房间进行入住处理
 	 */
 	@Override
 	public void makeCheckIn(int orderId, Date startTime) {
@@ -109,7 +113,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	 * @param orderId roomId endTime
+	 * @return 对一间房间进行退房处理
 	 */
 	@Override
 	public void makeCheckOut(int orderId, int roomId, Date endTime) {
@@ -118,7 +123,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	 * @param hotelName startTime endTime
+	 * @return 得到酒店可预定房间的最高价格
 	 */
 	@Override
 	public double getHighestPrice(String hotelName, Date startTime, Date endTime) {
@@ -146,7 +152,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	  @param hotelName startTime endTime
+	 * @return 得到酒店可预定房间的最低价格
 	 */
 	@Override
 	public double getLowestPrice(String hotelName, Date startTime, Date endTime) {
@@ -174,7 +181,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	 * @param hotelName startTime endTime
+	 * @return 得到当下的可用房间总数
 	 */
 	@Override
 	public int numberOfAllRooms(String hotelName, Date startTime, Date endTime) {
@@ -184,7 +192,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	 * @param hotelName startTime endTime 
+	 * @return 得到酒店的房间类型
 	 */
 	@Override
 	public ArrayList<RoomType> getHotelRoomType(String hotelName, Date startTime, Date endTime) {
@@ -209,7 +218,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	 * @param hotelName startTime endTime 
+	 * @return 得到酒店各类型房间的价格
 	 */
 	@Override
 	public Map<RoomType, Double> getPriceOfRoom(String hotelName, Date startTime, Date endTime) {
@@ -254,7 +264,8 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 	}
 
 	/**
-	 * 
+	 * @param hotelName startTime endTime 
+	 * @return 得到酒店各类型房间的数目
 	 */
 	@Override
 	public Map<RoomType, Integer> getNumOfRoom(String hotelName, Date startTime, Date endTime) {
@@ -299,7 +310,10 @@ public class RoomServiceImpl implements RoomService,RoomReservationService{
 
 		return numOfRoomType;
 	}
-	
+	/**
+	 * @param orderId
+	 * @return 取消一次房间预定
+	 */
 	@Override
 	public void revokeReservatio(int orderId) {
 		ArrayList<Integer> roomIdList = roomsDao.getOrderRoom(orderId);

@@ -25,12 +25,6 @@ public interface HotelService {
 	/**
 	 * 
 	 * @param hotelName
-	 * @return 得到酒店评分
-	 */
-	public void setHotelRemark(String hotelName,int hotelRemark);
-	/**
-	 * 
-	 * @param hotelName
 	 * @return 得到酒店评价列表
 	 */
 	public ArrayList<String> getHotelComment(String hotelName);
@@ -69,7 +63,7 @@ public interface HotelService {
 	/**
 	 * 
 	 * @param hotelName
-	 * @return
+	 * @return 返回酒店持久化对象
 	 */
 	public HotelPO getHotelInformation(String hotelName);
 	

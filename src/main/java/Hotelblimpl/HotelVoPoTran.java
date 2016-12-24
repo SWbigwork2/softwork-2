@@ -5,7 +5,9 @@ import po.HotelPO;
 import vo.HotelVo;
 
 public class HotelVoPoTran {
-	
+    
+    
+	//将HotelPO转化为HotelVo
 	public HotelVo PoToVo(HotelPO hotelPo){
 		String hotelName = hotelPo.getName();
 		String hotelAddress = hotelPo.getAddress();
@@ -18,6 +20,7 @@ public class HotelVoPoTran {
 		
 	}
 	
+    //将HotelVo转化为HotelPO
 	public HotelPO VoToPo(HotelVo hotelVo){
 		String hotelName = hotelVo.getName();
 		String hotelAddress = hotelVo.getAddress();

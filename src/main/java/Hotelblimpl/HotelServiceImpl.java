@@ -34,7 +34,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
-	 * 调用数据层接口得到酒店信息，该信息中并不包含房间信息
+	 * @param hotelName
+	 * @return 得到酒店信息，该信息中并不包含房间信息
 	 */
 	@Override
 	public HotelVo getHotelInfo(String hotelName) {
@@ -42,7 +43,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
-	 * 依赖Room类得到该酒店在某一时段的房间信息列表
+	 * @param hotelName startTime endTime
+	 * @return 得到该酒店在某一时段的房间信息列表
 	 */
 	@Override
 	public ArrayList<RoomVo> getRoomOfHotel(String hotelName, Date startTime, Date endTime) {
@@ -52,7 +54,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
-	 * 调用评价类的方法得到酒店评价列表
+	 * @param hotelName
+	 * @return 调用评价类的方法得到酒店评价列表
 	 */
 	@Override
 	public ArrayList<String> getHotelComment(String hotelName) {
@@ -61,6 +64,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
+	 * @param hotelSearchVo
+	 * @return 符合条件的酒店列表
 	 * 高级搜索酒店 可以通过酒店名称、房间（类型、原始价格区间、有空房期间（房间数量、入住日期，退房日期））
 	 * 星级、评分区间等条件进行搜索，这些条件可以独立起作用，也可以联合起作用
 	 * 
@@ -118,7 +123,6 @@ public class HotelServiceImpl implements HotelService {
         
         // 查询酒店价格区间
         ArrayList<HotelPO> hotelList2 = new ArrayList<HotelPO>();
-        String hotelName = hotelSearchVo.getHotelName();
         double highPrice = hotelSearchVo.getHighPrice();
         double lowPrice = hotelSearchVo.getLowPrice();
         if (highPrice != -1) {
@@ -189,7 +193,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
 	/**
-	 * 维护酒店信息
+	 * @param hotelVo
+	 * @return 维护酒店信息
 	 */
 	@Override
 	public boolean updateHotel(HotelVo hotelVo) {
@@ -197,7 +202,9 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
-	 * 判断酒店是否存在 通过维护酒店列表实现
+	 * @param hotelName
+	 * @return 判断酒店是否存在 
+	 * 通过维护酒店列表实现
 	 */
 	@Override
 	public boolean judgeHotelExists(String hotelName) {
@@ -205,7 +212,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
-	 * 添加一家新的酒店
+	 * @param hotelVo
+	 * @return 添加一家新的酒店
 	 */
 	@Override
 	public boolean addHotel(HotelVo hotelVo) {
@@ -213,7 +221,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	/**
-	 * 用于界面层调用取得酒店分数
+	 * @param hotelName
+	 * @return 用于界面层调用取得酒店分数
 	 */
 	@Override
 	public double getHotelRemark(String hotelName) {
@@ -222,15 +231,15 @@ public class HotelServiceImpl implements HotelService {
 		return evaluateService.getScore(hotelName);
 	}
 
+	/**
+	 * @param hotelName
+	 * @return 返回一个酒店持久化对象
+	 */
 	@Override
 	public HotelPO getHotelInformation(String hotelName) {
 		return hotelsDao.getHotelDetails(hotelName);
 	}
 
-	@Override
-	public void setHotelRemark(String hotelName, int hotelRemark) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }
