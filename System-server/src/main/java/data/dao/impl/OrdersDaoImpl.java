@@ -145,7 +145,7 @@ public class OrdersDaoImpl implements OrdersDao{
 		RoomType roomType = Enum.valueOf(RoomType.class, (String)hm.get("roomtype"));
 		int roomNum = (Integer) hm.get("roomnumber");
 		int peopleNum = (Integer)hm.get("peoplenumber");
-		double price = Double.valueOf((Float)hm.get("price"));
+		double price = Double.valueOf((Double)hm.get("price"));
 		
 		Date beginDate =  new Date(((Timestamp)(hm.get("begindate"))).getTime());
 		Date completeDate = null;
