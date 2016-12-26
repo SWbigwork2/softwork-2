@@ -32,12 +32,12 @@ import vo.HotelVo;
 import vo.OrderVo;
 
 public class BrowseHotelDetailController {
-	
+
 	private LocalDate startTime;
 	private LocalDate endTime;
 	private String userId;
 	private String hotelName;
-	
+
 	@FXML
 	private Pane base;
 	@FXML
@@ -90,23 +90,18 @@ public class BrowseHotelDetailController {
 	private ListView<String> promotionList;
 	@FXML
 	private ListView<String> orderListView;
-	
+
 	@FXML
 	private Main main;
 	@FXML
 	private Label rankingBar;
-	
+
 	private HotelService service;
-	
+
 	public BrowseHotelDetailController() {
 		service = new HotelServiceImpl();
 		main = Main.getMain();
 		base = new Pane();
-		/**
-		picArea1 = new ImageView();
-		picArea2 = new ImageView();
-		picArea3 = new ImageView();
-		**/
 		Button1 = new Button();
 		IntroductionLabel = new TextArea();
 		roomType5 = new Label();
@@ -135,7 +130,7 @@ public class BrowseHotelDetailController {
 		rankingBar = new Label();
 	}
 
-	public void setHotelNameAndDate(String hotelName,LocalDate startTime,LocalDate endTime,String userId) {
+	public void setHotelNameAndDate(String hotelName, LocalDate startTime, LocalDate endTime, String userId) {
 		this.hotelName = hotelName;
 		this.startTime = startTime;
 		this.endTime = endTime;
@@ -146,77 +141,93 @@ public class BrowseHotelDetailController {
 	@FXML
 	public void initialized() {
 		HotelService hotelService = new HotelServiceImpl();
-		RoomService roomService  = new RoomServiceImpl();
+		RoomService roomService = new RoomServiceImpl();
 		OrdersService ordersService = new OrderServiceImpl();
-		PromotionsService  promotionsService = new PromotionsServiceImpl();
-		
-		//得到界面上的促销列表
+		PromotionsService promotionsService = new PromotionsServiceImpl();
+
+		// 得到界面上的促销列表
 		ArrayList<String> promotionStrList = promotionsService.getHotelPromotion(hotelName);
-		ObservableList<String> promotion = FXCollections.observableArrayList(promotionStrList);
-		promotionList.setItems(promotion);
-		
-		//得到界面上的评价列表
-		ArrayList<String> commentList = hotelService.getHotelComment(hotelName);
-		ObservableList<String> comment = FXCollections.observableArrayList(commentList);
-		CommentList.setItems(comment);
-		
-		//得到界面上的历史订单列表
-		ArrayList<OrderVo> orderList = ordersService.getHotelOrderList(hotelName, userId, OrderType.all);
-		ArrayList<String> orderStrList = new ArrayList<String>();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		for(OrderVo cell:orderList){
-			orderStrList.add(cell.getOrderId()+" 类型："+cell.getType()+" 起始："+formatter.format(cell.getInDate())+" 结束："+formatter.format(cell.getOutDate()));
+		if (promotionStrList.size() != 0) {
+			ObservableList<String> promotion = FXCollections.observableArrayList(promotionStrList);
+			promotionList.setItems(promotion);
+		} else {
+			ObservableList<String> promotion = FXCollections.observableArrayList("暂无促销策略");
+			promotionList.setItems(promotion);
 		}
-		ObservableList<String> order = FXCollections.observableArrayList(orderStrList);
-		orderListView.setItems(order);
-		
-		
-		//设置界面上的酒店基本信息
+
+		// 得到界面上的评价列表
+		ArrayList<String> commentList = hotelService.getHotelComment(hotelName);
+		if (commentList.size() != 0) {
+			ObservableList<String> comment = FXCollections.observableArrayList(commentList);
+			CommentList.setItems(comment);
+		} else {
+			ObservableList<String> comment = FXCollections.observableArrayList("暂无评价信息");
+			CommentList.setItems(comment);
+		}
+
+		// 得到界面上的历史订单列表
+		ArrayList<OrderVo> orderList = ordersService.getHotelOrderList(hotelName, userId, OrderType.all);
+		if (orderList.size() != 0) {
+			ArrayList<String> orderStrList = new ArrayList<String>();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			for (OrderVo cell : orderList) {
+				orderStrList.add(cell.getOrderId() + " 类型：" + cell.getType() + " 起始："
+						+ formatter.format(cell.getInDate()) + " 结束：" + formatter.format(cell.getOutDate()));
+			}
+			ObservableList<String> order = FXCollections.observableArrayList(orderStrList);
+			orderListView.setItems(order);
+		} else {
+			ObservableList<String> order = FXCollections.observableArrayList("您在该酒店无历史订单");
+			orderListView.setItems(order);
+		}
+
+		// 设置界面上的酒店基本信息
 		HotelVo hotelVo = hotelService.getHotelInfo(hotelName);
 		HotelNameLabel.setText(hotelVo.getName());
 		AddressLabel.setText(hotelVo.getAddress());
 		rankingBar.setText(hotelVo.getRanking().toString());
-		RemarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)).substring(0,3)+"分");
+		RemarkLabel.setText(String.valueOf(hotelService.getHotelRemark(hotelName)).substring(0, 3) + "分");
 		IntroductionLabel.setText(hotelVo.getIntroduction());
 		ServiceLabel.setText(hotelVo.getServiceAndFacility());
-		
-		
-		Map<RoomType, Integer> numOfType = roomService.getNumOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));
-		Map<RoomType, Double> priceOfType = roomService.getPriceOfRoom(hotelName,new Date(localToDate(startTime).getTime()),new Date(localToDate(endTime).getTime()));
-		
+
+		Map<RoomType, Integer> numOfType = roomService.getNumOfRoom(hotelName,
+				new Date(localToDate(startTime).getTime()), new Date(localToDate(endTime).getTime()));
+		Map<RoomType, Double> priceOfType = roomService.getPriceOfRoom(hotelName,
+				new Date(localToDate(startTime).getTime()), new Date(localToDate(endTime).getTime()));
+
 		if (numOfType.get(RoomType.单人间) == 0) {
 			Button1.setVisible(false);
 			priceLabel1.setText("暂无空房");
 		} else {
-			priceLabel1.setText(String.valueOf(priceOfType.get(RoomType.单人间))+"元");
+			priceLabel1.setText(String.valueOf(priceOfType.get(RoomType.单人间)) + "元");
 			Button1.setVisible(true);
 		}
 		if (numOfType.get(RoomType.标准间) == 0) {
 			Button2.setVisible(false);
 			priceLabel2.setText("暂无空房");
 		} else {
-			priceLabel2.setText(String.valueOf(priceOfType.get(RoomType.标准间))+"元");
+			priceLabel2.setText(String.valueOf(priceOfType.get(RoomType.标准间)) + "元");
 			Button2.setVisible(true);
 		}
 		if (numOfType.get(RoomType.商务间) == 0) {
 			Button3.setVisible(false);
 			priceLabel3.setText("暂无空房");
 		} else {
-			priceLabel3.setText(String.valueOf(priceOfType.get(RoomType.商务间))+"元");
+			priceLabel3.setText(String.valueOf(priceOfType.get(RoomType.商务间)) + "元");
 			Button3.setVisible(true);
 		}
 		if (numOfType.get(RoomType.行政标准间) == 0) {
 			Button4.setVisible(false);
 			priceLabel4.setText("暂无空房");
 		} else {
-			priceLabel4.setText(String.valueOf(priceOfType.get(RoomType.行政标准间))+"元");
+			priceLabel4.setText(String.valueOf(priceOfType.get(RoomType.行政标准间)) + "元");
 			Button4.setVisible(true);
 		}
 		if (numOfType.get(RoomType.高级套间) == 0) {
 			Button5.setVisible(false);
 			priceLabel5.setText("暂无空房");
 		} else {
-			priceLabel5.setText(String.valueOf(priceOfType.get(RoomType.高级套间))+"元");
+			priceLabel5.setText(String.valueOf(priceOfType.get(RoomType.高级套间)) + "元");
 			Button5.setVisible(true);
 		}
 	}
@@ -224,39 +235,40 @@ public class BrowseHotelDetailController {
 	@FXML
 	public void makeOrder1() {
 		HotelVo vo = service.getHotelInfo(hotelName);
-		main.showOrderBuilder(vo,RoomType.单人间, startTime, endTime);
-		//跳转到订单界面
+		main.showOrderBuilder(vo, RoomType.单人间, startTime, endTime);
+		// 跳转到订单界面
 	}
 
 	@FXML
 	public void makeOrder2() {
 		HotelVo vo = service.getHotelInfo(hotelName);
-		main.showOrderBuilder(vo,RoomType.标准间, startTime, endTime);
-		//跳转动订单界面
+		main.showOrderBuilder(vo, RoomType.标准间, startTime, endTime);
+		// 跳转动订单界面
 	}
 
 	@FXML
 	public void makeOrder3() {
 		HotelVo vo = service.getHotelInfo(hotelName);
-		main.showOrderBuilder(vo,RoomType.商务间, startTime, endTime);
-		//跳转到订单界面
+		main.showOrderBuilder(vo, RoomType.商务间, startTime, endTime);
+		// 跳转到订单界面
 	}
 
 	@FXML
 	public void makeOrder4() {
 		HotelVo vo = service.getHotelInfo(hotelName);
-		main.showOrderBuilder(vo,RoomType.行政标准间, startTime, endTime);
-		//跳转到订单界面
+		main.showOrderBuilder(vo, RoomType.行政标准间, startTime, endTime);
+		// 跳转到订单界面
 	}
 
 	@FXML
 	public void makeOrder5() {
 		HotelVo vo = service.getHotelInfo(hotelName);
-		main.showOrderBuilder(vo,RoomType.高级套间, startTime, endTime);
-		//跳转到订单界面
+		main.showOrderBuilder(vo, RoomType.高级套间, startTime, endTime);
+		// 跳转到订单界面
 	}
-	private java.util.Date localToDate(LocalDate time){
-		System.out.println("test1"+time.toString());
+
+	private java.util.Date localToDate(LocalDate time) {
+		System.out.println("test1" + time.toString());
 		Instant instant = Instant.from(time.atStartOfDay(ZoneId.systemDefault()));
 		return java.util.Date.from(instant);
 	}
