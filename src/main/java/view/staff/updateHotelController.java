@@ -70,11 +70,16 @@ public class UpdateHotelController {
 		RoomService roomService = new RoomServiceImpl();
 		Date startTime = new Date(115,1,1);
 		Date endTime = new Date(115,1,2);
-		ArrayList<RoomVo> roomList = roomService.getRoomOfHotel(hotelName, startTime, endTime);
-		ObservableList<String> roomStrList = FXCollections.observableArrayList();
-		for(RoomVo cell: roomList){
-			roomStrList.add("房间ID ："+cell.getRoomId()+"        价格 ："+String.valueOf(cell.getRoomPrice())+"元");
-		}
+        ArrayList<RoomVo> roomList = roomService.getRoomOfHotel(hotelName, startTime, endTime);
+        if (roomList.size() != 0) {
+            ObservableList<String> roomStrList = FXCollections.observableArrayList();
+            for (RoomVo cell : roomList) {
+                roomStrList
+                .add("房间ID ：" + cell.getRoomId() + "        价格 ：" + String.valueOf(cell.getRoomPrice()) + "元");
+            }
+        } else {
+            ObservableList<String> roomStrList = FXCollections.observableArrayList("酒店暂无房间");
+        }
 		
 
 		hotelNameLabel.setText(hotelName);
