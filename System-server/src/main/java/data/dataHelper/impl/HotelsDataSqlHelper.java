@@ -29,7 +29,7 @@ public class HotelsDataSqlHelper implements HotelsDataHelper {
 	private void getConnect() {
 		String url = "jdbc:mysql://localhost:3306/software2?characterEncoding=utf8";
 		String user = "root";
-		String password = "12345";
+		String password = "zhurunzhi654";
 		connection = SqlConnectHelper.getConnection(url, user, password);
 	}
 	

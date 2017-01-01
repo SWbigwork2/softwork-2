@@ -142,8 +142,8 @@ public boolean addPromotionsIV(PromotionsIVPO promotionsIVPO){
 			getConnect();
 		String sql="insert into strategiesiv values("+promotionsIVPO.getType()+","+"'"+promotionsIVPO.getHotel()+"'"
 				+","+"'"+promotionsIVPO.getIntroduction()+"'"
-				+","+"'"+promotionsIVPO.getcompanyname()+"'"
-				+","+promotionsIVPO.getDiscount()+")";
+				+","+promotionsIVPO.getDiscount()
+				+","+"'"+promotionsIVPO.getcompanyname()+"'"+")";
 		 statement=connection.prepareStatement(sql);
 			int row=statement.executeUpdate();
 			if(row==1)
@@ -357,8 +357,8 @@ public ArrayList<PromotionsPO> getHotelPromotions(String hotel) {
 						int type=resultSet4.getInt(1);
 						String hotelname=resultSet4.getString(2);
 						String introduction =resultSet4.getString(3);
-						String companyname=resultSet4.getString(4);
-						double discount=resultSet4.getDouble(5);
+						String companyname=resultSet4.getString(5);
+						double discount=resultSet4.getDouble(4);
 						PromotionsIVPO promotionsIVPO=new PromotionsIVPO(type, hotelname, introduction, companyname, discount);
 						list.add(promotionsIVPO);
 					}
