@@ -369,6 +369,10 @@ public class Main extends Application {
 		}
 	}
 	
+	public void updateMember(){
+	    Main.membervo = (MemberInformationVO) userService.find(membervo.getUserId(), UserType.member);
+	}
+	
 	/**
 	 * @param vo
 	 * 根据登陆信息，设置用户信息

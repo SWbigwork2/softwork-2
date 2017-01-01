@@ -59,6 +59,15 @@ public class MemberInformationController {
     }
     
 	/**
+	 * 初始化方法
+	 * 
+	 */
+	@FXML
+	public void initialize(){
+		memberName.setEditable(false);
+		contactInformation.setEditable(false);
+	}
+	/**
 	 * 确认修改
 	 */
 	@FXML
@@ -120,6 +129,8 @@ public class MemberInformationController {
 		    alert.setContentText(Namecontent+" "+contact+"已经修改");
 		    alert.showAndWait();
 		}
+		memberName.setEditable(false);
+		contactInformation.setEditable(false);
 //		main.showMain();
 	}
 		

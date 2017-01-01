@@ -107,6 +107,7 @@ public class OrderInfoController {
 		}
 		
 		service.revoke(vo.getOrderId());
+		main.updateMember();
 		Alert infoAlert = new Alert(AlertType.INFORMATION);
 		infoAlert.setTitle("成功");
 		infoAlert.setHeaderText(null);
@@ -202,7 +203,7 @@ public class OrderInfoController {
 		deadline.setText(vo.getDeadLine().toLocaleString());
 		 hotel.setText(vo.getHotel());
 	 }
-	 /**
+		/**
 		 * @param type
 		 * @return 将订单状态改为中文显示
 		 */
@@ -214,7 +215,7 @@ public class OrderInfoController {
 				return "异常订单";
 			case "done":
 				return "已完成订单";
-			case "appel":
+			case "appeal":
 				return "已申请订单";
 			case "all":
 				return "全部订单";
@@ -236,7 +237,7 @@ public class OrderInfoController {
 			case "已完成订单":
 				return "done";
 			case "已申请订单":
-				return "appel";
+				return "appeal";
 			case "全部订单":
 				return "all";
 			case "已撤销订单":

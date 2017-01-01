@@ -137,7 +137,52 @@ public class BrowseHotelDetailController {
 		this.userId = userId;
 		initialized();
 	}
-
+	/**
+	 * @param type
+	 * @return 将订单状态改为中文显示
+	 */
+	private String typeToName(String type){
+		switch (type) {
+		case "normal":
+			return "未执行订单";
+		case "error":
+			return "异常订单";
+		case "done":
+			return "已完成订单";
+		case "appeal":
+			return "已申请订单";
+		case "all":
+			return "全部订单";
+		case "revoke":
+			return "已撤销订单";
+		case "evaluation":
+			return "已评价订单";
+		default:
+			return null;
+			
+		}
+	}
+	private String nameToType(String name){
+		switch (name) {
+		case "未执行订单":
+			return "normal";
+		case "异常订单":
+			return "error";
+		case "已完成订单":
+			return "done";
+		case "已申请订单":
+			return "appeal";
+		case "全部订单":
+			return "all";
+		case "已撤销订单":
+			return "revoke";
+		case "已评价订单":
+			return "evaluation";
+		default:
+			return null;
+			
+		}
+	}
 	@FXML
 	public void initialized() {
 		HotelService hotelService = new HotelServiceImpl();
@@ -171,7 +216,7 @@ public class BrowseHotelDetailController {
 			ArrayList<String> orderStrList = new ArrayList<String>();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			for (OrderVo cell : orderList) {
-				orderStrList.add(cell.getOrderId() + " 类型：" + cell.getType() + " 起始："
+				orderStrList.add(cell.getOrderId() + " 类型：" + typeToName(cell.getType()) + " 起始："
 						+ formatter.format(cell.getInDate()) + " 结束：" + formatter.format(cell.getOutDate()));
 			}
 			ObservableList<String> order = FXCollections.observableArrayList(orderStrList);

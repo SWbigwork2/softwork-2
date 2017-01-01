@@ -25,6 +25,52 @@ public class OrderListViewController {
 		orderListView.setItems(orderList);
 	}
 	/**
+	 * @param type
+	 * @return 将订单状态改为中文显示
+	 */
+	private String typeToName(String type){
+		switch (type) {
+		case "normal":
+			return "未执行订单";
+		case "error":
+			return "异常订单";
+		case "done":
+			return "已完成订单";
+		case "appel":
+			return "已申请订单";
+		case "all":
+			return "全部订单";
+		case "revoke":
+			return "已撤销订单";
+		case "evaluation":
+			return "已评价订单";
+		default:
+			return null;
+			
+		}
+	}
+	private String nameToType(String name){
+		switch (name) {
+		case "未执行订单":
+			return "normal";
+		case "异常订单":
+			return "error";
+		case "已完成订单":
+			return "done";
+		case "已申请订单":
+			return "appel";
+		case "全部订单":
+			return "all";
+		case "已撤销订单":
+			return "revoke";
+		case "已评价订单":
+			return "evaluation";
+		default:
+			return null;
+			
+		}
+	}
+	/**
 	 * @param date
  	 * @return 将date转换成标准的年月日格式
 	 */
@@ -44,7 +90,7 @@ public class OrderListViewController {
 		String beginStr = toForm(info.getInDate());
 		String outStr = toForm(info.getOutDate());
 		String price = info.getPrice()+"";
-		String type = info.getType();
+		String type = typeToName(info.getType());
 		return orderId+" "+" "+beginStr+" "+outStr+" "+price+"元"+" "+type;
 	}
 

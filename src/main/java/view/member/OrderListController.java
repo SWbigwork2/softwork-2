@@ -92,7 +92,12 @@ public class OrderListController {
 		orderVoInfo = infoList.get(0);
 		orderId.setText(orderVoInfo.getOrderId()+"");
 		beginDate .setText(orderVoInfo.getBeginDate().toLocaleString());
+		try{
 		endDate.setText(orderVoInfo.getCompleteDate().toLocaleString());
+		}catch (Exception e) {
+			endDate.setText("尚未完成");
+			// TODO: handle exception
+		}
 		hotel.setText(orderVoInfo.getHotel());
 		price.setText(orderVoInfo.getPrice()+"");
 		type.setText(orderVoInfo.getType());
@@ -203,7 +208,7 @@ public class OrderListController {
 	private String simpleInfo(OrderVo info){ 
 		String orderId = info.getOrderId()+"";
 		String hotelStr = info.getHotel();
-		String beginStr = toForm(info.getBeginDate());
+		String beginStr = toForm(info.getInDate());
 		String price = info.getPrice()+"";
 		String type = typeToName(info.getType());
 		
@@ -221,7 +226,7 @@ public class OrderListController {
 			return "异常订单";
 		case "done":
 			return "已完成订单";
-		case "appel":
+		case "appeal":
 			return "已申请订单";
 		case "all":
 			return "全部订单";
@@ -243,7 +248,7 @@ public class OrderListController {
 		case "已完成订单":
 			return "done";
 		case "已申请订单":
-			return "appel";
+			return "appeal";
 		case "全部订单":
 			return "all";
 		case "已撤销订单":

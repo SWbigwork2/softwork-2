@@ -24,7 +24,7 @@
                   <Label fx:id="hotel" prefHeight="123.0" prefWidth="155.0" text="酒店名" />
                </children>
             </HBox>
-            <TextArea fx:id="introduction" prefHeight="100.0" prefWidth="600.0" text="介绍" />
+            <TextArea fx:id="introduction" editable="false" prefHeight="100.0" prefWidth="600.0" text="介绍" wrapText="true" />
          </children>
       </VBox>
    </top>
