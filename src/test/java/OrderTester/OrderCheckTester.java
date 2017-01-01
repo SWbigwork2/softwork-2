@@ -1,6 +1,6 @@
-package OrderTest;
+package OrderTester;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -15,7 +15,7 @@ import data.rmi.RemoteHelper;
 import ordersblimpl.OrderServiceImpl;
 import vo.OrderVo;
 
-public class updateOrderTest {
+public class OrderCheckTester {
 	OrdersService orderService;
 private RemoteHelper remoteHelper;
 	
@@ -39,15 +39,10 @@ private RemoteHelper remoteHelper;
 		linkToServer();
 		orderService = new OrderServiceImpl();
 	}
-
 	@Test
-	public void changeType() {
-		OrderVo vo = orderService.getUndoList().get(0);
-		vo.setType("done");
-		int orderId = vo.getOrderId();
-		orderService.update(vo);
-		OrderVo resultVo = orderService.getOrder(orderId);
-		assertEquals("done", resultVo.getType());
+	public void checkTest(){
+		orderService.checkOrder();
+		OrderVo vo = orderService.getOrder(111111);
+		assertEquals(vo.getType(), "error");
 	}
-
 }

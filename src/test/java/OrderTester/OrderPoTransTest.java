@@ -1,4 +1,4 @@
-package OrderTest;
+package OrderTester;
 
 import static org.junit.Assert.*;
 

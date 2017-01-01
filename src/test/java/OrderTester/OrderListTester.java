@@ -1,11 +1,12 @@
-package OrderTest;
+package OrderTester;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,7 @@ import data.rmi.RemoteHelper;
 import ordersblimpl.OrderServiceImpl;
 import vo.OrderVo;
 
-public class OrderCheckTester {
+public class OrderListTester {
 	OrdersService orderService;
 private RemoteHelper remoteHelper;
 	
@@ -39,10 +40,15 @@ private RemoteHelper remoteHelper;
 		linkToServer();
 		orderService = new OrderServiceImpl();
 	}
+	/**
+	 * 得到酒店订单的测试
+	 */
 	@Test
-	public void checkTest(){
-		orderService.checkOrder();
-		OrderVo vo = orderService.getOrder(111111);
-		assertEquals(vo.getType(), "error");
+	public void hotelOrderTest() {
+		ArrayList<OrderVo> testList = orderService.getHotelOrder("金陵饭店");
+		assertEquals(testList.size(), 6);
+		testList = orderService.getHotelOrder("test");
+		assertEquals(testList.size(), 0);
 	}
+
 }
